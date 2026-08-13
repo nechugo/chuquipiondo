@@ -120,37 +120,63 @@ th {
 	font-weight: 600;
 }
 
-/* Buttons. */
+/* Buttons (base — detailed customization via dynamic CSS in css.php). */
 .btn, .button, button[type="submit"], input[type="submit"] {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	gap: var(--space-2);
-	padding: 0.7em 1.5em;
-	border: 0;
-	border-radius: var(--radius-button);
-	background: var(--button-bg);
-	color: var(--button-text);
+	padding: var(--button-padding-v, 6px) var(--button-padding-h, 20px);
+	min-height: var(--button-height, 25px);
+	border: var(--button-border-w, 0) solid var(--button-border-c, #0a1f44);
+	border-radius: var(--radius-button, 30px);
+	background: var(--button-bg, #27b6ff);
+	color: var(--button-text, #0a1f44);
 	font-family: var(--font-heading);
-	font-weight: 600;
-	font-size: 0.9375rem;
+	font-weight: var(--button-font-weight, 600);
+	font-size: var(--button-font-size, 12px);
 	line-height: 1.2;
+	letter-spacing: var(--button-letter-sp, 0em);
+	text-transform: none;
 	cursor: pointer;
 	text-decoration: none;
-	transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+	overflow: hidden;
+	transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .btn:hover, .button:hover, button[type="submit"]:hover, input[type="submit"]:hover,
 .btn:focus, .button:focus, button[type="submit"]:focus, input[type="submit"]:focus {
-	background: var(--button-hover-bg);
-	color: var(--button-hover);
+	background: var(--button-hover-bg, #0a1f44);
+	color: var(--button-hover-text, #ffffff);
 	transform: translateY(-1px);
 }
 
 .btn:disabled {
 	opacity: 0.6;
 	cursor: not-allowed;
+	transform: none;
 }
+
+/* Button icon. */
+.btn .btn-icon,
+.button .btn-icon {
+	width: var(--button-icon-size, 14px);
+	height: var(--button-icon-size, 14px);
+	flex-shrink: 0;
+}
+
+.btn .btn-text {
+	display: inline-block;
+}
+
+/* Button shape modifiers (also controllable via Customizer). */
+.btn--square { border-radius: 0; }
+.btn--rounded { border-radius: var(--button-radius, 30px); }
+.btn--pill { border-radius: 9999px; }
+
+/* Button width modifiers. */
+.btn--full { width: 100%; }
+.btn--fixed { width: var(--button-width, 50px); }
 
 /* Screen reader text. */
 .screen-reader-text {

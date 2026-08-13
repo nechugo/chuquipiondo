@@ -29,6 +29,7 @@ function chuquipiondo_customize_register( $wp_customize ) {
 	// Bring in each section group (defined in sections.php).
 	require_once __DIR__ . "/sections.php";
 	chuquipiondo_register_global( $wp_customize );
+	chuquipiondo_register_buttons( $wp_customize );
 	chuquipiondo_register_header( $wp_customize );
 	chuquipiondo_register_hero( $wp_customize );
 	chuquipiondo_register_home( $wp_customize );
@@ -269,28 +270,189 @@ function chuquipiondo_register_global( $wp_customize ) {
 		'priority'          => 42,
 	) );
 
-	// Button radius.
-	chuquipiondo_add_setting_control( $wp_customize, 'button_radius', array(
-		'label'             => __( 'Radio de botones (px)', 'chuquipiondo' ),
-		'section'           => 'chuquipiondo_global',
-		'type'              => 'range',
-		'input_attrs'       => array( 'min' => 0, 'max' => 40, 'step' => 1 ),
-		'sanitize_callback' => 'chuquipiondo_sanitize_range',
-		'priority'          => 50,
-	) );
+	// Content radius (buttons moved to their own section).
 	chuquipiondo_add_setting_control( $wp_customize, 'content_radius', array(
 		'label'             => __( 'Radio de tarjetas (px)', 'chuquipiondo' ),
 		'section'           => 'chuquipiondo_global',
 		'type'              => 'range',
 		'input_attrs'       => array( 'min' => 0, 'max' => 40, 'step' => 1 ),
 		'sanitize_callback' => 'chuquipiondo_sanitize_range',
-		'priority'          => 51,
+		'priority'          => 50,
 	) );
 
 	// Listen for preset changes and write the color mods.
 	if ( is_admin() && isset( $_POST['customized'] ) && doing_action( 'customize_save_after' ) ) {
 		// Preset application handled on save via the customize_save_after hook below.
 	}
+}
+
+/* ===================================================================== *
+ * BUTTONS section: complete button customization.
+ * ===================================================================== */
+
+function chuquipiondo_register_buttons( $wp_customize ) {
+	chuquipiondo_add_section( $wp_customize, 'chuquipiondo_buttons', array(
+		'title'    => __( 'CHUQUIPIONDO: Botones', 'chuquipiondo' ),
+		'priority' => 28,
+	) );
+
+	// ===== Dimensiones =====
+	chuquipiondo_add_setting_control( $wp_customize, 'button_width_mode', array(
+		'label'             => __( 'Modo de ancho', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_buttons',
+		'type'              => 'select',
+		'choices'           => array(
+			'auto'    => __( 'Automatico (segun texto)', 'chuquipiondo' ),
+			'fixed'   => __( 'Fijo (px)', 'chuquipiondo' ),
+			'full'    => __( '100% (ancho completo)', 'chuquipiondo' ),
+			'percent' => __( 'Porcentual (1-100%)', 'chuquipiondo' ),
+		),
+		'sanitize_callback' => 'chuquipiondo_sanitize_select',
+		'priority'          => 5,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'button_width', array(
+		'label'             => __( 'Ancho fijo (px)', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_buttons',
+		'type'              => 'range',
+		'input_attrs'       => array( 'min' => 20, 'max' => 500, 'step' => 1 ),
+		'sanitize_callback' => 'chuquipiondo_sanitize_range',
+		'description'       => __( 'Solo aplica en modo fijo. Default: 50px.', 'chuquipiondo' ),
+		'priority'          => 6,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'button_width_percent', array(
+		'label'             => __( 'Ancho porcentual (%)', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_buttons',
+		'type'              => 'range',
+		'input_attrs'       => array( 'min' => 1, 'max' => 100, 'step' => 1 ),
+		'sanitize_callback' => 'chuquipiondo_sanitize_range',
+		'description'       => __( 'Solo aplica en modo porcentual. 1% a 100%.', 'chuquipiondo' ),
+		'priority'          => 7,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'button_height', array(
+		'label'             => __( 'Altura (px)', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_buttons',
+		'type'              => 'range',
+		'input_attrs'       => array( 'min' => 20, 'max' => 120, 'step' => 1 ),
+		'sanitize_callback' => 'chuquipiondo_sanitize_range',
+		'description'       => __( 'Altura del boton. Default: 25px (ampliable).', 'chuquipiondo' ),
+		'priority'          => 8,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'button_padding_h', array(
+		'label'             => __( 'Padding horizontal (px)', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_buttons',
+		'type'              => 'range',
+		'input_attrs'       => array( 'min' => 0, 'max' => 60, 'step' => 1 ),
+		'sanitize_callback' => 'chuquipiondo_sanitize_range',
+		'description'       => __( 'Espaciado interno horizontal (modo auto). Default: 20px.', 'chuquipiondo' ),
+		'priority'          => 9,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'button_padding_v', array(
+		'label'             => __( 'Padding vertical (px)', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_buttons',
+		'type'              => 'range',
+		'input_attrs'       => array( 'min' => 0, 'max' => 40, 'step' => 1 ),
+		'sanitize_callback' => 'chuquipiondo_sanitize_range',
+		'priority'          => 10,
+	) );
+
+	// ===== Forma y radio =====
+	chuquipiondo_add_setting_control( $wp_customize, 'button_shape', array(
+		'label'             => __( 'Forma del boton', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_buttons',
+		'type'              => 'select',
+		'choices'           => array(
+			'square'  => __( 'Cuadrado (sin radio)', 'chuquipiondo' ),
+			'rounded' => __( 'Redondeado (radio custom)', 'chuquipiondo' ),
+			'pill'    => __( 'Pildora (radio total)', 'chuquipiondo' ),
+		),
+		'sanitize_callback' => 'chuquipiondo_sanitize_select',
+		'description'       => __( 'Cuadrado = 0px, Redondeado = 30px (default), Pildora = total.', 'chuquipiondo' ),
+		'priority'          => 15,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'button_radius', array(
+		'label'             => __( 'Radio (px)', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_buttons',
+		'type'              => 'range',
+		'input_attrs'       => array( 'min' => 0, 'max' => 60, 'step' => 1 ),
+		'sanitize_callback' => 'chuquipiondo_sanitize_range',
+		'description'       => __( 'Solo aplica en modo redondeado. Default: 30px.', 'chuquipiondo' ),
+		'priority'          => 16,
+	) );
+
+	// ===== Tipografia =====
+	chuquipiondo_add_setting_control( $wp_customize, 'button_font_size', array(
+		'label'             => __( 'Tamano del texto (px)', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_buttons',
+		'type'              => 'range',
+		'input_attrs'       => array( 'min' => 8, 'max' => 32, 'step' => 1 ),
+		'sanitize_callback' => 'chuquipiondo_sanitize_range',
+		'description'       => __( 'Tamano del texto dentro del boton. Default: 12px.', 'chuquipiondo' ),
+		'priority'          => 20,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'button_font_weight', array(
+		'label'             => __( 'Peso de la fuente', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_buttons',
+		'type'              => 'select',
+		'choices'           => array( '400' => '400', '500' => '500', '600' => '600', '700' => '700', '800' => '800' ),
+		'sanitize_callback' => 'chuquipiondo_sanitize_select',
+		'priority'          => 21,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'button_text_transform', array(
+		'label'             => __( 'Transformacion del texto', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_buttons',
+		'type'              => 'select',
+		'choices'           => array( 'none' => __( 'Normal', 'chuquipiondo' ), 'uppercase' => __( 'MAYUSCULAS', 'chuquipiondo' ), 'lowercase' => __( 'minusculas', 'chuquipiondo' ), 'capitalize' => __( 'Capitalizado', 'chuquipiondo' ) ),
+		'sanitize_callback' => 'chuquipiondo_sanitize_select',
+		'priority'          => 22,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'button_letter_spacing', array(
+		'label'             => __( 'Espaciado entre letras (em)', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_buttons',
+		'type'              => 'range',
+		'input_attrs'       => array( 'min' => 0, 'max' => 0.3, 'step' => 0.01 ),
+		'sanitize_callback' => 'chuquipiondo_sanitize_range',
+		'description'       => __( '0 = sin espaciado extra. 0.05 = ligero.', 'chuquipiondo' ),
+		'priority'          => 23,
+	) );
+
+	// ===== Colores =====
+	chuquipiondo_add_setting_control( $wp_customize, 'button_bg', array( 'section' => 'chuquipiondo_buttons', 'label' => __( 'Color de fondo', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 30 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'button_text', array( 'section' => 'chuquipiondo_buttons', 'label' => __( 'Color del texto', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 31 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'button_hover_bg', array( 'section' => 'chuquipiondo_buttons', 'label' => __( 'Color de fondo (hover)', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 32 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'button_hover_text', array( 'section' => 'chuquipiondo_buttons', 'label' => __( 'Color del texto (hover)', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 33 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'button_border_width', array( 'section' => 'chuquipiondo_buttons', 'label' => __( 'Ancho del borde (px)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 0, 'max' => 10, 'step' => 1 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'priority' => 34 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'button_border_color', array( 'section' => 'chuquipiondo_buttons', 'label' => __( 'Color del borde', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 35 ) );
+
+	// ===== Sombra =====
+	chuquipiondo_add_setting_control( $wp_customize, 'button_shadow_enable', array( 'section' => 'chuquipiondo_buttons', 'label' => __( 'Activar sombra', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'priority' => 40 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'button_shadow_color', array( 'section' => 'chuquipiondo_buttons', 'label' => __( 'Color de sombra', 'chuquipiondo' ), 'type' => 'text', 'sanitize_callback' => 'chuquipiondo_sanitize_text', 'description' => 'rgba(0,0,0,0.2)', 'priority' => 41 ) );
+
+	// ===== Iconos =====
+	chuquipiondo_add_setting_control( $wp_customize, 'button_icon_enable', array( 'section' => 'chuquipiondo_buttons', 'label' => __( 'Activar icono', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'description' => __( 'Anade un icono dentro de los botones.', 'chuquipiondo' ), 'priority' => 50 ) );
+	$wp_customize->add_setting( 'button_icon', array( 'default' => chuquipiondo_default( 'button_icon' ), 'transport' => 'refresh', 'sanitize_callback' => 'chuquipiondo_sanitize_select' ) );
+	$wp_customize->add_control( 'button_icon', array(
+		'label'    => __( 'Icono', 'chuquipiondo' ),
+		'section'  => 'chuquipiondo_buttons',
+		'type'     => 'select',
+		'choices'  => chuquipiondo_button_icons(),
+		'priority' => 51,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'button_icon_position', array(
+		'section'           => 'chuquipiondo_buttons',
+		'label'             => __( 'Posicion del icono', 'chuquipiondo' ),
+		'type'              => 'select',
+		'choices'           => array( 'before' => __( 'Antes del texto', 'chuquipiondo' ), 'after' => __( 'Despues del texto', 'chuquipiondo' ) ),
+		'sanitize_callback' => 'chuquipiondo_sanitize_select',
+		'priority'          => 52,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'button_icon_size', array(
+		'section'           => 'chuquipiondo_buttons',
+		'label'             => __( 'Tamano del icono (px)', 'chuquipiondo' ),
+		'type'              => 'range',
+		'input_attrs'       => array( 'min' => 8, 'max' => 40, 'step' => 1 ),
+		'sanitize_callback' => 'chuquipiondo_sanitize_range',
+		'priority'          => 53,
+	) );
 }
 
 /**

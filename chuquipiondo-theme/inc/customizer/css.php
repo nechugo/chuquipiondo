@@ -42,8 +42,25 @@ function chuquipiondo_dynamic_css() {
 		'reading-width'   => chuquipiondo_get_option( 'reading_width' ) . 'px',
 		'sidebar-width'   => chuquipiondo_get_option( 'sidebar_width' ) . 'px',
 		'radius-content'  => chuquipiondo_get_option( 'content_radius' ) . 'px',
-		'radius-button'   => chuquipiondo_get_option( 'button_radius' ) . 'px',
-		'spacing-base'    => chuquipiondo_get_option( 'spacing_base' ) . 'px',
+		'radius-button'     => chuquipiondo_get_option( 'button_radius' ) . 'px',
+		'button-bg'         => chuquipiondo_get_option( 'button_bg' ),
+		'button-text'       => chuquipiondo_get_option( 'button_text' ),
+		'button-hover-bg'   => chuquipiondo_get_option( 'button_hover_bg' ),
+		'button-hover-text' => chuquipiondo_get_option( 'button_hover_text' ),
+		'button-width'      => chuquipiondo_get_option( 'button_width' ) . 'px',
+		'button-width-pct'  => chuquipiondo_get_option( 'button_width_percent' ) . '%',
+		'button-height'     => chuquipiondo_get_option( 'button_height' ) . 'px',
+		'button-font-size'  => chuquipiondo_get_option( 'button_font_size' ) . 'px',
+		'button-font-weight'=> chuquipiondo_get_option( 'button_font_weight' ),
+		'button-radius'     => chuquipiondo_get_option( 'button_radius' ) . 'px',
+		'button-padding-h'  => chuquipiondo_get_option( 'button_padding_h' ) . 'px',
+		'button-padding-v'  => chuquipiondo_get_option( 'button_padding_v' ) . 'px',
+		'button-icon-size'  => chuquipiondo_get_option( 'button_icon_size' ) . 'px',
+		'button-border-w'   => chuquipiondo_get_option( 'button_border_width' ) . 'px',
+		'button-border-c'   => chuquipiondo_get_option( 'button_border_color' ),
+		'button-shadow'     => chuquipiondo_get_option( 'button_shadow_color' ),
+		'button-letter-sp'  => chuquipiondo_get_option( 'button_letter_spacing' ) . 'em',
+		'spacing-base'       => chuquipiondo_get_option( 'spacing_base' ) . 'px',
 	);
 
 	// WhatsApp sizes.
@@ -97,6 +114,49 @@ function chuquipiondo_dynamic_css() {
 	if ( 'custom' === $mode ) {
 		$css .= ".social-share a{ background: var(--social-bg); color: var(--social-fg); }\n";
 	}
+
+	// ===== Button styles =====
+	$shape     = chuquipiondo_get_option( 'button_shape' );
+	$width_mode= chuquipiondo_get_option( 'button_width_mode' );
+	$radius    = '0px';
+	if ( 'rounded' === $shape ) {
+		$radius = chuquipiondo_get_option( 'button_radius' ) . 'px';
+	} elseif ( 'pill' === $shape ) {
+		$radius = '9999px';
+	}
+
+	$width_css = '';
+	if ( 'fixed' === $width_mode ) {
+		$width_css = 'width: ' . chuquipiondo_get_option( 'button_width' ) . 'px;';
+	} elseif ( 'full' === $width_mode ) {
+		$width_css = 'width: 100%;';
+	} elseif ( 'percent' === $width_mode ) {
+		$width_css = 'width: ' . chuquipiondo_get_option( 'button_width_percent' ) . '%;';
+	}
+
+	$shadow_css = '';
+	if ( chuquipiondo_is_enabled( 'button_shadow_enable' ) ) {
+		$shadow_css = 'box-shadow: 0 4px 12px ' . chuquipiondo_get_option( 'button_shadow_color' ) . ';';
+	}
+
+	$css .= ".btn, .button, button[type=\"submit\"], input[type=\"submit\"] {\n";
+	$css .= "  min-height: var(--button-height);\n";
+	$css .= "  font-size: var(--button-font-size);\n";
+	$css .= "  font-weight: var(--button-font-weight);\n";
+	$css .= "  border-radius: {$radius};\n";
+	$css .= "  padding: var(--button-padding-v) var(--button-padding-h);\n";
+	$css .= "  text-transform: " . chuquipiondo_get_option( 'button_text_transform' ) . ";\n";
+	$css .= "  letter-spacing: var(--button-letter-sp);\n";
+	$css .= "  border-width: var(--button-border-w);\n";
+	$css .= "  border-style: solid;\n";
+	$css .= "  border-color: var(--button-border-c);\n";
+	if ( $width_css ) { $css .= "  {$width_css}\n"; }
+	if ( $shadow_css ) { $css .= "  {$shadow_css}\n"; }
+	$css .= "}\n";
+
+	// Icon styles.
+	$css .= ".btn-icon { width: var(--button-icon-size); height: var(--button-icon-size); }\n";
+	$css .= ".btn .btn-icon { flex-shrink: 0; }\n";
 
 	// Custom user CSS.
 	$custom_css = chuquipiondo_get_option( 'custom_css' );

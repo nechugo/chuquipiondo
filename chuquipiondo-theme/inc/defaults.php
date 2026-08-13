@@ -56,11 +56,32 @@ function chuquipiondo_defaults() {
 		'reading_width'          => '800',
 		'sidebar_width'          => '320',
 		'content_radius'         => '12',
-		'button_radius'          => '8',
+		/* ===== Botones (sistema completo) ===== */
+		'button_width_mode'      => 'auto',          // auto | fixed | full | percent
+		'button_width'           => '50',            // px (modo fixed)
+		'button_width_percent'   => '100',           // % (modo percent, 1-100)
+		'button_height'          => '25',            // px
+		'button_height_custom'   => '25',            // px (ajustable ampliable)
+		'button_font_size'       => '12',            // px
+		'button_shape'           => 'rounded',       // square | rounded | pill
+		'button_radius'          => '30',            // px (para rounded; pill=9999, square=0)
 		'button_bg'              => '#27b6ff',
 		'button_text'            => '#0a1f44',
 		'button_hover_bg'        => '#0a1f44',
 		'button_hover_text'      => '#ffffff',
+		'button_border_width'    => '0',             // px
+		'button_border_color'    => '#0a1f44',
+		'button_padding_h'       => '20',            // px padding horizontal
+		'button_padding_v'       => '6',             // px padding vertical
+		'button_icon_enable'    => '0',              // icono activado
+		'button_icon'            => 'none',          // none | arrow-right | arrow-left | check | download | play | star | heart | external | email | search | user | calendar | chevron-right | chevron-left | plus | minus | close | menu
+		'button_icon_position'  => 'before',         // before | after (relativo al texto)
+		'button_icon_size'       => '14',            // px
+		'button_text_transform'  => 'none',          // none | uppercase | lowercase | capitalize
+		'button_font_weight'     => '600',           // 400-800
+		'button_letter_spacing'  => '0',             // em (ej 0.05)
+		'button_shadow_enable'   => '0',
+		'button_shadow_color'    => 'rgba(0,0,0,0.2)',
 		'spacing_base'           => '8',
 
 		/* ===== Header system ===== */
