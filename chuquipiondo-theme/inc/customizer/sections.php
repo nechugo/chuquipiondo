@@ -13,6 +13,89 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /* ===================================================================== *
+ * PRE-HEADER section: 2 invisible columns above the header.
+ * ===================================================================== */
+
+function chuquipiondo_register_preheader( $wp_customize ) {
+	chuquipiondo_add_section( $wp_customize, 'chuquipiondo_preheader', array(
+		'title'    => __( 'CHUQUIPIONDO: Pre-header', 'chuquipiondo' ),
+		'priority' => 28,
+	) );
+
+	chuquipiondo_add_setting_control( $wp_customize, 'preheader_enable', array(
+		'section'           => 'chuquipiondo_preheader',
+		'label'             => __( 'Activar pre-header (2 columnas encima del header)', 'chuquipiondo' ),
+		'type'              => 'checkbox',
+		'sanitize_callback' => 'chuquipiondo_sanitize_checkbox',
+		'description'       => __( 'Dos columnas invisibles encima del header: texto a la izquierda, widget/HTML/musica a la derecha.', 'chuquipiondo' ),
+		'priority'          => 5,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'preheader_left_text', array(
+		'section'           => 'chuquipiondo_preheader',
+		'label'             => __( 'Texto columna izquierda (HTML/Shortcode)', 'chuquipiondo' ),
+		'type'              => 'textarea',
+		'sanitize_callback' => 'chuquipiondo_sanitize_html',
+		'description'       => __( 'Texto sin fondo. Se adapta al ancho de la columna derecha.', 'chuquipiondo' ),
+		'priority'          => 10,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'preheader_right_type', array(
+		'section'           => 'chuquipiondo_preheader',
+		'label'             => __( 'Tipo de contenido columna derecha', 'chuquipiondo' ),
+		'type'              => 'select',
+		'choices'           => array(
+			'widget'    => __( 'Widget', 'chuquipiondo' ),
+			'html'      => __( 'HTML', 'chuquipiondo' ),
+			'shortcode' => __( 'Shortcode', 'chuquipiondo' ),
+			'music'     => __( 'Reproductor de musica', 'chuquipiondo' ),
+		),
+		'sanitize_callback' => 'chuquipiondo_sanitize_select',
+		'priority'          => 15,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'preheader_right_content', array(
+		'section'           => 'chuquipiondo_preheader',
+		'label'             => __( 'Contenido derecha (HTML/Shortcode)', 'chuquipiondo' ),
+		'type'              => 'textarea',
+		'sanitize_callback' => 'chuquipiondo_sanitize_html',
+		'priority'          => 16,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'preheader_right_width', array(
+		'section'           => 'chuquipiondo_preheader',
+		'label'             => __( 'Ancho columna derecha (px)', 'chuquipiondo' ),
+		'type'              => 'range',
+		'input_attrs'       => array( 'min' => 200, 'max' => 600, 'step' => 10 ),
+		'sanitize_callback' => 'chuquipiondo_sanitize_range',
+		'description'       => __( 'Default: 300px. Ampliable. La columna izquierda se adapta a este ancho.', 'chuquipiondo' ),
+		'priority'          => 20,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'preheader_gap', array(
+		'section'           => 'chuquipiondo_preheader',
+		'label'             => __( 'Gap entre columnas (px)', 'chuquipiondo' ),
+		'type'              => 'range',
+		'input_attrs'       => array( 'min' => 0, 'max' => 40, 'step' => 1 ),
+		'sanitize_callback' => 'chuquipiondo_sanitize_range',
+		'description'       => __( 'Espacio que separa ambas columnas. Default: 10px.', 'chuquipiondo' ),
+		'priority'          => 25,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'preheader_height', array(
+		'section'           => 'chuquipiondo_preheader',
+		'label'             => __( 'Modo de altura', 'chuquipiondo' ),
+		'type'              => 'select',
+		'choices'           => array( 'auto' => __( 'Automatica', 'chuquipiondo' ), 'fixed' => __( 'Fija', 'chuquipiondo' ) ),
+		'sanitize_callback' => 'chuquipiondo_sanitize_select',
+		'priority'          => 30,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'preheader_fixed_height', array(
+		'section'           => 'chuquipiondo_preheader',
+		'label'             => __( 'Altura fija (px)', 'chuquipiondo' ),
+		'type'              => 'range',
+		'input_attrs'       => array( 'min' => 40, 'max' => 300, 'step' => 5 ),
+		'sanitize_callback' => 'chuquipiondo_sanitize_range',
+		'description'       => __( 'Solo aplica en modo fijo.', 'chuquipiondo' ),
+		'priority'          => 31,
+	) );
+}
+
+/* ===================================================================== *
  * HEADER section: 3 headers with multiuse boxes.
  * ===================================================================== */
 
@@ -203,6 +286,14 @@ function chuquipiondo_register_hero( $wp_customize ) {
 		),
 		'sanitize_callback' => 'chuquipiondo_sanitize_select',
 		'priority'          => 7,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'hero_full_viewport', array(
+		'label'             => __( 'Ajustar slider + header a pantalla', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_hero',
+		'type'              => 'checkbox',
+		'sanitize_callback' => 'chuquipiondo_sanitize_checkbox',
+		'description'       => __( 'El slider se ajusta al viewport considerando la altura del header.', 'chuquipiondo' ),
+		'priority'          => 8,
 	) );
 	chuquipiondo_add_setting_control( $wp_customize, 'hero_height', array(
 		'label'             => __( 'Altura (px)', 'chuquipiondo' ),

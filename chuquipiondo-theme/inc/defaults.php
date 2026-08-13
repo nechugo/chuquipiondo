@@ -85,6 +85,16 @@ function chuquipiondo_defaults() {
 		'spacing_base'           => '8',
 
 		/* ===== Header system ===== */
+		/* ===== Pre-header (2 columnas encima del header) ===== */
+		'preheader_enable'        => '0',
+		'preheader_left_text'     => '',
+		'preheader_right_type'    => 'widget',        // widget | html | shortcode | music
+		'preheader_right_content' => '',
+		'preheader_right_width'   => '300',           // px (ampliable)
+		'preheader_gap'           => '10',             // px entre columnas
+		'preheader_height'        => 'auto',           // auto | fixed
+		'preheader_fixed_height'  => '80',             // px (si fixed)
+
 		'header_topbar_enable'   => '1',
 		'header_topbar_date'     => '1',
 		'header_topbar_time'     => '0',
@@ -113,6 +123,7 @@ function chuquipiondo_defaults() {
 		'hero_enable'            => '0',
 		'hero_mode'              => 'slider',
 		'hero_height'            => '560',
+		'hero_full_viewport'     => '0',    // ajustar slider+header a pantalla
 		'hero_effect'            => 'fade',
 		'hero_autoplay'          => '1',
 		'hero_speed'             => '5000',

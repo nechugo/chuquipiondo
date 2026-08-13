@@ -44,6 +44,7 @@ require_once CHUQUIPIONDO_DIR . '/inc/customizer/css.php';
 require_once CHUQUIPIONDO_DIR . '/inc/customizer/preview.php';
 
 // Header system (3 headers with multiuse boxes).
+require_once CHUQUIPIONDO_DIR . '/inc/preheader.php';
 require_once CHUQUIPIONDO_DIR . '/inc/header.php';
 
 // Hero / Slider system.

@@ -5,8 +5,37 @@
 .hero {
 	position: relative;
 	width: 100%;
+	max-width: 100%;
 	overflow: hidden;
 	background: var(--navy-dark);
+}
+
+/* Full viewport mode: slider + header adjust to screen.
+   The hero takes the remaining viewport height after the header. */
+body.has-hero .hero--full-viewport,
+.hero--full-viewport {
+	height: calc(100vh - var(--header-height, 80px) - var(--topbar-height, 40px));
+	min-height: 320px;
+}
+
+.hero--full-viewport .hero__track {
+	min-height: calc(100vh - var(--header-height, 80px) - var(--topbar-height, 40px));
+}
+
+.hero--full-viewport .hero__content {
+	min-height: calc(100vh - var(--header-height, 80px) - var(--topbar-height, 40px));
+}
+
+/* On mobile, cap the full-viewport height to avoid excessive scrolling. */
+@media (max-width: 767px) {
+	.hero--full-viewport {
+		height: 60vh;
+		min-height: 280px;
+	}
+	.hero--full-viewport .hero__track,
+	.hero--full-viewport .hero__content {
+		min-height: 60vh;
+	}
 }
 
 .hero--slider .hero__track {

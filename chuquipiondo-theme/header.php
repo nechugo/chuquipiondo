@@ -28,5 +28,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	/**
 	 * Header system (3 rows: top bar, main, multiuse).
 	 */
+	// Pre-header: 2 invisible columns above the header.
+	chuquipiondo_preheader();
+
 	do_action( 'chuquipiondo_header' );
 	?>

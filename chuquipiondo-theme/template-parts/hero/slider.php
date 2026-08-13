@@ -25,6 +25,9 @@ $wrapper_classes = array(
 if ( 'slider' === $mode && count( $slides ) >= 2 ) {
 	$wrapper_classes[] = 'hero--slider-active';
 }
+if ( chuquipiondo_is_enabled( 'hero_full_viewport' ) ) {
+	$wrapper_classes[] = 'hero--full-viewport';
+}
 ?>
 <div class="<?php echo esc_attr( implode( ' ', $wrapper_classes ) ); ?>" data-hero-effect="<?php echo esc_attr( $effect ); ?>" data-hero-overlay="<?php echo esc_attr( $overlay ); ?>">
 

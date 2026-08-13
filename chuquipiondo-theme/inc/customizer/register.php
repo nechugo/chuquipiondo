@@ -30,6 +30,7 @@ function chuquipiondo_customize_register( $wp_customize ) {
 	require_once __DIR__ . "/sections.php";
 	chuquipiondo_register_global( $wp_customize );
 	chuquipiondo_register_buttons( $wp_customize );
+	chuquipiondo_register_preheader( $wp_customize );
 	chuquipiondo_register_header( $wp_customize );
 	chuquipiondo_register_hero( $wp_customize );
 	chuquipiondo_register_home( $wp_customize );

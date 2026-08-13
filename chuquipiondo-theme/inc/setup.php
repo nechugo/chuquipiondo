@@ -177,6 +177,17 @@ function chuquipiondo_register_sidebars() {
 		'after_title'   => '</h2>',
 	) );
 
+	// Pre-header widget zone (right column).
+	register_sidebar( array(
+		'name'          => __( 'Pre-header (derecha)', 'chuquipiondo' ),
+		'id'            => 'sidebar-preheader',
+		'description'   => __( 'Caja derecha del pre-header (encima del header). Para reproductor de musica, widgets o HTML.', 'chuquipiondo' ),
+		'before_widget' => '<div id="%1$s" class="preheader-widget widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h3 class="preheader-widget-title">',
+		'after_title'   => '</h3>',
+	) );
+
 	register_sidebar( array(
 		'name'          => __( 'Pie de pagina', 'chuquipiondo' ),
 		'id'            => 'sidebar-footer',

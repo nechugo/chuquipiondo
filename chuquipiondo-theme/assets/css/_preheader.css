@@ -1,0 +1,72 @@
+/**
+ * Pre-header: 2 invisible columns above the header.
+ *
+ * Left column: text, no background (transparent).
+ * Right column: widget/HTML/music box (default 300px, expandable).
+ * Gap between columns: configurable (default 10px).
+ * The left column width adapts to the right column width.
+ */
+
+.chuqui-preheader {
+	width: 100%;
+	background: transparent;
+	z-index: var(--z-header);
+	position: relative;
+}
+
+.chuqui-preheader__inner {
+	display: flex;
+	align-items: stretch;
+	gap: var(--preheader-gap, 10px);
+	padding: 0 1.5rem;
+	max-width: var(--container-width);
+	margin-inline: auto;
+}
+
+/* Left column: takes remaining space, no background. */
+.chuqui-preheader__left {
+	flex: 1 1 auto;
+	min-width: 0;
+	display: flex;
+	align-items: center;
+	background: transparent;
+}
+
+.chuqui-preheader__text {
+	width: 100%;
+	background: transparent;
+	color: var(--text);
+	font-size: 0.9375rem;
+	line-height: 1.5;
+}
+
+/* Right column: fixed width (default 300px), expandable. */
+.chuqui-preheader__right {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.chuqui-preheader__right .preheader-widget,
+.chuqui-preheader__right .widget {
+	width: 100%;
+	margin: 0;
+}
+
+.chuqui-preheader__right .music-player {
+	width: 100%;
+}
+
+/* Responsive: stack columns on mobile. */
+@media (max-width: 767px) {
+	.chuqui-preheader__inner {
+		flex-direction: column;
+		gap: var(--preheader-gap, 10px);
+	}
+
+	.chuqui-preheader__right {
+		width: 100% !important;
+		flex-shrink: 1;
+	}
+}
