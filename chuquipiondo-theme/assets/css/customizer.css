@@ -1,0 +1,79 @@
+/**
+ * Customizer control styles: slides repeater + admin panel.
+ */
+
+.chuquipiondo-slides {
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	padding: 12px;
+	background: #fff;
+}
+
+.chuquipiondo-slides-list {
+	list-style: none;
+	margin: 0 0 12px;
+	padding: 0;
+}
+
+.chuquipiondo-slide-item {
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	padding: 12px;
+	margin-bottom: 12px;
+	background: #fafafa;
+}
+
+.chuquipiondo-slide-item label {
+	display: block;
+	font-weight: 600;
+	margin-top: 8px;
+	margin-bottom: 4px;
+	font-size: 12px;
+}
+
+.chuquipiondo-slide-item input[type="text"],
+.chuquipiondo-slide-item input[type="url"] {
+	width: 100%;
+}
+
+.chuquipiondo-slide-item .chuquipiondo-slide-move,
+.chuquipiondo-slide-item .chuquipiondo-slide-remove {
+	margin-top: 8px;
+}
+
+.chuquipiondo-slide-item .chuquipiondo-slide-move {
+	cursor: grab;
+}
+
+/* Admin panel. */
+.chuquipiondo-admin__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 20px;
+	margin-top: 20px;
+}
+
+.chuquipiondo-admin__card {
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 8px;
+	padding: 20px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.chuquipiondo-admin__card h2 {
+	margin-top: 0;
+	font-size: 16px;
+}
+
+.chuquipiondo-admin__card--wide {
+	grid-column: 1 / -1;
+}
+
+.chuquipiondo-admin__card .button {
+	margin-top: 8px;
+}
+
+.chuquipiondo-admin .description {
+	margin: 4px 0;
+}

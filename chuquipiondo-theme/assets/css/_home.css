@@ -1,0 +1,260 @@
+/**
+ * Home builder modules.
+ */
+
+.home-builder {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-12);
+	padding: var(--space-8) 0;
+}
+
+.home-module {
+	width: 100%;
+}
+
+.home-module__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-3);
+	margin-bottom: var(--space-5);
+	padding-bottom: var(--space-3);
+	border-bottom: 2px solid rgba(10, 31, 68, 0.08);
+}
+
+.home-module__title {
+	font-size: clamp(1.375rem, 1.1rem + 1.2vw, 1.875rem);
+	margin: 0;
+	color: var(--navy);
+}
+
+.home-module__more {
+	font-weight: 600;
+	color: var(--sky);
+	font-size: 0.875rem;
+	white-space: nowrap;
+}
+
+.home-module__more:hover {
+	color: var(--navy);
+}
+
+/* Featured grid. */
+.home-featured__grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--space-5);
+}
+
+@media (min-width: 768px) {
+	.home-featured__grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+/* Categories. */
+.home-categories__grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--space-4);
+}
+
+@media (min-width: 768px) {
+	.home-categories__grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+.category-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: var(--space-1);
+	padding: var(--space-6) var(--space-4);
+	background: linear-gradient(135deg, var(--navy), var(--navy-dark));
+	color: var(--white);
+	border-radius: var(--radius-content);
+	text-align: center;
+	transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.category-card:hover {
+	transform: translateY(-4px);
+	box-shadow: var(--shadow-lg);
+	color: var(--white);
+}
+
+.category-card__name {
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 1.25rem;
+}
+
+.category-card__count {
+	font-size: 0.8125rem;
+	opacity: 0.75;
+}
+
+/* Song. */
+.home-song__inner {
+	padding: var(--space-6);
+	background: var(--white);
+	border-radius: var(--radius-content);
+	box-shadow: var(--shadow);
+}
+
+/* Videos. */
+.home-videos__embed {
+	aspect-ratio: 16 / 9;
+	border-radius: var(--radius-content);
+	overflow: hidden;
+	background: var(--navy-dark);
+}
+
+.home-videos__embed iframe,
+.home-videos__embed .wp-embedded-content {
+	width: 100%;
+	height: 100%;
+}
+
+/* About. */
+.home-about__inner {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--space-6);
+	padding: var(--space-8);
+	background: var(--white);
+	border-radius: var(--radius-content);
+	box-shadow: var(--shadow-sm);
+}
+
+.home-about__avatar {
+	flex: 0 0 160px;
+	width: 160px;
+	height: 160px;
+	border-radius: 50%;
+	overflow: hidden;
+	background: var(--navy-dark);
+}
+
+.home-about__avatar img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.home-about__body {
+	flex: 1;
+	min-width: 280px;
+}
+
+.home-about__text {
+	color: var(--muted);
+	font-size: 1.0625rem;
+	line-height: 1.7;
+	margin: 0;
+}
+
+/* Newsletter. */
+.home-newsletter {
+	background: linear-gradient(135deg, var(--navy), var(--navy-dark));
+	color: var(--white);
+	padding: var(--space-12) 0;
+}
+
+.home-newsletter__inner {
+	text-align: center;
+	max-width: 640px;
+	margin-inline: auto;
+}
+
+.home-newsletter__title {
+	color: var(--white);
+	margin-bottom: var(--space-3);
+}
+
+.home-newsletter__text {
+	color: var(--sky-soft);
+	margin-bottom: var(--space-6);
+	font-size: 1.0625rem;
+}
+
+.home-newsletter__form {
+	display: flex;
+	gap: var(--space-2);
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.home-newsletter__form input[type="email"] {
+	flex: 1;
+	min-width: 240px;
+	max-width: 360px;
+	padding: 0.85em 1.25em;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	background: rgba(255, 255, 255, 0.1);
+	color: var(--white);
+	border-radius: var(--radius-button);
+	font-size: 1rem;
+}
+
+.home-newsletter__form input[type="email"]::placeholder {
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.home-newsletter__form--placeholder input,
+.home-newsletter__form--placeholder button {
+	opacity: 0.8;
+}
+
+/* Home ad slots. */
+.home-builder__ads {
+	max-width: var(--container-width);
+	margin-inline: auto;
+	padding: 0 1.5rem;
+}
+
+.home-ads-widget {
+	margin-bottom: 0;
+}
+
+/* 404 page. */
+.error-404 {
+	padding: var(--space-16) 0;
+	text-align: center;
+}
+
+.error-404__inner {
+	max-width: 480px;
+	margin-inline: auto;
+}
+
+.error-404__code {
+	font-family: var(--font-heading);
+	font-size: clamp(4rem, 2rem + 10vw, 8rem);
+	font-weight: 800;
+	color: var(--sky);
+	line-height: 1;
+	margin: 0 0 var(--space-4);
+}
+
+.error-404__title {
+	margin-bottom: var(--space-3);
+}
+
+.error-404__text {
+	color: var(--muted);
+	margin-bottom: var(--space-6);
+}
+
+.error-404 .search-form {
+	max-width: 360px;
+	margin: 0 auto var(--space-6);
+}
+
+.error-404__home {
+	margin-top: var(--space-4);
+}

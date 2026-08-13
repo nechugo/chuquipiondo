@@ -1,0 +1,36 @@
+/**
+ * Theme Name: CHUQUIPIONDO
+ * Theme URI: https://www.chuquipiondo.com
+ * Author: Nelson Chuquipiondo
+ * Author URI: https://www.chuquipiondo.com
+ * Description: Tema WordPress profesional, ligero y elegante. Ecosistema digital personal: portal editorial, revista digital y plataforma musical. Liderazgo, gestion y formacion con proposito. ¡Juntos, si podemos!
+ * Version: 1.0.0
+ * Requires at least: 6.2
+ * Requires PHP: 7.4
+ * Tested up to: 6.7
+ * License: GNU General Public License v2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: chuquipiondo
+ * Tags: custom-logo, custom-colors, custom-menu, featured-images, threaded-comments, translation-ready, two-columns, three-columns, right-sidebar, left-sidebar, grid-layout, theme-options, block-styles, wide-blocks
+ *
+ * CHUQUIPIONDO theme, built by Nelson Chuquipiondo.
+ *
+ * The main stylesheet imports modular partials from /assets/css/.
+ * Editing is discouraged here; edit the modular files instead.
+ */
+
+/* The modular CSS is loaded via @import below. */
+@import url("assets/css/_variables.css");
+@import url("assets/css/_base.css");
+@import url("assets/css/_layout.css");
+@import url("assets/css/_header.css");
+@import url("assets/css/_hero.css");
+@import url("assets/css/_blog.css");
+@import url("assets/css/_single.css");
+@import url("assets/css/_ads.css");
+@import url("assets/css/_social.css");
+@import url("assets/css/_whatsapp.css");
+@import url("assets/css/_music.css");
+@import url("assets/css/_home.css");
+@import url("assets/css/_footer.css");
+@import url("assets/css/_responsive.css");

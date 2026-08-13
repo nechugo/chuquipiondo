@@ -1,0 +1,36 @@
+/**
+ * Advertising slots.
+ */
+
+.chuqui-ad {
+	margin: var(--space-5) auto;
+	max-width: var(--container-width);
+	padding-inline: 1.5rem;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+}
+
+.chuqui-ad--in-content {
+	margin: var(--space-5) 0;
+	padding: 0;
+	max-width: 100%;
+}
+
+.chuqui-ad--sidebar_top,
+.chuqui-ad--sidebar_middle,
+.chuqui-ad--sidebar_bottom {
+	margin: var(--space-4) 0;
+	padding: 0;
+	max-width: 100%;
+}
+
+.chuqui-ad ins.adsbygoogle {
+	display: block;
+}
+
+@media (max-width: 767px) {
+	.chuqui-ad {
+		margin: var(--space-4) auto;
+	}
+}

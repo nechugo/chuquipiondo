@@ -1,0 +1,79 @@
+<?php
+/**
+ * Custom Customizer controls.
+ *
+ * Currently ships a lightweight slides repeater control used by
+ * the Hero / Slider section. Rendered as a JS-free textarea-encoded
+ * JSON so it works without extra Customizer scripts.
+ *
+ * @package CHUQUIPIONDO
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * Slides repeater control.
+ *
+ * Stores an array of slides as JSON in a textarea. This keeps the
+ * Customizer dependency-free (no custom JS/Backbone needed) while
+ * still being fully administrable.
+ */
+class Chuquipiondo_Slides_Control extends WP_Customize_Control {
+
+	/**
+	 * Control type.
+	 *
+	 * @var string
+	 */
+	public $type = 'chuquipiondo_slides';
+
+	/**
+	 * Enqueue control assets.
+	 */
+	public function enqueue() {
+		wp_enqueue_script(
+			'chuquipiondo-customizer-slides',
+			CHUQUIPONDO_URI . '/assets/js/customizer-slides.js',
+			array( 'jquery', 'customize-controls' ),
+			chuquipiondo_asset_version( 'assets/js/customizer-slides.js' ),
+			true
+		);
+		wp_enqueue_style(
+			'chuquipiondo-customizer-slides',
+			CHUQUIPONDO_URI . '/assets/css/customizer.css',
+			array(),
+			chuquipiondo_asset_version( 'assets/css/customizer.css' )
+		);
+	}
+
+	/**
+	 * Export the setting to JS.
+	 */
+	public function to_json() {
+		parent::to_json();
+		$value = $this->value();
+		if ( ! is_array( $value ) ) {
+			$value = array();
+		}
+		$this->json['slides'] = array_values( $value );
+		$this->json['label'] = $this->label;
+	}
+
+	/**
+	 * Render the control's content.
+	 */
+	public function content_template() {
+		?>
+		<# if ( data.label ) { #>
+			<span class="customize-control-title">{{ data.label }}</span>
+		<# } #>
+		<div class="chuquipiondo-slides" id="chuquipiondo-slides-{{ data.id }}">
+			<ul class="chuquipiondo-slides-list"></ul>
+			<button type="button" class="button chuquipiondo-add-slide"><?php esc_html_e( 'Anadir slide', 'chuquipiondo' ); ?></button>
+			<textarea class="chuquipiondo-slides-json" {{{ data.input_attrs }}} style="display:none;" data-customize-setting-link="{{ data.settings.default }}"></textarea>
+		</div>
+		<?php
+	}
+}
