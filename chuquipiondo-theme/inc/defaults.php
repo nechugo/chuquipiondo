@@ -100,6 +100,13 @@ function chuquipiondo_defaults() {
 		'header_topbar_time'     => '0',
 		'header_topbar_email'    => 'contacto@chuquipiondo.com',
 		'header_main_sticky'     => '1',
+		'header_sticky_mode'     => 'main',      // main | full (todo el header o solo main)
+		'header_sticky_desktop'  => '1',          // sticky en desktop
+		'header_sticky_mobile'   => '1',          // sticky en movil
+		'header_sticky_effect'   => 'shrink',     // none | shrink | slide | fade
+		'header_sticky_bg'       => '#ffffff',    // fondo del header sticky
+		'header_sticky_text'     => '#0a1f44',    // texto del header sticky
+		'header_sticky_shadow'   => '1',          // sombra al hacer scroll
 		'header_main_height'     => '80',
 		'header_main_layout'     => 'logo-left-menu-right',
 		'header_search_enable'   => '1',

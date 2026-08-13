@@ -61,22 +61,36 @@
 	}
 
 	/**
-	 * Sticky header shadow on scroll.
+	 * Sticky header (Astra-style): fixed on scroll, PC + mobile.
+	 * Toggles the .scrolled class on the .site-header element.
 	 */
 	function initStickyHeader() {
-		var header = document.querySelector('.header-main.is-sticky');
+		var header = document.querySelector('.site-header.is-sticky-header');
 		if (!header) {
-			return;
+			header = document.querySelector('.header-main.is-sticky');
+			if (!header) {
+				return;
+			}
 		}
 
 		var scrolled = false;
-		window.addEventListener('scroll', function () {
-			var shouldScroll = window.scrollY > 10;
+		var scrollThreshold = 10;
+
+		function checkScroll() {
+			var shouldScroll = window.scrollY > scrollThreshold;
 			if (shouldScroll !== scrolled) {
 				scrolled = shouldScroll;
 				header.classList.toggle('scrolled', scrolled);
+				// Also toggle on the main header row for mode-specific styling.
+				var mainRow = header.querySelector('.header-main');
+				if (mainRow) {
+					mainRow.classList.toggle('scrolled', scrolled);
+				}
 			}
-		}, { passive: true });
+		}
+
+		window.addEventListener('scroll', checkScroll, { passive: true });
+		checkScroll();
 	}
 
 	/**

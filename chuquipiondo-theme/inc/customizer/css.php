@@ -63,6 +63,10 @@ function chuquipiondo_dynamic_css() {
 		'spacing-base'       => chuquipiondo_get_option( 'spacing_base' ) . 'px',
 	);
 
+	// Sticky header colors.
+	$vars['header-sticky-bg']   = chuquipiondo_get_option( 'header_sticky_bg' );
+	$vars['header-sticky-text'] = chuquipiondo_get_option( 'header_sticky_text' );
+
 	// WhatsApp sizes.
 	$vars['whatsapp-size']        = chuquipiondo_get_option( 'whatsapp_size' ) . 'px';
 	$vars['whatsapp-size-mobile'] = chuquipiondo_get_option( 'whatsapp_mobile_size' ) . 'px';

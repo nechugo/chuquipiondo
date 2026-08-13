@@ -135,13 +135,73 @@ function chuquipiondo_register_header( $wp_customize ) {
 		'priority'          => 8,
 	) );
 
-	// Main header.
+	// Main header: sticky system (Astra-style).
 	chuquipiondo_add_setting_control( $wp_customize, 'header_main_sticky', array(
-		'label'             => __( 'Header principal sticky', 'chuquipiondo' ),
+		'label'             => __( 'Header fijo al hacer scroll', 'chuquipiondo' ),
 		'section'           => 'chuquipiondo_header',
 		'type'              => 'checkbox',
 		'sanitize_callback' => 'chuquipiondo_sanitize_checkbox',
+		'description'       => __( 'Master switch: hace que la cabecera sea fija (sticky) al hacer scroll.', 'chuquipiondo' ),
 		'priority'          => 15,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_sticky_mode', array(
+		'label'             => __( 'Modo sticky', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_header',
+		'type'              => 'select',
+		'choices'           => array(
+			'main' => __( 'Solo header principal', 'chuquipiondo' ),
+			'full' => __( 'Header completo (top bar + main + multiuso)', 'chuquipiondo' ),
+		),
+		'sanitize_callback' => 'chuquipiondo_sanitize_select',
+		'priority'          => 16,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_sticky_desktop', array(
+		'label'             => __( 'Sticky en Desktop', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_header',
+		'type'              => 'checkbox',
+		'sanitize_callback' => 'chuquipiondo_sanitize_checkbox',
+		'priority'          => 17,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_sticky_mobile', array(
+		'label'             => __( 'Sticky en Movil', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_header',
+		'type'              => 'checkbox',
+		'sanitize_callback' => 'chuquipiondo_sanitize_checkbox',
+		'priority'          => 18,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_sticky_effect', array(
+		'label'             => __( 'Efecto al hacer scroll', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_header',
+		'type'              => 'select',
+		'choices'           => array(
+			'none'   => __( 'Ninguno', 'chuquipiondo' ),
+			'shrink' => __( 'Encoger (shrink)', 'chuquipiondo' ),
+			'slide'  => __( 'Deslizar (slide)', 'chuquipiondo' ),
+			'fade'   => __( 'Desvanecer (fade)', 'chuquipiondo' ),
+		),
+		'sanitize_callback' => 'chuquipiondo_sanitize_select',
+		'priority'          => 19,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_sticky_bg', array(
+		'label'             => __( 'Color de fondo (sticky)', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_header',
+		'type'              => 'color',
+		'sanitize_callback' => 'chuquipiondo_sanitize_hex_color',
+		'priority'          => 20,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_sticky_text', array(
+		'label'             => __( 'Color de texto (sticky)', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_header',
+		'type'              => 'color',
+		'sanitize_callback' => 'chuquipiondo_sanitize_hex_color',
+		'priority'          => 21,
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_sticky_shadow', array(
+		'label'             => __( 'Sombra al hacer scroll', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_header',
+		'type'              => 'checkbox',
+		'sanitize_callback' => 'chuquipiondo_sanitize_checkbox',
+		'priority'          => 22,
 	) );
 	chuquipiondo_add_setting_control( $wp_customize, 'header_main_height', array(
 		'label'             => __( 'Altura del header principal (px)', 'chuquipiondo' ),

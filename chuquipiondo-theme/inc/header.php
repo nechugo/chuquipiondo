@@ -18,7 +18,24 @@ function chuquipiondo_header() {
 	 */
 	do_action( 'chuquipiondo_before_header' );
 
-	echo '<header id="masthead" class="site-header" role="banner">';
+	// Build sticky classes (Astra-style: fixed on scroll, PC + mobile).
+	$header_classes = array( 'site-header' );
+	if ( chuquipiondo_is_enabled( 'header_main_sticky' ) ) {
+		$header_classes[] = 'is-sticky-header';
+		$header_classes[] = 'sticky-mode--' . sanitize_html_class( chuquipiondo_get_option( 'header_sticky_mode' ) );
+		$header_classes[] = 'sticky-effect--' . sanitize_html_class( chuquipiondo_get_option( 'header_sticky_effect' ) );
+		if ( chuquipiondo_is_enabled( 'header_sticky_desktop' ) ) {
+			$header_classes[] = 'sticky-desktop';
+		}
+		if ( chuquipiondo_is_enabled( 'header_sticky_mobile' ) ) {
+			$header_classes[] = 'sticky-mobile';
+		}
+		if ( chuquipiondo_is_enabled( 'header_sticky_shadow' ) ) {
+			$header_classes[] = 'sticky-shadow';
+		}
+	}
+
+	echo '<header id="masthead" class="' . esc_attr( implode( ' ', $header_classes ) ) . '" role="banner">';
 
 	// Header 1: Top Bar.
 	if ( chuquipiondo_is_enabled( 'header_topbar_enable' ) ) {

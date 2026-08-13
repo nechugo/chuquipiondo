@@ -9,11 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$sticky   = chuquipiondo_is_enabled( 'header_main_sticky' ) ? 'is-sticky' : '';
 $layout   = chuquipiondo_get_option( 'header_main_layout' );
 $search   = chuquipiondo_is_enabled( 'header_search_enable' );
 ?>
-<div class="header-main <?php echo esc_attr( $sticky ); ?>">
+<div class="header-main">
 	<div class="chuqui-container header-main__inner header-main--<?php echo esc_attr( sanitize_html_class( $layout ) ); ?>">
 		<div class="header-main__brand">
 			<?php chuquipiondo_site_logo(); ?>

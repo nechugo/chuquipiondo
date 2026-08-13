@@ -7,6 +7,114 @@
 	z-index: var(--z-header);
 	background: var(--white);
 	box-shadow: var(--shadow-sm);
+	transition: position var(--transition-fast), box-shadow var(--transition-base), background var(--transition-base);
+}
+
+/* ===== Sticky header system (Astra-style) =====
+ *
+ * The header (or just the main row) becomes fixed on scroll.
+ * Works on both desktop and mobile with independent toggles.
+ * Effects: none | shrink | slide | fade.
+ */
+
+/* Mode: only the main header row is sticky. */
+.site-header.sticky-mode--main.is-sticky-header .header-main {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: var(--z-sticky);
+	width: 100%;
+	transition: transform var(--transition-base), box-shadow var(--transition-base), background var(--transition-base), height var(--transition-fast);
+}
+
+/* Mode: the full header (top bar + main + multiuse) is sticky. */
+.site-header.sticky-mode--full.is-sticky-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: var(--z-sticky);
+	width: 100%;
+	transition: transform var(--transition-base), box-shadow var(--transition-base), background var(--transition-base);
+}
+
+/* Scrolled state: applies shadow + background change. */
+.site-header.is-sticky-header.scrolled,
+.site-header.is-sticky-header.sticky-mode--main.scrolled .header-main {
+	background: var(--header-sticky-bg, var(--white));
+	color: var(--header-sticky-text, var(--navy));
+}
+
+.site-header.sticky-shadow.scrolled,
+.site-header.sticky-shadow.sticky-mode--main.scrolled .header-main {
+	box-shadow: var(--shadow);
+}
+
+/* Shrink effect: reduce header height on scroll. */
+.site-header.sticky-effect--shrink.is-sticky-header.scrolled .header-main__inner,
+.site-header.sticky-effect--shrink.sticky-mode--main.scrolled .header-main__inner {
+	min-height: calc(var(--header-height) * 0.75);
+}
+
+.site-header.sticky-effect--shrink.is-sticky-header.scrolled .site-logo img {
+	max-height: 40px;
+}
+
+/* Slide effect: header slides down from top on scroll. */
+.site-header.sticky-effect--slide.is-sticky-header:not(.scrolled) .header-main,
+.site-header.sticky-effect--slide.sticky-mode--main:not(.scrolled) .header-main {
+	transform: translateY(-100%);
+}
+
+.site-header.sticky-effect--slide.is-sticky-header.scrolled .header-main,
+.site-header.sticky-effect--slide.sticky-mode--main.scrolled .header-main {
+	transform: translateY(0);
+}
+
+/* Fade effect: header fades in on scroll. */
+.site-header.sticky-effect--fade.is-sticky-header:not(.scrolled) .header-main,
+.site-header.sticky-effect--fade.sticky-mode--main:not(.scrolled) .header-main {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.site-header.sticky-effect--fade.is-sticky-header.scrolled .header-main,
+.site-header.sticky-effect--fade.sticky-mode--main.scrolled .header-main {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+/* Desktop-only sticky: hide sticky behavior on mobile. */
+@media (max-width: 1023px) {
+	.site-header.is-sticky-header:not(.sticky-mobile) .header-main,
+	.site-header.is-sticky-header.sticky-mode--main:not(.sticky-mobile) .header-main {
+		position: relative;
+		transform: none;
+		opacity: 1;
+		pointer-events: auto;
+	}
+	.site-header.is-sticky-header:not(.sticky-mobile) {
+		position: relative;
+		transform: none;
+		opacity: 1;
+	}
+}
+
+/* Mobile-only sticky: hide sticky behavior on desktop. */
+@media (min-width: 1024px) {
+	.site-header.is-sticky-header:not(.sticky-desktop) .header-main,
+	.site-header.is-sticky-header.sticky-mode--main:not(.sticky-desktop) .header-main {
+		position: relative;
+		transform: none;
+		opacity: 1;
+		pointer-events: auto;
+	}
+	.site-header.is-sticky-header:not(.sticky-desktop) {
+		position: relative;
+		transform: none;
+		opacity: 1;
+	}
 }
 
 /* ===== Header 1: Top Bar ===== */
@@ -97,16 +205,7 @@
 	border-bottom: 1px solid rgba(10, 31, 68, 0.06);
 }
 
-.header-main.is-sticky {
-	position: sticky;
-	top: 0;
-	z-index: var(--z-sticky);
-	transition: box-shadow var(--transition-base);
-}
-
-.header-main.is-sticky.scrolled {
-	box-shadow: var(--shadow);
-}
+/* (Legacy .header-main.is-sticky is now handled by the .site-header sticky system above.) */
 
 .header-main__inner {
 	display: flex;
