@@ -24,6 +24,7 @@ define( 'CHUQUIPONDO_URI', get_template_directory_uri() );
 require_once CHUQUIPIONDO_DIR . '/inc/helpers.php';
 require_once CHUQUIPIONDO_DIR . '/inc/sanitize.php';
 require_once CHUQUIPIONDO_DIR . '/inc/defaults.php';
+require_once CHUQUIPIONDO_DIR . '/inc/fonts.php';
 require_once CHUQUIPIONDO_DIR . '/inc/setup.php';
 require_once CHUQUIPIONDO_DIR . '/inc/enqueue.php';
 require_once CHUQUIPIONDO_DIR . '/inc/widgets.php';

@@ -209,14 +209,22 @@ function chuquipiondo_register_global( $wp_customize ) {
 
 	// Typography.
 	chuquipiondo_add_setting_control( $wp_customize, 'font_body', array(
-		'label'    => __( 'Fuente del cuerpo', 'chuquipiondo' ),
-		'section'  => 'chuquipiondo_global',
-		'priority' => 30,
+		'label'             => __( 'Fuente del cuerpo', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_global',
+		'type'              => 'select',
+		'choices'           => chuquipiondo_font_choices(),
+		'sanitize_callback' => 'chuquipiondo_sanitize_select',
+		'priority'          => 30,
+		'description'       => __( 'Elige la tipografia del cuerpo del texto.', 'chuquipiondo' ),
 	) );
 	chuquipiondo_add_setting_control( $wp_customize, 'font_heading', array(
-		'label'    => __( 'Fuente de titulares', 'chuquipiondo' ),
-		'section'  => 'chuquipiondo_global',
-		'priority' => 31,
+		'label'             => __( 'Fuente de titulares', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_global',
+		'type'              => 'select',
+		'choices'           => chuquipiondo_font_choices(),
+		'sanitize_callback' => 'chuquipiondo_sanitize_select',
+		'priority'          => 31,
+		'description'       => __( 'Elige la tipografia de los titulares y encabezados.', 'chuquipiondo' ),
 	) );
 	chuquipiondo_add_setting_control( $wp_customize, 'font_size_base', array(
 		'label'             => __( 'Tamano base (px)', 'chuquipiondo' ),

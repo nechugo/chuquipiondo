@@ -47,8 +47,8 @@ function chuquipiondo_defaults() {
 		'color_white'            => '#ffffff',
 		'color_accent'           => '#27b6ff',
 
-		'font_body'              => '"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-		'font_heading'           => '"Plus Jakarta Sans", "Inter", system-ui, sans-serif',
+		'font_body'              => 'inter',
+		'font_heading'           => 'plus-jakarta',
 		'font_size_base'         => '16',
 		'font_weight_body'       => '400',
 		'font_weight_heading'    => '700',

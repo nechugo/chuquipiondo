@@ -18,13 +18,16 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Enqueue front-end styles.
  */
 function chuquipiondo_enqueue_styles() {
-	// Google Fonts: Inter + Plus Jakarta Sans.
-	wp_enqueue_style(
-		'chuquipiondo-fonts',
-		'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap',
-		array(),
-		null
-	);
+	// Google Fonts: loaded dynamically based on the selected body + heading fonts.
+	$fonts_url = chuquipiondo_google_fonts_url();
+	if ( $fonts_url ) {
+		wp_enqueue_style(
+			'chuquipiondo-fonts',
+			$fonts_url,
+			array(),
+			null
+		);
+	}
 
 	// Main stylesheet (style.css @imports modular partials).
 	wp_enqueue_style(
