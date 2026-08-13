@@ -28,6 +28,7 @@ require_once CHUQUIPIONDO_DIR . '/inc/setup.php';
 require_once CHUQUIPIONDO_DIR . '/inc/enqueue.php';
 require_once CHUQUIPIONDO_DIR . '/inc/widgets.php';
 require_once CHUQUIPIONDO_DIR . '/inc/sidebar.php';
+require_once CHUQUIPIONDO_DIR . '/inc/meta-layout.php';
 require_once CHUQUIPIONDO_DIR . '/inc/template-tags.php';
 require_once CHUQUIPIONDO_DIR . '/inc/breadcrumbs.php';
 require_once CHUQUIPIONDO_DIR . '/inc/schema.php';

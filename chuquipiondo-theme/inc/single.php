@@ -24,6 +24,7 @@ function chuquipiondo_single() {
 			chuquipiondo_single_hero_image();
 		}
 
+		echo '<main id="primary" class="site-main ' . esc_attr( $classes['content'] ) . '" role="main">';
 		echo '<article id="post-' . get_the_ID() . '" class="' . esc_attr( implode( ' ', get_post_class( 'single-article' ) ) ) . '" role="article">';
 		echo '<div class="single-article__inner" style="max-width: var(--reading-width); margin-inline: auto;">';
 
@@ -112,6 +113,7 @@ function chuquipiondo_single() {
 		chuquipiondo_single_nav();
 
 		echo '</article>';
+		echo '</main><!-- #primary -->';
 
 		chuquipiondo_get_sidebar();
 		echo '</div>';

@@ -34,6 +34,7 @@ function chuquipiondo_customize_register( $wp_customize ) {
 	chuquipiondo_register_home( $wp_customize );
 	chuquipiondo_register_blog( $wp_customize );
 	chuquipiondo_register_single( $wp_customize );
+	chuquipiondo_register_page( $wp_customize );
 	chuquipiondo_register_ads( $wp_customize );
 	chuquipiondo_register_social( $wp_customize );
 	chuquipiondo_register_whatsapp( $wp_customize );

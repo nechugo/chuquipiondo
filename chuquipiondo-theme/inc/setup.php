@@ -111,12 +111,21 @@ function chuquipiondo_body_class( $classes ) {
 		$classes[] = 'no-sidebar';
 	}
 
-	// Layout-aware class.
+	// Layout-aware class + view type for sidebar resolution.
 	if ( is_singular( 'post' ) ) {
 		$classes[] = 'single-layout-' . sanitize_html_class( chuquipiondo_get_option( 'single_layout' ) );
+		$classes[] = 'view-single';
+	} elseif ( is_page() ) {
+		$classes[] = 'page-layout-' . sanitize_html_class( chuquipiondo_get_option( 'page_layout' ) );
+		$classes[] = 'view-page';
 	} elseif ( is_home() || is_archive() || is_search() ) {
 		$classes[] = 'archive-layout';
+		$classes[] = 'view-blog';
 	}
+
+	// Sidebar position class (enables per-view CSS targeting).
+	$sidebar_pos = chuquipiondo_get_sidebar_position();
+	$classes[] = 'sidebar-' . sanitize_html_class( $sidebar_pos );
 
 	return $classes;
 }
@@ -126,10 +135,42 @@ add_filter( 'body_class', 'chuquipiondo_body_class' );
  * Register widget areas.
  */
 function chuquipiondo_register_sidebars() {
+	// Independent sidebars for each view (Astra-style): blog/archive, single, page.
 	register_sidebar( array(
-		'name'          => __( 'Barra lateral principal', 'chuquipiondo' ),
+		'name'          => __( 'Sidebar: Blog / Archivo', 'chuquipiondo' ),
+		'id'            => 'sidebar-blog',
+		'description'   => __( 'Barra lateral del blog, archivos y busqueda. Independiente del single y la pagina.', 'chuquipiondo' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+
+	register_sidebar( array(
+		'name'          => __( 'Sidebar: Articulo', 'chuquipiondo' ),
+		'id'            => 'sidebar-single',
+		'description'   => __( 'Barra lateral del articulo individual. Independiente del blog y la pagina.', 'chuquipiondo' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+
+	register_sidebar( array(
+		'name'          => __( 'Sidebar: Pagina', 'chuquipiondo' ),
+		'id'            => 'sidebar-page',
+		'description'   => __( 'Barra lateral de las paginas individuales. Independiente del blog y el single.', 'chuquipiondo' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+
+	// Legacy sidebar kept for backwards compatibility (falls back if the specific one is empty).
+	register_sidebar( array(
+		'name'          => __( 'Sidebar: General (fallback)', 'chuquipiondo' ),
 		'id'            => 'sidebar-1',
-		'description'   => __( 'Barra lateral del blog y articulos.', 'chuquipiondo' ),
+		'description'   => __( 'Barra lateral de respaldo. Se usa si el sidebar especifico de una vista esta vacio.', 'chuquipiondo' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h2 class="widget-title">',

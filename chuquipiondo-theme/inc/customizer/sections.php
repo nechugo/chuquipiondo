@@ -432,6 +432,43 @@ function chuquipiondo_register_whatsapp( $wp_customize ) {
 }
 
 /* ===================================================================== *
+ * PAGE individual section.
+ * ===================================================================== */
+
+function chuquipiondo_register_page( $wp_customize ) {
+	chuquipiondo_add_section( $wp_customize, 'chuquipiondo_page', array(
+		'title'    => __( 'CHUQUIPIONDO: Pagina', 'chuquipiondo' ),
+		'priority' => 33,
+	) );
+
+	chuquipiondo_add_setting_control( $wp_customize, 'page_sidebar', array(
+		'section'           => 'chuquipiondo_page',
+		'label'             => __( 'Barra lateral (paginas)', 'chuquipiondo' ),
+		'type'              => 'select',
+		'choices'           => array(
+			'right' => __( 'Derecha', 'chuquipiondo' ),
+			'left'  => __( 'Izquierda', 'chuquipiondo' ),
+			'none'  => __( 'Ninguna (ancho completo)', 'chuquipiondo' ),
+		),
+		'sanitize_callback' => 'chuquipiondo_sanitize_select',
+		'priority'          => 5,
+		'description'       => __( 'Cada pagina puede sobrescribir esto individualmente en el editor.', 'chuquipiondo' ),
+	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'page_layout', array(
+		'section'           => 'chuquipiondo_page',
+		'label'             => __( 'Layout de contenido', 'chuquipiondo' ),
+		'type'              => 'select',
+		'choices'           => array(
+			'wide'        => __( 'Ancho (contenedor completo)', 'chuquipiondo' ),
+			'narrow'      => __( 'Estrecho (centrado)', 'chuquipiondo' ),
+			'boxed'       => __( 'Caja (con padding)', 'chuquipiondo' ),
+		),
+		'sanitize_callback' => 'chuquipiondo_sanitize_select',
+		'priority'          => 6,
+	) );
+}
+
+/* ===================================================================== *
  * FOOTER section.
  * ===================================================================== */
 

@@ -54,7 +54,7 @@ function chuquipiondo_defaults() {
 		'font_weight_heading'    => '700',
 		'container_width'        => '1280',
 		'reading_width'          => '800',
-		'sidebar_width'          => '340',
+		'sidebar_width'          => '300',
 		'content_radius'         => '12',
 		'button_radius'          => '8',
 		'button_bg'              => '#27b6ff',
@@ -145,6 +145,10 @@ function chuquipiondo_defaults() {
 		'single_related_title'   => 'Articulos relacionados',
 		'single_nav_style'       => 'cards',
 		'single_extension_area'  => '',
+
+		/* ===== Page individual ===== */
+		'page_sidebar'           => 'none',
+		'page_layout'            => 'wide',
 
 		/* ===== Ads ===== */
 		'ads_master_switch'      => '0',
