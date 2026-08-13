@@ -12,9 +12,20 @@
 }
 
 .chuqui-ad--in-content {
-	margin: var(--space-5) 0;
+	margin: 5px 0;
 	padding: 0;
-	max-width: 100%;
+	max-width: 300px;
+	min-height: 250px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+}
+
+/* In-content ads: 5px gap between the ad and the surrounding paragraphs. */
+.entry-content .chuqui-ad--in-content {
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .chuqui-ad--sidebar_top,

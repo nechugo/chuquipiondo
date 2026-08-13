@@ -1,17 +1,33 @@
 /**
  * Single post: article, layout, meta, author bio, related, nav.
+ *
+ * Layout specs:
+ * - Background: white
+ * - Width: less than 960px (reading-width, default 940px)
+ * - Image/thumbnail first, then paragraphs
+ * - No card/box backgrounds on paragraphs (flat flow)
+ * - Text justified
+ * - Font size: 14px default
+ * - Paragraph line-height: 1.0
+ * - Heading-to-next-paragraph gap: 12px
+ * - Ad-to-paragraph gap: 5px
  */
 
 .single-article {
 	padding: 0;
+	background: var(--white, #ffffff);
 }
 
 .single-article__inner {
 	padding: var(--space-8) 0;
+	background: var(--white, #ffffff);
+	max-width: var(--reading-width, 940px);
+	margin-inline: auto;
 }
 
 .chuqui-layout.single-layout {
 	max-width: var(--container-width);
+	background: var(--white, #ffffff);
 }
 
 /* Hero image variant. */
@@ -68,34 +84,58 @@
 	color: var(--muted);
 }
 
-/* Thumbnail. */
+/* Thumbnail: goes first, full width of the reading area, no card/box. */
 .entry-thumbnail.single-article__thumbnail {
 	margin: 0 0 var(--space-6);
-	border-radius: var(--radius-content);
+	border-radius: 0;
 	overflow: hidden;
 }
 
 .entry-thumbnail img {
 	border-radius: 0;
+	width: 100%;
 }
 
 /* Content. */
+/* Content: 14px font, justified text, line-height 1.0, no card backgrounds. */
 .entry-content.single-article__content {
-	font-size: 1.0625rem;
-	line-height: 1.8;
+	font-size: 14px;
+	line-height: 1.0;
+	text-align: justify;
+	background: transparent;
 }
 
 .entry-content.single-article__content > * {
 	max-width: 100%;
+	background: transparent;
 }
 
+/* Paragraphs: no card/box, flat flow, line-height 1.0. */
+.entry-content.single-article__content p {
+	margin: 0 0 12px;
+	padding: 0;
+	background: transparent;
+	line-height: 1.0;
+	text-align: justify;
+}
+
+/* Headings: 12px gap (margin) from the preceding paragraph to the heading.
+   line-height 1.0, then 12px before the next paragraph continues. */
+.entry-content.single-article__content h1,
 .entry-content.single-article__content h2,
-.entry-content.single-article__content h3 {
-	margin-top: var(--space-8);
+.entry-content.single-article__content h3,
+.entry-content.single-article__content h4,
+.entry-content.single-article__content h5,
+.entry-content.single-article__content h6 {
+	margin-top: 12px;
+	margin-bottom: 12px;
+	line-height: 1.0;
+	padding: 0;
+	background: transparent;
 }
 
 .entry-content.single-article__content img {
-	border-radius: var(--radius-content);
+	border-radius: 0;
 }
 
 .entry-content.single-article__content a {
@@ -106,6 +146,22 @@
 
 .entry-content.single-article__content a:hover {
 	color: var(--navy);
+}
+
+/* Lists and blockquotes: no card backgrounds, flat flow. */
+.entry-content.single-article__content ul,
+.entry-content.single-article__content ol {
+	margin: 0 0 12px;
+	padding-left: 1.5em;
+	background: transparent;
+}
+
+.entry-content.single-article__content blockquote {
+	margin: 0 0 12px;
+	padding: 0 0 0 1em;
+	border-left: 3px solid var(--sky);
+	background: transparent;
+	font-style: italic;
 }
 
 /* Tags. */

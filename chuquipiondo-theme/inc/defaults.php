@@ -53,7 +53,7 @@ function chuquipiondo_defaults() {
 		'font_weight_body'       => '400',
 		'font_weight_heading'    => '700',
 		'container_width'        => '1280',
-		'reading_width'          => '800',
+		'reading_width'          => '940',
 		'sidebar_width'          => '320',
 		'content_radius'         => '12',
 		/* ===== Botones (sistema completo) ===== */
