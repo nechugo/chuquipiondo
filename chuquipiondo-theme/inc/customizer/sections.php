@@ -135,7 +135,32 @@ function chuquipiondo_register_header( $wp_customize ) {
 		'priority'          => 8,
 	) );
 
-	// Main header: sticky system (Astra-style).
+	
+	// Top Bar: contenido, layout, colores, visibilidad (Astra-style).
+	chuquipiondo_add_setting_control( $wp_customize, 'header_topbar_content', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Contenido Top Bar (HTML/Shortcode)', 'chuquipiondo' ), 'type' => 'textarea', 'sanitize_callback' => 'chuquipiondo_sanitize_html', 'priority' => 9 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_topbar_layout', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Layout del Top Bar', 'chuquipiondo' ), 'type' => 'select', 'choices' => array( 'left-right' => __( 'Izq + Der', 'chuquipiondo' ), 'center' => __( 'Centrado', 'chuquipiondo' ), 'left-only' => __( 'Solo izq', 'chuquipiondo' ), 'right-only' => __( 'Solo der', 'chuquipiondo' ) ), 'sanitize_callback' => 'chuquipiondo_sanitize_select', 'priority' => 9 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_topbar_bg', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Top Bar: fondo', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 9 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_topbar_text', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Top Bar: texto', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 9 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_topbar_link', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Top Bar: links', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 9 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_topbar_height', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Top Bar: altura (px)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 28, 'max' => 80, 'step' => 2 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'priority' => 9 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_topbar_desktop', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Top Bar: mostrar en Desktop', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'priority' => 9 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_topbar_mobile', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Top Bar: mostrar en Movil', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'priority' => 9 ) );
+
+	// Main header: colores, padding, logo (Astra-style).
+	chuquipiondo_add_setting_control( $wp_customize, 'header_main_bg', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Header principal: fondo', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 13 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_main_text', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Header principal: texto', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 13 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_main_link', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Header principal: links', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 13 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_main_link_hover', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Header principal: links hover', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 13 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_main_padding_h', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Header principal: padding H (px)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 0, 'max' => 48, 'step' => 2 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'priority' => 13 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_main_border_bottom', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Header principal: borde inferior (px)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 0, 'max' => 5, 'step' => 1 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'priority' => 13 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_main_border_color', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Header principal: color borde', 'chuquipiondo' ), 'type' => 'text', 'sanitize_callback' => 'chuquipiondo_sanitize_color', 'priority' => 13 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_main_logo_max', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Logo: altura max (px)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 24, 'max' => 120, 'step' => 2 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'priority' => 13 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_main_show_text_logo', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Logo como texto', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'priority' => 13 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_main_text_logo', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Texto del logo', 'chuquipiondo' ), 'sanitize_callback' => 'chuquipiondo_sanitize_text', 'priority' => 13 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_main_desktop', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Header principal: Desktop', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'priority' => 13 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_main_mobile', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Header principal: Movil', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'priority' => 13 ) );
+
+// Main header: sticky system (Astra-style).
 	chuquipiondo_add_setting_control( $wp_customize, 'header_main_sticky', array(
 		'label'             => __( 'Header fijo al hacer scroll', 'chuquipiondo' ),
 		'section'           => 'chuquipiondo_header',
@@ -246,6 +271,12 @@ function chuquipiondo_register_header( $wp_customize ) {
 		'sanitize_callback' => 'chuquipiondo_sanitize_html',
 		'priority'          => 26,
 	) );
+
+	chuquipiondo_add_setting_control( $wp_customize, 'header_multiuse_desktop', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Header 3: Desktop', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'priority' => 26 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_multiuse_mobile', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Header 3: Movil', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'priority' => 26 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_multiuse_bg', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Header 3: fondo', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 26 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_multiuse_text', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Header 3: texto', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 26 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_multiuse_height', array( 'section' => 'chuquipiondo_header', 'label' => __( 'Header 3: altura (px)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 40, 'max' => 200, 'step' => 5 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'priority' => 26 ) );
 
 	// Multiuse boxes content + distribution.
 	chuquipiondo_add_setting_control( $wp_customize, 'header_distribution', array(
@@ -641,6 +672,24 @@ function chuquipiondo_register_footer( $wp_customize ) {
 	chuquipiondo_add_setting_control( $wp_customize, 'footer_bg', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Color de fondo', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 8 ) );
 	chuquipiondo_add_setting_control( $wp_customize, 'footer_text', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Color de texto', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 9 ) );
 	chuquipiondo_add_setting_control( $wp_customize, 'footer_show_social', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Mostrar redes sociales', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'priority' => 10 ) );
+
+	chuquipiondo_add_setting_control( $wp_customize, 'footer_link', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Color de links', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 11 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'footer_link_hover', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Links (hover)', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 12 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'footer_title', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Color de titulos', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 13 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'footer_padding_top', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Padding superior (px)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 0, 'max' => 100, 'step' => 4 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'priority' => 14 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'footer_padding_bottom', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Padding inferior (px)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 0, 'max' => 80, 'step' => 4 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'priority' => 15 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'footer_widget_gap', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Gap entre widgets (px)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 0, 'max' => 48, 'step' => 2 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'priority' => 16 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'footer_font_size', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Tamano texto (px)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 11, 'max' => 18, 'step' => 1 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'priority' => 17 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'footer_title_size', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Tamano titulos (px)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 13, 'max' => 24, 'step' => 1 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'priority' => 18 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'footer_show_brand', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Mostrar marca', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'priority' => 20 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'footer_show_copyright', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Mostrar copyright', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'priority' => 21 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'footer_show_menu', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Mostrar menu', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'priority' => 22 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'footer_bottom_bg', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Fondo footer inferior', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 25 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'footer_bottom_text', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Texto footer inferior', 'chuquipiondo' ), 'type' => 'color', 'sanitize_callback' => 'chuquipiondo_sanitize_hex_color', 'priority' => 26 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'footer_border_top', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Borde superior (px)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 0, 'max' => 5, 'step' => 1 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'priority' => 27 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'footer_border_color', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Color del borde', 'chuquipiondo' ), 'type' => 'text', 'sanitize_callback' => 'chuquipiondo_sanitize_color', 'priority' => 28 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'footer_desktop', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Mostrar en Desktop', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'priority' => 30 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'footer_mobile', array( 'section' => 'chuquipiondo_footer', 'label' => __( 'Mostrar en Movil', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'priority' => 31 ) );
 }
 
 /* ===================================================================== *

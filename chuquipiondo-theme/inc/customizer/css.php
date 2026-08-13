@@ -63,6 +63,24 @@ function chuquipiondo_dynamic_css() {
 		'spacing-base'       => chuquipiondo_get_option( 'spacing_base' ) . 'px',
 	);
 
+	// Header colors (Astra-style per-row customization).
+	$vars['topbar-bg']           = chuquipiondo_get_option( 'header_topbar_bg' );
+	$vars['topbar-text']         = chuquipiondo_get_option( 'header_topbar_text' );
+	$vars['topbar-link']         = chuquipiondo_get_option( 'header_topbar_link' );
+	$vars['header-main-bg']      = chuquipiondo_get_option( 'header_main_bg' );
+	$vars['header-main-text']     = chuquipiondo_get_option( 'header_main_text' );
+	$vars['header-main-link']     = chuquipiondo_get_option( 'header_main_link' );
+	$vars['header-main-link-hover'] = chuquipiondo_get_option( 'header_main_link_hover' );
+	$vars['multiuse-bg']          = chuquipiondo_get_option( 'header_multiuse_bg' );
+	$vars['multiuse-text']        = chuquipiondo_get_option( 'header_multiuse_text' );
+
+	// Footer colors (Astra-style).
+	$vars['footer-link']          = chuquipiondo_get_option( 'footer_link' );
+	$vars['footer-link-hover']    = chuquipiondo_get_option( 'footer_link_hover' );
+	$vars['footer-title-color']    = chuquipiondo_get_option( 'footer_title' );
+	$vars['footer-bottom-bg']     = chuquipiondo_get_option( 'footer_bottom_bg' );
+	$vars['footer-bottom-text']   = chuquipiondo_get_option( 'footer_bottom_text' );
+
 	// Sticky header colors.
 	$vars['header-sticky-bg']   = chuquipiondo_get_option( 'header_sticky_bg' );
 	$vars['header-sticky-text'] = chuquipiondo_get_option( 'header_sticky_text' );
@@ -117,6 +135,27 @@ function chuquipiondo_dynamic_css() {
 	$mode = chuquipiondo_get_option( 'social_color_mode' );
 	if ( 'custom' === $mode ) {
 		$css .= ".social-share a{ background: var(--social-bg); color: var(--social-fg); }\n";
+	}
+
+	// ===== Header dynamic styles =====
+	$css .= ".header-topbar{ background: var(--topbar-bg); color: var(--topbar-text); }\n";
+	$css .= ".header-topbar a{ color: var(--topbar-link); }\n";
+	$css .= ".header-main{ background: var(--header-main-bg); color: var(--header-main-text); }\n";
+	$css .= ".header-main a{ color: var(--header-main-link); }\n";
+	$css .= ".header-main a:hover{ color: var(--header-main-link-hover); }\n";
+	$css .= ".header-multiuse{ background: var(--multiuse-bg); color: var(--multiuse-text); }\n";
+
+	// ===== Footer dynamic styles =====
+	$css .= ".site-footer a{ color: var(--footer-link); }\n";
+	$css .= ".site-footer a:hover{ color: var(--footer-link-hover); }\n";
+	$css .= ".footer-widget-title{ color: var(--footer-title-color); }\n";
+	$css .= ".footer-bottom{ background: var(--footer-bottom-bg); color: var(--footer-bottom-text); }\n";
+	$css .= ".site-footer{ padding-top: " . chuquipiondo_get_option( 'footer_padding_top' ) . "px; padding-bottom: " . chuquipiondo_get_option( 'footer_padding_bottom' ) . "px; }\n";
+	$css .= ".footer-widgets{ gap: " . chuquipiondo_get_option( 'footer_widget_gap' ) . "px; }\n";
+	$css .= ".site-footer{ font-size: " . chuquipiondo_get_option( 'footer_font_size' ) . "px; }\n";
+	$css .= ".footer-widget-title{ font-size: " . chuquipiondo_get_option( 'footer_title_size' ) . "px; }\n";
+	if ( chuquipiondo_is_enabled( 'footer_border_top' ) ) {
+		$css .= ".footer-bottom{ border-top: " . chuquipiondo_get_option( 'footer_border_top' ) . "px solid " . chuquipiondo_get_option( 'footer_border_color' ) . "; }\n";
 	}
 
 	// ===== Button styles =====

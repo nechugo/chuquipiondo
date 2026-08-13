@@ -14,15 +14,18 @@ $footer_about= chuquipiondo_get_option( 'footer_about' );
 $copyright   = chuquipiondo_get_option( 'footer_copyright' );
 $copyright   = str_replace( '{year}', date( 'Y' ), $copyright );
 $show_social = chuquipiondo_is_enabled( 'footer_show_social' );
+$show_brand = chuquipiondo_is_enabled( 'footer_show_brand' );
+$show_copyright = chuquipiondo_is_enabled( 'footer_show_copyright' );
+$show_menu = chuquipiondo_is_enabled( 'footer_show_menu' );
 ?>
 
 <?php chuquipiondo_ad_slot( 'ads_footer_before' ); ?>
 
 <footer id="colophon" class="site-footer">
 	<div class="chuqui-container">
-		<?php if ( $footer_about || $show_social ) : ?>
+		<?php if ( ( $footer_about && $show_brand ) || $show_social ) : ?>
 			<div class="footer-brand">
-				<?php if ( $footer_about ) : ?>
+				<?php if ( $footer_about && $show_brand ) : ?>
 					<p class="footer-about footer-about-text"><?php echo esc_html( $footer_about ); ?></p>
 				<?php endif; ?>
 				<?php if ( $show_social ) : ?>
@@ -49,9 +52,11 @@ $show_social = chuquipiondo_is_enabled( 'footer_show_social' );
 		<?php chuquipiondo_ad_slot( 'ads_footer_between' ); ?>
 
 		<div class="footer-bottom">
+			<?php if ( $show_copyright ) : ?>
 			<p class="footer-copyright"><?php echo esc_html( $copyright ); ?></p>
+			<?php endif; ?>
 			<?php
-			if ( has_nav_menu( 'footer' ) ) {
+			if ( $show_menu && has_nav_menu( 'footer' ) ) {
 				wp_nav_menu( array(
 					'theme_location' => 'footer',
 					'container'      => 'nav',
