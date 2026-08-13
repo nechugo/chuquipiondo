@@ -131,14 +131,38 @@
 	box-shadow: var(--shadow-sm);
 }
 
-/* Sidebar: NO scroll bar, NO sticky, radius 0px. */
+/* Sidebar: tarjetas para cada widget, inset -5px, sin scroll. */
 .layout-right .widget-area,
 .layout-left .widget-area {
 	border-radius: 0;
+	overflow: visible;
+	/* Inset -5px del ancho del sidebar */
+	margin-inline: -5px;
+	padding-inline: 5px;
 }
 
+/* Sin barra de scroll en el sidebar. */
+.widget-area {
+	overflow-y: hidden !important;
+	overflow-x: hidden;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+.widget-area::-webkit-scrollbar {
+	display: none;
+}
+
+/* Tarjetas para cada widget del sidebar. */
 .widget-area .widget {
 	border-radius: 0;
+	background: var(--white, #ffffff);
+	padding: var(--sidebar-card-padding, 16px);
+	margin-bottom: var(--sidebar-card-gap, 12px);
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgba(10, 31, 68, 0.06);
+	box-sizing: border-box;
 }
 
 /* Sidebar widget styling. */

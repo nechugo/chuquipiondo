@@ -118,6 +118,43 @@
 }
 
 /* ===== Header 1: Top Bar ===== */
+/* Cada head mantiene su tamano de fuente fijo, independiente de la fuente elegida. */
+.header-topbar {
+	font-size: 0.8125rem; /* 13px fijo */
+	line-height: 1.4;
+}
+
+.header-topbar a,
+.header-topbar span,
+.header-topbar .topbar-menu a {
+	font-size: 0.8125rem;
+}
+
+/* ===== Header 2: Main (tamano fijo) ===== */
+.header-main {
+	font-size: 0.9375rem; /* 15px fijo */
+}
+
+.header-main__brand,
+.header-main__nav,
+.header-main__search,
+.header-main__nav .primary-menu > li > a {
+	font-size: var(--header-menu-font-size, 15px);
+}
+
+/* Logo: tamano fijo independiente de la fuente */
+.site-logo--text a {
+	font-size: 1.5rem;
+}
+
+/* ===== Header 3: Multiuso (tamano fijo) ===== */
+.header-multiuse {
+	font-size: 0.875rem; /* 14px fijo */
+}
+
+.header-multiuse .header-box-text {
+	font-size: 0.875rem;
+}
 .header-topbar {
 	background: var(--navy-dark);
 	color: var(--white);

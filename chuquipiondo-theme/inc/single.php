@@ -220,7 +220,7 @@ function chuquipiondo_related_posts() {
 
 	while ( $q->have_posts() ) {
 		$q->the_post();
-		chuquipiondo_post_card( 'minimal' );
+		chuquipiondo_post_card( chuquipiondo_get_option( 'single_related_style' ) );
 	}
 
 	echo '</div>';

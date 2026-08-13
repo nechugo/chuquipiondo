@@ -55,6 +55,16 @@ function chuquipiondo_defaults() {
 		'container_width'        => '1280',
 		'reading_width'          => '940',
 		'sidebar_width'          => '320',
+		'sidebar_card_style'     => '1',
+		'sidebar_card_inset'     => '5',
+		'sidebar_card_bg'        => '#ffffff',
+		'sidebar_card_border'    => '1',
+		'sidebar_card_border_color' => 'rgba(10,31,68,0.06)',
+		'sidebar_card_radius'    => '0',
+		'sidebar_card_padding'   => '16',
+		'sidebar_card_shadow'    => '0',
+		'sidebar_card_gap'        => '12',
+		'sidebar_disable_scroll' => '1',
 		'content_radius'         => '10',
 		/* ===== Botones (sistema completo) ===== */
 		'button_width_mode'      => 'auto',          // auto | fixed | full | percent
@@ -284,6 +294,8 @@ function chuquipiondo_defaults() {
 		'single_para_gap'         => '12',
 		'single_related_gap'      => '15',
 		'single_related_columns'  => '2',
+		'single_related_rows'     => '1',
+		'single_related_style'    => 'editorial',
 		'header_content_gap'      => '25',
 		'single_img_aspect'       => '16-9',
 
@@ -294,6 +306,11 @@ function chuquipiondo_defaults() {
 		'page_layout'            => 'wide',
 		'page_show_title'         => '1',
 		'page_content_gap'        => '25',
+		'page_bg_color'           => '#ffffff',
+		'page_card_inset'         => '5',
+		'page_title_color'        => '#0a1f44',
+		'page_title_show'         => '1',
+		'page_title_editable'     => '1',
 
 		/* ===== Ads ===== */
 		'ads_master_switch'      => '0',
