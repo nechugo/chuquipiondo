@@ -95,6 +95,13 @@ function chuquipiondo_dynamic_css() {
 	$vars['footer-bottom-bg']     = chuquipiondo_get_option( 'footer_bottom_bg' );
 	$vars['footer-bottom-text']   = chuquipiondo_get_option( 'footer_bottom_text' );
 
+	// Footer Design variables.
+	$vars['footer-widgets-bg']      = chuquipiondo_get_option( 'footer_widgets_bg' );
+	$vars['footer-widget-bg']       = chuquipiondo_get_option( 'footer_widget_bg' );
+	$vars['footer-widget-border-c'] = chuquipiondo_get_option( 'footer_widget_border_color' );
+	$vars['footer-bottom-link']    = chuquipiondo_get_option( 'footer_bottom_link' );
+	$vars['footer-bottom-link-hover'] = chuquipiondo_get_option( 'footer_bottom_link_hover' );
+
 	// Sticky header colors.
 	$vars['header-sticky-bg']   = chuquipiondo_get_option( 'header_sticky_bg' );
 	$vars['header-sticky-text'] = chuquipiondo_get_option( 'header_sticky_text' );
@@ -158,6 +165,33 @@ function chuquipiondo_dynamic_css() {
 	$css .= ".header-main a{ color: var(--header-main-link); }\n";
 	$css .= ".header-main a:hover{ color: var(--header-main-link-hover); }\n";
 	$css .= ".header-multiuse{ background: var(--multiuse-bg); color: var(--multiuse-text); }\n";
+
+	// ===== Footer General + Design (Astra) =====
+	$footer_width = chuquipiondo_get_option( 'footer_width' );
+	$footer_w_css = 'full' === $footer_width ? 'max-width: 100%;' : 'max-width: var(--container-width); margin-inline: auto;';
+	$css .= ".site-footer .chuqui-container{ " . $footer_w_css . " }\n";
+	$css .= ".footer-widgets{ background: var(--footer-widgets-bg); }\n";
+	$css .= ".footer-widgets{ grid-template-columns: repeat(" . chuquipiondo_get_option( 'footer_widget_layout' ) . ", minmax(0, 1fr)); }\n";
+	$css .= ".footer-widget{ background: var(--footer-widget-bg); padding: " . chuquipiondo_get_option( 'footer_widget_padding_v' ) . "px " . chuquipiondo_get_option( 'footer_widget_padding_h' ) . "px; border-radius: " . chuquipiondo_get_option( 'footer_widget_radius' ) . "px; border-width: " . chuquipiondo_get_option( 'footer_widget_border' ) . "px; border-color: var(--footer-widget-border-c); }\n";
+	if ( chuquipiondo_is_enabled( 'footer_widget_shadow' ) ) {
+		$css .= ".footer-widget{ box-shadow: var(--shadow-sm); }\n";
+	}
+	$css .= ".footer-widget-title{ font-weight: " . chuquipiondo_get_option( 'footer_title_weight' ) . "; text-transform: " . chuquipiondo_get_option( 'footer_title_transform' ) . "; letter-spacing: " . chuquipiondo_get_option( 'footer_title_letter_spacing' ) . "em; margin-bottom: " . chuquipiondo_get_option( 'footer_title_margin_bottom' ) . "px; }\n";
+	$css .= ".site-footer{ line-height: " . chuquipiondo_get_option( 'footer_line_height' ) . "; }\n";
+	$css .= ".site-footer a{ font-weight: " . chuquipiondo_get_option( 'footer_link_weight' ) . "; text-transform: " . chuquipiondo_get_option( 'footer_link_transform' ) . "; letter-spacing: " . chuquipiondo_get_option( 'footer_link_letter_spacing' ) . "em; padding: " . chuquipiondo_get_option( 'footer_link_padding_v' ) . "px " . chuquipiondo_get_option( 'footer_link_padding_h' ) . "px; border-radius: " . chuquipiondo_get_option( 'footer_link_radius' ) . "px; }\n";
+	$css .= ".site-footer a:hover{ background: " . chuquipiondo_get_option( 'footer_link_hover_bg' ) . "; }\n";
+	// Footer bottom layout.
+	$bottom_layout = chuquipiondo_get_option( 'footer_bottom_layout' );
+	$bottom_align = chuquipiondo_get_option( 'footer_bottom_align' );
+	$css .= ".footer-bottom{ padding: " . chuquipiondo_get_option( 'footer_bottom_padding_v' ) . "px 0; }\n";
+	if ( 'stacked' === $bottom_layout ) {
+		$css .= ".footer-bottom{ flex-direction: column; text-align: center; }\n";
+	} else {
+		$css .= ".footer-bottom{ justify-content: " . $bottom_align . "; }\n";
+	}
+	$css .= ".footer-bottom a{ color: var(--footer-bottom-link); }\n";
+	$css .= ".footer-bottom a:hover{ color: var(--footer-bottom-link-hover); }\n";
+	$css .= ".footer-widgets{ margin-bottom: " . chuquipiondo_get_option( 'footer_section_gap' ) . "px; }\n";
 
 	// ===== Menu dynamic styles =====
 	$css .= ".primary-menu > li > a{ color: var(--header-menu-text); font-size: " . chuquipiondo_get_option( 'header_menu_font_size' ) . "px; font-weight: " . chuquipiondo_get_option( 'header_menu_font_weight' ) . "; text-transform: " . chuquipiondo_get_option( 'header_menu_text_transform' ) . "; letter-spacing: " . chuquipiondo_get_option( 'header_menu_letter_spacing' ) . "em; padding: " . chuquipiondo_get_option( 'header_menu_item_padding_v' ) . "px " . chuquipiondo_get_option( 'header_menu_item_padding_h' ) . "px; border-radius: " . chuquipiondo_get_option( 'header_menu_border_radius' ) . "px; }\n";

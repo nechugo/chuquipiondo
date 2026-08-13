@@ -358,6 +358,36 @@ function chuquipiondo_defaults() {
 		'footer_desktop'         => '1',
 		'footer_mobile'          => '1',
 		'footer_show_social'     => '1',
+		/* Footer General (Astra): layout y estructura */
+		'footer_width'           => 'contained',     // contained | full
+		'footer_widget_layout'   => '4',              // 1-6 columnas
+		'footer_bottom_layout'   => 'side',           // side | stacked
+		'footer_bottom_align'    => 'space-between',  // left | center | right | space-between
+		'footer_bottom_padding_v'=> '16',             // px
+		'footer_widgets_bg'      => 'transparent',    // fondo seccion widgets (separado del bottom)
+		'footer_section_gap'     => '0',              // px entre widgets y bottom
+		/* Footer Design (Astra): tipografia y estilo de widgets */
+		'footer_title_weight'    => '700',
+		'footer_title_transform' => 'none',           // none | uppercase | capitalize
+		'footer_title_letter_spacing' => '0',         // em
+		'footer_title_margin_bottom' => '12',         // px
+		'footer_link_weight'     => '400',
+		'footer_link_transform'  => 'none',
+		'footer_link_letter_spacing' => '0',           // em
+		'footer_link_hover_bg'   => 'transparent',
+		'footer_link_padding_h'  => '4',               // px
+		'footer_link_padding_v'  => '2',               // px
+		'footer_link_radius'     => '4',               // px
+		'footer_widget_bg'       => 'transparent',     // fondo individual del widget
+		'footer_widget_padding_h'=> '0',               // px
+		'footer_widget_padding_v'=> '0',               // px
+		'footer_widget_radius'   => '0',              // px
+		'footer_widget_border'  => '0',               // px
+		'footer_widget_border_color' => 'rgba(255,255,255,0.08)',
+		'footer_widget_shadow'  => '0',               // sombra del widget
+		'footer_line_height'    => '1.6',             // interlineado del texto
+		'footer_bottom_link'    => '#7fd6ff',         // links del footer bottom
+		'footer_bottom_link_hover' => '#ffffff',
 
 		/* ===== Music ===== */
 		'music_mini_player'      => '0',
