@@ -55,7 +55,7 @@ function chuquipiondo_defaults() {
 		'container_width'        => '1280',
 		'reading_width'          => '940',
 		'sidebar_width'          => '320',
-		'content_radius'         => '12',
+		'content_radius'         => '10',
 		/* ===== Botones (sistema completo) ===== */
 		'button_width_mode'      => 'auto',          // auto | fixed | full | percent
 		'button_width'           => '50',            // px (modo fixed)
