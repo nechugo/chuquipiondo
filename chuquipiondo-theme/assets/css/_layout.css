@@ -80,6 +80,38 @@
 	max-width: 100%;
 }
 
+/* ===== Sidebar device visibility (show/hide per device) =====
+ *
+ * .sidebar-hide-mobile  -> sidebar hidden on tablet/mobile (<1024px)
+ * .sidebar-hide-desktop -> sidebar hidden on desktop (>=1024px)
+ *
+ * When the sidebar is hidden on a device, the content expands
+ * to full width (single column grid).
+ */
+
+/* Hidden on mobile: sidebar markup exists but is display:none below 1024px. */
+@media (max-width: 1023px) {
+	.sidebar-hide-mobile .widget-area {
+		display: none;
+	}
+	.sidebar-hide-mobile {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* Hidden on desktop: sidebar hidden above 1024px. */
+@media (min-width: 1024px) {
+	.sidebar-hide-desktop .widget-area {
+		display: none;
+	}
+	.sidebar-hide-desktop {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* On mobile (default, below 1024px), the sidebar always stacks below
+ * the content (1 column) unless explicitly hidden via the class above. */
+
 /* Page layouts: wide / narrow / boxed. */
 .page-layout--wide .entry-content {
 	max-width: 100%;
