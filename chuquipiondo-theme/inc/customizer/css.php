@@ -74,6 +74,20 @@ function chuquipiondo_dynamic_css() {
 	$vars['multiuse-bg']          = chuquipiondo_get_option( 'header_multiuse_bg' );
 	$vars['multiuse-text']        = chuquipiondo_get_option( 'header_multiuse_text' );
 
+	// Logo dimensions + gap.
+	$vars['header-logo-width']  = chuquipiondo_get_option( 'header_main_logo_width' ) . 'px';
+	$vars['header-logo-height'] = chuquipiondo_get_option( 'header_main_logo_height' ) . 'px';
+	$vars['header-logo-gap']   = chuquipiondo_get_option( 'header_main_logo_gap' ) . 'px';
+	$vars['header-menu-search-gap'] = chuquipiondo_get_option( 'header_menu_search_gap' ) . 'px';
+
+	// Menu colors.
+	$vars['header-menu-bg']           = chuquipiondo_get_option( 'header_menu_bg' );
+	$vars['header-menu-text']         = chuquipiondo_get_option( 'header_menu_text' );
+	$vars['header-menu-text-hover']   = chuquipiondo_get_option( 'header_menu_text_hover' );
+	$vars['header-menu-active-bg']   = chuquipiondo_get_option( 'header_menu_active_bg' );
+	$vars['header-menu-active-text'] = chuquipiondo_get_option( 'header_menu_active_text' );
+	$vars['header-menu-item-gap']    = chuquipiondo_get_option( 'header_menu_item_gap' ) . 'px';
+
 	// Footer colors (Astra-style).
 	$vars['footer-link']          = chuquipiondo_get_option( 'footer_link' );
 	$vars['footer-link-hover']    = chuquipiondo_get_option( 'footer_link_hover' );
@@ -144,6 +158,17 @@ function chuquipiondo_dynamic_css() {
 	$css .= ".header-main a{ color: var(--header-main-link); }\n";
 	$css .= ".header-main a:hover{ color: var(--header-main-link-hover); }\n";
 	$css .= ".header-multiuse{ background: var(--multiuse-bg); color: var(--multiuse-text); }\n";
+
+	// ===== Menu dynamic styles =====
+	$css .= ".primary-menu > li > a{ color: var(--header-menu-text); font-size: " . chuquipiondo_get_option( 'header_menu_font_size' ) . "px; font-weight: " . chuquipiondo_get_option( 'header_menu_font_weight' ) . "; text-transform: " . chuquipiondo_get_option( 'header_menu_text_transform' ) . "; letter-spacing: " . chuquipiondo_get_option( 'header_menu_letter_spacing' ) . "em; padding: " . chuquipiondo_get_option( 'header_menu_item_padding_v' ) . "px " . chuquipiondo_get_option( 'header_menu_item_padding_h' ) . "px; border-radius: " . chuquipiondo_get_option( 'header_menu_border_radius' ) . "px; }\n";
+	$css .= ".primary-menu > li > a:hover{ color: var(--header-menu-text-hover); }\n";
+	$css .= ".primary-menu > li.current-menu-item > a{ color: var(--header-menu-active-text); background: var(--header-menu-active-bg); }\n";
+	$css .= ".primary-menu .sub-menu{ background: " . chuquipiondo_get_option( 'header_menu_submenu_bg' ) . "; min-width: " . chuquipiondo_get_option( 'header_menu_submenu_width' ) . "px; border-radius: " . chuquipiondo_get_option( 'header_menu_submenu_radius' ) . "px; }\n";
+	$css .= ".primary-menu .sub-menu a{ color: " . chuquipiondo_get_option( 'header_menu_submenu_text' ) . "; }\n";
+	$css .= ".primary-menu .sub-menu a:hover{ color: " . chuquipiondo_get_option( 'header_menu_submenu_text_hover' ) . "; }\n";
+	if ( chuquipiondo_is_enabled( 'header_menu_submenu_shadow' ) ) {
+		$css .= ".primary-menu .sub-menu{ box-shadow: var(--shadow); }\n";
+	}
 
 	// ===== Footer dynamic styles =====
 	$css .= ".site-footer a{ color: var(--footer-link); }\n";

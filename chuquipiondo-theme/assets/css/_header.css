@@ -211,10 +211,62 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: var(--space-6);
+	gap: var(--header-logo-gap, 50px);
 	min-height: var(--header-height);
 }
 
+/* Logo: alineado a la izquierda, medidas 200x48 por defecto. */
+.header-main__brand {
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+	flex-shrink: 0;
+	margin-inline-end: var(--header-logo-gap, 50px);
+}
+
+.site-logo img {
+	max-width: var(--header-logo-width, 200px);
+	max-height: var(--header-logo-height, 48px);
+	width: auto;
+	height: auto;
+	object-fit: contain;
+}
+
+/* Logo como texto. */
+.site-logo--text a {
+	font-family: var(--font-heading);
+	font-weight: 800;
+	font-size: 1.5rem;
+	color: var(--header-main-text, var(--navy));
+	letter-spacing: -0.02em;
+	text-decoration: none;
+}
+
+/* Menu: se alinea a la derecha por defecto.
+   Cuando hay logo izq + icono der, el menu se centra en su espacio. */
+.header-main__nav {
+	flex: 1;
+	display: flex;
+	align-items: center;
+}
+
+/* Menu alineado a la derecha (cuando hay icono a la derecha). */
+.header-main--logo-left-menu-right .header-main__nav {
+	justify-content: flex-end;
+}
+
+/* Menu centrado (cuando hay logo izq + icono der, el menu se centra). */
+.header-main--logo-left-menu-right.has-search .header-main__nav,
+.header-main--logo-left-menu-right .header-main__nav:has(~ .header-main__search:not(:empty)) {
+	justify-content: center;
+}
+
+/* Menu alineado al centro (layout logo-left-menu-center). */
+.header-main--logo-left-menu-center .header-main__nav {
+	justify-content: center;
+}
+
+/* Logo centrado, menu dividido. */
 .header-main--logo-center-menu-split .header-main__brand {
 	order: 2;
 	position: absolute;
@@ -224,24 +276,15 @@
 
 .header-main--logo-center-menu-split .header-main__nav {
 	order: 1;
-}
-
-.header-main--logo-left-menu-center .header-main__nav {
-	order: 2;
 	flex: 1;
-	justify-content: center;
 }
 
-.header-main__brand {
+/* Buscador: alineado a la derecha, gap de 10px al menu. */
+.header-main__search {
 	display: flex;
 	align-items: center;
-	gap: var(--space-3);
+	margin-inline-start: var(--header-menu-search-gap, 10px);
 	flex-shrink: 0;
-}
-
-.site-logo img {
-	max-height: 52px;
-	width: auto;
 }
 
 .site-logo--text a {
@@ -252,17 +295,14 @@
 	letter-spacing: -0.02em;
 }
 
-.header-main__nav {
-	flex: 1;
-}
-
 .primary-menu {
 	display: flex;
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	gap: var(--space-2);
+	gap: var(--header-menu-item-gap, 4px);
 	flex-wrap: wrap;
+	background: var(--header-menu-bg, transparent);
 }
 
 .primary-menu li {
