@@ -31,14 +31,14 @@ if ( 'slider' === $mode && count( $slides ) >= 2 ) {
 <?php if ( 'slider' === $mode || 'image' === $mode ) :
 	$is_slider = ( 'slider' === $mode && count( $slides ) >= 2 );
 	?>
-	<div class="hero__track <?php echo $is_slider ? 'hero__track--slider' : ''; ?>">
+	<div class="hero__track <?php echo $is_slider ? esc_attr( 'hero__track--slider' ) : ''; ?>">
 	<?php foreach ( $slides as $index => $slide ) :
 		$is_first    = ( 0 === $index );
 		$img_desktop = chuquipiondo_hero_slide_image( $slide, 'desktop' );
 		$img_tablet  = chuquipiondo_hero_slide_image( $slide, 'tablet' );
 		$img_mobile  = chuquipiondo_hero_slide_image( $slide, 'mobile' );
 		?>
-		<div class="hero__slide <?php echo $is_first ? 'hero__slide--active' : ''; ?>">
+		<div class="hero__slide <?php echo $is_first ? esc_attr( 'hero__slide--active' ) : ''; ?>">
 			<?php if ( $img_desktop ) : ?>
 				<picture class="hero__image">
 					<?php if ( $img_mobile ) : ?>
@@ -49,8 +49,8 @@ if ( 'slider' === $mode && count( $slides ) >= 2 ) {
 					<?php endif; ?>
 					<img src="<?php echo esc_url( $img_desktop ); ?>"
 						alt="<?php echo esc_attr( isset( $slide['title'] ) ? $slide['title'] : '' ); ?>"
-						<?php echo $is_first ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'; ?>
-						class="hero__img <?php echo 'kenburns' === $effect ? 'hero__img--kenburns' : ''; ?>">
+						<?php echo $is_first ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static attribute strings ?>
+						class="hero__img <?php echo 'kenburns' === $effect ? esc_attr( 'hero__img--kenburns' ) : ''; ?>">
 				</picture>
 			<?php endif; ?>
 
