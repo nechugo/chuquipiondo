@@ -20,6 +20,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Customizer dependency-free (no custom JS/Backbone needed) while
  * still being fully administrable.
  */
+if ( ! class_exists( 'WP_Customize_Control' ) ) {
+	// WP_Customize_Control solo esta disponible en el Customizer.
+	// No cargar la clase en el front-end.
+	return;
+}
+
+if ( ! class_exists( 'Chuquipiondo_Slides_Control' ) ) {
 class Chuquipiondo_Slides_Control extends WP_Customize_Control {
 
 	/**
@@ -77,3 +84,4 @@ class Chuquipiondo_Slides_Control extends WP_Customize_Control {
 		<?php
 	}
 }
+} // end if class_exists

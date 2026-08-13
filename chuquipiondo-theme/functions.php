@@ -75,3 +75,4 @@ require_once CHUQUIPIONDO_DIR . '/inc/admin-panel.php';
 
 // Import / Export / Reset.
 require_once CHUQUIPIONDO_DIR . '/inc/ie-port.php';
+require_once CHUQUIPIONDO_DIR . '/inc/tgmpa/recommended-plugins.php';
