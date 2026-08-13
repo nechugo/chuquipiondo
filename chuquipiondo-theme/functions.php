@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Theme version, reused for cache-busting assets.
  */
-define( 'CHUQUIPIONDO_VERSION', '1.2.0' );
+define( 'CHUQUIPIONDO_VERSION', '1.3.0' );
 define( 'CHUQUIPIONDO_DIR', get_template_directory() );
 define( 'CHUQUIPONDO_URI', get_template_directory_uri() );
 
@@ -39,6 +39,7 @@ require_once CHUQUIPIONDO_DIR . '/inc/schema.php';
 require_once CHUQUIPIONDO_DIR . '/inc/customizer/presets.php';
 require_once CHUQUIPIONDO_DIR . '/inc/customizer/defaults.php';
 require_once CHUQUIPIONDO_DIR . '/inc/customizer/controls.php';
+require_once CHUQUIPIONDO_DIR . '/inc/customizer/panels.php';
 require_once CHUQUIPIONDO_DIR . '/inc/customizer/register.php';
 require_once CHUQUIPIONDO_DIR . '/inc/customizer/css.php';
 require_once CHUQUIPIONDO_DIR . '/inc/customizer/preview.php';
@@ -71,6 +72,7 @@ require_once CHUQUIPIONDO_DIR . '/inc/music/meta-boxes.php';
 require_once CHUQUIPIONDO_DIR . '/inc/music/player.php';
 
 // Advanced options panel.
+require_once CHUQUIPIONDO_DIR . '/inc/welcome.php';
 require_once CHUQUIPIONDO_DIR . '/inc/admin-panel.php';
 
 // Import / Export / Reset.
