@@ -20,7 +20,7 @@ get_header();
 	$classes = chuquipiondo_get_layout_classes();
 	$layout  = chuquipiondo_get_option( 'page_layout' );
 
-	echo '<div class="chuqui-layout ' . esc_attr( $classes['wrap'] ) . ' page-layout page-layout--' . esc_attr( sanitize_html_class( $layout ) ) . '">';
+	echo '<div class="chuqui-layout ' . esc_attr( $classes['wrap'] ) . ' page-layout page-layout--' . esc_attr( sanitize_html_class( $layout ) ) . '" style="margin-top: var(--header-content-gap, 25px);">';
 
 	while ( have_posts() ) :
 		the_post();
@@ -29,9 +29,11 @@ get_header();
 			<article id="post-<?php the_ID(); ?>" <?php post_class( 'single-page' ); ?> role="article">
 				<?php if ( chuquipiondo_is_enabled( 'single_show_breadcrumb' ) ) { chuquipiondo_breadcrumbs(); } ?>
 
+				<?php if ( chuquipiondo_is_enabled( 'page_show_title' ) ) : ?>
 				<header class="entry-header single-article__header">
 					<?php the_title( '<h1 class="entry-title single-article__title">', '</h1>' ); ?>
 				</header>
+				<?php endif; ?>
 
 				<?php if ( has_post_thumbnail() ) : ?>
 					<figure class="entry-thumbnail single-article__thumbnail"><?php the_post_thumbnail( 'chuquipiondo-featured' ); ?></figure>

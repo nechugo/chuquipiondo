@@ -81,7 +81,12 @@
 	}
 }
 
-/* Prevent body horizontal scroll (catch-all). */
-html, body {
+/* Prevent horizontal scroll only (vertical scroll must work). */
+html {
 	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+body {
+	overflow-x: clip;
 }

@@ -28,6 +28,7 @@
 .chuqui-layout.single-layout {
 	max-width: var(--container-width);
 	background: var(--white, #ffffff);
+	margin-top: var(--header-content-gap, 25px);
 }
 
 /* Hero image variant. */
@@ -134,8 +135,27 @@
 	background: transparent;
 }
 
-.entry-content.single-article__content img {
+.entry-content.single-article__content img,
+.entry-content.single-article__content .wp-block-image img,
+.entry-content.single-article__content figure img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
 	border-radius: 0;
+}
+
+/* Featured image: 16:9 aspect ratio. */
+.entry-thumbnail.single-article__thumbnail {
+	aspect-ratio: 16 / 9;
+	overflow: hidden;
+}
+
+.entry-thumbnail.single-article__thumbnail img {
+	width: 100%;
+	height: 100%;
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
 }
 
 .entry-content.single-article__content a {
@@ -252,7 +272,19 @@
 }
 
 .related-posts__grid {
-	grid-template-columns: 1fr;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--related-gap, 15px);
+}
+
+.related-posts .post-card {
+	background: var(--white, #ffffff);
+	border: 1px solid rgba(10, 31, 68, 0.06);
+	border-radius: 0;
+	overflow: hidden;
+}
+
+.related-posts .post-card__media {
+	aspect-ratio: 16 / 9;
 }
 
 /* Post navigation. */

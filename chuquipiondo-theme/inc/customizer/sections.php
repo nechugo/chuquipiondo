@@ -582,6 +582,15 @@ function chuquipiondo_register_single( $wp_customize ) {
 	chuquipiondo_add_setting_control( $wp_customize, 'single_related_title', array( 'section' => 'chuquipiondo_single', 'label' => __( 'Titulo: relacionados', 'chuquipiondo' ), 'priority' => 21 ) );
 	chuquipiondo_add_setting_control( $wp_customize, 'single_nav_style', array( 'section' => 'chuquipiondo_single', 'label' => __( 'Estilo de navegacion prev/siguiente', 'chuquipiondo' ), 'type' => 'select', 'choices' => array( 'cards' => 'Cards', 'text' => 'Texto', 'hidden' => 'Oculto' ), 'sanitize_callback' => 'chuquipiondo_sanitize_select', 'priority' => 25 ) );
 	chuquipiondo_add_setting_control( $wp_customize, 'single_extension_area', array( 'section' => 'chuquipiondo_single', 'label' => __( 'Post End Extension: HTML/Shortcode', 'chuquipiondo' ), 'type' => 'textarea', 'sanitize_callback' => 'chuquipiondo_sanitize_html', 'priority' => 30 ) );
+
+	// Single: interlineados y gap personalizables.
+	chuquipiondo_add_setting_control( $wp_customize, 'single_line_height', array( 'section' => 'chuquipiondo_single', 'label' => __( 'Interlineado de parrafos', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 0.8, 'max' => 2.5, 'step' => 0.1 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'description' => __( 'Default: 1.0.', 'chuquipiondo' ), 'priority' => 30 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'single_heading_gap', array( 'section' => 'chuquipiondo_single', 'label' => __( 'Interlineado titulo a parrafo (px)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 0, 'max' => 40, 'step' => 1 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'description' => __( 'Default: 12px. Distancia del titulo al parrafo siguiente.', 'chuquipiondo' ), 'priority' => 30 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'single_para_gap', array( 'section' => 'chuquipiondo_single', 'label' => __( 'Interlineado parrafo a titulo siguiente (px)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 0, 'max' => 40, 'step' => 1 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'description' => __( 'Default: 12px.', 'chuquipiondo' ), 'priority' => 30 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'single_related_gap', array( 'section' => 'chuquipiondo_single', 'label' => __( 'Articulos relacionados: gap (px)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 0, 'max' => 40, 'step' => 1 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'description' => __( 'Default: 15px.', 'chuquipiondo' ), 'priority' => 30 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'single_related_columns', array( 'section' => 'chuquipiondo_single', 'label' => __( 'Articulos relacionados: columnas', 'chuquipiondo' ), 'type' => 'select', 'choices' => array( '1' => '1', '2' => '2', '3' => '3', '4' => '4' ), 'sanitize_callback' => 'chuquipiondo_sanitize_select', 'description' => __( 'Default: 2 columnas.', 'chuquipiondo' ), 'priority' => 30 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_content_gap', array( 'section' => 'chuquipiondo_single', 'label' => __( 'Gap del header al contenido (px)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 0, 'max' => 60, 'step' => 1 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'description' => __( 'Default: 25px. Separacion entre el header y el contenido + sidebar.', 'chuquipiondo' ), 'priority' => 30 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'single_img_aspect', array( 'section' => 'chuquipiondo_single', 'label' => __( 'Aspecto de imagenes', 'chuquipiondo' ), 'type' => 'select', 'choices' => array( '16-9' => __( '16:9 (cinematografico)', 'chuquipiondo' ), '4-3' => __( '4:3 (clasico)', 'chuquipiondo' ), '1-1' => __( '1:1 (cuadrado)', 'chuquipiondo' ), 'auto' => __( 'Automatico', 'chuquipiondo' ) ), 'sanitize_callback' => 'chuquipiondo_sanitize_select', 'priority' => 30 ) );
 }
 
 /* ===================================================================== *
@@ -711,6 +720,9 @@ function chuquipiondo_register_page( $wp_customize ) {
 		'sanitize_callback' => 'chuquipiondo_sanitize_select',
 		'priority'          => 6,
 	) );
+
+	chuquipiondo_add_setting_control( $wp_customize, 'page_show_title', array( 'section' => 'chuquipiondo_page', 'label' => __( 'Mostrar titulo de la pagina', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'priority' => 7 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'page_content_gap', array( 'section' => 'chuquipiondo_page', 'label' => __( 'Gap del header al contenido (px)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 0, 'max' => 60, 'step' => 1 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'description' => __( 'Default: 25px.', 'chuquipiondo' ), 'priority' => 8 ) );
 }
 
 /* ===================================================================== *

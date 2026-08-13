@@ -279,12 +279,21 @@ function chuquipiondo_defaults() {
 		'single_related_title'   => 'Articulos relacionados',
 		'single_nav_style'       => 'cards',
 		'single_extension_area'  => '',
+		'single_line_height'       => '1.0',
+		'single_heading_gap'      => '12',
+		'single_para_gap'         => '12',
+		'single_related_gap'      => '15',
+		'single_related_columns'  => '2',
+		'header_content_gap'      => '25',
+		'single_img_aspect'       => '16-9',
 
 		/* ===== Page individual ===== */
 		'page_sidebar'           => 'none',
 		'page_sidebar_desktop'  => '1',
 		'page_sidebar_mobile'   => '0',
 		'page_layout'            => 'wide',
+		'page_show_title'         => '1',
+		'page_content_gap'        => '25',
 
 		/* ===== Ads ===== */
 		'ads_master_switch'      => '0',

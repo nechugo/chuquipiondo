@@ -102,6 +102,10 @@ function chuquipiondo_dynamic_css() {
 	$vars['footer-bottom-link']    = chuquipiondo_get_option( 'footer_bottom_link' );
 	$vars['footer-bottom-link-hover'] = chuquipiondo_get_option( 'footer_bottom_link_hover' );
 
+	// Single + Page layout variables.
+	$vars['header-content-gap'] = chuquipiondo_get_option( 'header_content_gap' ) . 'px';
+	$vars['related-gap']       = chuquipiondo_get_option( 'single_related_gap' ) . 'px';
+
 	// Sticky header colors.
 	$vars['header-sticky-bg']   = chuquipiondo_get_option( 'header_sticky_bg' );
 	$vars['header-sticky-text'] = chuquipiondo_get_option( 'header_sticky_text' );
@@ -216,6 +220,14 @@ function chuquipiondo_dynamic_css() {
 	if ( chuquipiondo_is_enabled( 'footer_border_top' ) ) {
 		$css .= ".footer-bottom{ border-top: " . chuquipiondo_get_option( 'footer_border_top' ) . "px solid " . chuquipiondo_get_option( 'footer_border_color' ) . "; }\n";
 	}
+
+	// ===== Single post dynamic styles =====
+	$css .= ".entry-content.single-article__content{ line-height: " . chuquipiondo_get_option( 'single_line_height' ) . "; }\n";
+	$css .= ".entry-content.single-article__content h1, .entry-content.single-article__content h2, .entry-content.single-article__content h3, .entry-content.single-article__content h4, .entry-content.single-article__content h5, .entry-content.single-article__content h6{ margin-top: " . chuquipiondo_get_option( 'single_heading_gap' ) . "px; margin-bottom: " . chuquipiondo_get_option( 'single_para_gap' ) . "px; }\n";
+	$css .= ".entry-content.single-article__content p{ margin-bottom: " . chuquipiondo_get_option( 'single_para_gap' ) . "px; }\n";
+	$css .= ".related-posts__grid{ grid-template-columns: repeat(" . chuquipiondo_get_option( 'single_related_columns' ) . ", minmax(0, 1fr)); gap: " . chuquipiondo_get_option( 'single_related_gap' ) . "px; }\n";
+	// Page: gap + layout.
+	$css .= ".page-layout{ margin-top: " . chuquipiondo_get_option( 'page_content_gap' ) . "px; }\n";
 
 	// ===== Button styles =====
 	$shape     = chuquipiondo_get_option( 'button_shape' );
