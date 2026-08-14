@@ -1,0 +1,137 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 2,
+	"settings": {
+		"appearanceTools": true,
+		"layout": {
+			"contentSize": "800px",
+			"wideSize": "1280px"
+		},
+		"color": {
+			"custom": true,
+			"customGradient": true,
+			"link": true,
+			"defaultPalette": false,
+			"palette": [
+				{
+					"slug": "navy",
+					"name": "Azul Marino",
+					"color": "#0a1f44"
+				},
+				{
+					"slug": "navy-dark",
+					"name": "Azul Marino Oscuro",
+					"color": "#06133a"
+				},
+				{
+					"slug": "sky",
+					"name": "Celeste Brillante",
+					"color": "#27b6ff"
+				},
+				{
+					"slug": "sky-soft",
+					"name": "Celeste Suave",
+					"color": "#7fd6ff"
+				},
+				{
+					"slug": "white",
+					"name": "Blanco",
+					"color": "#ffffff"
+				},
+				{
+					"slug": "paper",
+					"name": "Papel",
+					"color": "#f5f8ff"
+				},
+				{
+					"slug": "ink",
+					"name": "Tinta",
+					"color": "#1a2233"
+				},
+				{
+					"slug": "muted",
+					"name": "Texto Suave",
+					"color": "#5b6678"
+				}
+			]
+		},
+		"typography": {
+			"customFontSize": true,
+			"lineHeight": true,
+			"dropCap": true,
+			"fontFamilies": [
+				{
+					"slug": "body",
+					"name": "Texto",
+					"fontFamily": "\"Inter\", system-ui, -apple-system, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif"
+				},
+				{
+					"slug": "heading",
+					"name": "Titulares",
+					"fontFamily": "\"Plus Jakarta Sans\", \"Inter\", system-ui, sans-serif"
+				}
+			],
+			"fontSizes": [
+				{
+					"slug": "small",
+					"name": "Pequeno",
+					"size": "0.875rem"
+				},
+				{
+					"slug": "medium",
+					"name": "Medio",
+					"size": "1.125rem"
+				},
+				{
+					"slug": "large",
+					"name": "Grande",
+					"size": "1.5rem"
+				},
+				{
+					"slug": "x-large",
+					"name": "Extra Grande",
+					"size": "2.25rem"
+				}
+			]
+		},
+		"spacing": {
+			"padding": true,
+			"margin": true,
+			"units": ["px", "em", "rem", "%", "vw"]
+		},
+		"border": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "#f5f8ff",
+			"text": "#1a2233"
+		},
+		"typography": {
+			"fontFamily": "\"Inter\", system-ui, -apple-system, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+			"fontSize": "1rem",
+			"lineHeight": "1.7"
+		},
+		"elements": {
+			"link": {
+				"color": {
+					"text": "#0a1f44"
+				}
+			}
+		}
+	},
+	"customTemplates": {
+		"page-full-width": {
+			"title": "Pagina ancho completo",
+			"postTypes": ["page"]
+		},
+		"page-no-sidebar": {
+			"title": "Pagina sin barra lateral",
+			"postTypes": ["page"]
+		}
+	}
+}

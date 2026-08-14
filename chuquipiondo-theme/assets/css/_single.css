@@ -1,0 +1,385 @@
+/**
+ * Single post: article, layout, meta, author bio, related, nav.
+ *
+ * Layout specs:
+ * - Background: white
+ * - Width: less than 960px (reading-width, default 940px)
+ * - Image/thumbnail first, then paragraphs
+ * - No card/box backgrounds on paragraphs (flat flow)
+ * - Text justified
+ * - Font size: 14px default
+ * - Paragraph line-height: 1.0
+ * - Heading-to-next-paragraph gap: 12px
+ * - Ad-to-paragraph gap: 5px
+ */
+
+.single-article {
+	padding: 0;
+	background: var(--white, #ffffff);
+}
+
+.single-article__inner {
+	padding: var(--space-8) 0;
+	background: var(--white, #ffffff);
+	max-width: var(--reading-width, 940px);
+	margin-inline: auto;
+}
+
+.chuqui-layout.single-layout {
+	max-width: var(--container-width);
+	background: var(--white, #ffffff);
+	margin-top: var(--header-content-gap, 25px);
+}
+
+/* Hero image variant. */
+.single-hero-image {
+	position: relative;
+	width: 100%;
+	height: 480px;
+	overflow: hidden;
+}
+
+.single-hero-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.single-hero-image__overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(6, 19, 58, 0.3), rgba(6, 19, 58, 0.85));
+}
+
+/* Article header. */
+.entry-header {
+	margin-bottom: var(--space-5);
+}
+
+.post-card__category,
+.entry-header .post-card__category {
+	margin-bottom: var(--space-2);
+}
+
+.entry-title.single-article__title {
+	font-size: clamp(1.875rem, 1.3rem + 2.5vw, 2.75rem);
+	line-height: 1.2;
+	margin-bottom: var(--space-3);
+}
+
+.entry-meta.single-article__meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--space-3);
+	color: var(--muted);
+	font-size: 0.875rem;
+}
+
+.entry-meta .byline a {
+	color: var(--navy);
+	font-weight: 500;
+}
+
+.entry-meta .reading-time {
+	color: var(--muted);
+}
+
+/* Thumbnail: goes first, full width of the reading area, no card/box. */
+.entry-thumbnail.single-article__thumbnail {
+	margin: 0 0 var(--space-6);
+	border-radius: 0;
+	overflow: hidden;
+}
+
+.entry-thumbnail img {
+	border-radius: 0;
+	width: 100%;
+}
+
+/* Content. */
+/* Content: 14px font, justified text, line-height 1.0, no card backgrounds. */
+.entry-content.single-article__content {
+	font-size: 14px;
+	line-height: 1.0;
+	text-align: justify;
+	background: transparent;
+}
+
+.entry-content.single-article__content > * {
+	max-width: 100%;
+	background: transparent;
+}
+
+/* Paragraphs: no card/box, flat flow, line-height 1.0. */
+.entry-content.single-article__content p {
+	margin: 0 0 12px;
+	padding: 0;
+	background: transparent;
+	line-height: 1.0;
+	text-align: justify;
+}
+
+/* Headings: 12px gap (margin) from the preceding paragraph to the heading.
+   line-height 1.0, then 12px before the next paragraph continues. */
+.entry-content.single-article__content h1,
+.entry-content.single-article__content h2,
+.entry-content.single-article__content h3,
+.entry-content.single-article__content h4,
+.entry-content.single-article__content h5,
+.entry-content.single-article__content h6 {
+	margin-top: 12px;
+	margin-bottom: 12px;
+	line-height: 1.0;
+	padding: 0;
+	background: transparent;
+}
+
+.entry-content.single-article__content img,
+.entry-content.single-article__content .wp-block-image img,
+.entry-content.single-article__content figure img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
+	border-radius: 0;
+}
+
+/* Featured image: 16:9 aspect ratio. */
+.entry-thumbnail.single-article__thumbnail {
+	aspect-ratio: 16 / 9;
+	overflow: hidden;
+}
+
+.entry-thumbnail.single-article__thumbnail img {
+	width: 100%;
+	height: 100%;
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
+}
+
+.entry-content.single-article__content a {
+	color: var(--sky);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.entry-content.single-article__content a:hover {
+	color: var(--navy);
+}
+
+/* Lists and blockquotes: no card backgrounds, flat flow. */
+.entry-content.single-article__content ul,
+.entry-content.single-article__content ol {
+	margin: 0 0 12px;
+	padding-left: 1.5em;
+	background: transparent;
+}
+
+.entry-content.single-article__content blockquote {
+	margin: 0 0 12px;
+	padding: 0 0 0 1em;
+	border-left: 3px solid var(--sky);
+	background: transparent;
+	font-style: italic;
+}
+
+/* Tags. */
+.entry-tags {
+	margin: var(--space-6) 0;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--space-2);
+}
+
+.entry-tags .tags-label {
+	font-weight: 600;
+	color: var(--navy);
+	margin-right: var(--space-2);
+}
+
+.entry-tags a {
+	display: inline-block;
+	padding: 0.3em 0.8em;
+	background: rgba(39, 182, 255, 0.08);
+	color: var(--navy);
+	border-radius: var(--radius-button);
+	font-size: 0.8125rem;
+	transition: background var(--transition-fast);
+}
+
+.entry-tags a:hover {
+	background: var(--sky);
+	color: var(--navy-dark);
+}
+
+/* Post End Extension. */
+.post-end-extension {
+	max-width: var(--container-width);
+	margin-inline: auto;
+	padding: 0 1.5rem var(--space-6);
+}
+
+.post-end-widgets,
+.post-end-custom {
+	margin-bottom: var(--space-6);
+}
+
+/* Author bio. */
+.author-bio {
+	display: flex;
+	gap: var(--space-4);
+	max-width: var(--container-width);
+	margin-inline: auto;
+	padding: var(--space-6);
+	margin-bottom: var(--space-6);
+	background: var(--white);
+	border-radius: var(--radius-content);
+	box-shadow: var(--shadow-sm);
+}
+
+.author-bio__avatar img {
+	border-radius: 50%;
+}
+
+.author-bio__name {
+	font-size: 1.25rem;
+	margin: 0 0 var(--space-2);
+}
+
+.author-bio__desc {
+	color: var(--muted);
+	margin-bottom: var(--space-2);
+	font-size: 0.9375rem;
+}
+
+.author-bio__link {
+	font-weight: 600;
+	color: var(--sky);
+}
+
+/* Related posts. */
+.related-posts {
+	max-width: var(--container-width);
+	margin-inline: auto;
+	padding: var(--space-8) 1.5rem;
+}
+
+.related-posts__title {
+	font-size: 1.5rem;
+	margin-bottom: var(--space-5);
+}
+
+.related-posts__grid {
+	grid-template-columns: repeat(var(--related-cols, 2), minmax(0, 1fr));
+	gap: var(--related-gap, 15px);
+}
+
+/* Relacionados: tarjetas con imagen 16:9, estilo periódico elegante */
+.related-posts .post-card {
+	background: var(--white, #ffffff);
+	border: 1px solid rgba(10, 31, 68, 0.08);
+	border-radius: 0;
+	overflow: hidden;
+	box-shadow: 0 1px 3px rgba(10, 31, 68, 0.06);
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.related-posts .post-card:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 6px 20px rgba(10, 31, 68, 0.12);
+}
+
+.related-posts .post-card__media {
+	aspect-ratio: 16 / 9;
+	overflow: hidden;
+}
+
+.related-posts .post-card__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.4s ease;
+}
+
+.related-posts .post-card:hover .post-card__media img {
+	transform: scale(1.05);
+}
+
+.related-posts .post-card__body {
+	padding: 12px 14px;
+}
+
+.related-posts .post-card__title {
+	font-size: 0.9375rem;
+	line-height: 1.3;
+	margin: 0;
+}
+
+.related-posts .post-card__title a {
+	color: var(--navy, #0a1f44);
+	text-decoration: none;
+}
+
+.related-posts .post-card__title a:hover {
+	color: var(--sky, #27b6ff);
+}
+
+.related-posts .post-card__meta {
+	font-size: 0.75rem;
+	color: var(--muted, #5b6678);
+	margin-top: 6px;
+}
+
+/* Post navigation. */
+.post-navigation {
+	margin-top: var(--space-8);
+	padding: var(--space-6) 0;
+	border-top: 1px solid rgba(10, 31, 68, 0.08);
+	border-bottom: 1px solid rgba(10, 31, 68, 0.08);
+}
+
+.post-navigation__inner {
+	display: flex;
+	justify-content: space-between;
+	gap: var(--space-4);
+}
+
+.post-nav {
+	flex: 1;
+	text-decoration: none;
+	color: var(--muted);
+	padding: var(--space-3);
+	border-radius: var(--radius-content);
+	transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.post-nav:hover {
+	background: rgba(39, 182, 255, 0.06);
+}
+
+.post-nav--next {
+	text-align: right;
+}
+
+.post-nav--empty {
+	visibility: hidden;
+}
+
+.post-nav__label {
+	display: block;
+	font-size: 0.8125rem;
+	font-weight: 600;
+	margin-bottom: var(--space-1);
+}
+
+.post-nav__title {
+	display: block;
+	color: var(--navy);
+	font-weight: 500;
+}
+
+.post-navigation--text .post-nav__title {
+	font-size: 0.9375rem;
+}

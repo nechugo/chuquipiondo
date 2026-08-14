@@ -1,0 +1,174 @@
+/**
+ * Responsive / mobile-first overrides.
+ *
+ * The base styles are mobile-first; this file contains the
+ * tablet and desktop breakpoint adjustments that cannot be
+ * expressed inline above.
+ */
+
+/* ===== Mobile navigation ===== */
+@media (max-width: 1023px) {
+	.menu-toggle {
+		display: flex;
+	}
+
+	.header-main__nav {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: min(320px, 85vw);
+		height: 100vh;
+		background: var(--white);
+		box-shadow: var(--shadow-lg);
+		transform: translateX(-100%);
+		transition: transform var(--transition-base);
+		z-index: var(--z-overlay);
+		padding: var(--space-12) var(--space-5) var(--space-5);
+		overflow-y: auto;
+	}
+
+	.header-main__nav.is-open {
+		transform: translateX(0);
+	}
+
+	.primary-menu {
+		flex-direction: column;
+		gap: var(--space-1);
+		width: 100%;
+	}
+
+	.primary-menu > li > a {
+		display: block;
+		padding: 0.75em 1em;
+		border-radius: var(--radius-button);
+	}
+
+	.primary-menu .sub-menu {
+		position: static;
+		opacity: 1;
+		visibility: visible;
+		transform: none;
+		box-shadow: none;
+		padding-left: var(--space-4);
+		background: transparent;
+	}
+
+	/* Overlay backdrop. */
+	body.menu-open::after {
+		content: "";
+		position: fixed;
+		inset: 0;
+		background: rgba(6, 19, 58, 0.6);
+		z-index: var(--z-overlay);
+		backdrop-filter: blur(2px);
+	}
+}
+
+/* ===== Tablet ===== */
+@media (max-width: 1023px) {
+	.header-topbar__inner {
+		justify-content: center;
+		text-align: center;
+	}
+
+	.topbar-date,
+	.topbar-time {
+		display: none;
+	}
+
+	.home-featured__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.related-posts__grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 767px) {
+	.chuqui-layout {
+		padding: var(--space-5) 0;
+		gap: var(--space-5);
+	}
+
+	.single-article__inner {
+		padding: var(--space-5) 0;
+	}
+
+	.post-card--magazine {
+		flex-direction: column;
+	}
+
+	.post-card--magazine .post-card__media {
+		flex: none;
+		max-width: 100%;
+		aspect-ratio: 16 / 10;
+	}
+
+	.author-bio {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+
+	.footer-bottom {
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.post-navigation__inner {
+		flex-direction: column;
+	}
+
+	.post-nav--next {
+		text-align: left;
+	}
+
+	.music-player {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.music-player__cover {
+		flex: none;
+		width: 100%;
+		height: 160px;
+	}
+
+	.music-player__progress {
+		min-width: 0;
+	}
+
+	.hero__controls {
+		bottom: var(--space-3);
+	}
+
+	.social-share-floating--mobile {
+		padding: var(--space-1) var(--space-2);
+	}
+}
+
+/* ===== Very small ===== */
+@media (max-width: 480px) {
+	.chuqui-container,
+	.chuqui-layout {
+		padding-inline: 1rem;
+	}
+
+	.post-card__body {
+		padding: var(--space-3);
+	}
+
+	.music-mini-player__volume-range,
+	.music-player__volume {
+		display: none;
+	}
+}
+
+/* ===== Large desktop ===== */
+@media (min-width: 1280px) {
+	.chuqui-layout {
+		padding-inline: 1.5rem;
+	}
+}

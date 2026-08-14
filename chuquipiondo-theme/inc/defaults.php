@@ -1,0 +1,430 @@
+<?php
+/**
+ * Theme option defaults.
+ *
+ * Central source of truth for every theme_mod used by the
+ * Customizer. Keys here mirror the option keys consumed
+ * across the theme via chuquipiondo_get_option().
+ *
+ * @package CHUQUIPIONDO
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * Return the full map of default values.
+ *
+ * Sections:
+ *  - global
+ *  - header
+ *  - hero
+ *  - home
+ *  - blog
+ *  - single
+ *  - ads
+ *  - social
+ *  - whatsapp
+ *  - footer
+ *  - music
+ *  - custom_code
+ *
+ * @return array
+ */
+function chuquipiondo_defaults() {
+	return array(
+
+		/* ===== Global: colors, typography, container, buttons ===== */
+		'preset'                 => 'original',
+		'color_navy'             => '#0a1f44',
+		'color_navy_dark'        => '#06133a',
+		'color_sky'              => '#27b6ff',
+		'color_sky_soft'         => '#7fd6ff',
+		'color_background'       => '#f5f8ff',
+		'color_text'             => '#1a2233',
+		'color_muted'            => '#5b6678',
+		'color_white'            => '#ffffff',
+		'color_accent'           => '#27b6ff',
+
+		'font_body'              => 'inter',
+		'font_heading'           => 'plus-jakarta',
+		'font_size_base'         => '16',
+		'font_weight_body'       => '400',
+		'font_weight_heading'    => '700',
+		'container_width'        => '1280',
+		'reading_width'          => '940',
+		'sidebar_width'          => '320',
+		'sidebar_card_style'     => '1',
+		'sidebar_card_inset'     => '5',
+		'sidebar_card_bg'        => '#ffffff',
+		'sidebar_card_border'    => '1',
+		'sidebar_card_border_color' => 'rgba(10,31,68,0.06)',
+		'sidebar_card_radius'    => '0',
+		'sidebar_card_padding'   => '16',
+		'sidebar_card_shadow'    => '0',
+		'sidebar_card_gap'        => '12',
+		'sidebar_disable_scroll' => '1',
+		'content_radius'         => '10',
+		/* ===== Botones (sistema completo) ===== */
+		'button_width_mode'      => 'auto',          // auto | fixed | full | percent
+		'button_width'           => '50',            // px (modo fixed)
+		'button_width_percent'   => '100',           // % (modo percent, 1-100)
+		'button_height'          => '25',            // px
+		'button_height_custom'   => '25',            // px (ajustable ampliable)
+		'button_font_size'       => '12',            // px
+		'button_shape'           => 'rounded',       // square | rounded | pill
+		'button_radius'          => '30',            // px (para rounded; pill=9999, square=0)
+		'button_bg'              => '#27b6ff',
+		'button_text'            => '#0a1f44',
+		'button_hover_bg'        => '#0a1f44',
+		'button_hover_text'      => '#ffffff',
+		'button_border_width'    => '0',             // px
+		'button_border_color'    => '#0a1f44',
+		'button_padding_h'       => '20',            // px padding horizontal
+		'button_padding_v'       => '6',             // px padding vertical
+		'button_icon_enable'    => '0',              // icono activado
+		'button_icon'            => 'none',          // none | arrow-right | arrow-left | check | download | play | star | heart | external | email | search | user | calendar | chevron-right | chevron-left | plus | minus | close | menu
+		'button_icon_position'  => 'before',         // before | after (relativo al texto)
+		'button_icon_size'       => '14',            // px
+		'button_text_transform'  => 'none',          // none | uppercase | lowercase | capitalize
+		'button_font_weight'     => '600',           // 400-800
+		'button_letter_spacing'  => '0',             // em (ej 0.05)
+		'button_shadow_enable'   => '0',
+		'button_shadow_color'    => 'rgba(0,0,0,0.2)',
+		'spacing_base'           => '8',
+
+		/* ===== Header system ===== */
+		/* ===== Pre-header (2 columnas encima del header) ===== */
+		'preheader_enable'        => '0',
+		'preheader_left_text'     => '',
+		'preheader_right_type'    => 'widget',        // widget | html | shortcode | music
+		'preheader_right_content' => '',
+		'preheader_right_width'   => '300',           // px (ampliable)
+		'preheader_gap'           => '10',             // px entre columnas
+		'preheader_height'        => 'auto',           // auto | fixed
+		'preheader_fixed_height'  => '80',             // px (si fixed)
+
+		'header_topbar_enable'       => '1',
+		'header_topbar_desktop'      => '1',
+		'header_topbar_mobile'       => '1',
+		'header_topbar_bg'           => '#06133a',
+		'header_topbar_text'         => '#ffffff',
+		'header_topbar_link'         => '#7fd6ff',
+		'header_topbar_height'       => '40',
+		'header_topbar_content'      => '',
+		/* Top Bar widget: General + Design */
+		'header_topbar_widget_bg'   => 'transparent',
+		'header_topbar_widget_text' => '#ffffff',
+		'header_topbar_widget_link' => '#7fd6ff',
+		'header_topbar_widget_link_hover' => '#ffffff',
+		'header_topbar_widget_font_size' => '13',
+		'header_topbar_widget_padding_h' => '8',
+		'header_topbar_widget_padding_v' => '4',
+		'header_topbar_widget_border_radius' => '6',
+		'header_topbar_widget_border' => '0',
+		'header_topbar_widget_border_color' => 'rgba(255,255,255,0.1)',
+		'header_topbar_widget_shadow' => '0',
+		'header_topbar_layout'       => 'left-right',   // left-right | center | left-only | right-only
+		'header_topbar_date'     => '1',
+		'header_topbar_time'     => '0',
+		'header_topbar_email'    => 'contacto@chuquipiondo.com',
+		'header_main_sticky'     => '1',
+		'header_sticky_mode'     => 'main',      // main | full (todo el header o solo main)
+		'header_sticky_desktop'  => '1',          // sticky en desktop
+		'header_sticky_mobile'   => '1',          // sticky en movil
+		'header_sticky_effect'   => 'shrink',     // none | shrink | slide | fade
+		'header_sticky_bg'       => '#ffffff',    // fondo del header sticky
+		'header_sticky_text'     => '#0a1f44',    // texto del header sticky
+		'header_sticky_shadow'   => '1',          // sombra al hacer scroll
+		'header_main_bg'             => '#ffffff',
+		'header_main_text'           => '#0a1f44',
+		'header_main_link'           => '#0a1f44',
+		'header_main_link_hover'     => '#27b6ff',
+		'header_main_height'         => '80',
+		'header_main_padding_h'      => '0',
+		'header_main_border_bottom'  => '1',
+		'header_main_border_color'   => 'rgba(10,31,68,0.06)',
+		'header_main_logo_width'     => '200',
+		'header_main_logo_height'    => '48',
+		'header_main_logo_max'       => '52',
+		'header_main_show_text_logo' => '0',
+		'header_main_text_logo'      => '',
+		'header_main_logo_align'     => 'left',
+		'header_main_logo_retina'    => '1',
+		'header_main_logo_gap'       => '50',
+		'header_main_desktop'        => '1',
+		'header_main_mobile'         => '1',
+		'header_main_layout'     => 'logo-left-menu-right',
+		'header_search_enable'   => '1',
+		'header_menu_search_gap' => '10',
+		/* Menu principal: General (Astra) */
+		'header_menu_align'      => 'right',      // left | center | right
+		'header_menu_bg'         => 'transparent',
+		'header_menu_text'       => '#0a1f44',
+		'header_menu_text_hover' => '#27b6ff',
+		'header_menu_active_bg'  => 'rgba(39,182,255,0.1)',
+		'header_menu_active_text'=> '#27b6ff',
+		'header_menu_font_size'  => '15',
+		'header_menu_font_weight'=> '500',
+		'header_menu_text_transform' => 'none',
+		'header_menu_letter_spacing' => '0',
+		/* Menu principal: Design (Astra) */
+		'header_menu_item_padding_h' => '12',
+		'header_menu_item_padding_v' => '8',
+		'header_menu_item_gap'   => '4',
+		'header_menu_border_radius' => '8',
+		'header_menu_submenu_bg' => '#ffffff',
+		'header_menu_submenu_text' => '#1a2233',
+		'header_menu_submenu_text_hover' => '#27b6ff',
+		'header_menu_submenu_width' => '220',
+		'header_menu_submenu_radius' => '12',
+		'header_menu_submenu_shadow' => '1',
+		'header_menu_submenu_border' => '0',
+		'header_menu_submenu_border_color' => 'rgba(10,31,68,0.08)',
+		'header_menu_mobile_breakpoint' => '1024',
+		'header_menu_mobile_bg'  => '#ffffff',
+		'header_menu_mobile_text' => '#0a1f44',
+		'header_menu_mobile_item_padding' => '12',
+		'header_menu_mobile_item_gap' => '4',
+		'header_menu_mobile_text_size' => '16',
+		'header_menu_mobile_text_transform' => 'none',
+		'header_menu_mobile_font_weight' => '500',
+		'header_menu_mobile_active_text' => '#27b6ff',
+		'header_menu_mobile_active_bg' => 'rgba(39,182,255,0.1)',
+		'header_menu_mobile_border_radius' => '8',
+		'header_menu_mobile_submenu_indent' => '16',
+		'header_multiuse_enable'    => '0',
+		'header_multiuse_desktop'   => '1',
+		'header_multiuse_mobile'    => '0',
+		'header_multiuse_bg'        => '#0a1f44',
+		'header_multiuse_text'      => '#ffffff',
+		'header_multiuse_height'    => '60',
+		'header_multiuse_content'=> '',
+		/* Header 3 widget: General + Design */
+		'header_multiuse_widget_bg'   => 'transparent',
+		'header_multiuse_widget_text' => '#ffffff',
+		'header_multiuse_widget_link' => '#7fd6ff',
+		'header_multiuse_widget_link_hover' => '#ffffff',
+		'header_multiuse_widget_font_size' => '14',
+		'header_multiuse_widget_padding_h' => '8',
+		'header_multiuse_widget_padding_v' => '4',
+		'header_multiuse_widget_border_radius' => '6',
+		'header_multiuse_widget_border' => '0',
+		'header_multiuse_widget_border_color' => 'rgba(255,255,255,0.1)',
+		'header_multiuse_widget_shadow' => '0',
+		'header_box1_type'       => 'logo',
+		'header_box2_type'       => 'menu',
+		'header_box3_type'       => 'text',
+		'header_box4_type'       => 'search',
+		'header_distribution'    => '50-50',
+		'header_box1_visible'    => 'desktop,tablet,mobile',
+		'header_box2_visible'    => 'desktop,tablet,mobile',
+		'header_box3_visible'    => 'desktop,tablet',
+		'header_box4_visible'    => 'desktop,tablet',
+		'header_box1_content'    => '',
+		'header_box2_content'    => '',
+		'header_box3_content'    => 'Liderazgo, Gestion y Formacion con proposito',
+		'header_box4_content'    => '',
+
+		/* ===== Hero / Slider ===== */
+		'hero_enable'            => '0',
+		'hero_mode'              => 'slider',
+		'hero_height'            => '560',
+		'hero_full_viewport'     => '0',    // ajustar slider+header a pantalla
+		'hero_effect'            => 'fade',
+		'hero_autoplay'          => '1',
+		'hero_speed'             => '5000',
+		'hero_overlay'           => '35',
+		'hero_slider'            => array(),
+
+		/* ===== Home builder ===== */
+		'home_modules'            => 'hero,featured,latest,categories,song,videos,about,newsletter',
+		'home_featured_title'    => 'Articulos destacados',
+		'home_featured_count'    => '4',
+		'home_latest_title'      => 'Ultimos articulos',
+		'home_latest_count'      => '6',
+		'home_categories_title'  => 'Explora por categorias',
+		'home_about_title'       => 'Sobre Nelson',
+		'home_about_text'        => 'Nelson Chuquipiondo comunica liderazgo, gestion y formacion con proposito, con raices en la fe cristiana y la musica.',
+		'home_about_image'       => '',
+		'home_song_title'        => 'Cancion destacada',
+		'home_song_id'           => '',
+		'home_videos_title'      => 'Ultimos videos',
+		'home_videos_count'     => '3',
+		'home_videos_playlist'   => '',
+		'home_newsletter_title'  => 'Suscribete',
+		'home_newsletter_text'   => 'Recibe contenidos sobre liderazgo, gestion y formacion con proposito.',
+		'home_newsletter_shortcode' => '',
+
+		/* ===== Blog / Archive ===== */
+		'blog_columns'           => '3',
+		'blog_columns_tablet'    => '2',
+		'blog_columns_mobile'    => '1',
+		'blog_card_style'        => 'editorial',
+		'blog_sidebar'           => 'right',
+		'blog_sidebar_desktop'  => '1',
+		'blog_sidebar_mobile'   => '0',
+		'blog_excerpt_length'    => '24',
+		'blog_show_author'       => '1',
+		'blog_show_date'         => '1',
+		'blog_show_category'     => '1',
+		'blog_show_excerpt'      => '1',
+		'blog_image_lazy'        => '1',
+
+		/* ===== Single post ===== */
+		'single_layout'          => 'editorial',
+		'single_sidebar'         => 'right',
+		'single_sidebar_desktop' => '1',
+		'single_sidebar_mobile'  => '0',
+		'single_show_breadcrumb' => '1',
+		'single_show_category'   => '1',
+		'single_show_author'     => '1',
+		'single_show_date'       => '1',
+		'single_show_reading'    => '1',
+		'single_show_tags'        => '1',
+		'single_show_bio'        => '1',
+		'single_show_related'    => '1',
+		'single_related_count'   => '3',
+		'single_related_title'   => 'Articulos relacionados',
+		'single_nav_style'       => 'cards',
+		'single_extension_area'  => '',
+		'single_line_height'       => '1.0',
+		'single_heading_gap'      => '12',
+		'single_para_gap'         => '12',
+		'single_related_gap'      => '15',
+		'single_related_columns'  => '2',
+		'single_related_rows'     => '1',
+		'single_related_style'    => 'editorial',
+		'header_content_gap'      => '25',
+		'single_img_aspect'       => '16-9',
+
+		/* ===== Page individual ===== */
+		'page_sidebar'           => 'none',
+		'page_sidebar_desktop'  => '1',
+		'page_sidebar_mobile'   => '0',
+		'page_layout'            => 'wide',
+		'page_show_title'         => '1',
+		'page_content_gap'        => '25',
+		'page_bg_color'           => '#ffffff',
+		'page_card_inset'         => '5',
+		'page_title_color'        => '#0a1f44',
+		'page_title_show'         => '1',
+		'page_title_editable'     => '1',
+
+		/* ===== Ads ===== */
+		'ads_master_switch'      => '0',
+		'ads_mode'               => 'manual',
+		'ads_client_id'          => '',
+		'ads_after_title'        => '',
+		'ads_after_paragraph_3'  => '',
+		'ads_after_paragraph_6'  => '',
+		'ads_before_related'     => '',
+		'ads_blog_top'           => '',
+		'ads_blog_after_row'     => '',
+		'ads_blog_after_posts'   => '3',
+		'ads_sidebar_top'        => '',
+		'ads_sidebar_middle'     => '',
+		'ads_sidebar_bottom'     => '',
+		'ads_home_after_hero'    => '',
+		'ads_header_before'      => '',
+		'ads_header_between'     => '',
+		'ads_header_after'       => '',
+
+		/* ===== Social share ===== */
+		'social_master_switch'   => '1',
+		'social_networks'         => 'facebook,x,linkedin,whatsapp,telegram,email,copy',
+		'social_color_mode'      => 'official',
+		'social_position'        => 'after',
+		'social_floating'        => '1',
+		'social_floating_mobile' => '1',
+		'social_custom_bg'       => '#0a1f44',
+		'social_custom_fg'       => '#ffffff',
+
+		/* ===== Social profiles (top bar) ===== */
+		'social_facebook'        => '',
+		'social_x'               => '',
+		'social_youtube'         => 'https://www.youtube.com/@chuquipiondo',
+		'social_instagram'       => '',
+		'social_linkedin'        => '',
+		'social_telegram'        => '',
+		'social_tiktok'          => '',
+
+		/* ===== WhatsApp float ===== */
+		'whatsapp_master_switch' => '1',
+		'whatsapp_number'        => '51921497257',
+		'whatsapp_mode'          => 'private',
+		'whatsapp_position'      => 'bottom-right',
+		'whatsapp_size'          => '52',
+		'whatsapp_mobile_size'   => '48',
+		'whatsapp_message'       => 'Hola Nelson, me gustaria conversar.',
+		'whatsapp_group_url'     => '',
+
+		/* ===== Footer ===== */
+		'footer_columns'         => '4',
+		'footer_about'           => 'CHUQUIPIONDO - Liderazgo, Gestion y Formacion con proposito. ¡Juntos, si podemos!',
+		'footer_copyright'       => '© {year} Nelson Chuquipiondo. Todos los derechos reservados.',
+		'footer_bg'              => '#06133a',
+		'footer_text'            => '#ffffff',
+		'footer_link'            => '#7fd6ff',
+		'footer_link_hover'      => '#ffffff',
+		'footer_title'           => '#ffffff',
+		'footer_padding_top'     => '48',
+		'footer_padding_bottom' => '24',
+		'footer_widget_gap'      => '24',
+		'footer_show_brand'      => '1',
+		'footer_show_copyright'  => '1',
+		'footer_show_menu'       => '1',
+		'footer_bottom_bg'       => '#050a16',
+		'footer_bottom_text'     => '#ffffff',
+		'footer_border_top'      => '1',
+		'footer_border_color'    => 'rgba(255,255,255,0.1)',
+		'footer_font_size'       => '14',
+		'footer_title_size'      => '16',
+		'footer_desktop'         => '1',
+		'footer_mobile'          => '1',
+		'footer_show_social'     => '1',
+		/* Footer General (Astra): layout y estructura */
+		'footer_width'           => 'contained',     // contained | full
+		'footer_widget_layout'   => '4',              // 1-6 columnas
+		'footer_bottom_layout'   => 'side',           // side | stacked
+		'footer_bottom_align'    => 'space-between',  // left | center | right | space-between
+		'footer_bottom_padding_v'=> '16',             // px
+		'footer_widgets_bg'      => 'transparent',    // fondo seccion widgets (separado del bottom)
+		'footer_section_gap'     => '0',              // px entre widgets y bottom
+		/* Footer Design (Astra): tipografia y estilo de widgets */
+		'footer_title_weight'    => '700',
+		'footer_title_transform' => 'none',           // none | uppercase | capitalize
+		'footer_title_letter_spacing' => '0',         // em
+		'footer_title_margin_bottom' => '12',         // px
+		'footer_link_weight'     => '400',
+		'footer_link_transform'  => 'none',
+		'footer_link_letter_spacing' => '0',           // em
+		'footer_link_hover_bg'   => 'transparent',
+		'footer_link_padding_h'  => '4',               // px
+		'footer_link_padding_v'  => '2',               // px
+		'footer_link_radius'     => '4',               // px
+		'footer_widget_bg'       => 'transparent',     // fondo individual del widget
+		'footer_widget_padding_h'=> '0',               // px
+		'footer_widget_padding_v'=> '0',               // px
+		'footer_widget_radius'   => '0',              // px
+		'footer_widget_border'  => '0',               // px
+		'footer_widget_border_color' => 'rgba(255,255,255,0.08)',
+		'footer_widget_shadow'  => '0',               // sombra del widget
+		'footer_line_height'    => '1.6',             // interlineado del texto
+		'footer_bottom_link'    => '#7fd6ff',         // links del footer bottom
+		'footer_bottom_link_hover' => '#ffffff',
+
+		/* ===== Music ===== */
+		'music_mini_player'      => '0',
+		'music_downloads_global' => '0',
+		'music_player_color'     => '#27b6ff',
+		'music_archive_columns'  => '2',
+
+		/* ===== Custom code ===== */
+		'custom_css'             => '',
+		'custom_head'            => '',
+		'custom_body'            => '',
+		'custom_footer'          => '',
+	);
+}

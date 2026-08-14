@@ -1,0 +1,98 @@
+/**
+ * CHUQUIPIONDO Design System - Variables.
+ *
+ * These CSS custom properties are the single source of truth.
+ * They are overridden at runtime by the dynamic CSS generated
+ * from the Customizer (inc/customizer/css.php).
+ */
+
+:root {
+	/* Brand colors (Chuquipiondo Original preset). */
+	--navy: #0a1f44;
+	--navy-dark: #06133a;
+	--sky: #27b6ff;
+	--sky-soft: #7fd6ff;
+	--background: #f5f8ff;
+	--text: #1a2233;
+	--muted: #5b6678;
+	--white: #ffffff;
+	--accent: #27b6ff;
+
+	/* Button. */
+	--button-bg: #27b6ff;
+	--button-text: #0a1f44;
+	--button-hover-bg: #0a1f44;
+	--button-hover: #ffffff;
+
+	/* Footer. */
+	--footer-bg: #06133a;
+	--footer-text: #ffffff;
+
+	/* Typography. */
+	--font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-heading: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+	--font-size-base: 16px;
+	--font-weight-body: 400;
+	--font-weight-heading: 700;
+
+	/* Layout widths. */
+	--container-width: 1280px;
+	--reading-width: 800px;
+	--sidebar-width: 340px;
+
+	/* Radii. */
+	--radius-content: 10px;
+	--radius-button: 8px;
+	--radius-sm: 6px;
+
+	/* Spacing scale. */
+	--spacing-base: 8px;
+	--space-1: calc(var(--spacing-base) * 0.5);
+	--space-2: var(--spacing-base);
+	--space-3: calc(var(--spacing-base) * 1.5);
+	--space-4: calc(var(--spacing-base) * 2);
+	--space-5: calc(var(--spacing-base) * 2.5);
+	--space-6: calc(var(--spacing-base) * 3);
+	--space-8: calc(var(--spacing-base) * 4);
+	--space-10: calc(var(--spacing-base) * 5);
+	--space-12: calc(var(--spacing-base) * 6);
+	--space-16: calc(var(--spacing-base) * 8);
+
+	/* Header. */
+	--header-height: 80px;
+	--topbar-height: 40px;
+
+	/* Hero. */
+	--hero-height: 560px;
+
+	/* WhatsApp. */
+	--whatsapp-size: 52px;
+	--whatsapp-size-mobile: 48px;
+	--whatsapp-green: #25d366;
+
+	/* Music. */
+	--music-player: #27b6ff;
+
+	/* Social custom. */
+	--social-bg: #0a1f44;
+	--social-fg: #ffffff;
+
+	/* Transitions. */
+	--transition-fast: 0.15s ease;
+	--transition-base: 0.25s ease;
+	--transition-slow: 0.4s ease;
+
+	/* Shadows. */
+	--shadow-sm: 0 1px 3px rgba(10, 31, 68, 0.08);
+	--shadow: 0 4px 16px rgba(10, 31, 68, 0.1);
+	--shadow-lg: 0 12px 40px rgba(10, 31, 68, 0.16);
+
+	/* Z-index scale. */
+	--z-header: 100;
+	--z-sticky: 200;
+	--z-hero-controls: 10;
+	--z-whatsapp: 9998;
+	--z-social-float: 9997;
+	--z-mini-player: 9999;
+	--z-overlay: 9000;
+}

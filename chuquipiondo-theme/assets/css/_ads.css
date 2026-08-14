@@ -1,0 +1,81 @@
+/**
+ * Advertising slots.
+ *
+ * All ads are constrained to their container and never overflow
+ * the 1280px max-width. Each ad type has its own max-width so
+ * it stays within its widget/box without breaking layout.
+ */
+
+/* Generic ad wrapper: centered, never overflows. */
+.chuqui-ad {
+	margin: var(--space-5) auto;
+	max-width: var(--container-width);
+	padding-inline: 1.5rem;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
+/* In-content ads: 300x250 max, 5px gap, never wider than container. */
+.chuqui-ad--in-content {
+	margin: 5px auto;
+	padding: 0;
+	max-width: 300px;
+	min-height: 250px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
+.entry-content .chuqui-ad--in-content {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+/* Sidebar ads: never wider than the sidebar. */
+.chuqui-ad--sidebar_top,
+.chuqui-ad--sidebar_middle,
+.chuqui-ad--sidebar_bottom {
+	margin: var(--space-4) 0;
+	padding: 0;
+	max-width: 100%;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
+/* AdSense responsive units: constrain to parent. */
+.chuqui-ad ins.adsbygoogle {
+	display: block;
+	max-width: 100%;
+	overflow: hidden;
+}
+
+/* Mobile: reduce margins, keep ads within viewport. */
+@media (max-width: 767px) {
+	.chuqui-ad {
+		margin: var(--space-4) auto;
+		padding-inline: 1rem;
+	}
+	.chuqui-ad--in-content {
+		max-width: 100%;
+		margin: 5px auto;
+	}
+}
+
+/* Prevent any ad child from breaking layout. */
+.chuqui-ad > * {
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+.chuqui-ad iframe,
+.chuqui-ad ins,
+.chuqui-ad div {
+	max-width: 100% !important;
+	overflow: hidden;
+}

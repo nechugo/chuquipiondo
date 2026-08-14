@@ -1,0 +1,100 @@
+/**
+ * Plugin isolation: prevent third-party plugins from breaking the
+ * theme's 1280px container, overflow, or layout structure.
+ *
+ * IMPORTANT: overflow-x only (horizontal). Vertical scroll (mouse wheel)
+ * must ALWAYS work. Never use overflow: hidden on html or body.
+ */
+
+/* Force all iframes and embeds to respect container width. */
+.entry-content iframe,
+.entry-content embed,
+.entry-content object,
+.entry-content video,
+.widget iframe,
+.widget embed,
+.chuqui-container iframe,
+.chuqui-container embed {
+	max-width: 100% !important;
+	width: 100% !important;
+	height: auto;
+	overflow: hidden;
+}
+
+/* Plugin forms stay within bounds. */
+.entry-content .wpcf7,
+.entry-content .wpforms-container,
+.entry-content .frm_forms,
+.entry-content form {
+	max-width: 100% !important;
+	overflow: hidden;
+}
+
+/* Plugin galleries respect the grid. */
+.entry-content .gallery,
+.entry-content .wp-block-gallery,
+.entry-content .wp-block-columns {
+	max-width: 100% !important;
+	overflow: hidden;
+}
+
+/* Plugin tables wrap properly. */
+.entry-content table {
+	max-width: 100%;
+	display: block;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+/* Elementor containers: constrain to theme width. */
+.entry-content .elementor,
+.chuqui-container .elementor {
+	max-width: 100% !important;
+}
+
+/* Prevent any element from exceeding reading width in single posts. */
+.entry-content.single-article__content > *:not(.chuqui-ad):not(.alignfull):not(.alignwide) {
+	max-width: var(--reading-width, 940px);
+	margin-inline: auto;
+}
+
+/* Ensure wide/full blocks don't cause horizontal scroll. */
+.alignfull,
+.alignwide {
+	overflow: hidden;
+}
+
+/* Mobile: prevent horizontal scroll from any source. */
+@media (max-width: 767px) {
+	.entry-content > *,
+	.widget > *,
+	.chuqui-container > * {
+		max-width: 100% !important;
+		overflow-x: auto;
+	}
+	.entry-content img,
+	.entry-content video,
+	.entry-content iframe {
+		max-width: 100%;
+		height: auto;
+	}
+}
+
+/* CRITICAL: Only prevent horizontal overflow. Vertical scroll MUST work. */
+html {
+	overflow-x: hidden;
+	overflow-y: scroll !important;
+}
+
+body {
+	max-width: 100vw;
+	overflow-x: hidden;
+	overflow-y: visible !important;
+	position: relative;
+}
+
+/* Ensure the page can always scroll vertically. */
+#page {
+	overflow-y: visible !important;
+	overflow-x: hidden;
+}
