@@ -96,7 +96,7 @@ function chuquipiondo_enqueue_scripts() {
 	}
 
 	// Social share.
-	if ( chuquipiondo_is_enabled( 'social_master_switch' ) && is_singular( 'post' ) ) {
+	if ( chuquipiondo_should_load_social() ) {
 		wp_enqueue_script(
 			'chuquipiondo-social',
 			CHUQUIPONDO_URI . '/assets/js/social.js',
@@ -195,7 +195,7 @@ function chuquipiondo_defer_scripts( $tag, $handle ) {
 add_filter( 'script_loader_tag', 'chuquipiondo_defer_scripts', 10, 2 );
 
 /**
- * Preconnect to Google Fonts for performance.
+ * Preconnect and DNS prefetch for performance.
  */
 function chuquipiondo_resource_hints( $urls, $relation_type ) {
 	if ( 'preconnect' === $relation_type ) {
@@ -205,6 +205,53 @@ function chuquipiondo_resource_hints( $urls, $relation_type ) {
 		);
 		$urls[] = array( 'href' => 'https://fonts.googleapis.com' );
 	}
+	
+	// DNS prefetch for common external services.
+	if ( 'dns-prefetch' === $relation_type ) {
+		$urls[] = 'https://www.google-analytics.com';
+		$urls[] = 'https://www.googletagmanager.com';
+		$urls[] = 'https://connect.facebook.net';
+		$urls[] = 'https://platform.twitter.com';
+		$urls[] = 'https://stats.wp.com';
+	}
+	
 	return $urls;
 }
 add_filter( 'wp_resource_hints', 'chuquipiondo_resource_hints', 10, 2 );
+
+/**
+ * Remove query strings from static resources for better caching.
+ *
+ * @param string $src Resource URL.
+ * @return string
+ */
+function chuquipiondo_remove_query_strings( $src ) {
+        if ( strpos( $src, '?ver=' ) !== false ) {
+                $src = remove_query_arg( 'ver', $src );
+        }
+        return $src;
+}
+add_filter( 'style_loader_src', 'chuquipiondo_remove_query_strings', 15, 1 );
+add_filter( 'script_loader_src', 'chuquipiondo_remove_query_strings', 15, 1 );
+
+/**
+ * Disable emojis and emoji-related scripts/styles for performance.
+ */
+function chuquipiondo_disable_emojis() {
+        remove_action( 'admin_print_styles', 'print_emoji_styles' );
+        remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+        remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+        remove_action( 'wp_print_styles', 'print_emoji_styles' );
+        remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+        remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+        remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+        remove_filter( 'wp_render_title_tag', 'wp_render_emoji_title_tag' );
+}
+add_action( 'init', 'chuquipiondo_disable_emojis', 9999 );
+
+/**
+ * Remove WordPress version from header for security and performance.
+ */
+remove_action( 'wp_head', 'wp_generator' );
+remove_action( 'wp_head', 'wlwmanifest_link' );
+remove_action( 'wp_head', 'rsd_link' );
