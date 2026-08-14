@@ -1,0 +1,2019 @@
+# CHUQUIPIONDO Theme
+# Copyright (C) 2024 Nelson Chuquipiondo
+# This file is distributed under the GNU General Public License v2 or later.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: CHUQUIPIONDO 1.3.0\n"
+"Report-Msgid-Bugs-To: https://www.chuquipiondo.com\n"
+"POT-Creation-Date: 2024-01-01T00:00:00+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: Nelson Chuquipiondo\n"
+"Language-Team: Chuquipiondo\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "0 = sin espaciado extra. 0.05 = ligero."
+msgstr ""
+
+msgid "100% (ancho completo)"
+msgstr ""
+
+msgid "1:1 (cuadrado)"
+msgstr ""
+
+msgid "16:9 (cinematografico)"
+msgstr ""
+
+msgid "30+ Ad Slots"
+msgstr ""
+
+msgid "4:3 (clasico)"
+msgstr ""
+
+msgid "Abrir menu"
+msgstr ""
+
+msgid "Abrir Personalizador"
+msgstr ""
+
+msgid "Acento"
+msgstr ""
+
+msgid "Activa o desactiva TODOS los anuncios del tema."
+msgstr ""
+
+msgid "Activar buscador"
+msgstr ""
+
+msgid "Activar Header 3 (multiuso)"
+msgstr ""
+
+msgid "Activar Hero"
+msgstr ""
+
+msgid "Activar icono"
+msgstr ""
+
+msgid "Activar pre-header (2 columnas encima del header)"
+msgstr ""
+
+msgid "Activar sombra"
+msgstr ""
+
+msgid "Activar Top Bar (Header 1)"
+msgstr ""
+
+msgid "AdSense Client ID (ca-pub-...)"
+msgstr ""
+
+msgid "Ajustar slider + header a pantalla"
+msgstr ""
+
+msgid "Alineacion footer inferior"
+msgstr ""
+
+msgid "Altura del boton. Default: 25px (ampliable)."
+msgstr ""
+
+msgid "Altura del header principal (px)"
+msgstr ""
+
+msgid "Altura fija (px)"
+msgstr ""
+
+msgid "Altura (px)"
+msgstr ""
+
+msgid "Ambos"
+msgstr ""
+
+msgid "Anade un icono dentro de los botones."
+msgstr ""
+
+msgid "Anade widgets desde Apariencia > Widgets."
+msgstr ""
+
+msgid "Anadir nueva"
+msgstr ""
+
+msgid "Anadir nueva cancion"
+msgstr ""
+
+msgid "Anadir slide"
+msgstr ""
+
+msgid "Ancho columna derecha (px)"
+msgstr ""
+
+msgid "Ancho (contenedor completo)"
+msgstr ""
+
+msgid "Ancho de la barra lateral (px)"
+msgstr ""
+
+msgid "Ancho del borde (px)"
+msgstr ""
+
+msgid "Ancho del contenedor (px)"
+msgstr ""
+
+msgid "Ancho de lectura del articulo (px)"
+msgstr ""
+
+msgid "Ancho de lectura (px)"
+msgstr ""
+
+msgid "Ancho del footer"
+msgstr ""
+
+msgid "Ancho fijo (px)"
+msgstr ""
+
+msgid "Ancho porcentual (%)"
+msgstr ""
+
+msgid "Anterior"
+msgstr ""
+
+msgid "Antes"
+msgstr ""
+
+msgid "Antes de cada modulo del home"
+msgstr ""
+
+msgid "Antes de la cabecera"
+msgstr ""
+
+msgid "Antes del area Post End"
+msgstr ""
+
+msgid "Antes del hero"
+msgstr ""
+
+msgid "Antes del texto"
+msgstr ""
+
+msgid "Apilado"
+msgstr ""
+
+msgid "Aplicar"
+msgstr ""
+
+msgid "Aplicar preset"
+msgstr ""
+
+msgid "Aplica un paquete de colores predefinido. Sobrescribe los colores actuales."
+msgstr ""
+
+msgid "Aplica un preset predefinido."
+msgstr ""
+
+msgid "Aplica un preset predefinido con un clic."
+msgstr ""
+
+msgid "Apple Music URL"
+msgstr ""
+
+msgid "Archivo de descarga (URL)"
+msgstr ""
+
+msgid "Area extensible despues del contenido del articulo y antes de los relacionados."
+msgstr ""
+
+msgid "Articulo: antes de relacionados"
+msgstr ""
+
+msgid "Articulo: despues de la imagen"
+msgstr ""
+
+msgid "Articulo: despues del parrafo 3"
+msgstr ""
+
+msgid "Articulo: despues del parrafo 6"
+msgstr ""
+
+msgid "Articulo: despues del parrafo 8"
+msgstr ""
+
+msgid "Articulo: despues del titulo"
+msgstr ""
+
+msgid "Articulos"
+msgstr ""
+
+msgid "Articulos relacionados"
+msgstr ""
+
+msgid "Articulos relacionados: columnas"
+msgstr ""
+
+msgid "Articulos relacionados: gap (px)"
+msgstr ""
+
+msgid "Artista"
+msgstr ""
+
+msgid "Aspecto de imagenes"
+msgstr ""
+
+msgid "Audio (URL o archivo)"
+msgstr ""
+
+msgid "Automatica"
+msgstr ""
+
+msgid "Automatico"
+msgstr ""
+
+msgid "Automatico (segun texto)"
+msgstr ""
+
+msgid "Autoplay"
+msgstr ""
+
+msgid "Autor"
+msgstr ""
+
+msgid "Azul marino"
+msgstr ""
+
+msgid "Azul marino oscuro"
+msgstr ""
+
+msgid "Barra lateral"
+msgstr ""
+
+msgid "Barra lateral del articulo individual. Independiente del blog y la pagina."
+msgstr ""
+
+msgid "Barra lateral de las paginas individuales. Independiente del blog y el single."
+msgstr ""
+
+msgid "Barra lateral del blog, archivos y busqueda. Independiente del single y la pagina."
+msgstr ""
+
+msgid "Barra lateral de respaldo. Se usa si el sidebar especifico de una vista esta vacio."
+msgstr ""
+
+msgid "Barra lateral (paginas)"
+msgstr ""
+
+msgid "Biografia del autor"
+msgstr ""
+
+msgid "Blog: abajo del grid"
+msgstr ""
+
+msgid "Blog: arriba del grid"
+msgstr ""
+
+msgid "Blog Editorial"
+msgstr ""
+
+msgid "Blog: en medio del grid"
+msgstr ""
+
+msgid "Blog: entre filas del grid"
+msgstr ""
+
+msgid "Bloque de autor / bio corto."
+msgstr ""
+
+msgid "Borde superior (px)"
+msgstr ""
+
+msgid "Boton: fondo"
+msgstr ""
+
+msgid "Boton hover: fondo"
+msgstr ""
+
+msgid "Boton hover: texto"
+msgstr ""
+
+msgid "Boton: texto"
+msgstr ""
+
+msgid "Breadcrumb"
+msgstr ""
+
+msgid "Buscador"
+msgstr ""
+
+msgid "Buscar"
+msgstr ""
+
+msgid "Buscar..."
+msgstr ""
+
+msgid "Buscar:"
+msgstr ""
+
+msgid "Buscar canciones"
+msgstr ""
+
+msgid "Busqueda: %s"
+msgstr ""
+
+msgid "🏛️ Cabecera"
+msgstr ""
+
+msgid "Cabecera Pro"
+msgstr ""
+
+msgid "Cada pagina puede sobrescribir esto individualmente en el editor."
+msgstr ""
+
+msgid "Caja (con padding)"
+msgstr ""
+
+msgid "Caja %d: contenido"
+msgstr ""
+
+msgid "Caja %d: dispositivos (comma-sep)"
+msgstr ""
+
+msgid "Caja derecha del pre-header (encima del header). Para reproductor de musica, widgets o HTML."
+msgstr ""
+
+msgid "Caja %d: tipo"
+msgstr ""
+
+msgid "Cajas multiuso de la cabecera."
+msgstr ""
+
+msgid "Calendario"
+msgstr ""
+
+msgid "Cancion"
+msgstr ""
+
+msgid "Canciones"
+msgstr ""
+
+msgid "Cantidad de relacionados"
+msgstr ""
+
+msgid "Cantidad destacados"
+msgstr ""
+
+msgid "Cantidad ultimos"
+msgstr ""
+
+msgid "Cantidad videos"
+msgstr ""
+
+msgid "Capitalizado"
+msgstr ""
+
+msgid "Caracteristicas del tema"
+msgstr ""
+
+msgid "Carga diferida de imagenes"
+msgstr ""
+
+msgid "Categorias"
+msgstr ""
+
+msgid "Celeste brillante (acento)"
+msgstr ""
+
+msgid "Celeste suave"
+msgstr ""
+
+msgid "Centrado"
+msgstr ""
+
+msgid "Centro"
+msgstr ""
+
+msgid "Cerrar"
+msgstr ""
+
+msgid "Cerrar (X)"
+msgstr ""
+
+msgid "Check (confirmar)"
+msgstr ""
+
+msgid "Chevron derecho"
+msgstr ""
+
+msgid "Chevron izquierdo"
+msgstr ""
+
+msgid "CHUQUIPIONDO"
+msgstr ""
+
+msgid "CHUQUIPIONDO: Articulo"
+msgstr ""
+
+msgid "CHUQUIPIONDO: Blog"
+msgstr ""
+
+msgid "CHUQUIPIONDO: Botones"
+msgstr ""
+
+msgid "CHUQUIPIONDO: Cabecera"
+msgstr ""
+
+msgid "CHUQUIPIONDO: Codigo personalizado"
+msgstr ""
+
+msgid "CHUQUIPIONDO: Global"
+msgstr ""
+
+msgid "CHUQUIPIONDO: Hero / Slider"
+msgstr ""
+
+msgid "CHUQUIPIONDO: Home Builder"
+msgstr ""
+
+msgid "CHUQUIPIONDO: Layout"
+msgstr ""
+
+msgid "CHUQUIPIONDO: Musica"
+msgstr ""
+
+msgid "CHUQUIPIONDO - Opciones avanzadas"
+msgstr ""
+
+msgid "Chuquipiondo Original"
+msgstr ""
+
+msgid "CHUQUIPIONDO: Pagina"
+msgstr ""
+
+msgid "CHUQUIPIONDO: Pie de pagina"
+msgstr ""
+
+msgid "CHUQUIPIONDO: Pre-header"
+msgstr ""
+
+msgid "CHUQUIPIONDO: Publicidad"
+msgstr ""
+
+msgid "CHUQUIPIONDO: Redes"
+msgstr ""
+
+msgid "CHUQUIPIONDO: Redes Sociales"
+msgstr ""
+
+msgid "CHUQUIPIONDO: Sobre"
+msgstr ""
+
+msgid "CHUQUIPIONDO: WhatsApp"
+msgstr ""
+
+msgid "Claro"
+msgstr ""
+
+msgid "Codigo antes de </body>"
+msgstr ""
+
+msgid "Codigo despues de <body>"
+msgstr ""
+
+msgid "Codigo de un slot de anuncio"
+msgstr ""
+
+msgid "Codigo en <head>"
+msgstr ""
+
+msgid "Color de fondo"
+msgstr ""
+
+msgid "Color de fondo (hover)"
+msgstr ""
+
+msgid "Color de fondo (sticky)"
+msgstr ""
+
+msgid "Color del borde"
+msgstr ""
+
+msgid "Color de links"
+msgstr ""
+
+msgid "Color del reproductor"
+msgstr ""
+
+msgid "Color del texto"
+msgstr ""
+
+msgid "Color del texto (hover)"
+msgstr ""
+
+msgid "Color de sombra"
+msgstr ""
+
+msgid "Color de texto"
+msgstr ""
+
+msgid "Color de texto (sticky)"
+msgstr ""
+
+msgid "Color de titulos"
+msgstr ""
+
+msgid "Colores, tipografias, botones, contenedor y ajustes globales."
+msgstr ""
+
+msgid "Color fondo (custom)"
+msgstr ""
+
+msgid "Color icono (custom)"
+msgstr ""
+
+msgid "Color oficial"
+msgstr ""
+
+msgid "Columnas"
+msgstr ""
+
+msgid "Columnas (desktop)"
+msgstr ""
+
+msgid "Columnas de widgets"
+msgstr ""
+
+msgid "Columnas en archivo"
+msgstr ""
+
+msgid "Columnas (movil)"
+msgstr ""
+
+msgid "Columnas (tablet)"
+msgstr ""
+
+msgid "Compartir"
+msgstr ""
+
+msgid "Compartir:"
+msgstr ""
+
+msgid "Configuracion importada correctamente."
+msgstr ""
+
+msgid "Configuracion rapida"
+msgstr ""
+
+msgid "Configuracion restablecida."
+msgstr ""
+
+msgid "Configurar menus"
+msgstr ""
+
+msgid "Configurar widgets"
+msgstr ""
+
+msgid "📄 Contenido"
+msgstr ""
+
+msgid "Contenido (1280px)"
+msgstr ""
+
+msgid "Contenido derecha (HTML/Shortcode)"
+msgstr ""
+
+msgid "Contenido HTML/Shortcode (Header 3)"
+msgstr ""
+
+msgid "Contenido Top Bar (HTML/Shortcode)"
+msgstr ""
+
+msgid "Controles del slider"
+msgstr ""
+
+msgid "Copiar enlace"
+msgstr ""
+
+msgid "Copyright (usar {year})"
+msgstr ""
+
+msgid "Corazon"
+msgstr ""
+
+msgid "CSS personalizado"
+msgstr ""
+
+msgid "Cuadrada (600x600)"
+msgstr ""
+
+msgid "Cuadrado = 0px, Redondeado = 30px (default), Pildora = total."
+msgstr ""
+
+msgid "Cuadrado (sin radio)"
+msgstr ""
+
+msgid "Default: 1.0."
+msgstr ""
+
+msgid "Default: 10px. Entre la barra de menu y el icono de buscador."
+msgstr ""
+
+msgid "Default: 12px."
+msgstr ""
+
+msgid "Default: 12px. Distancia del titulo al parrafo siguiente."
+msgstr ""
+
+msgid "Default: 15px."
+msgstr ""
+
+msgid "Default: 200px."
+msgstr ""
+
+msgid "Default: 25px."
+msgstr ""
+
+msgid "Default: 25px. Separacion entre el header y el contenido + sidebar."
+msgstr ""
+
+msgid "Default: 2 columnas."
+msgstr ""
+
+msgid "Default: 300px. Ampliable. La columna izquierda se adapta a este ancho."
+msgstr ""
+
+msgid "Default: 48px."
+msgstr ""
+
+msgid "Default: 50px."
+msgstr ""
+
+msgid "Default (del tema)"
+msgstr ""
+
+msgid "Dejar vacio para usar el ancho del Customizer."
+msgstr ""
+
+msgid "Deja un comentario"
+msgstr ""
+
+msgid "Derecha"
+msgstr ""
+
+msgid "Desactivado"
+msgstr ""
+
+msgid "Descarga"
+msgstr ""
+
+msgid "Descargar"
+msgstr ""
+
+msgid "Deslizar (slide)"
+msgstr ""
+
+msgid "Despues"
+msgstr ""
+
+msgid "Despues de cada modulo del home"
+msgstr ""
+
+msgid "Despues de la cabecera"
+msgstr ""
+
+msgid "Despues del hero"
+msgstr ""
+
+msgid "Despues del texto"
+msgstr ""
+
+msgid "Destacada (1280x720)"
+msgstr ""
+
+msgid "Desvanecer (fade)"
+msgstr ""
+
+msgid "Detalles de la cancion"
+msgstr ""
+
+msgid "Distribucion de cajas"
+msgstr ""
+
+msgid "Distribucion principal"
+msgstr ""
+
+msgid "%d min de lectura"
+msgstr ""
+
+msgid "Documentacion"
+msgstr ""
+
+msgid "Dos columnas invisibles encima del header: texto a la izquierda, widget/HTML/musica a la derecha."
+msgstr ""
+
+msgid "Editar cancion"
+msgstr ""
+
+msgid "Editorial"
+msgstr ""
+
+msgid "Efecto"
+msgstr ""
+
+msgid "Efecto al hacer scroll"
+msgstr ""
+
+msgid "Elige la tipografia del cuerpo del texto."
+msgstr ""
+
+msgid "Elige la tipografia de los titulares y encabezados."
+msgstr ""
+
+msgid "El slider se ajusta al viewport considerando la altura del header."
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "Email en Top Bar"
+msgstr ""
+
+msgid "Encoger (shrink)"
+msgstr ""
+
+msgid "Enlace copiado"
+msgstr ""
+
+msgid "Enlace externo"
+msgstr ""
+
+msgid "Enviar comentario"
+msgstr ""
+
+msgid "Error al importar la configuracion."
+msgstr ""
+
+msgid "Escribir por WhatsApp"
+msgstr ""
+
+msgid "Escucha en:"
+msgstr ""
+
+msgid "Espaciado (copyright izq / menu der)"
+msgstr ""
+
+msgid "Espaciado entre letras (em)"
+msgstr ""
+
+msgid "Espaciado interno horizontal (modo auto). Default: 20px."
+msgstr ""
+
+msgid "Espacio que separa ambas columnas. Default: 10px."
+msgstr ""
+
+msgid "Estado del sistema"
+msgstr ""
+
+msgid "Estilo de color"
+msgstr ""
+
+msgid "Estilo de navegacion prev/siguiente"
+msgstr ""
+
+msgid "Estilo de tarjeta"
+msgstr ""
+
+msgid "Esto restablecera todos los valores. Continuar?"
+msgstr ""
+
+msgid "Esto sobrescribira la configuracion actual. Continuar?"
+msgstr ""
+
+msgid "Estrecho (centrado)"
+msgstr ""
+
+msgid "Estrella"
+msgstr ""
+
+msgid "Etiquetas"
+msgstr ""
+
+msgid "Etiquetas:"
+msgstr ""
+
+msgid "Exporta o importa toda la configuracion del tema en formato JSON."
+msgstr ""
+
+msgid "Exportar configuracion"
+msgstr ""
+
+msgid "Exportar / Importar"
+msgstr ""
+
+msgid "Facebook"
+msgstr ""
+
+msgid "Facebook URL"
+msgstr ""
+
+msgid "Fecha"
+msgstr ""
+
+msgid "Fija"
+msgstr ""
+
+msgid "Fijo (px)"
+msgstr ""
+
+msgid "Flecha derecha"
+msgstr ""
+
+msgid "Flecha izquierda"
+msgstr ""
+
+msgid "Flotante inferior (movil)"
+msgstr ""
+
+msgid "Flotante lateral (desktop)"
+msgstr ""
+
+msgid "Fondo"
+msgstr ""
+
+msgid "Fondo footer inferior"
+msgstr ""
+
+msgid "Fondo seccion widgets"
+msgstr ""
+
+msgid "Footer: antes"
+msgstr ""
+
+msgid "Footer: despues"
+msgstr ""
+
+msgid "Footer: entre widgets y copyright"
+msgstr ""
+
+msgid "Footer inferior: links"
+msgstr ""
+
+msgid "Footer inferior: links hover"
+msgstr ""
+
+msgid "🦶 Footer y Avanzado"
+msgstr ""
+
+msgid "Forma del boton"
+msgstr ""
+
+msgid "Fuente del cuerpo"
+msgstr ""
+
+msgid "Fuente de titulares"
+msgstr ""
+
+msgid "Fuentes disponibles"
+msgstr ""
+
+msgid "Gap del header al contenido (px)"
+msgstr ""
+
+msgid "Gap entre columnas (px)"
+msgstr ""
+
+msgid "Gap entre widgets (px)"
+msgstr ""
+
+msgid "Gap widgets a bottom (px)"
+msgstr ""
+
+msgid "Genero"
+msgstr ""
+
+msgid "Generos"
+msgstr ""
+
+msgid "🎨 Global"
+msgstr ""
+
+msgid "Header 3: altura (px)"
+msgstr ""
+
+msgid "Header 3: Desktop"
+msgstr ""
+
+msgid "Header 3: fondo"
+msgstr ""
+
+msgid "Header 3: Movil"
+msgstr ""
+
+msgid "Header 3: texto"
+msgstr ""
+
+msgid "Header 3 widget: fondo"
+msgstr ""
+
+msgid "Header 3 widget: links"
+msgstr ""
+
+msgid "Header 3 widget: padding H (px)"
+msgstr ""
+
+msgid "Header 3 widget: radio (px)"
+msgstr ""
+
+msgid "Header 3 widget: tamano texto (px)"
+msgstr ""
+
+msgid "Header 3 widget: texto"
+msgstr ""
+
+msgid "Header: antes del Top Bar"
+msgstr ""
+
+msgid "Header: antes de todo"
+msgstr ""
+
+msgid "Header completo (top bar + main + multiuso)"
+msgstr ""
+
+msgid "Header: despues del Principal"
+msgstr ""
+
+msgid "Header: despues del Top Bar"
+msgstr ""
+
+msgid "Header: despues de todo"
+msgstr ""
+
+msgid "Header: entre Top Bar y Principal"
+msgstr ""
+
+msgid "Header fijo al hacer scroll"
+msgstr ""
+
+msgid "Header multiuso"
+msgstr ""
+
+msgid "Header principal: borde inferior (px)"
+msgstr ""
+
+msgid "Header principal: color borde"
+msgstr ""
+
+msgid "Header principal: Desktop"
+msgstr ""
+
+msgid "Header principal: fondo"
+msgstr ""
+
+msgid "Header principal: links"
+msgstr ""
+
+msgid "Header principal: links hover"
+msgstr ""
+
+msgid "Header principal: Movil"
+msgstr ""
+
+msgid "Header principal: padding H (px)"
+msgstr ""
+
+msgid "Header principal: texto"
+msgstr ""
+
+msgid "Hero (1920x800)"
+msgstr ""
+
+msgid "hero,featured,latest,categories,song,videos,about,newsletter"
+msgstr ""
+
+msgid "Hero, home builder, blog, articulo, pagina y sidebar."
+msgstr ""
+
+msgid "Hero / Slider"
+msgstr ""
+
+msgid "Home Builder"
+msgstr ""
+
+msgid "Home: despues de categorias"
+msgstr ""
+
+msgid "Home: despues de destacados"
+msgstr ""
+
+msgid "Home: despues del hero"
+msgstr ""
+
+msgid "Home: despues de sobre"
+msgstr ""
+
+msgid "Home: despues de ultimos"
+msgstr ""
+
+msgid "Home - Publicidad %d"
+msgstr ""
+
+msgid "Hooks y filtros disponibles"
+msgstr ""
+
+msgid "HTML"
+msgstr ""
+
+msgid "HTML / Shortcode"
+msgstr ""
+
+msgid "Icono"
+msgstr ""
+
+msgid "Iconos de boton"
+msgstr ""
+
+msgid "Iconos de redes sociales configuradas."
+msgstr ""
+
+msgid "ID de la cancion destacada"
+msgstr ""
+
+msgid "Imagen: sobre Nelson (URL)"
+msgstr ""
+
+msgid "Imagen unica"
+msgstr ""
+
+msgid "Importar"
+msgstr ""
+
+msgid "Importar demo"
+msgstr ""
+
+msgid "Inicio"
+msgstr ""
+
+msgid "Insertar anuncio cada X posts (blog)"
+msgstr ""
+
+msgid "Instagram"
+msgstr ""
+
+msgid "Instagram URL"
+msgstr ""
+
+msgid "Interlineado de parrafos"
+msgstr ""
+
+msgid "Interlineado de texto"
+msgstr ""
+
+msgid "Interlineado parrafo a titulo siguiente (px)"
+msgstr ""
+
+msgid "Interlineado titulo a parrafo (px)"
+msgstr ""
+
+msgid "Izq + Der"
+msgstr ""
+
+msgid "Izquierda"
+msgstr ""
+
+msgid "Lado a lado"
+msgstr ""
+
+msgid "La pagina que buscas no existe o fue movida."
+msgstr ""
+
+msgid "Layout"
+msgstr ""
+
+msgid "Layout de contenido"
+msgstr ""
+
+msgid "Layout del Top Bar"
+msgstr ""
+
+msgid "Layout footer inferior"
+msgstr ""
+
+msgid "Letra"
+msgstr ""
+
+msgid "Liderazgo, Gestion y Formacion"
+msgstr ""
+
+msgid "Liderazgo, Gestion y Formacion con proposito."
+msgstr ""
+
+msgid "LinkedIn"
+msgstr ""
+
+msgid "LinkedIn URL"
+msgstr ""
+
+msgid "Links: espaciado (em)"
+msgstr ""
+
+msgid "Links: fondo hover"
+msgstr ""
+
+msgid "Links (hover)"
+msgstr ""
+
+msgid "Links: padding H (px)"
+msgstr ""
+
+msgid "Links: padding V (px)"
+msgstr ""
+
+msgid "Links: peso"
+msgstr ""
+
+msgid "Links: radio (px)"
+msgstr ""
+
+msgid "Links: transformacion"
+msgstr ""
+
+msgid "Logo"
+msgstr ""
+
+msgid "Logo: alineacion"
+msgstr ""
+
+msgid "Logo: altura max (px)"
+msgstr ""
+
+msgid "Logo: altura (px)"
+msgstr ""
+
+msgid "Logo: ancho (px)"
+msgstr ""
+
+msgid "Logo centro / Menu dividido"
+msgstr ""
+
+msgid "Logo como texto"
+msgstr ""
+
+msgid "Logo: gap al menu (px)"
+msgstr ""
+
+msgid "Logo izq / Menu centro"
+msgstr ""
+
+msgid "Logo izq / Menu der"
+msgstr ""
+
+msgid "Logo: soporte retina (x2)"
+msgstr ""
+
+msgid "Longitud del extracto (palabras)"
+msgstr ""
+
+msgid "Los comentarios estan cerrados."
+msgstr ""
+
+msgid "Mas (+)"
+msgstr ""
+
+msgid "Master Switch"
+msgstr ""
+
+msgid "Master switch: hace que la cabecera sea fija (sticky) al hacer scroll."
+msgstr ""
+
+msgid "Master Switch (publicidad global)"
+msgstr ""
+
+msgid "Master Switch (share)"
+msgstr ""
+
+msgid "Master Switch. Si esta OFF no se carga ningun script ni HTML."
+msgstr ""
+
+msgid "MAYUSCULAS"
+msgstr ""
+
+msgid "Menos (-)"
+msgstr ""
+
+msgid "Mensaje predeterminado"
+msgstr ""
+
+msgid "Mensaje privado"
+msgstr ""
+
+msgid "Menu"
+msgstr ""
+
+msgid "Menu: alineacion"
+msgstr ""
+
+msgid "Menu: espaciado (em)"
+msgstr ""
+
+msgid "Menu: fondo"
+msgstr ""
+
+msgid "Menu: fondo activo"
+msgstr ""
+
+msgid "Menu: gap al icono (px)"
+msgstr ""
+
+msgid "Menu: gap entre items (px)"
+msgstr ""
+
+msgid "Menu movil"
+msgstr ""
+
+msgid "Menu movil: breakpoint (px)"
+msgstr ""
+
+msgid "Menu movil: fondo"
+msgstr ""
+
+msgid "Menu movil: radio item (px)"
+msgstr ""
+
+msgid "Menu movil: tamano (px)"
+msgstr ""
+
+msgid "Menu movil: texto"
+msgstr ""
+
+msgid "Menu movil: texto activo"
+msgstr ""
+
+msgid "Menu: padding H item (px)"
+msgstr ""
+
+msgid "Menu: padding V item (px)"
+msgstr ""
+
+msgid "Menu: peso fuente"
+msgstr ""
+
+msgid "Menu pie de pagina"
+msgstr ""
+
+msgid "Menu principal"
+msgstr ""
+
+msgid "Menu: radio item (px)"
+msgstr ""
+
+msgid "Menu redes sociales"
+msgstr ""
+
+msgid "Menu: tamano texto (px)"
+msgstr ""
+
+msgid "Menu: texto"
+msgstr ""
+
+msgid "Menu: texto activo"
+msgstr ""
+
+msgid "Menu: texto hover"
+msgstr ""
+
+msgid "Menu top bar"
+msgstr ""
+
+msgid "Menu: transformacion"
+msgstr ""
+
+msgid "Migas de pan"
+msgstr ""
+
+msgid "Minimal"
+msgstr ""
+
+msgid "Mini player sticky"
+msgstr ""
+
+msgid "minusculas"
+msgstr ""
+
+msgid "Modo"
+msgstr ""
+
+msgid "Modo de altura"
+msgstr ""
+
+msgid "Modo de ancho"
+msgstr ""
+
+msgid "Modo sticky"
+msgstr ""
+
+msgid "Modulos activos del home"
+msgstr ""
+
+msgid "Modulos activos (orden, comma-sep)"
+msgstr ""
+
+msgid "💰 Monetizacion"
+msgstr ""
+
+msgid "Monocromatico"
+msgstr ""
+
+msgid "Mostrar autor"
+msgstr ""
+
+msgid "Mostrar categoria"
+msgstr ""
+
+msgid "Mostrar copyright"
+msgstr ""
+
+msgid "Mostrar en Desktop"
+msgstr ""
+
+msgid "Mostrar en Movil"
+msgstr ""
+
+msgid "Mostrar extracto"
+msgstr ""
+
+msgid "Mostrar fecha"
+msgstr ""
+
+msgid "Mostrar fecha en Top Bar"
+msgstr ""
+
+msgid "Mostrar hora en Top Bar"
+msgstr ""
+
+msgid "Mostrar marca"
+msgstr ""
+
+msgid "Mostrar menu"
+msgstr ""
+
+msgid "Mostrar redes sociales"
+msgstr ""
+
+msgid "Mostrar sidebar en Desktop"
+msgstr ""
+
+msgid "Mostrar sidebar en Movil"
+msgstr ""
+
+msgid "Mostrar titulo de la pagina"
+msgstr ""
+
+msgid "Mostrar u ocultar la barra lateral en escritorio."
+msgstr ""
+
+msgid "Mostrar u ocultar la barra lateral en tablet y movil. independiente del escritorio."
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Musica"
+msgstr ""
+
+msgid "Musica: arriba del archivo"
+msgstr ""
+
+msgid "Musica: despues del reproductor"
+msgstr ""
+
+msgid "Navegacion de articulos"
+msgstr ""
+
+msgid "Navegacion entre articulos"
+msgstr ""
+
+msgid "Navegacion principal"
+msgstr ""
+
+msgid "Ninguna"
+msgstr ""
+
+msgid "Ninguna (ancho completo)"
+msgstr ""
+
+msgid "Ninguno"
+msgstr ""
+
+msgid "No hay articulos para mostrar."
+msgstr ""
+
+msgid "No hay canciones en la papelera"
+msgstr ""
+
+msgid "No hay canciones para mostrar."
+msgstr ""
+
+msgid "Nombre"
+msgstr ""
+
+msgid "Nonce invalido."
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "No se encontraron canciones"
+msgstr ""
+
+msgid "Nueva cancion"
+msgstr ""
+
+msgid "Numero (solo digitos)"
+msgstr ""
+
+msgid "Opciones avanzadas"
+msgstr ""
+
+msgid "Opciones configurables"
+msgstr ""
+
+msgid "Oscuro"
+msgstr ""
+
+msgid "Overlay (%)"
+msgstr ""
+
+msgid "Padding horizontal (px)"
+msgstr ""
+
+msgid "Padding inferior (px)"
+msgstr ""
+
+msgid "Padding superior (px)"
+msgstr ""
+
+msgid "Padding vertical (px)"
+msgstr ""
+
+msgid "Padding V footer inferior (px)"
+msgstr ""
+
+msgid "Pagina no encontrada"
+msgstr ""
+
+msgid "Paginas:"
+msgstr ""
+
+msgid "Panel de configuracion avanzada. Para cambios visuales usa Apariencia > Personalizar."
+msgstr ""
+
+msgid "Pantalla completa"
+msgstr ""
+
+msgid "Pausar"
+msgstr ""
+
+msgid "Permitir descarga de esta cancion"
+msgstr ""
+
+msgid "Permitir descargas (global)"
+msgstr ""
+
+msgid "Personalizado"
+msgstr ""
+
+msgid "Personalizador"
+msgstr ""
+
+msgid "Personaliza todo el tema desde el Customizer."
+msgstr ""
+
+msgid "Peso de la fuente"
+msgstr ""
+
+msgid "Peso titulares"
+msgstr ""
+
+msgid "PHP"
+msgstr ""
+
+msgid "Pie de pagina"
+msgstr ""
+
+msgid "Pie de pagina, musica y codigo personalizado."
+msgstr ""
+
+msgid "Pildora (radio total)"
+msgstr ""
+
+msgid "Play"
+msgstr ""
+
+msgid "Por"
+msgstr ""
+
+msgid "Porcentual (1-100%)"
+msgstr ""
+
+msgid "por Nelson Chuquipiondo"
+msgstr ""
+
+msgid "Posicion"
+msgstr ""
+
+msgid "Posicion (articulo)"
+msgstr ""
+
+msgid "Posicion de la barra lateral"
+msgstr ""
+
+msgid "Posicion del icono"
+msgstr ""
+
+msgid "Post End Extension"
+msgstr ""
+
+msgid "Post End Extension: HTML/Shortcode"
+msgstr ""
+
+msgid "Pre-header (derecha)"
+msgstr ""
+
+msgid "Pre-header, top bar, header principal, sticky y multiuso."
+msgstr ""
+
+msgid "Preset aplicado."
+msgstr ""
+
+msgid "Preset de color"
+msgstr ""
+
+msgid "Presets de color"
+msgstr ""
+
+msgid "Publicidad, redes sociales, WhatsApp y musica."
+msgstr ""
+
+msgid "Radio de tarjetas (px)"
+msgstr ""
+
+msgid "Radio (px)"
+msgstr ""
+
+msgid "Redes a compartir (comma-sep)"
+msgstr ""
+
+msgid "Redes de share"
+msgstr ""
+
+msgid "Redondeado (radio custom)"
+msgstr ""
+
+msgid "Referencia de acciones y filtros para desarrolladores."
+msgstr ""
+
+msgid "Registro de slots de anuncio"
+msgstr ""
+
+msgid "Render del home builder"
+msgstr ""
+
+msgid "Reproducir"
+msgstr ""
+
+msgid "Reproductor de musica"
+msgstr ""
+
+msgid "Restablecer"
+msgstr ""
+
+msgid "Restablecer tema"
+msgstr ""
+
+msgid "Restablecer todo"
+msgstr ""
+
+msgid "Resultados para: %s"
+msgstr ""
+
+msgid "Saltar al contenido"
+msgstr ""
+
+msgid "Se centra automaticamente cuando hay logo a la izquierda e icono a la derecha."
+msgstr ""
+
+msgid "Seguridad"
+msgstr ""
+
+msgid "Shortcode"
+msgstr ""
+
+msgid "Shortcode newsletter"
+msgstr ""
+
+msgid "Sidebar: abajo"
+msgstr ""
+
+msgid "Sidebar a la derecha"
+msgstr ""
+
+msgid "Sidebar a la izquierda"
+msgstr ""
+
+msgid "Sidebar: arriba"
+msgstr ""
+
+msgid "Sidebar: Articulo"
+msgstr ""
+
+msgid "Sidebar: Blog / Archivo"
+msgstr ""
+
+msgid "Sidebar: General (fallback)"
+msgstr ""
+
+msgid "Sidebar: medio"
+msgstr ""
+
+msgid "Sidebar: Pagina"
+msgstr ""
+
+msgid "Siguenos"
+msgstr ""
+
+msgid "Siguiente"
+msgstr ""
+
+msgid "Silenciar"
+msgstr ""
+
+msgid "Sin icono"
+msgstr ""
+
+msgid "Sin permisos."
+msgstr ""
+
+msgid "Sin sidebar (ancho completo)"
+msgstr ""
+
+msgid "Sitio web"
+msgstr ""
+
+msgid "Slider"
+msgstr ""
+
+msgid "Slides"
+msgstr ""
+
+msgid "Slots de anuncios"
+msgstr ""
+
+msgid "Sobre Nelson"
+msgstr ""
+
+msgid "Sobrescribe el layout del sidebar para esta publicacion. \"Default\" usa la configuracion global del Customizer."
+msgstr ""
+
+msgid "Solo aplica en modo fijo."
+msgstr ""
+
+msgid "Solo aplica en modo fijo. Default: 50px."
+msgstr ""
+
+msgid "Solo aplica en modo porcentual. 1% a 100%."
+msgstr ""
+
+msgid "Solo aplica en modo redondeado. Default: 30px."
+msgstr ""
+
+msgid "Solo der"
+msgstr ""
+
+msgid "Solo header principal"
+msgstr ""
+
+msgid "Solo izq"
+msgstr ""
+
+msgid "Solo si tienes derechos para distribuirla legalmente."
+msgstr ""
+
+msgid "Sombra al hacer scroll"
+msgstr ""
+
+msgid "Spotify URL"
+msgstr ""
+
+msgid "Sticky en Desktop"
+msgstr ""
+
+msgid "Sticky en Movil"
+msgstr ""
+
+msgid "Submenu: ancho (px)"
+msgstr ""
+
+msgid "Submenu: borde (px)"
+msgstr ""
+
+msgid "Submenu: color borde"
+msgstr ""
+
+msgid "Submenu: fondo"
+msgstr ""
+
+msgid "Submenu: radio (px)"
+msgstr ""
+
+msgid "Submenu: sombra"
+msgstr ""
+
+msgid "Submenu: texto"
+msgstr ""
+
+msgid "Submenu: texto hover"
+msgstr ""
+
+msgid "Suscribirme"
+msgstr ""
+
+msgid "Tamano base (px)"
+msgstr ""
+
+msgid "Tamano del icono (px)"
+msgstr ""
+
+msgid "Tamano del texto dentro del boton. Default: 12px."
+msgstr ""
+
+msgid "Tamano del texto (px)"
+msgstr ""
+
+msgid "Tamano desktop (px)"
+msgstr ""
+
+msgid "Tamano movil (px)"
+msgstr ""
+
+msgid "Tamano texto (px)"
+msgstr ""
+
+msgid "Tamano titulos (px)"
+msgstr ""
+
+msgid "Tarjeta (640x400)"
+msgstr ""
+
+msgid "Tarjeta grande (960x540)"
+msgstr ""
+
+msgid "Telegram"
+msgstr ""
+
+msgid "Telegram URL"
+msgstr ""
+
+msgid "Template de Elementor"
+msgstr ""
+
+msgid "Texto"
+msgstr ""
+
+msgid "Texto:"
+msgstr ""
+
+msgid "Texto columna izquierda (HTML/Shortcode)"
+msgstr ""
+
+msgid "Texto del logo"
+msgstr ""
+
+msgid "Texto footer inferior"
+msgstr ""
+
+msgid "Texto: newsletter"
+msgstr ""
+
+msgid "Texto sin fondo. Se adapta al ancho de la columna derecha."
+msgstr ""
+
+msgid "Texto sobre la marca"
+msgstr ""
+
+msgid "Texto: sobre Nelson"
+msgstr ""
+
+msgid "Texto suave"
+msgstr ""
+
+msgid "Tiempo de lectura"
+msgstr ""
+
+msgid "TikTok"
+msgstr ""
+
+msgid "TikTok URL"
+msgstr ""
+
+msgid "Tipo"
+msgstr ""
+
+msgid "Tipo de contenido columna derecha"
+msgstr ""
+
+msgid "Titulo:"
+msgstr ""
+
+msgid "Titulo: cancion destacada"
+msgstr ""
+
+msgid "Titulo: categorias"
+msgstr ""
+
+msgid "Titulo: destacados"
+msgstr ""
+
+msgid "Titulo: newsletter"
+msgstr ""
+
+msgid "Titulo: relacionados"
+msgstr ""
+
+msgid "Titulos: espaciado (em)"
+msgstr ""
+
+msgid "Titulos: margen inferior (px)"
+msgstr ""
+
+msgid "Titulo: sobre Nelson"
+msgstr ""
+
+msgid "Titulos: peso"
+msgstr ""
+
+msgid "Titulos: transformacion"
+msgstr ""
+
+msgid "Titulo: ultimos articulos"
+msgstr ""
+
+msgid "Titulo: videos"
+msgstr ""
+
+msgid "Todas las canciones"
+msgstr ""
+
+msgid "Top Bar: altura (px)"
+msgstr ""
+
+msgid "Top Bar: fondo"
+msgstr ""
+
+msgid "Top Bar: links"
+msgstr ""
+
+msgid "Top Bar: mostrar en Desktop"
+msgstr ""
+
+msgid "Top Bar: mostrar en Movil"
+msgstr ""
+
+msgid "Top Bar: texto"
+msgstr ""
+
+msgid "Top Bar widget: fondo"
+msgstr ""
+
+msgid "Top Bar widget: links"
+msgstr ""
+
+msgid "Top Bar widget: padding H (px)"
+msgstr ""
+
+msgid "Top Bar widget: radio (px)"
+msgstr ""
+
+msgid "Top Bar widget: tamano texto (px)"
+msgstr ""
+
+msgid "Top Bar widget: texto"
+msgstr ""
+
+msgid "Transformacion del texto"
+msgstr ""
+
+msgid "Tu correo electronico"
+msgstr ""
+
+msgid "Ultra veloz"
+msgstr ""
+
+msgid "Unirse a grupo"
+msgstr ""
+
+msgid "URL del grupo"
+msgstr ""
+
+msgid "URL directa al archivo de audio (mp3, ogg, m4a)."
+msgstr ""
+
+msgid "URL playlist YouTube"
+msgstr ""
+
+msgid "Usar default del tema"
+msgstr ""
+
+msgid "Uso"
+msgstr ""
+
+msgid "Usuario"
+msgstr ""
+
+msgid "Variables CSS dinamicas"
+msgstr ""
+
+msgid "Velocidad de slide (ms)"
+msgstr ""
+
+msgid "Ver cancion"
+msgstr ""
+
+msgid "Version del tema"
+msgstr ""
+
+msgid "Ver todo"
+msgstr ""
+
+msgid "Ver todos los articulos"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "Video (YouTube)"
+msgstr ""
+
+msgid "Volumen"
+msgstr ""
+
+msgid "Volver al inicio"
+msgstr ""
+
+msgid "Vuelve todos los valores a los de fabrica. No afecta articulos ni contenido."
+msgstr ""
+
+msgid "Vuelve todos los valores del tema a sus defaults."
+msgstr ""
+
+msgid "WhatsApp"
+msgstr ""
+
+msgid "Widget"
+msgstr ""
+
+msgid "Widget area"
+msgstr ""
+
+msgid "Widget: borde (px)"
+msgstr ""
+
+msgid "Widget: color borde"
+msgstr ""
+
+msgid "Widget: fondo"
+msgstr ""
+
+msgid "Widget: padding H (px)"
+msgstr ""
+
+msgid "Widget: padding V (px)"
+msgstr ""
+
+msgid "Widget: radio (px)"
+msgstr ""
+
+msgid "Widgets del pie de pagina."
+msgstr ""
+
+msgid "Widget: sombra"
+msgstr ""
+
+msgid "WordPress"
+msgstr ""
+
+msgid "X"
+msgstr ""
+
+msgid "X URL"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "YouTube URL"
+msgstr ""
+
+msgid "Zona de publicidad entre modulos del home."
+msgstr ""
+
+msgid "Zona superior"
+msgstr ""
+

@@ -1,6 +1,14 @@
 <?php
 /**
- * Single post rendering: layouts, elements, related, nav.
+ * Single post rendering: layouts, elements, related, nav (v1.5.0).
+ *
+ * Interfaz actualizada:
+ * - Author bar con avatar, compartir, A-/A/A+, copiar enlace, imprimir
+ * - Hero con imagen 16:9 y stamp decorativo
+ * - Párrafos en cajas blancas que se adaptan a los ads
+ * - Ads: 728x90 wide, 336x280 box, responsive
+ * - Carrusel de artículos recomendados (3 mínimo)
+ * - Relacionados en grid de 4 con skeleton cards
  *
  * @package CHUQUIPIONDO
  */
@@ -28,6 +36,9 @@ function chuquipiondo_single() {
 		echo '<article id="post-' . get_the_ID() . '" class="' . esc_attr( implode( ' ', get_post_class( 'single-article' ) ) ) . '" role="article">';
 		echo '<div class="single-article__inner" style="max-width: var(--reading-width); margin-inline: auto;">';
 
+		// Author bar with tools.
+		chuquipiondo_single_author_bar();
+
 		// Breadcrumb.
 		if ( chuquipiondo_is_enabled( 'single_show_breadcrumb' ) ) {
 			chuquipiondo_breadcrumbs();
@@ -43,9 +54,6 @@ function chuquipiondo_single() {
 		the_title( '<h1 class="entry-title single-article__title">', '</h1>' );
 
 		echo '<div class="entry-meta single-article__meta">';
-		if ( chuquipiondo_is_enabled( 'single_show_author' ) ) {
-			chuquipiondo_the_author();
-		}
 		if ( chuquipiondo_is_enabled( 'single_show_date' ) ) {
 			chuquipiondo_the_date();
 		}
@@ -57,19 +65,35 @@ function chuquipiondo_single() {
 		echo '</div>';
 		echo '</header>';
 
-		// Ad after title.
+		// Ad after title (728x90 wide).
+		echo '<div class="article-ad-wide">';
 		chuquipiondo_ad_slot( 'ads_after_title' );
+		echo '</div>';
 
-		// Featured image (for non-hero-image layouts).
+		// Featured image with stamp.
 		if ( 'hero-image' !== $layout && has_post_thumbnail() ) {
 			echo '<figure class="entry-thumbnail single-article__thumbnail">';
 			the_post_thumbnail( 'chuquipiondo-featured', array( 'loading' => 'eager', 'fetchpriority' => 'high' ) );
+			echo '<div class="entry-thumbnail__stamp">' . esc_html__( '16:9 responsive', 'chuquipiondo' ) . '</div>';
 			echo '</figure>';
 		}
 
 		// Content with paragraph ads.
 		echo '<div class="entry-content single-article__content">';
 		chuquipiondo_the_content_with_ads();
+		echo '</div>';
+
+		// Ad box (336x280) + paragraph row.
+		echo '<div class="article-row">';
+		echo '<div class="article-ad-box">';
+		chuquipiondo_ad_slot( 'ads_after_paragraph_3' );
+		echo '</div>';
+		echo '<div class="paragraph-box"><p>' . esc_html__( 'Parrafo', 'chuquipiondo' ) . '</p></div>';
+		echo '</div>';
+
+		// Responsive ad.
+		echo '<div class="article-ad-responsive">';
+		chuquipiondo_ad_slot( 'ads_after_paragraph_6' );
 		echo '</div>';
 
 		// Tags.
@@ -86,18 +110,8 @@ function chuquipiondo_single() {
 
 		echo '</div><!-- .single-article__inner -->';
 
-		// Post End Extension Area (widgets + shortcode + elementor).
-		echo '<div class="post-end-extension">';
-		chuquipiondo_post_end_extension();
-		echo '</div>';
-
-		// Author bio.
-		if ( chuquipiondo_is_enabled( 'single_show_bio' ) ) {
-			chuquipiondo_author_bio();
-		}
-
-		// Ad before related.
-		chuquipiondo_ad_slot( 'ads_before_related' );
+		// Carousel of recommended articles.
+		chuquipiondo_single_carousel();
 
 		// Related posts.
 		if ( chuquipiondo_is_enabled( 'single_show_related' ) ) {
@@ -113,11 +127,115 @@ function chuquipiondo_single() {
 		chuquipiondo_single_nav();
 
 		echo '</article>';
-		echo '</main><!-- #primary -->';
+		echo '</main>';
 
 		chuquipiondo_get_sidebar();
 		echo '</div>';
 	}
+}
+
+/**
+ * Render the author bar with avatar and tools.
+ */
+function chuquipiondo_single_author_bar() {
+	$author_id = get_the_author_meta( 'ID' );
+	if ( ! $author_id ) {
+		return;
+	}
+	?>
+	<div class="author-bar">
+		<div class="author-bar__author">
+			<span class="author-bar__avatar">
+				<?php echo get_avatar( $author_id, 20, '', '', array( 'class' => 'author-bar__avatar-img' ) ); ?>
+			</span>
+			<span><?php esc_html_e( 'Por', 'chuquipiondo' ); ?> <?php the_author(); ?></span>
+		</div>
+		<div class="author-bar__tools">
+			<span class="author-bar__share-label"><?php esc_html_e( 'COMPARTIR', 'chuquipiondo' ); ?></span>
+			<button class="author-bar__tool" onclick="chuquiCopyLink()" aria-label="<?php esc_attr_e( 'Copiar enlace', 'chuquipiondo' ); ?>"><?php esc_html_e( 'Copiar', 'chuquipiondo' ); ?></button>
+			<button class="author-bar__tool" onclick="window.print()" aria-label="<?php esc_attr_e( 'Imprimir', 'chuquipiondo' ); ?>"><?php esc_html_e( 'Imprimir', 'chuquipiondo' ); ?></button>
+			<button class="author-bar__tool" onclick="chuquiFontSize(-1)" aria-label="<?php esc_attr_e( 'Reducir texto', 'chuquipiondo' ); ?>">A−</button>
+			<button class="author-bar__tool" onclick="chuquiFontSize(0)" aria-label="<?php esc_attr_e( 'Texto normal', 'chuquipiondo' ); ?>">A</button>
+			<button class="author-bar__tool" onclick="chuquiFontSize(1)" aria-label="<?php esc_attr_e( 'Aumentar texto', 'chuquipiondo' ); ?>">A+</button>
+		</div>
+	</div>
+	<script>
+	function chuquiCopyLink() {
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(window.location.href).then(function() {
+				alert('<?php esc_html_e( 'Enlace copiado', 'chuquipiondo' ); ?>');
+			});
+		}
+	}
+	function chuquiFontSize(dir) {
+		var content = document.querySelector('.entry-content.single-article__content');
+		if (!content) return;
+		var current = parseFloat(content.style.fontSize || '14');
+		var newSize = dir === 0 ? 14 : Math.max(11, Math.min(22, current + dir));
+		content.style.fontSize = newSize + 'px';
+	}
+	</script>
+	<?php
+}
+
+/**
+ * Render the carousel of recommended articles (3 minimum).
+ */
+function chuquipiondo_single_carousel() {
+	$prev = get_previous_post();
+	$next = get_next_post();
+	$related_count = (int) chuquipiondo_get_option( 'single_related_count' );
+	$carousel_count = max( 3, $related_count );
+
+	$q = new WP_Query( array(
+		'post_type'           => 'post',
+		'posts_per_page'      => $carousel_count,
+		'post__not_in'        => array( get_the_ID() ),
+		'ignore_sticky_posts' => 1,
+		'orderby'             => 'rand',
+	) );
+
+	if ( ! $q->have_posts() ) {
+		return;
+	}
+
+	$titles = array();
+	while ( $q->have_posts() ) {
+		$q->the_post();
+		$titles[] = array(
+			'title' => get_the_title(),
+			'url'   => get_permalink(),
+		);
+	}
+	wp_reset_postdata();
+
+	echo '<div class="article-carousel" id="chuqui-article-carousel">';
+	echo '<button class="article-carousel__btn" onclick="chuquiCarouselMove(-1)" aria-label="' . esc_attr__( 'Anterior', 'chuquipiondo' ) . '">&lsaquo;</button>';
+	echo '<div class="article-carousel__title" id="chuqui-carousel-title">';
+	if ( ! empty( $titles ) ) {
+		echo '<a href="' . esc_url( $titles[0]['url'] ) . '">' . esc_html( $titles[0]['title'] ) . '</a>';
+	}
+	echo '</div>';
+	echo '<button class="article-carousel__btn" onclick="chuquiCarouselMove(1)" aria-label="' . esc_attr__( 'Siguiente', 'chuquipiondo' ) . '">&rsaquo;</button>';
+	echo '</div>';
+
+	// Inline JS for carousel.
+	$js_titles = wp_json_encode( $titles );
+	?>
+	<script>
+	var chuquiCarouselTitles = <?php echo $js_titles; // phpcs:ignore ?>;
+	var chuquiCarouselIndex = 0;
+	function chuquiCarouselMove(step) {
+		if (!chuquiCarouselTitles || chuquiCarouselTitles.length < 2) return;
+		chuquiCarouselIndex = (chuquiCarouselIndex + step + chuquiCarouselTitles.length) % chuquiCarouselTitles.length;
+		var item = chuquiCarouselTitles[chuquiCarouselIndex];
+		var el = document.getElementById('chuqui-carousel-title');
+		if (el && item) {
+			el.innerHTML = '<a href="' + item.url + '">' + item.title + '</a>';
+		}
+	}
+	</script>
+	<?php
 }
 
 /**
@@ -128,7 +246,6 @@ function chuquipiondo_the_content_with_ads() {
 	$content = apply_filters( 'the_content', $content );
 	$content = str_replace( ']]>', ']]&gt;', $content );
 
-	// Only insert ads if the master switch is on.
 	if ( ! chuquipiondo_ads_active() ) {
 		echo $content; // phpcs:ignore WordPress.Security.EscapeOutput -- post content.
 		return;
@@ -139,22 +256,16 @@ function chuquipiondo_the_content_with_ads() {
 
 /**
  * Render the Post End Extension area.
- * Supports: widgets, shortcodes, Elementor templates.
  */
 function chuquipiondo_post_end_extension() {
-	/**
-	 * Fires before the Post End Extension area.
-	 */
 	do_action( 'chuquipiondo_before_post_end_extension' );
 
-	// Widgets.
 	if ( is_active_sidebar( 'sidebar-post-end' ) ) {
 		echo '<div class="post-end-widgets">';
 		dynamic_sidebar( 'sidebar-post-end' );
 		echo '</div>';
 	}
 
-	// Shortcode / HTML from Customizer.
 	$extension = chuquipiondo_get_option( 'single_extension_area' );
 	if ( $extension ) {
 		echo '<div class="post-end-custom">';
@@ -162,9 +273,6 @@ function chuquipiondo_post_end_extension() {
 		echo '</div>';
 	}
 
-	/**
-	 * Fires after the Post End Extension area.
-	 */
 	do_action( 'chuquipiondo_after_post_end_extension' );
 }
 
@@ -245,7 +353,7 @@ function chuquipiondo_single_nav() {
 	}
 
 	echo '<nav class="post-navigation post-navigation--' . esc_attr( $style ) . '" aria-label="' . esc_attr__( 'Navegacion entre articulos', 'chuquipiondo' ) . '">';
-	echo '<div class="post-navigation__inner chuqui-container">';
+	echo '<div class="post-navigation__inner">';
 
 	if ( $prev ) {
 		echo '<a class="post-nav post-nav--prev" href="' . esc_url( get_permalink( $prev ) ) . '">';
