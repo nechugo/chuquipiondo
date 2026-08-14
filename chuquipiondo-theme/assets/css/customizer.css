@@ -45,6 +45,45 @@
 	cursor: grab;
 }
 
+/* Range controls with value display and cancel button */
+.customize-control input[type="range"] {
+	vertical-align: middle;
+}
+
+.range-value-display {
+	display: inline-block;
+	min-width: 35px;
+	text-align: center;
+	margin-left: 8px;
+	padding: 4px 8px;
+	background: #f0f0f1;
+	border-radius: 3px;
+	font-size: 12px;
+	font-weight: 600;
+	color: #3c434a;
+	vertical-align: middle;
+}
+
+.range-cancel-btn {
+	margin-left: 6px;
+	padding: 4px 10px;
+	font-size: 11px;
+	height: auto;
+	line-height: 1.4;
+	vertical-align: middle;
+	background: #f6f7f7;
+	border: 1px solid #ccc;
+	color: #555;
+	cursor: pointer;
+	border-radius: 3px;
+}
+
+.range-cancel-btn:hover {
+	background: #f0f0f1;
+	border-color: #999;
+	color: #222;
+}
+
 /* Admin panel. */
 .chuquipiondo-admin__grid {
 	display: grid;

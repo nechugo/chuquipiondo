@@ -4,7 +4,7 @@
  * Author: Nelson Chuquipiondo
  * Author URI: https://www.chuquipiondo.com
  * Description: Tema WordPress profesional, ligero y elegante. Ecosistema digital personal: portal editorial, revista digital y plataforma musical. Liderazgo, gestion y formacion con proposito. ¡Juntos, si podemos!
- * Version: 1.3.0
+ * Version: 1.4.0
  * Requires at least: 6.2
  * Requires PHP: 7.4
  * Tested up to: 6.7
@@ -57,7 +57,7 @@
 	/* Typography. */
 	--font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 	--font-heading: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
-	--font-size-base: 16px;
+	--font-size-base: 14px;
 	--font-weight-body: 400;
 	--font-weight-heading: 700;
 
@@ -121,6 +121,32 @@
 	--z-social-float: 9997;
 	--z-mini-player: 9999;
 	--z-overlay: 9000;
+
+	/* Article customization. */
+	--article-line-height: 1.7;
+	--article-title-to-paragraph-gap: 1.0;
+	--article-paragraph-to-title-gap: 12.0;
+
+	/* Related posts. */
+	--related-posts-gap: 15px;
+	--related-posts-rows: 1;
+	--related-posts-cols: 2;
+
+	/* Page title. */
+	--page-title-show: block;
+	--page-title-color: var(--navy);
+
+	/* Sidebar card. */
+	--sidebar-card-padding: 16px;
+	--sidebar-card-gap: 12px;
+
+	/* Footer columns. */
+	--footer-col-1-height: auto;
+	--footer-col-2-height: auto;
+	--footer-col-3-height: auto;
+
+	/* Header background. */
+	--header-bg: var(--white);
 }
 
 /* ===== _base.css ===== */
@@ -156,6 +182,7 @@ h1, h2, h3, h4, h5, h6 {
 	line-height: 1.25;
 	margin: 0 0 var(--space-4);
 	color: var(--navy);
+	/* Font-size is controlled by individual heading rules below to prevent font changes from affecting sizes */
 }
 
 h1 { font-size: clamp(1.875rem, 1.4rem + 2.4vw, 2.5rem); }
@@ -167,6 +194,7 @@ h6 { font-size: 0.875rem; }
 
 p {
 	margin: 0 0 var(--space-4);
+	line-height: var(--article-line-height, 1.7);
 }
 
 a {
@@ -653,7 +681,7 @@ th {
 .site-header {
 	position: relative;
 	z-index: var(--z-header);
-	background: var(--white);
+	background: var(--header-bg, var(--white));
 	box-shadow: var(--shadow-sm);
 	transition: position var(--transition-fast), box-shadow var(--transition-base), background var(--transition-base);
 }
@@ -898,6 +926,9 @@ th {
 	justify-content: space-between;
 	gap: var(--header-logo-gap, 50px);
 	min-height: var(--header-height);
+	max-width: var(--container-width);
+	margin: 0 auto;
+	padding: 0 1.5rem;
 }
 
 /* Logo: alineado a la izquierda, medidas 200x48 por defecto. */
@@ -1423,6 +1454,8 @@ body.has-hero .hero--full-viewport,
 
 .page-title {
 	margin: 0;
+	display: var(--page-title-show, block);
+	color: var(--page-title-color, var(--navy));
 }
 
 .archive-description {
@@ -1973,8 +2006,10 @@ body.has-hero .hero--full-viewport,
 }
 
 .related-posts__grid {
-	grid-template-columns: repeat(var(--related-cols, 2), minmax(0, 1fr));
-	gap: var(--related-gap, 15px);
+	display: grid;
+	grid-template-columns: repeat(var(--related-posts-cols, 2), minmax(0, 1fr));
+	grid-template-rows: repeat(var(--related-posts-rows, 1), auto);
+	gap: var(--related-posts-gap, 15px);
 }
 
 /* Relacionados: tarjetas con imagen 16:9, estilo periódico elegante */
@@ -1985,6 +2020,8 @@ body.has-hero .hero--full-viewport,
 	overflow: hidden;
 	box-shadow: 0 1px 3px rgba(10, 31, 68, 0.06);
 	transition: transform 0.25s ease, box-shadow 0.25s ease;
+	display: flex;
+	flex-direction: column;
 }
 
 .related-posts .post-card:hover {
@@ -1995,6 +2032,7 @@ body.has-hero .hero--full-viewport,
 .related-posts .post-card__media {
 	aspect-ratio: 16 / 9;
 	overflow: hidden;
+	width: 100%;
 }
 
 .related-posts .post-card__media img {
@@ -2010,6 +2048,10 @@ body.has-hero .hero--full-viewport,
 
 .related-posts .post-card__body {
 	padding: 12px 14px;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .related-posts .post-card__title {
@@ -2314,7 +2356,7 @@ body.has-hero .hero--full-viewport,
 .chuqui-whatsapp {
 	position: fixed;
 	z-index: var(--z-whatsapp);
-	display: inline-flex;
+	display: flex;
 	align-items: center;
 	justify-content: center;
 	width: var(--whatsapp-size);
@@ -2333,13 +2375,13 @@ body.has-hero .hero--full-viewport,
 }
 
 .chuqui-whatsapp svg {
-	width: 55%;
-	height: 55%;
+	width: 60%;
+	height: 60%;
 	margin: auto;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	position: relative;
+	top: 0;
+	left: 0;
+	transform: none;
 }
 
 .chuqui-whatsapp__icon {
@@ -3028,29 +3070,50 @@ body.has-hero .hero--full-viewport,
 
 /* ===== _footer.css ===== */
 /**
- * Footer.
+ * Footer: 3 columns, full-width, content centered within 1280px.
  */
 
 .site-footer {
 	background: var(--footer-bg);
 	color: var(--footer-text);
 	margin-top: var(--space-16);
-	padding-top: var(--space-12);
+	padding-top: 0;
+	width: 100%;
 }
 
 .site-footer .chuqui-container {
-	padding-top: 0;
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 0 1.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-6);
+	justify-content: space-between;
+	align-items: stretch;
+}
+
+.site-footer .chuqui-container > div,
+.site-footer .chuqui-container > section {
+	flex: 1 1 0;
+	min-width: 280px;
+	height: var(--footer-col-height, auto);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	justify-content: flex-start;
 }
 
 .footer-brand {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 	gap: var(--space-4);
 	padding-bottom: var(--space-6);
 	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 	margin-bottom: var(--space-6);
+	width: 100%;
 }
 
 .footer-about {
@@ -3058,6 +3121,7 @@ body.has-hero .hero--full-viewport,
 	max-width: 560px;
 	opacity: 0.85;
 	line-height: 1.6;
+	text-align: center;
 }
 
 .footer-social .social-profiles a {
@@ -3072,8 +3136,16 @@ body.has-hero .hero--full-viewport,
 
 .footer-widgets {
 	display: grid;
+	grid-template-columns: repeat(3, 1fr);
 	gap: var(--space-6);
 	padding-bottom: var(--space-6);
+	width: 100%;
+}
+
+@media (max-width: 768px) {
+	.footer-widgets {
+		grid-template-columns: 1fr;
+	}
 }
 
 .footer-widget h3,
@@ -3110,16 +3182,18 @@ body.has-hero .hero--full-viewport,
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 	gap: var(--space-3);
 	padding: var(--space-5) 0;
 	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	width: 100%;
 }
 
 .footer-copyright {
 	margin: 0;
 	font-size: 0.875rem;
 	opacity: 0.75;
+	text-align: center;
 }
 
 .footer-menu {
@@ -3129,6 +3203,7 @@ body.has-hero .hero--full-viewport,
 	margin: 0;
 	padding: 0;
 	gap: var(--space-4);
+	justify-content: center;
 }
 
 .footer-menu a {

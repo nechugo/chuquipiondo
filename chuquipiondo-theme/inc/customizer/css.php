@@ -208,6 +208,20 @@ function chuquipiondo_dynamic_css() {
 	$css .= ".footer-bottom a:hover{ color: var(--footer-bottom-link-hover); }\n";
 	$css .= ".footer-widgets{ margin-bottom: " . chuquipiondo_get_option( 'footer_section_gap' ) . "px; }\n";
 
+
+	// Footer column heights
+	$col1_h = chuquipiondo_get_option( 'footer_column1_height' );
+	$col2_h = chuquipiondo_get_option( 'footer_column2_height' );
+	$col3_h = chuquipiondo_get_option( 'footer_column3_height' );
+	if ( $col1_h ) {
+		$css .= ".footer-widget:nth-child(1){ min-height: {$col1_h}px; }\n";
+	}
+	if ( $col2_h ) {
+		$css .= ".footer-widget:nth-child(2){ min-height: {$col2_h}px; }\n";
+	}
+	if ( $col3_h ) {
+		$css .= ".footer-widget:nth-child(3){ min-height: {$col3_h}px; }\n";
+	}
 	// ===== Menu dynamic styles =====
 	$css .= ".primary-menu > li > a{ color: var(--header-menu-text); font-size: " . chuquipiondo_get_option( 'header_menu_font_size' ) . "px; font-weight: " . chuquipiondo_get_option( 'header_menu_font_weight' ) . "; text-transform: " . chuquipiondo_get_option( 'header_menu_text_transform' ) . "; letter-spacing: " . chuquipiondo_get_option( 'header_menu_letter_spacing' ) . "em; padding: " . chuquipiondo_get_option( 'header_menu_item_padding_v' ) . "px " . chuquipiondo_get_option( 'header_menu_item_padding_h' ) . "px; border-radius: " . chuquipiondo_get_option( 'header_menu_border_radius' ) . "px; }\n";
 	$css .= ".primary-menu > li > a:hover{ color: var(--header-menu-text-hover); }\n";

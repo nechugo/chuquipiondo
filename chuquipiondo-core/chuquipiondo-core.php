@@ -3,7 +3,7 @@
  * Plugin Name:       CHUQUIPIONDO Core
  * Plugin URI:        https://www.chuquipiondo.com
  * Description:       Plugin core del tema CHUQUIPIONDO. Anade shortcodes, bloques Gutenberg, widgets adicionales, importador de demos y hooks personalizados. Funciona junto al tema CHUQUIPIONDO.
- * Version:           1.0.0
+ * Version:           1.4.0
  * Requires at least: 6.2
  * Requires PHP:      7.4
  * Author:            Nelson Chuquipiondo
