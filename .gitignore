@@ -1,16 +1,17 @@
 ```
-# Compiled and build artifacts
-*.pyc
-__pycache__/
+# Build artifacts
+assets/css/*.css.map
+assets/js/*.js.map
+dist/
+build/
 
 # Dependencies
-vendor/
 node_modules/
+vendor/
 
 # Logs and temp files
 *.log
 *.tmp
-*.swp
 
 # Environment
 .env
@@ -24,8 +25,4 @@ node_modules/
 # OS generated files
 .DS_Store
 Thumbs.db
-
-# WordPress specific
-wp-content/cache/
-*.sql
 ```

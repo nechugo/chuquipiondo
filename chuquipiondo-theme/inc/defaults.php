@@ -157,6 +157,7 @@ function chuquipiondo_defaults() {
 		'header_main_mobile'         => '1',
 		'header_main_layout'     => 'logo-left-menu-right',
 		'header_search_enable'   => '1',
+			'header_language_switcher_enable' => '',
 		'header_menu_search_gap' => '10',
 		/* Menu principal: General (Astra) */
 		'header_menu_align'      => 'right',      // left | center | right
