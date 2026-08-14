@@ -1,31 +1,53 @@
 ```
-# Compiled and build artifacts
-*.pyc
-__pycache__/
+# WordPress specific ignores
+wp-content/cache/
+wp-content/uploads/
+wp-config.php
+*.sql
 
 # Dependencies
-vendor/
 node_modules/
+vendor/
 
-# Logs and temp files
-*.log
-*.tmp
-*.swp
+# Build artifacts
+dist/
+build/
+*.min.css
+*.min.js
+*.map
 
 # Environment
 .env
 .env.local
 *.env.*
 
-# Editors
-.vscode/
-.idea/
+# Logs
+*.log
 
 # OS generated files
 .DS_Store
 Thumbs.db
 
-# WordPress specific
-wp-content/cache/
-*.sql
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python (if any Python files detected)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
+
+# Temporary files
+*.tmp
+*.temp
 ```
