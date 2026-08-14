@@ -182,3 +182,28 @@ function chuquipiondo_get_int_option( $key, $min = 0, $max = PHP_INT_MAX ) {
 function chuquipiondo_needs_music_assets() {
 	return (bool) ( is_singular( 'musica' ) || is_post_type_archive( 'musica' ) || chuquipiondo_is_enabled( 'music_mini_player' ) );
 }
+
+/**
+ * Determine if social share scripts should load.
+ * Checks master switch, singular post type, and position settings.
+ *
+ * @return bool
+ */
+function chuquipiondo_should_load_social() {
+	if ( ! chuquipiondo_is_enabled( 'social_master_switch' ) ) {
+		return false;
+	}
+	if ( ! is_singular( 'post' ) ) {
+		return false;
+	}
+	$position = chuquipiondo_get_option( 'social_position' );
+	$floating = chuquipiondo_is_enabled( 'social_floating' );
+	$floating_mobile = chuquipiondo_is_enabled( 'social_floating_mobile' );
+	
+	// If position is 'none' and no floating options, skip loading.
+	if ( 'none' === $position && ! $floating && ! $floating_mobile ) {
+		return false;
+	}
+	
+	return true;
+}

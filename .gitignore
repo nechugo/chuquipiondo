@@ -1,20 +1,53 @@
-# CHUQUIPIONDO WordPress Theme
-# Node / build artifacts
+```
+# WordPress specific ignores
+wp-content/cache/
+wp-content/uploads/
+wp-config.php
+*.sql
+
+# Dependencies
 node_modules/
+vendor/
+
+# Build artifacts
+dist/
+build/
+*.min.css
+*.min.js
+*.map
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Logs
 *.log
 
-# OS files
+# OS generated files
 .DS_Store
 Thumbs.db
 
-# Editor files
-*.swp
-*.swo
+# IDE files
 .vscode/
 .idea/
+*.swp
+*.swo
 
-# Build / dependency folders (kept clean)
-vendor/
+# Python (if any Python files detected)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
 
-# WordPress deployment artifacts (zips are delivered, not version-controlled normally,
-# but we track them here as release artifacts per project requirements)
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
+
+# Temporary files
+*.tmp
+*.temp
+```

@@ -79,3 +79,6 @@ require_once CHUQUIPIONDO_DIR . '/inc/admin-panel.php';
 require_once CHUQUIPIONDO_DIR . '/inc/ie-port.php';
 require_once CHUQUIPIONDO_DIR . '/inc/security.php';
 require_once CHUQUIPIONDO_DIR . '/inc/tgmpa/recommended-plugins.php';
+
+// Plugin conflict detection & handling.
+require_once CHUQUIPIONDO_DIR . '/inc/plugin-conflict-handler.php';
