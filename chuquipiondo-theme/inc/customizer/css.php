@@ -126,6 +126,12 @@ function chuquipiondo_dynamic_css() {
 
 	// Single + Page layout variables.
 	$vars['header-content-gap'] = chuquipiondo_get_option( 'header_content_gap' ) . 'px';
+	// Tipografia del contenido del articulo (configurable desde el personalizador).
+	$sc_font = chuquipiondo_get_option( 'single_content_font' );
+	$vars['single-content-font']   = '' !== $sc_font ? chuquipiondo_font_stack( $sc_font ) : 'var(--font-body)';
+	$vars['single-content-size']   = chuquipiondo_get_option( 'single_content_size' ) . 'px';
+	$vars['single-content-weight'] = chuquipiondo_get_option( 'single_content_weight' );
+	$vars['single-content-lh']     = chuquipiondo_get_option( 'single_content_line_height' );
 	$vars['related-gap']       = chuquipiondo_get_option( 'single_related_gap' ) . 'px';
 
 	// Sticky header colors.
@@ -264,11 +270,14 @@ function chuquipiondo_dynamic_css() {
 	$css .= ".single-page{ background: " . chuquipiondo_get_option( 'page_bg_color' ) . "; }\n";
 	$css .= ".single-page .entry-title{ color: " . chuquipiondo_get_option( 'page_title_color' ) . "; }\n";
 	$css .= ".related-posts__grid{ grid-template-columns: repeat(" . chuquipiondo_get_option( 'single_related_columns' ) . ", minmax(0, 1fr)); }\n";
+	// Tipografia del contenido del articulo (desde el personalizador).
+	$css .= ".entry-content.single-article__content{ font-family: var(--single-content-font); font-size: var(--single-content-size); font-weight: var(--single-content-weight); line-height: var(--single-content-lh); }\n";
+	$css .= ".entry-content.single-article__content > p{ font-size: var(--single-content-size); font-weight: var(--single-content-weight); line-height: var(--single-content-lh); }\n";
 	$related_count = (int) chuquipiondo_get_option( 'single_related_rows' ) * (int) chuquipiondo_get_option( 'single_related_columns' );
 	$css .= ".related-posts__grid > *:nth-child(n+" . ($related_count + 1) . "){ display: none; }\n";
 
 	// ===== Single post dynamic styles =====
-	$css .= ".entry-content.single-article__content{ line-height: " . chuquipiondo_get_option( 'single_line_height' ) . "; }\n";
+	// line-height del contenido ahora controlado por single_content_line_height (mas arriba).
 	$css .= ".entry-content.single-article__content h1, .entry-content.single-article__content h2, .entry-content.single-article__content h3, .entry-content.single-article__content h4, .entry-content.single-article__content h5, .entry-content.single-article__content h6{ margin-top: " . chuquipiondo_get_option( 'single_heading_gap' ) . "px; margin-bottom: " . chuquipiondo_get_option( 'single_para_gap' ) . "px; }\n";
 	$css .= ".entry-content.single-article__content p{ margin-bottom: " . chuquipiondo_get_option( 'single_para_gap' ) . "px; }\n";
 	$css .= ".related-posts__grid{ grid-template-columns: repeat(" . chuquipiondo_get_option( 'single_related_columns' ) . ", minmax(0, 1fr)); gap: " . chuquipiondo_get_option( 'single_related_gap' ) . "px; }\n";

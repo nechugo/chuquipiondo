@@ -197,8 +197,10 @@
  * contenido (desde el limite del contenedor hasta el gap con el sidebar).
  */
 .entry-content.single-article__content {
-	font-size: 17px;
-	line-height: 1.7;
+	font-family: var(--single-content-font, var(--font-body));
+	font-size: var(--single-content-size, 17px);
+	font-weight: var(--single-content-weight, 400);
+	line-height: var(--single-content-lh, 1.7);
 	text-align: justify;
 	background: transparent;
 }
@@ -206,8 +208,9 @@
 .entry-content.single-article__content > p {
 	margin: 0 0 1em;
 	padding: 0;
-	font-size: 17px;
-	line-height: 1.7;
+	font-size: var(--single-content-size, 17px);
+	font-weight: var(--single-content-weight, 400);
+	line-height: var(--single-content-lh, 1.7);
 	text-align: justify;
 	color: var(--ink, #1a2233);
 }
@@ -263,14 +266,22 @@
 	font-style: italic;
 }
 
+/* Imagenes dentro del contenido: que no rompan su limite ni se deformen.
+   Sin aspect-ratio forzado (las imagenes internas pueden tener cualquier
+   proporcion). max-width: 100% + height: auto = responsivo natural. */
 .entry-content.single-article__content img,
 .entry-content.single-article__content .wp-block-image img,
 .entry-content.single-article__content figure img {
+	max-width: 100%;
 	width: 100%;
 	height: auto;
-	aspect-ratio: 16 / 9;
-	object-fit: cover;
 	border-radius: 0;
+}
+
+.entry-content.single-article__content .wp-block-image,
+.entry-content.single-article__content figure {
+	max-width: 100%;
+	margin: 0 0 1em;
 }
 
 .entry-content.single-article__content a {

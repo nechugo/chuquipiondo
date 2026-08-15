@@ -408,6 +408,10 @@ function chuquipiondo_defaults() {
 		'footer_copyright_height' => '0',             // px altura seccion copyright (0 = auto)
 		'footer_copyright_padding' => '16',           // px padding V seccion copyright
 		'footer_section_gap'     => '0',              // px entre widgets y bottom
+		'single_content_font'    => '',               // '' = hereda font_body; si no, slug de fuente
+		'single_content_size'    => '17',             // px tamaño del texto del articulo
+		'single_content_weight'  => '400',            // peso del texto del articulo
+		'single_content_line_height' => '1.7',        // interlineado del contenido
 		/* Footer Design (Astra): tipografia y estilo de widgets */
 		'footer_title_weight'    => '700',
 		'footer_title_transform' => 'none',           // none | uppercase | capitalize

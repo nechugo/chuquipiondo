@@ -27,9 +27,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		html { overflow-x: hidden; }
 		body { overflow-x: hidden; }
 		.layout-right .widget-area, .layout-left .widget-area { margin-inline: -5px; padding-inline: 5px; }
+		/* Imagenes del contenido: sin aspect-ratio forzado (no se deformen). */
 		.entry-content.single-article__content img,
 		.entry-content.single-article__content figure img,
-		.entry-content.single-article__content .wp-block-image img { width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; }
+		.entry-content.single-article__content .wp-block-image img { max-width: 100%; height: auto; }
 		.entry-thumbnail.single-article__thumbnail { aspect-ratio: 16/9; overflow: hidden; }
 		.entry-thumbnail.single-article__thumbnail img { width: 100%; height: 100%; aspect-ratio: 16/9; object-fit: cover; }
 		/* Tipografia del articulo controlada por theme.json + _base.css + _single.css (no forzar aqui: rompe legibilidad). */
