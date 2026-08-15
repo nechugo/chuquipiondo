@@ -34,7 +34,7 @@ function chuquipiondo_single() {
 
 		echo '<main id="primary" class="site-main ' . esc_attr( $classes['content'] ) . '" role="main">';
 		echo '<article id="post-' . get_the_ID() . '" class="' . esc_attr( implode( ' ', get_post_class( 'single-article' ) ) ) . '" role="article">';
-		echo '<div class="single-article__inner" style="max-width: var(--reading-width); margin-inline: auto;">';
+		echo '<div class="single-article__inner">';
 
 		// Author bar with tools.
 		chuquipiondo_single_author_bar();
