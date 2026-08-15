@@ -134,6 +134,14 @@ function chuquipiondo_register_header( $wp_customize ) {
 		'sanitize_callback' => 'sanitize_email',
 		'priority'          => 8,
 	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'header_topbar_gap', array(
+		'label'             => __( 'Gap del separador | del top bar (px)', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_header',
+		'type'              => 'range',
+		'input_attrs'       => array( 'min' => 0, 'max' => 20, 'step' => 1 ),
+		'sanitize_callback' => 'chuquipiondo_sanitize_range',
+		'priority'          => 9,
+	) );
 
 	
 	// Top Bar: contenido, layout, colores, visibilidad (Astra-style).

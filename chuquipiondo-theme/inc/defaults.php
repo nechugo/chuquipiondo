@@ -128,8 +128,9 @@ function chuquipiondo_defaults() {
 		'header_topbar_widget_shadow' => '0',
 		'header_topbar_layout'       => 'left-right',   // left-right | center | left-only | right-only
 		'header_topbar_date'     => '1',
-		'header_topbar_time'     => '0',
+		'header_topbar_time'     => '1',
 		'header_topbar_email'    => 'contacto@chuquipiondo.com',
+		'header_topbar_gap'     => '4',              // px de gap a cada lado del separador |
 		'header_main_sticky'     => '1',
 		'header_sticky_mode'     => 'main',      // main | full (todo el header o solo main)
 		'header_sticky_desktop'  => '1',          // sticky en desktop

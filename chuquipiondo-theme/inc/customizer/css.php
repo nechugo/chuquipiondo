@@ -62,6 +62,7 @@ function chuquipiondo_dynamic_css() {
 	// Header colors (Astra-style per-row customization).
 	$vars['topbar-bg']           = chuquipiondo_get_option( 'header_topbar_bg' );
 	$vars['topbar-text']         = chuquipiondo_get_option( 'header_topbar_text' );
+	$vars['topbar-gap']          = chuquipiondo_get_option( 'header_topbar_gap' ) . 'px';
 	$vars['topbar-link']         = chuquipiondo_get_option( 'header_topbar_link' );
 	$vars['header-main-bg']      = chuquipiondo_get_option( 'header_main_bg' );
 	$vars['header-main-text']     = chuquipiondo_get_option( 'header_main_text' );

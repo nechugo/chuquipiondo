@@ -12,18 +12,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="header-topbar">
 	<div class="chuqui-container header-topbar__inner">
 		<div class="header-topbar__left">
-			<?php if ( chuquipiondo_is_enabled( 'header_topbar_date' ) ) : ?>
-				<span class="topbar-date"><?php echo esc_html( wp_date( 'l, j F Y' ) ); ?></span>
-			<?php endif; ?>
-			<?php if ( chuquipiondo_is_enabled( 'header_topbar_time' ) ) : ?>
-				<span class="topbar-time"><?php echo esc_html( wp_date( 'H:i' ) ); ?></span>
-			<?php endif; ?>
 			<?php
+			// Construir la lista de elementos visibles del topbar (hora, fecha, email).
+			$topbar_items = array();
+			if ( chuquipiondo_is_enabled( 'header_topbar_time' ) ) {
+				$topbar_items[] = '<span class="topbar-time">' . esc_html( wp_date( 'g:i:s A' ) ) . '</span>';
+			}
+			if ( chuquipiondo_is_enabled( 'header_topbar_date' ) ) {
+				$topbar_items[] = '<span class="topbar-date">' . esc_html( wp_date( 'l, j F Y' ) ) . '</span>';
+			}
 			$email = chuquipiondo_get_option( 'header_topbar_email' );
-			if ( $email ) :
-				?>
-				<a class="topbar-email" href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( $email ); ?></a>
-			<?php endif; ?>
+			if ( $email ) {
+				$topbar_items[] = '<a class="topbar-email" href="mailto:' . esc_attr( $email ) . '">' . esc_html( $email ) . '</a>';
+			}
+			// Imprimir los elementos separados por una barra |.
+			$sep = '<span class="topbar-sep" aria-hidden="true">|</span>';
+			echo wp_kses_post( implode( ' ' . $sep . ' ', $topbar_items ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped above.
+			?>
 		</div>
 
 		<div class="header-topbar__right">
