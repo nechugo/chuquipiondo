@@ -34,39 +34,32 @@ $show_menu = chuquipiondo_is_enabled( 'footer_show_menu' );
 			</div>
 		<?php endif; ?>
 
+		<?php if ( is_active_sidebar( 'sidebar-footer' ) ) : ?>
 		<div class="footer-widgets">
-			<?php
-			if ( is_active_sidebar( 'sidebar-footer' ) ) {
-				dynamic_sidebar( 'sidebar-footer' );
-			} else {
-				for ( $i = 0; $i < $columns; $i++ ) {
-					echo '<div class="footer-widget footer-widget--placeholder">';
-					echo '<h3 class="footer-widget-title">' . esc_html__( 'Widget area', 'chuquipiondo' ) . '</h3>';
-					echo '<p>' . esc_html__( 'Anade widgets desde Apariencia > Widgets.', 'chuquipiondo' ) . '</p>';
-					echo '</div>';
-				}
-			}
-			?>
+			<?php dynamic_sidebar( 'sidebar-footer' ); ?>
 		</div>
+		<?php endif; ?>
 
 		<?php chuquipiondo_ad_slot( 'ads_footer_between' ); ?>
 
-		<div class="footer-bottom">
-			<?php if ( $show_copyright ) : ?>
-			<p class="footer-copyright"><?php echo esc_html( $copyright ); ?></p>
-			<?php endif; ?>
+		<?php if ( $show_menu && has_nav_menu( 'footer' ) ) : ?>
+		<nav class="footer-menu-section" aria-label="<?php esc_attr_e( 'Menu del pie de pagina', 'chuquipiondo' ); ?>">
 			<?php
-			if ( $show_menu && has_nav_menu( 'footer' ) ) {
-				wp_nav_menu( array(
-					'theme_location' => 'footer',
-					'container'      => 'nav',
-					'container_class'=> 'footer-nav',
-					'menu_class'     => 'footer-menu',
-					'depth'          => 1,
-				) );
-			}
+			wp_nav_menu( array(
+				'theme_location' => 'footer',
+				'container'      => false,
+				'menu_class'     => 'footer-menu',
+				'depth'          => 1,
+			) );
 			?>
+		</nav>
+		<?php endif; ?>
+
+		<?php if ( $show_copyright ) : ?>
+		<div class="footer-copyright-section">
+			<p class="footer-copyright"><?php echo esc_html( $copyright ); ?></p>
 		</div>
+		<?php endif; ?>
 	</div>
 </footer><!-- #colophon -->
 

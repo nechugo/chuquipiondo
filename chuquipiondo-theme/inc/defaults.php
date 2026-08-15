@@ -396,6 +396,9 @@ function chuquipiondo_defaults() {
 		'footer_bottom_align'    => 'space-between',  // left | center | right | space-between
 		'footer_bottom_padding_v'=> '16',             // px
 		'footer_widgets_bg'      => 'transparent',    // fondo seccion widgets (separado del bottom)
+		'footer_brand_bg'        => 'transparent',    // fondo seccion marca
+		'footer_menu_bg'         => 'transparent',    // fondo seccion menu (antepenultimo)
+		'footer_copyright_bg'    => 'transparent',    // fondo seccion copyright (final)
 		'footer_section_gap'     => '0',              // px entre widgets y bottom
 		/* Footer Design (Astra): tipografia y estilo de widgets */
 		'footer_title_weight'    => '700',

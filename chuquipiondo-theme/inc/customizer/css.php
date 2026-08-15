@@ -91,8 +91,11 @@ function chuquipiondo_dynamic_css() {
 	$vars['footer-bottom-bg']     = chuquipiondo_get_option( 'footer_bottom_bg' );
 	$vars['footer-bottom-text']   = chuquipiondo_get_option( 'footer_bottom_text' );
 
-	// Footer Design variables.
+	// Footer Design variables (color por seccion: marca, widgets, menu, copyright).
+	$vars['footer-brand-bg']        = chuquipiondo_get_option( 'footer_brand_bg' );
 	$vars['footer-widgets-bg']      = chuquipiondo_get_option( 'footer_widgets_bg' );
+	$vars['footer-menu-bg']         = chuquipiondo_get_option( 'footer_menu_bg' );
+	$vars['footer-copyright-bg']    = chuquipiondo_get_option( 'footer_copyright_bg' );
 	$vars['footer-widget-bg']       = chuquipiondo_get_option( 'footer_widget_bg' );
 	$vars['footer-widget-border-c'] = chuquipiondo_get_option( 'footer_widget_border_color' );
 	$vars['footer-bottom-link']    = chuquipiondo_get_option( 'footer_bottom_link' );
@@ -182,6 +185,9 @@ function chuquipiondo_dynamic_css() {
 	$footer_w_css = 'full' === $footer_width ? 'max-width: 100%;' : 'max-width: var(--container-width); margin-inline: auto;';
 	$css .= ".site-footer .chuqui-container{ " . $footer_w_css . " }\n";
 	$css .= ".footer-widgets{ background: var(--footer-widgets-bg); }\n";
+	$css .= ".footer-brand{ background: var(--footer-brand-bg); }\n";
+	$css .= ".footer-menu-section{ background: var(--footer-menu-bg); }\n";
+	$css .= ".footer-copyright-section{ background: var(--footer-copyright-bg); }\n";
 	$css .= ".footer-widgets{ grid-template-columns: repeat(" . chuquipiondo_get_option( 'footer_widget_layout' ) . ", minmax(0, 1fr)); }\n";
 	$css .= ".footer-widget{ background: var(--footer-widget-bg); padding: " . chuquipiondo_get_option( 'footer_widget_padding_v' ) . "px " . chuquipiondo_get_option( 'footer_widget_padding_h' ) . "px; border-radius: " . chuquipiondo_get_option( 'footer_widget_radius' ) . "px; border-width: " . chuquipiondo_get_option( 'footer_widget_border' ) . "px; border-color: var(--footer-widget-border-c); }\n";
 	if ( chuquipiondo_is_enabled( 'footer_widget_shadow' ) ) {
