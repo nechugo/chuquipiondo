@@ -218,31 +218,25 @@
 }
 
 /* ===== Wide ad between rows ===== */
+/* Caja de anuncio wide entre filas del grid: contenedor limpio,
+   sin placeholder gris. El slot real lo provee chuquipiondo_ad_slot(). */
 .wide-ad {
 	grid-column: 1 / -1;
-	height: 132px;
+	min-height: 132px;
 	margin: 16px 0 18px;
 	display: grid;
 	place-items: center;
-	background: #9b9b9b;
-	color: #fff;
-	font-size: 23px;
-	border-radius: 8px;
+	background: transparent;
 	overflow: hidden;
 }
 
 /* ===== Sidebar ad tall ===== */
 .ad-tall {
-	height: 517px;
-	background: #9b9b9b;
+	min-height: 517px;
+	background: transparent;
 	display: grid;
 	place-items: center;
 	text-align: center;
-	color: #fff;
-	font-size: 23px;
-	font-weight: 700;
-	line-height: 1.3;
-	border-radius: 8px;
 	margin-bottom: 12px;
 }
 

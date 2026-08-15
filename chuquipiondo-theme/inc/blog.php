@@ -112,8 +112,12 @@ function chuquipiondo_blog_grid() {
 		return;
 	}
 
+	// Cada cuantas entradas insertar un anuncio wide (configurable, minimo 2).
 	$after_posts = (int) chuquipiondo_get_option( 'ads_blog_after_posts' );
-	$style       = chuquipiondo_get_option( 'blog_card_style' );
+	if ( $after_posts < 2 ) {
+		$after_posts = 2;
+	}
+	$style = chuquipiondo_get_option( 'blog_card_style' );
 
 	echo '<div class="post-grid">';
 
@@ -124,8 +128,9 @@ function chuquipiondo_blog_grid() {
 
 		chuquipiondo_post_card( $style );
 
-		// Insert wide ad after every 2 posts (like the design).
-		if ( $counter > 0 && 0 === ( $counter % 2 ) ) {
+		// Insertar anuncio wide despues de cada $after_posts entradas
+		// (slider -> 2 entradas -> ad -> 2 entradas -> ad -> ...).
+		if ( $counter > 0 && 0 === ( $counter % $after_posts ) ) {
 			echo '<div class="wide-ad">';
 			chuquipiondo_ad_slot( 'ads_blog_after_row' );
 			echo '</div>';
