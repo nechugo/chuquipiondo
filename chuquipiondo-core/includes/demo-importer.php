@@ -539,3 +539,274 @@ function chuquipiondo_core_demo_imported_notice() {
 	echo '<div class="notice notice-success"><p>' . esc_html__( 'Demo importado correctamente. Se crearon articulos con imagenes, paginas, musica, ads ficticios y configuracion del tema. Revisa tu sitio.', 'chuquipiondo-core' ) . '</p></div>';
 }
 add_action( 'admin_notices', 'chuquipiondo_core_demo_imported_notice' );
+
+/**
+ * Setup wizard handler: processes the 3 setup options from the welcome page.
+ *
+ * Modes:
+ *  - full_demo:       Import the complete demo (articles, pages, music, ads, config).
+ *  - adapt:           Reorganize existing content (pages, posts, menus) to the theme architecture.
+ *  - structure_only:   Configure the theme (presets, menus, widgets) without creating content.
+ */
+function chuquipiondo_core_handle_setup_wizard() {
+	if ( ! isset( $_POST['chuquipiondo_setup_mode'] ) ) {
+		return;
+	}
+	if ( ! isset( $_POST['chuquipiondo_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['chuquipiondo_nonce'] ), 'chuquipiondo_setup_wizard' ) ) {
+		return;
+	}
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
+	$mode = sanitize_key( $_POST['chuquipiondo_setup_mode'] );
+
+	switch ( $mode ) {
+		case 'full_demo':
+			// Simulate the editorial demo import.
+			$_POST['chuquipiondo_demo_id']     = 'editorial';
+			$_POST['chuquipiondo_demo_nonce']  = wp_create_nonce( 'chuquipiondo_demo_import' );
+			chuquipiondo_core_handle_demo_import();
+			break;
+
+		case 'adapt':
+			chuquipiondo_core_adapt_existing_content();
+			break;
+
+		case 'structure_only':
+			chuquipiondo_core_apply_theme_structure();
+			break;
+	}
+
+	// Mark setup as done so the wizard doesn't show again.
+	update_option( 'chuquipiondo_setup_done', true, false );
+
+	wp_safe_redirect( add_query_arg( 'chuquipiondo_setup_done', $mode, admin_url( 'admin.php?page=chuquipiondo-welcome' ) ) );
+	exit;
+}
+add_action( 'admin_post_chuquipiondo_setup_wizard', 'chuquipiondo_core_handle_setup_wizard' );
+
+/**
+ * Reorganize and adapt existing content to the theme architecture.
+ *
+ * - Ensures the front page shows latest posts.
+ * - Reassigns existing posts to categories that match the theme's structure.
+ * - Creates a primary menu from existing pages if none exists.
+ * - Assigns the footer menu location.
+ * - Applies the Chuquipiondo Original preset.
+ * - Configures sidebar and widget zones.
+ */
+function chuquipiondo_core_adapt_existing_content() {
+	$user_id = get_current_user_id();
+
+	// 1. Ensure the theme's default categories exist.
+	$default_cats = array( 'Liderazgo', 'Gestion', 'Formacion', 'Fe Cristiana', 'Musica', 'Recursos', 'General' );
+	$cat_ids      = array();
+	foreach ( $default_cats as $cat_name ) {
+		$existing = get_term_by( 'name', $cat_name, 'category' );
+		if ( $existing ) {
+			$cat_ids[ $cat_name ] = $existing->term_id;
+		} else {
+			$result = wp_insert_term( $cat_name, 'category' );
+			if ( ! is_wp_error( $result ) ) {
+				$cat_ids[ $cat_name ] = $result['term_id'];
+			}
+		}
+	}
+
+	// 2. Reassign posts without categories to 'General'.
+	$general_id = isset( $cat_ids['General'] ) ? $cat_ids['General'] : 0;
+	if ( $general_id ) {
+		$uncategorized = get_posts( array(
+			'numberposts' => -1,
+			'post_type'    => 'post',
+			'post_status'  => 'any',
+			'fields'       => 'ids',
+			'category__not_in' => array_values( $cat_ids ),
+		) );
+		foreach ( $uncategorized as $post_id ) {
+			wp_set_post_categories( $post_id, array( $general_id ), false );
+		}
+	}
+
+	// 3. Front page: show latest posts (so the home builder works).
+	update_option( 'show_on_front', 'posts' );
+	update_option( 'page_on_front', 0 );
+	update_option( 'page_for_posts', 0 );
+
+	// 4. Create or update the primary menu from existing pages.
+	$menu_name = 'Menu Principal';
+	$menu      = wp_get_nav_menu_object( $menu_name );
+	if ( ! $menu ) {
+		$menu_id = wp_create_nav_menu( $menu_name );
+	} else {
+		$menu_id = $menu->term_id;
+		// Clear existing items to rebuild cleanly.
+		$items = wp_get_nav_menu_items( $menu_id );
+		if ( $items ) {
+			foreach ( $items as $item ) {
+				wp_delete_post( $item->ID, true );
+			}
+		}
+	}
+
+	// Add all published pages to the menu.
+	$pages = get_pages( array( 'sort_column' => 'menu_order, post_title' ) );
+	foreach ( $pages as $page ) {
+		wp_update_nav_menu_item( $menu_id, 0, array(
+			'menu-item-title'     => $page->post_title,
+			'menu-item-object'    => 'page',
+			'menu-item-object-id' => $page->ID,
+			'menu-item-type'      => 'post_type',
+			'menu-item-status'    => 'publish',
+		) );
+	}
+
+	// Assign to primary + footer + mobile locations.
+	$locations = get_theme_mod( 'nav_menu_locations' );
+	if ( ! is_array( $locations ) ) {
+		$locations = array();
+	}
+	if ( empty( $locations['primary'] ) ) {
+		$locations['primary'] = $menu_id;
+	}
+	set_theme_mod( 'nav_menu_locations', $locations );
+
+	// 5. Apply theme structure (presets, widgets, options).
+	chuquipiondo_core_apply_theme_structure();
+
+	// 6. Ensure existing posts have excerpts if missing.
+	$posts = get_posts( array( 'numberposts' => -1, 'post_type' => 'post', 'post_status' => 'publish' ) );
+	foreach ( $posts as $post ) {
+		if ( empty( $post->post_excerpt ) ) {
+			$excerpt = wp_trim_words( wp_strip_all_tags( $post->post_content ), 30, '...' );
+			wp_update_post( array(
+				'ID'           => $post->ID,
+				'post_excerpt' => $excerpt,
+			) );
+		}
+	}
+}
+
+/**
+ * Apply theme structure without creating content.
+ *
+ * - Applies the Chuquipiondo Original preset.
+ * - Creates footer widgets if the sidebar is empty.
+ * - Configures default theme options (topbar, hero, footer, etc.).
+ * - Sets up the front page to show posts.
+ */
+function chuquipiondo_core_apply_theme_structure() {
+	// 1. Apply the "Chuquipiondo Original" preset.
+	if ( function_exists( 'chuquipiondo_apply_preset' ) ) {
+		chuquipiondo_apply_preset( 'original' );
+	}
+
+	// 2. Configure default theme options.
+	$theme_options = array(
+		'header_topbar_enable'        => '1',
+		'header_topbar_date'          => '1',
+		'header_topbar_time'          => '1',
+		'header_topbar_email'         => 'contacto@chuquipiondo.com',
+		'header_topbar_gap'           => '4',
+		'hero_enable'                => '1',
+		'hero_mode'                  => 'slider',
+		'hero_autoplay'              => '1',
+		'hero_speed'                 => '5000',
+		'home_modules'               => 'hero,featured,latest,categories,song,videos,about,newsletter',
+		'footer_columns'             => '4',
+		'footer_show_brand'          => '1',
+		'footer_show_copyright'      => '1',
+		'footer_show_menu'           => '1',
+		'footer_show_social'         => '1',
+		'footer_about'               => 'CHUQUIPIONDO - Liderazgo, Gestion y Formacion con proposito. !Juntos, si podemos!',
+		'footer_copyright'           => '(c) {year} Nelson Chuquipiondo. Todos los derechos reservados.',
+		'single_content_font'        => '',
+		'single_content_size'        => '17',
+		'single_content_weight'      => '400',
+		'single_content_line_height' => '1.7',
+		'header_content_gap'         => '25',
+		'ads_blog_after_posts'       => '2',
+		'social_master_switch'       => '1',
+		'social_youtube'             => 'https://www.youtube.com/@chuquipiondo',
+		'whatsapp_master_switch'     => '1',
+		'whatsapp_number'            => '51921497257',
+		'whatsapp_position'          => 'bottom-right',
+		'whatsapp_size'              => '52',
+		'whatsapp_mobile_size'       => '48',
+	);
+	foreach ( $theme_options as $key => $value ) {
+		set_theme_mod( $key, $value );
+	}
+
+	// 3. Create footer widgets if the sidebar is empty.
+	if ( ! is_active_sidebar( 'sidebar-footer' ) ) {
+		$footer_widgets = array(
+			array(
+				'title' => __( 'Sobre CHUQUIPIONDO', 'chuquipiondo-core' ),
+				'text'  => '<p>Liderazgo, Gestion y Formacion con proposito. !Juntos, si podemos!</p>',
+			),
+			array(
+				'title' => __( 'Enlaces', 'chuquipiondo-core' ),
+				'text'  => '<ul><li><a href="#">Inicio</a></li><li><a href="#">Blog</a></li><li><a href="#">Contacto</a></li></ul>',
+			),
+			array(
+				'title' => __( 'Categorias', 'chuquipiondo-core' ),
+				'text'  => '<ul><li><a href="#">Liderazgo</a></li><li><a href="#">Gestion</a></li><li><a href="#">Formacion</a></li></ul>',
+			),
+			array(
+				'title' => __( 'Contacto', 'chuquipiondo-core' ),
+				'text'  => '<p>contacto@chuquipiondo.com</p>',
+			),
+		);
+
+		$text_widgets = get_option( 'widget_text', array() );
+		$next_id      = 2;
+		while ( isset( $text_widgets[ $next_id ] ) ) {
+			$next_id++;
+		}
+
+		$sidebars = get_option( 'sidebars_widgets', array() );
+		if ( ! isset( $sidebars['sidebar-footer'] ) || ! is_array( $sidebars['sidebar-footer'] ) ) {
+			$sidebars['sidebar-footer'] = array();
+		}
+
+		foreach ( $footer_widgets as $wdata ) {
+			$widget_id = 'text-' . $next_id;
+			$text_widgets[ $next_id ] = array(
+				'title'  => $wdata['title'],
+				'text'   => $wdata['text'],
+				'filter' => true,
+				'visual' => true,
+			);
+			$sidebars['sidebar-footer'][] = $widget_id;
+			$next_id++;
+		}
+
+		update_option( 'widget_text', $text_widgets );
+		update_option( 'sidebars_widgets', $sidebars );
+	}
+
+	// 4. Front page: show latest posts.
+	update_option( 'show_on_front', 'posts' );
+	update_option( 'page_on_front', 0 );
+	update_option( 'page_for_posts', 0 );
+}
+
+/**
+ * Admin notice for setup wizard completion.
+ */
+function chuquipiondo_core_setup_done_notice() {
+	if ( ! isset( $_GET['chuquipiondo_setup_done'] ) ) {
+		return;
+	}
+	$mode  = sanitize_key( $_GET['chuquipiondo_setup_done'] );
+	$msgs  = array(
+		'full_demo'     => __( 'Demo completa importada y tema configurado. Revisa tu sitio.', 'chuquipiondo-core' ),
+		'adapt'         => __( 'Contenido existente adaptado a la arquitectura del tema. Paginas, blog, articulos y menus reorganizados.', 'chuquipiondo-core' ),
+		'structure_only' => __( 'Estructura del tema aplicada (presets, widgets, menus y opciones). No se creo contenido nuevo.', 'chuquipiondo-core' ),
+	);
+	$msg = isset( $msgs[ $mode ] ) ? $msgs[ $mode ] : $msgs['structure_only'];
+	echo '<div class="notice notice-success"><p>' . esc_html( $msg ) . '</p></div>';
+}
+add_action( 'admin_notices', 'chuquipiondo_core_setup_done_notice' );
