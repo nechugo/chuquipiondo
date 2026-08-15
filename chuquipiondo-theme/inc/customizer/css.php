@@ -219,11 +219,11 @@ function chuquipiondo_dynamic_css() {
 	// Footer bottom layout.
 	$bottom_layout = chuquipiondo_get_option( 'footer_bottom_layout' );
 	$bottom_align = chuquipiondo_get_option( 'footer_bottom_align' );
-	$css .= ".footer-bottom{ padding: " . chuquipiondo_get_option( 'footer_bottom_padding_v' ) . "px 0; }\n";
+	// .footer-bottom eliminado: el padding ahora lo controlan .footer-menu-section y .footer-copyright-section.
 	if ( 'stacked' === $bottom_layout ) {
-		$css .= ".footer-bottom{ flex-direction: column; text-align: center; }\n";
+		// .footer-bottom eliminado (layout stacked ya no aplica).
 	} else {
-		$css .= ".footer-bottom{ justify-content: " . $bottom_align . "; }\n";
+		// .footer-bottom eliminado (justify ya no aplica).
 	}
 	$css .= ".footer-bottom a{ color: var(--footer-bottom-link); }\n";
 	$css .= ".footer-bottom a:hover{ color: var(--footer-bottom-link-hover); }\n";
@@ -258,13 +258,13 @@ function chuquipiondo_dynamic_css() {
 	$css .= ".site-footer a{ color: var(--footer-link); }\n";
 	$css .= ".site-footer a:hover{ color: var(--footer-link-hover); }\n";
 	$css .= ".footer-widget-title{ color: var(--footer-title-color); }\n";
-	$css .= ".footer-bottom{ background: var(--footer-bottom-bg); color: var(--footer-bottom-text); }\n";
+	// .footer-bottom eliminado: el fondo/color de cada seccion lo controlan .footer-menu-section y .footer-copyright-section.
 	$css .= ".site-footer{ padding-top: " . chuquipiondo_get_option( 'footer_padding_top' ) . "px; padding-bottom: " . chuquipiondo_get_option( 'footer_padding_bottom' ) . "px; }\n";
 	$css .= ".footer-widgets{ gap: " . chuquipiondo_get_option( 'footer_widget_gap' ) . "px; }\n";
 	$css .= ".site-footer{ font-size: " . chuquipiondo_get_option( 'footer_font_size' ) . "px; }\n";
 	$css .= ".footer-widget-title{ font-size: " . chuquipiondo_get_option( 'footer_title_size' ) . "px; }\n";
 	if ( chuquipiondo_is_enabled( 'footer_border_top' ) ) {
-		$css .= ".footer-bottom{ border-top: " . chuquipiondo_get_option( 'footer_border_top' ) . "px solid " . chuquipiondo_get_option( 'footer_border_color' ) . "; }\n";
+		// .footer-bottom eliminado (border-top ya no aplica).
 	}
 
 	// ===== Page dynamic styles =====

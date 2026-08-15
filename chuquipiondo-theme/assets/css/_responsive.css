@@ -112,10 +112,7 @@
 		text-align: center;
 	}
 
-	.footer-bottom {
-		flex-direction: column;
-		text-align: center;
-	}
+	/* .footer-bottom eliminado: ahora son .footer-menu-section y .footer-copyright-section */
 
 	.post-navigation__inner {
 		flex-direction: column;
