@@ -36,7 +36,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		.entry-thumbnail.single-article__thumbnail { aspect-ratio: 16/9; overflow: hidden; }
 		.entry-thumbnail.single-article__thumbnail img { width: 100%; height: 100%; aspect-ratio: 16/9; object-fit: cover; }
 		/* Tipografia del articulo controlada por theme.json + _base.css + _single.css (no forzar aqui: rompe legibilidad). */
-		.chuqui-layout.single-layout { margin-top: 25px; }
+		/* Gap header -> contenido (anti-FOUC; el valor real lo da _layout.css + Customizer). */
+		.chuqui-layout { margin-top: var(--header-content-gap, 25px); }
 		.chuqui-whatsapp svg { width: 55%; height: 55%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
 		.chuqui-whatsapp__icon { width: 100%; height: 100%; position: relative; }
 		.related-posts .post-card__media { aspect-ratio: 16/9; overflow: hidden; }

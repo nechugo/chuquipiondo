@@ -40,6 +40,8 @@
 	max-width: var(--container-width);
 	margin-inline: auto;
 	padding-inline: 1.5rem;
+	/* Gap entre el header (visible u oculto) y el cuerpo del contenido. */
+	margin-top: var(--header-content-gap, 25px);
 }
 
 .layout-right {
