@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Theme version, reused for cache-busting assets.
  */
-define( 'CHUQUIPIONDO_VERSION', '1.5.0' );
+define( 'CHUQUIPIONDO_VERSION', '1.6.0' );
 define( 'CHUQUIPIONDO_DIR', get_template_directory() );
 define( 'CHUQUIPONDO_URI', get_template_directory_uri() );
 
