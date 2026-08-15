@@ -28,16 +28,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<div class="header-topbar__right">
 			<?php
-			if ( has_nav_menu( 'topbar' ) ) {
-				wp_nav_menu( array(
-					'theme_location' => 'topbar',
-					'container'      => false,
-					'menu_class'     => 'topbar-menu',
-					'depth'          => 1,
-				) );
+			// Iconos sociales en el topbar (todos los que esten configurados).
+			$profiles = array(
+				'facebook'  => chuquipiondo_get_option( 'social_facebook' ),
+				'x'         => chuquipiondo_get_option( 'social_x' ),
+				'youtube'   => chuquipiondo_get_option( 'social_youtube' ),
+				'instagram' => chuquipiondo_get_option( 'social_instagram' ),
+				'linkedin'  => chuquipiondo_get_option( 'social_linkedin' ),
+				'telegram'  => chuquipiondo_get_option( 'social_telegram' ),
+				'tiktok'    => chuquipiondo_get_option( 'social_tiktok' ),
+			);
+			$has_any = false;
+			foreach ( $profiles as $url ) {
+				if ( ! empty( $url ) ) {
+					$has_any = true;
+					break;
+				}
 			}
+			if ( $has_any ) :
 			?>
-			<?php if ( chuquipiondo_get_option( 'social_youtube' ) || chuquipiondo_get_option( 'social_facebook' ) ) : ?>
 				<div class="topbar-socials">
 					<?php chuquipiondo_social_profiles_links(); ?>
 				</div>
