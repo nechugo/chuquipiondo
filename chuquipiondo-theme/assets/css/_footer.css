@@ -6,22 +6,26 @@
 	background: var(--footer-bg);
 	color: var(--footer-text);
 	margin-top: var(--space-16);
-	padding-top: var(--space-12);
 }
 
-.site-footer .chuqui-container {
-	padding-top: 0;
-}
-
-/* Seccion 1: Marca (about + social). Color desde el personalizador. */
+/* Seccion 1: Marca (about + social). Full-width; contenido a 1280px.
+   Altura personalizable desde el personalizador. */
 .footer-brand {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	min-height: var(--footer-brand-height, auto);
+	background: var(--footer-brand-bg, transparent);
+}
+
+.footer-brand .chuqui-container {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
 	gap: var(--space-4);
-	padding: var(--space-6) 0;
-	background: var(--footer-brand-bg, transparent);
+	padding-top: var(--footer-brand-padding, 24px);
+	padding-bottom: var(--footer-brand-padding, 24px);
 }
 
 .footer-about {
@@ -41,11 +45,18 @@
 	color: var(--navy-dark);
 }
 
-/* Seccion 2: Widgets. Color desde el personalizador. Se oculta si esta vacia. */
+/* Seccion 2: Widgets. Full-width; contenido a 1280px. Se oculta si esta vacia. */
 .footer-widgets {
+	width: 100%;
+	min-height: var(--footer-widgets-height, auto);
+	background: var(--footer-widgets-bg, transparent);
+}
+
+.footer-widgets .chuqui-container {
 	display: grid;
 	gap: var(--space-6);
-	padding: var(--space-6) 0;
+	padding-top: var(--footer-widgets-padding, 32px);
+	padding-bottom: var(--footer-widgets-padding, 32px);
 }
 
 .footer-widget h3,
@@ -78,13 +89,21 @@
 	color: var(--sky);
 }
 
-/* Seccion 3: Menu (antepenultimo). Sin fondo negro, color desde el personalizador. */
+/* Seccion 3: Menu (antepenultimo). Full-width; contenido a 1280px. */
 .footer-menu-section {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	min-height: var(--footer-menu-height, auto);
+	background: var(--footer-menu-bg, transparent);
+}
+
+.footer-menu-section .chuqui-container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: var(--space-4) 0;
-	background: var(--footer-menu-bg, transparent);
+	padding-top: var(--footer-menu-padding, 16px);
+	padding-bottom: var(--footer-menu-padding, 16px);
 }
 
 .footer-menu {
@@ -106,13 +125,21 @@
 	color: var(--sky);
 }
 
-/* Seccion 4: Copyright (al final). Color desde el personalizador. */
+/* Seccion 4: Copyright (al final). Full-width; contenido a 1280px. */
 .footer-copyright-section {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	min-height: var(--footer-copyright-height, auto);
+	background: var(--footer-copyright-bg, transparent);
+}
+
+.footer-copyright-section .chuqui-container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: var(--space-4) 0;
-	background: var(--footer-copyright-bg, transparent);
+	padding-top: var(--footer-copyright-padding, 16px);
+	padding-bottom: var(--footer-copyright-padding, 16px);
 }
 
 .footer-copyright {

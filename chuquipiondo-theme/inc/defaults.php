@@ -399,6 +399,14 @@ function chuquipiondo_defaults() {
 		'footer_brand_bg'        => 'transparent',    // fondo seccion marca
 		'footer_menu_bg'         => 'transparent',    // fondo seccion menu (antepenultimo)
 		'footer_copyright_bg'    => 'transparent',    // fondo seccion copyright (final)
+		'footer_brand_height'    => '0',              // px altura seccion marca (0 = auto)
+		'footer_brand_padding'   => '24',             // px padding V seccion marca
+		'footer_widgets_height'  => '0',              // px altura seccion widgets (0 = auto)
+		'footer_widgets_padding' => '32',             // px padding V seccion widgets
+		'footer_menu_height'     => '0',              // px altura seccion menu (0 = auto)
+		'footer_menu_padding'    => '16',             // px padding V seccion menu
+		'footer_copyright_height' => '0',             // px altura seccion copyright (0 = auto)
+		'footer_copyright_padding' => '16',           // px padding V seccion copyright
 		'footer_section_gap'     => '0',              // px entre widgets y bottom
 		/* Footer Design (Astra): tipografia y estilo de widgets */
 		'footer_title_weight'    => '700',

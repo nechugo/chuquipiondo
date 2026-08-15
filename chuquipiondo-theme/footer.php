@@ -22,28 +22,32 @@ $show_menu = chuquipiondo_is_enabled( 'footer_show_menu' );
 <?php chuquipiondo_ad_slot( 'ads_footer_before' ); ?>
 
 <footer id="colophon" class="site-footer">
-	<div class="chuqui-container">
-		<?php if ( ( $footer_about && $show_brand ) || $show_social ) : ?>
-			<div class="footer-brand">
-				<?php if ( $footer_about && $show_brand ) : ?>
-					<p class="footer-about footer-about-text"><?php echo esc_html( $footer_about ); ?></p>
-				<?php endif; ?>
-				<?php if ( $show_social ) : ?>
-					<div class="footer-social"><?php chuquipiondo_social_profiles_links(); ?></div>
-				<?php endif; ?>
-			</div>
-		<?php endif; ?>
+	<?php if ( ( $footer_about && $show_brand ) || $show_social ) : ?>
+	<div class="footer-brand">
+		<div class="chuqui-container">
+			<?php if ( $footer_about && $show_brand ) : ?>
+				<p class="footer-about footer-about-text"><?php echo esc_html( $footer_about ); ?></p>
+			<?php endif; ?>
+			<?php if ( $show_social ) : ?>
+				<div class="footer-social"><?php chuquipiondo_social_profiles_links(); ?></div>
+			<?php endif; ?>
+		</div>
+	</div>
+	<?php endif; ?>
 
-		<?php if ( is_active_sidebar( 'sidebar-footer' ) ) : ?>
-		<div class="footer-widgets">
+	<?php if ( is_active_sidebar( 'sidebar-footer' ) ) : ?>
+	<div class="footer-widgets">
+		<div class="chuqui-container">
 			<?php dynamic_sidebar( 'sidebar-footer' ); ?>
 		</div>
-		<?php endif; ?>
+	</div>
+	<?php endif; ?>
 
-		<?php chuquipiondo_ad_slot( 'ads_footer_between' ); ?>
+	<?php chuquipiondo_ad_slot( 'ads_footer_between' ); ?>
 
-		<?php if ( $show_menu && has_nav_menu( 'footer' ) ) : ?>
-		<nav class="footer-menu-section" aria-label="<?php esc_attr_e( 'Menu del pie de pagina', 'chuquipiondo' ); ?>">
+	<?php if ( $show_menu && has_nav_menu( 'footer' ) ) : ?>
+	<nav class="footer-menu-section" aria-label="<?php esc_attr_e( 'Menu del pie de pagina', 'chuquipiondo' ); ?>">
+		<div class="chuqui-container">
 			<?php
 			wp_nav_menu( array(
 				'theme_location' => 'footer',
@@ -52,15 +56,17 @@ $show_menu = chuquipiondo_is_enabled( 'footer_show_menu' );
 				'depth'          => 1,
 			) );
 			?>
-		</nav>
-		<?php endif; ?>
+		</div>
+	</nav>
+	<?php endif; ?>
 
-		<?php if ( $show_copyright ) : ?>
-		<div class="footer-copyright-section">
+	<?php if ( $show_copyright ) : ?>
+	<div class="footer-copyright-section">
+		<div class="chuqui-container">
 			<p class="footer-copyright"><?php echo esc_html( $copyright ); ?></p>
 		</div>
-		<?php endif; ?>
 	</div>
+	<?php endif; ?>
 </footer><!-- #colophon -->
 
 <?php chuquipiondo_ad_slot( 'ads_footer_after' ); ?>
