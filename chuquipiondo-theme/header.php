@@ -17,18 +17,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<?php
 	/**
-	 * CSS critico inline: garantiza que las correcciones de scroll,
-	 * sidebar, imagenes 16:9 y layout se apliquen SIEMPRE, incluso
-	 * si wp_head o los @import fallan.
+	 * CSS critico inline: previene el flash de scroll horizontal y fija
+	 * aspect-ratios de medios ANTES de que cargue la hoja de estilos.
 	 */
 	?>
 	<style id="chuquipiondo-critical-css">
-		/* Reglas estructurales anti-FOUC (scroll/overflow). Sin !important para no bloquear al Customizer. */
-		html { overflow-x: hidden; overflow-y: scroll; }
-		body { overflow-x: hidden; overflow-y: visible; }
-		#page { overflow-y: visible; overflow-x: hidden; }
-		.widget-area { overflow-y: hidden; scrollbar-width: none; -ms-overflow-style: none; }
-		.widget-area::-webkit-scrollbar { display: none; }
+		/* Reglas estructurales anti-FOUC (scroll horizontal). No forzar overflow-y en html/body:
+		   rompe la rueda del mouse cuando hay header fijo + hero 100vh (home). */
+		html { overflow-x: hidden; }
+		body { overflow-x: hidden; }
 		.layout-right .widget-area, .layout-left .widget-area { margin-inline: -5px; padding-inline: 5px; }
 		.entry-content.single-article__content img,
 		.entry-content.single-article__content figure img,
