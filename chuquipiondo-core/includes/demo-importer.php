@@ -113,6 +113,28 @@ function chuquipiondo_core_handle_demo_import() {
 	}
 
 	$demo_id = sanitize_key( $_POST['chuquipiondo_demo_id'] );
+	chuquipiondo_core_do_demo_import( $demo_id );
+
+	wp_safe_redirect( add_query_arg( 'chuquipiondo_demo_imported', '1', admin_url( 'admin.php?page=chuquipiondo-demo' ) ) );
+	exit;
+}
+add_action( 'admin_init', 'chuquipiondo_core_handle_demo_import' );
+
+/**
+ * Execute the demo import (without nonce checks or redirects).
+ * Called by both handle_demo_import() and the setup wizard.
+ *
+ * @param string $demo_id Demo ID to import.
+ */
+function chuquipiondo_core_do_demo_import( $demo_id ) {
+	$demos = chuquipiondo_core_get_demos();
+
+	if ( ! isset( $demos[ $demo_id ] ) ) {
+		return;
+	}
+
+	$demo    = $demos[ $demo_id ];
+	$content = $demo['content'];
 	$demos   = chuquipiondo_core_get_demos();
 
 	if ( ! isset( $demos[ $demo_id ] ) ) {
@@ -500,10 +522,7 @@ function chuquipiondo_core_handle_demo_import() {
 		chuquipiondo_apply_preset( 'original' );
 	}
 
-	wp_safe_redirect( add_query_arg( 'chuquipiondo_demo_imported', '1', admin_url( 'admin.php?page=chuquipiondo-demo' ) ) );
-	exit;
 }
-add_action( 'admin_init', 'chuquipiondo_core_handle_demo_import' );
 
 /**
  * Sideload an image from a URL and attach it to a post.
@@ -563,10 +582,9 @@ function chuquipiondo_core_handle_setup_wizard() {
 
 	switch ( $mode ) {
 		case 'full_demo':
-			// Simulate the editorial demo import.
-			$_POST['chuquipiondo_demo_id']     = 'editorial';
-			$_POST['chuquipiondo_demo_nonce']  = wp_create_nonce( 'chuquipiondo_demo_import' );
-			chuquipiondo_core_handle_demo_import();
+			// Import the editorial demo directly (no $_POST injection to avoid
+			// double execution via admin_init).
+			chuquipiondo_core_do_demo_import( 'editorial' );
 			break;
 
 		case 'adapt':
