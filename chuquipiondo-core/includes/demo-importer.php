@@ -255,6 +255,12 @@ function chuquipiondo_core_do_demo_import( $demo_id ) {
 			$rich_content .= '<blockquote><p>' . __( 'El exito no es la clave de la felicidad. La felicidad es la clave del exito. Si amas lo que estas haciendo, tendras exito.', 'chuquipiondo-core' ) . '</p></blockquote>';
 			$rich_content .= '<p>' . __( 'Finalmente, recuerda que el camino no es lineal. Habra obstaculos, dudas y momentos de dificultad. Pero cada paso, por pequeno que sea, te acerca a tu destino. !Juntos, si podemos!', 'chuquipiondo-core' ) . '</p>';
 
+			// Verificar si ya existe un post con ese titulo (evitar duplicados).
+			$existing_post = get_page_by_title( $adata['title'], OBJECT, 'post' );
+			if ( $existing_post ) {
+				$created_posts[] = $existing_post->ID;
+				continue;
+			}
 			$post_id = wp_insert_post( array(
 				'post_title'    => $adata['title'],
 				'post_content'  => $rich_content,
@@ -284,6 +290,10 @@ function chuquipiondo_core_do_demo_import( $demo_id ) {
 		$num_pages = min( $content['pages'], count( $page_data ) );
 		for ( $i = 0; $i < $num_pages; $i++ ) {
 			$pdata = $page_data[ $i ];
+			$existing_page = get_page_by_title( $pdata[0], OBJECT, 'page' );
+			if ( $existing_page ) {
+				continue;
+			}
 			wp_insert_post( array(
 				'post_title'   => $pdata[0],
 				'post_content' => $pdata[1],
@@ -308,6 +318,10 @@ function chuquipiondo_core_do_demo_import( $demo_id ) {
 		$num_music = min( $content['music'], count( $music_data ) );
 		for ( $i = 0; $i < $num_music; $i++ ) {
 			$mdata = $music_data[ $i ];
+			$existing_music = get_page_by_title( $mdata[0], OBJECT, 'musica' );
+			if ( $existing_music ) {
+				continue;
+			}
 			$music_id = wp_insert_post( array(
 				'post_title'   => $mdata[0],
 				'post_content' => '<p>' . sprintf( __( 'Letra de %s. Una cancion inspirada en la fe y el liderazgo con proposito.', 'chuquipiondo-core' ), $mdata[0] ) . '</p>',
