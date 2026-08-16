@@ -20,7 +20,7 @@ get_header();
 	$classes = chuquipiondo_get_layout_classes();
 	$layout  = chuquipiondo_get_option( 'page_layout' );
 
-	echo '<div class="chuqui-layout ' . esc_attr( $classes['wrap'] ) . ' page-layout page-layout--' . esc_attr( sanitize_html_class( $layout ) ) . '" style="margin-top: var(--header-content-gap, 25px);">';
+	echo '<div class="chuqui-layout ' . esc_attr( $classes['wrap'] ) . ' page-layout page-layout--' . esc_attr( sanitize_html_class( $layout ) ) . '">';
 
 	while ( have_posts() ) :
 		the_post();

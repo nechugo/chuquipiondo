@@ -43,10 +43,6 @@ function chuquipiondo_dynamic_css() {
 		'sidebar-width'   => chuquipiondo_get_option( 'sidebar_width' ) . 'px',
 		'radius-content'  => chuquipiondo_get_option( 'content_radius' ) . 'px',
 		'radius-button'     => chuquipiondo_get_option( 'button_radius' ) . 'px',
-		'button-bg'         => chuquipiondo_get_option( 'button_bg' ),
-		'button-text'       => chuquipiondo_get_option( 'button_text' ),
-		'button-hover-bg'   => chuquipiondo_get_option( 'button_hover_bg' ),
-		'button-hover-text' => chuquipiondo_get_option( 'button_hover_text' ),
 		'button-width'      => chuquipiondo_get_option( 'button_width' ) . 'px',
 		'button-width-pct'  => chuquipiondo_get_option( 'button_width_percent' ) . '%',
 		'button-height'     => chuquipiondo_get_option( 'button_height' ) . 'px',
@@ -66,6 +62,7 @@ function chuquipiondo_dynamic_css() {
 	// Header colors (Astra-style per-row customization).
 	$vars['topbar-bg']           = chuquipiondo_get_option( 'header_topbar_bg' );
 	$vars['topbar-text']         = chuquipiondo_get_option( 'header_topbar_text' );
+	$vars['topbar-gap']          = chuquipiondo_get_option( 'header_topbar_gap' ) . 'px';
 	$vars['topbar-link']         = chuquipiondo_get_option( 'header_topbar_link' );
 	$vars['header-main-bg']      = chuquipiondo_get_option( 'header_main_bg' );
 	$vars['header-main-text']     = chuquipiondo_get_option( 'header_main_text' );
@@ -95,8 +92,23 @@ function chuquipiondo_dynamic_css() {
 	$vars['footer-bottom-bg']     = chuquipiondo_get_option( 'footer_bottom_bg' );
 	$vars['footer-bottom-text']   = chuquipiondo_get_option( 'footer_bottom_text' );
 
-	// Footer Design variables.
+	// Footer Design variables (color por seccion: marca, widgets, menu, copyright).
+	$vars['footer-brand-bg']        = chuquipiondo_get_option( 'footer_brand_bg' );
 	$vars['footer-widgets-bg']      = chuquipiondo_get_option( 'footer_widgets_bg' );
+	$vars['footer-menu-bg']         = chuquipiondo_get_option( 'footer_menu_bg' );
+	$vars['footer-copyright-bg']    = chuquipiondo_get_option( 'footer_copyright_bg' );
+	$fb_h = (int) chuquipiondo_get_option( 'footer_brand_height' );
+	$fw_h = (int) chuquipiondo_get_option( 'footer_widgets_height' );
+	$fm_h = (int) chuquipiondo_get_option( 'footer_menu_height' );
+	$fc_h = (int) chuquipiondo_get_option( 'footer_copyright_height' );
+	$vars['footer-brand-height']     = $fb_h > 0 ? $fb_h . 'px' : 'auto';
+	$vars['footer-brand-padding']    = chuquipiondo_get_option( 'footer_brand_padding' ) . 'px';
+	$vars['footer-widgets-height']   = $fw_h > 0 ? $fw_h . 'px' : 'auto';
+	$vars['footer-widgets-padding']  = chuquipiondo_get_option( 'footer_widgets_padding' ) . 'px';
+	$vars['footer-menu-height']      = $fm_h > 0 ? $fm_h . 'px' : 'auto';
+	$vars['footer-menu-padding']     = chuquipiondo_get_option( 'footer_menu_padding' ) . 'px';
+	$vars['footer-copyright-height'] = $fc_h > 0 ? $fc_h . 'px' : 'auto';
+	$vars['footer-copyright-padding'] = chuquipiondo_get_option( 'footer_copyright_padding' ) . 'px';
 	$vars['footer-widget-bg']       = chuquipiondo_get_option( 'footer_widget_bg' );
 	$vars['footer-widget-border-c'] = chuquipiondo_get_option( 'footer_widget_border_color' );
 	$vars['footer-bottom-link']    = chuquipiondo_get_option( 'footer_bottom_link' );
@@ -115,6 +127,12 @@ function chuquipiondo_dynamic_css() {
 
 	// Single + Page layout variables.
 	$vars['header-content-gap'] = chuquipiondo_get_option( 'header_content_gap' ) . 'px';
+	// Tipografia del contenido del articulo (configurable desde el personalizador).
+	$sc_font = chuquipiondo_get_option( 'single_content_font' );
+	$vars['single-content-font']   = '' !== $sc_font ? chuquipiondo_font_stack( $sc_font ) : 'var(--font-body)';
+	$vars['single-content-size']   = chuquipiondo_get_option( 'single_content_size' ) . 'px';
+	$vars['single-content-weight'] = chuquipiondo_get_option( 'single_content_weight' );
+	$vars['single-content-lh']     = chuquipiondo_get_option( 'single_content_line_height' );
 	$vars['related-gap']       = chuquipiondo_get_option( 'single_related_gap' ) . 'px';
 
 	// Sticky header colors.
@@ -186,6 +204,9 @@ function chuquipiondo_dynamic_css() {
 	$footer_w_css = 'full' === $footer_width ? 'max-width: 100%;' : 'max-width: var(--container-width); margin-inline: auto;';
 	$css .= ".site-footer .chuqui-container{ " . $footer_w_css . " }\n";
 	$css .= ".footer-widgets{ background: var(--footer-widgets-bg); }\n";
+	$css .= ".footer-brand{ background: var(--footer-brand-bg); }\n";
+	$css .= ".footer-menu-section{ background: var(--footer-menu-bg); }\n";
+	$css .= ".footer-copyright-section{ background: var(--footer-copyright-bg); }\n";
 	$css .= ".footer-widgets{ grid-template-columns: repeat(" . chuquipiondo_get_option( 'footer_widget_layout' ) . ", minmax(0, 1fr)); }\n";
 	$css .= ".footer-widget{ background: var(--footer-widget-bg); padding: " . chuquipiondo_get_option( 'footer_widget_padding_v' ) . "px " . chuquipiondo_get_option( 'footer_widget_padding_h' ) . "px; border-radius: " . chuquipiondo_get_option( 'footer_widget_radius' ) . "px; border-width: " . chuquipiondo_get_option( 'footer_widget_border' ) . "px; border-color: var(--footer-widget-border-c); }\n";
 	if ( chuquipiondo_is_enabled( 'footer_widget_shadow' ) ) {
@@ -198,11 +219,11 @@ function chuquipiondo_dynamic_css() {
 	// Footer bottom layout.
 	$bottom_layout = chuquipiondo_get_option( 'footer_bottom_layout' );
 	$bottom_align = chuquipiondo_get_option( 'footer_bottom_align' );
-	$css .= ".footer-bottom{ padding: " . chuquipiondo_get_option( 'footer_bottom_padding_v' ) . "px 0; }\n";
+	// .footer-bottom eliminado: el padding ahora lo controlan .footer-menu-section y .footer-copyright-section.
 	if ( 'stacked' === $bottom_layout ) {
-		$css .= ".footer-bottom{ flex-direction: column; text-align: center; }\n";
+		// .footer-bottom eliminado (layout stacked ya no aplica).
 	} else {
-		$css .= ".footer-bottom{ justify-content: " . $bottom_align . "; }\n";
+		// .footer-bottom eliminado (justify ya no aplica).
 	}
 	$css .= ".footer-bottom a{ color: var(--footer-bottom-link); }\n";
 	$css .= ".footer-bottom a:hover{ color: var(--footer-bottom-link-hover); }\n";
@@ -237,24 +258,27 @@ function chuquipiondo_dynamic_css() {
 	$css .= ".site-footer a{ color: var(--footer-link); }\n";
 	$css .= ".site-footer a:hover{ color: var(--footer-link-hover); }\n";
 	$css .= ".footer-widget-title{ color: var(--footer-title-color); }\n";
-	$css .= ".footer-bottom{ background: var(--footer-bottom-bg); color: var(--footer-bottom-text); }\n";
+	// .footer-bottom eliminado: el fondo/color de cada seccion lo controlan .footer-menu-section y .footer-copyright-section.
 	$css .= ".site-footer{ padding-top: " . chuquipiondo_get_option( 'footer_padding_top' ) . "px; padding-bottom: " . chuquipiondo_get_option( 'footer_padding_bottom' ) . "px; }\n";
 	$css .= ".footer-widgets{ gap: " . chuquipiondo_get_option( 'footer_widget_gap' ) . "px; }\n";
 	$css .= ".site-footer{ font-size: " . chuquipiondo_get_option( 'footer_font_size' ) . "px; }\n";
 	$css .= ".footer-widget-title{ font-size: " . chuquipiondo_get_option( 'footer_title_size' ) . "px; }\n";
 	if ( chuquipiondo_is_enabled( 'footer_border_top' ) ) {
-		$css .= ".footer-bottom{ border-top: " . chuquipiondo_get_option( 'footer_border_top' ) . "px solid " . chuquipiondo_get_option( 'footer_border_color' ) . "; }\n";
+		// .footer-bottom eliminado (border-top ya no aplica).
 	}
 
 	// ===== Page dynamic styles =====
 	$css .= ".single-page{ background: " . chuquipiondo_get_option( 'page_bg_color' ) . "; }\n";
 	$css .= ".single-page .entry-title{ color: " . chuquipiondo_get_option( 'page_title_color' ) . "; }\n";
 	$css .= ".related-posts__grid{ grid-template-columns: repeat(" . chuquipiondo_get_option( 'single_related_columns' ) . ", minmax(0, 1fr)); }\n";
+	// Tipografia del contenido del articulo (desde el personalizador).
+	$css .= ".entry-content.single-article__content{ font-family: var(--single-content-font); font-size: var(--single-content-size); font-weight: var(--single-content-weight); line-height: var(--single-content-lh); }\n";
+	$css .= ".entry-content.single-article__content > p{ font-size: var(--single-content-size); font-weight: var(--single-content-weight); line-height: var(--single-content-lh); }\n";
 	$related_count = (int) chuquipiondo_get_option( 'single_related_rows' ) * (int) chuquipiondo_get_option( 'single_related_columns' );
 	$css .= ".related-posts__grid > *:nth-child(n+" . ($related_count + 1) . "){ display: none; }\n";
 
 	// ===== Single post dynamic styles =====
-	$css .= ".entry-content.single-article__content{ line-height: " . chuquipiondo_get_option( 'single_line_height' ) . "; }\n";
+	// line-height del contenido ahora controlado por single_content_line_height (mas arriba).
 	$css .= ".entry-content.single-article__content h1, .entry-content.single-article__content h2, .entry-content.single-article__content h3, .entry-content.single-article__content h4, .entry-content.single-article__content h5, .entry-content.single-article__content h6{ margin-top: " . chuquipiondo_get_option( 'single_heading_gap' ) . "px; margin-bottom: " . chuquipiondo_get_option( 'single_para_gap' ) . "px; }\n";
 	$css .= ".entry-content.single-article__content p{ margin-bottom: " . chuquipiondo_get_option( 'single_para_gap' ) . "px; }\n";
 	$css .= ".related-posts__grid{ grid-template-columns: repeat(" . chuquipiondo_get_option( 'single_related_columns' ) . ", minmax(0, 1fr)); gap: " . chuquipiondo_get_option( 'single_related_gap' ) . "px; }\n";

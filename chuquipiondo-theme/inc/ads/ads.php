@@ -127,8 +127,11 @@ function chuquipiondo_insert_ads_in_content( $content ) {
 		return $content; // Too short for mid-content ads.
 	}
 
+	// Puntos de insercion dentro del contenido del articulo.
+	// Secuencia: despues de la imagen del post, contar 4 lineas de texto,
+	// en la 6ta linea va la primera caja de Ads. El slot 3 se maneja fuera
+	// del filtro (via .article-row en single.php), asi que no se inserta aqui.
 	$insertion_points = array_filter( array(
-		3 => chuquipiondo_get_option( 'ads_after_paragraph_3' ),
 		6 => chuquipiondo_get_option( 'ads_after_paragraph_6' ),
 		8 => chuquipiondo_get_option( 'ads_after_paragraph_8' ),
 	) );

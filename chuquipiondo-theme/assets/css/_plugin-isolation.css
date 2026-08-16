@@ -80,21 +80,15 @@
 	}
 }
 
-/* CRITICAL: Only prevent horizontal overflow. Vertical scroll MUST work. */
+/* CRITICAL: Only prevent horizontal overflow. Vertical scroll MUST work.
+   No forzar overflow-y en html/body: rompe la rueda del mouse cuando hay
+   header fijo + contenido a altura completa. Solo overflow-x: hidden. */
 html {
 	overflow-x: hidden;
-	overflow-y: scroll !important;
 }
 
 body {
 	max-width: 100vw;
 	overflow-x: hidden;
-	overflow-y: visible !important;
 	position: relative;
-}
-
-/* Ensure the page can always scroll vertically. */
-#page {
-	overflow-y: visible !important;
-	overflow-x: hidden;
 }

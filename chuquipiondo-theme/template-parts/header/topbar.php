@@ -12,32 +12,46 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="header-topbar">
 	<div class="chuqui-container header-topbar__inner">
 		<div class="header-topbar__left">
-			<?php if ( chuquipiondo_is_enabled( 'header_topbar_date' ) ) : ?>
-				<span class="topbar-date"><?php echo esc_html( wp_date( 'l, j F Y' ) ); ?></span>
-			<?php endif; ?>
-			<?php if ( chuquipiondo_is_enabled( 'header_topbar_time' ) ) : ?>
-				<span class="topbar-time"><?php echo esc_html( wp_date( 'H:i' ) ); ?></span>
-			<?php endif; ?>
 			<?php
+			// Construir la lista de elementos visibles del topbar (hora, fecha, email).
+			$topbar_items = array();
+			if ( chuquipiondo_is_enabled( 'header_topbar_time' ) ) {
+				$topbar_items[] = '<span class="topbar-time">' . esc_html( wp_date( 'g:i:s A' ) ) . '</span>';
+			}
+			if ( chuquipiondo_is_enabled( 'header_topbar_date' ) ) {
+				$topbar_items[] = '<span class="topbar-date">' . esc_html( wp_date( 'l, j F Y' ) ) . '</span>';
+			}
 			$email = chuquipiondo_get_option( 'header_topbar_email' );
-			if ( $email ) :
-				?>
-				<a class="topbar-email" href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( $email ); ?></a>
-			<?php endif; ?>
+			if ( $email ) {
+				$topbar_items[] = '<a class="topbar-email" href="mailto:' . esc_attr( $email ) . '">' . esc_html( $email ) . '</a>';
+			}
+			// Imprimir los elementos separados por una barra |.
+			$sep = '<span class="topbar-sep" aria-hidden="true">|</span>';
+			echo wp_kses_post( implode( ' ' . $sep . ' ', $topbar_items ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped above.
+			?>
 		</div>
 
 		<div class="header-topbar__right">
 			<?php
-			if ( has_nav_menu( 'topbar' ) ) {
-				wp_nav_menu( array(
-					'theme_location' => 'topbar',
-					'container'      => false,
-					'menu_class'     => 'topbar-menu',
-					'depth'          => 1,
-				) );
+			// Iconos sociales en el topbar (todos los que esten configurados).
+			$profiles = array(
+				'facebook'  => chuquipiondo_get_option( 'social_facebook' ),
+				'x'         => chuquipiondo_get_option( 'social_x' ),
+				'youtube'   => chuquipiondo_get_option( 'social_youtube' ),
+				'instagram' => chuquipiondo_get_option( 'social_instagram' ),
+				'linkedin'  => chuquipiondo_get_option( 'social_linkedin' ),
+				'telegram'  => chuquipiondo_get_option( 'social_telegram' ),
+				'tiktok'    => chuquipiondo_get_option( 'social_tiktok' ),
+			);
+			$has_any = false;
+			foreach ( $profiles as $url ) {
+				if ( ! empty( $url ) ) {
+					$has_any = true;
+					break;
+				}
 			}
+			if ( $has_any ) :
 			?>
-			<?php if ( chuquipiondo_get_option( 'social_youtube' ) || chuquipiondo_get_option( 'social_facebook' ) ) : ?>
 				<div class="topbar-socials">
 					<?php chuquipiondo_social_profiles_links(); ?>
 				</div>

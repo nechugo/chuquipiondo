@@ -6,22 +6,26 @@
 	background: var(--footer-bg);
 	color: var(--footer-text);
 	margin-top: var(--space-16);
-	padding-top: var(--space-12);
 }
 
-.site-footer .chuqui-container {
-	padding-top: 0;
-}
-
+/* Seccion 1: Marca (about + social). Full-width; contenido a 1280px.
+   Altura personalizable desde el personalizador. */
 .footer-brand {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	min-height: var(--footer-brand-height, auto);
+	background: var(--footer-brand-bg, transparent);
+}
+
+.footer-brand .chuqui-container {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
 	gap: var(--space-4);
-	padding-bottom: var(--space-6);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-	margin-bottom: var(--space-6);
+	padding-top: var(--footer-brand-padding, 24px);
+	padding-bottom: var(--footer-brand-padding, 24px);
 }
 
 .footer-about {
@@ -41,10 +45,18 @@
 	color: var(--navy-dark);
 }
 
+/* Seccion 2: Widgets. Full-width; contenido a 1280px. Se oculta si esta vacia. */
 .footer-widgets {
+	width: 100%;
+	min-height: var(--footer-widgets-height, auto);
+	background: var(--footer-widgets-bg, transparent);
+}
+
+.footer-widgets .chuqui-container {
 	display: grid;
 	gap: var(--space-6);
-	padding-bottom: var(--space-6);
+	padding-top: var(--footer-widgets-padding, 32px);
+	padding-bottom: var(--footer-widgets-padding, 32px);
 }
 
 .footer-widget h3,
@@ -77,20 +89,21 @@
 	color: var(--sky);
 }
 
-.footer-bottom {
+/* Seccion 3: Menu (antepenultimo). Full-width; contenido a 1280px. */
+.footer-menu-section {
+	width: 100%;
 	display: flex;
-	flex-wrap: wrap;
 	align-items: center;
-	justify-content: space-between;
-	gap: var(--space-3);
-	padding: var(--space-5) 0;
-	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	min-height: var(--footer-menu-height, auto);
+	background: var(--footer-menu-bg, transparent);
 }
 
-.footer-copyright {
-	margin: 0;
-	font-size: 0.875rem;
-	opacity: 0.75;
+.footer-menu-section .chuqui-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: var(--footer-menu-padding, 16px);
+	padding-bottom: var(--footer-menu-padding, 16px);
 }
 
 .footer-menu {
@@ -103,10 +116,34 @@
 }
 
 .footer-menu a {
-	color: rgba(255, 255, 255, 0.85);
-	font-size: 0.875rem;
+	color: var(--footer-text, rgba(255, 255, 255, 0.85));
+	font-size: 10px;
+	text-decoration: none;
 }
 
 .footer-menu a:hover {
 	color: var(--sky);
+}
+
+/* Seccion 4: Copyright (al final). Full-width; contenido a 1280px. */
+.footer-copyright-section {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	min-height: var(--footer-copyright-height, auto);
+	background: var(--footer-copyright-bg, transparent);
+}
+
+.footer-copyright-section .chuqui-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: var(--footer-copyright-padding, 16px);
+	padding-bottom: var(--footer-copyright-padding, 16px);
+}
+
+.footer-copyright {
+	margin: 0;
+	font-size: 10px;
+	opacity: 0.75;
 }

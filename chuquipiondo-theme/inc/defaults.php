@@ -128,8 +128,9 @@ function chuquipiondo_defaults() {
 		'header_topbar_widget_shadow' => '0',
 		'header_topbar_layout'       => 'left-right',   // left-right | center | left-only | right-only
 		'header_topbar_date'     => '1',
-		'header_topbar_time'     => '0',
+		'header_topbar_time'     => '1',
 		'header_topbar_email'    => 'contacto@chuquipiondo.com',
+		'header_topbar_gap'     => '4',              // px de gap a cada lado del separador |
 		'header_main_sticky'     => '1',
 		'header_sticky_mode'     => 'main',      // main | full (todo el header o solo main)
 		'header_sticky_desktop'  => '1',          // sticky en desktop
@@ -396,7 +397,22 @@ function chuquipiondo_defaults() {
 		'footer_bottom_align'    => 'space-between',  // left | center | right | space-between
 		'footer_bottom_padding_v'=> '16',             // px
 		'footer_widgets_bg'      => 'transparent',    // fondo seccion widgets (separado del bottom)
+		'footer_brand_bg'        => 'transparent',    // fondo seccion marca
+		'footer_menu_bg'         => 'transparent',    // fondo seccion menu (antepenultimo)
+		'footer_copyright_bg'    => 'transparent',    // fondo seccion copyright (final)
+		'footer_brand_height'    => '0',              // px altura seccion marca (0 = auto)
+		'footer_brand_padding'   => '24',             // px padding V seccion marca
+		'footer_widgets_height'  => '0',              // px altura seccion widgets (0 = auto)
+		'footer_widgets_padding' => '32',             // px padding V seccion widgets
+		'footer_menu_height'     => '0',              // px altura seccion menu (0 = auto)
+		'footer_menu_padding'    => '16',             // px padding V seccion menu
+		'footer_copyright_height' => '0',             // px altura seccion copyright (0 = auto)
+		'footer_copyright_padding' => '16',           // px padding V seccion copyright
 		'footer_section_gap'     => '0',              // px entre widgets y bottom
+		'single_content_font'    => '',               // '' = hereda font_body; si no, slug de fuente
+		'single_content_size'    => '17',             // px tamaño del texto del articulo
+		'single_content_weight'  => '400',            // peso del texto del articulo
+		'single_content_line_height' => '1.7',        // interlineado del contenido
 		/* Footer Design (Astra): tipografia y estilo de widgets */
 		'footer_title_weight'    => '700',
 		'footer_title_transform' => 'none',           // none | uppercase | capitalize

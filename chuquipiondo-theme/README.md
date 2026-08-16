@@ -6,7 +6,7 @@ Un tema WordPress profesional, ligero, elegante y **real** (instalable y adminis
 
 - **Tema padre:** `chuquipiondo-theme`
 - **Tema hijo:** `chuquipiondo-child`
-- **Versión:** 1.0.0
+- **Versión:** 1.6.0
 - **Requiere WordPress:** 6.2+
 - **Requiere PHP:** 7.4+
 - **Autor:** Nelson Chuquipiondo

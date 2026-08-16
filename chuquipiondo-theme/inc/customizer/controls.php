@@ -85,3 +85,35 @@ class Chuquipiondo_Slides_Control extends WP_Customize_Control {
 	}
 }
 } // end if class_exists
+
+/**
+ * Enqueue the range-slider enhancement for all range controls.
+ *
+ * Shows the live numeric value and a "Cancelar" (reset to default)
+ * button next to every range input in the Customizer.
+ */
+function chuquipiondo_enqueue_range_controls_script() {
+	wp_enqueue_script(
+		'chuquipiondo-customizer-range',
+		CHUQUIPONDO_URI . '/assets/js/customizer-range.js',
+		array( 'jquery', 'customize-controls' ),
+		chuquipiondo_asset_version( 'assets/js/customizer-range.js' ),
+		true
+	);
+
+	// Pass the default values so the "Cancelar" button can restore them.
+	$defaults = chuquipiondo_defaults();
+	$range_defaults = array();
+	foreach ( $defaults as $key => $value ) {
+		if ( is_numeric( $value ) ) {
+			$range_defaults[ $key ] = $value;
+		}
+	}
+	wp_localize_script(
+		'chuquipiondo-customizer-range',
+		'chuquipiondoRangeDefaults',
+		$range_defaults
+	);
+}
+add_action( 'customize_controls_enqueue_scripts', 'chuquipiondo_enqueue_range_controls_script' );
+

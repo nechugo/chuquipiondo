@@ -175,8 +175,17 @@
 .header-topbar__right {
 	display: flex;
 	align-items: center;
-	gap: var(--space-4);
+	gap: var(--topbar-gap, 4px);
 	flex-wrap: wrap;
+}
+
+/* Separador | entre elementos del topbar (hora, fecha, email, etc.).
+   El gap a cada lado es configurable desde el personalizador. */
+.topbar-sep {
+	display: inline-block;
+	padding-inline: var(--topbar-gap, 4px);
+	opacity: 0.5;
+	user-select: none;
 }
 
 .topbar-date,

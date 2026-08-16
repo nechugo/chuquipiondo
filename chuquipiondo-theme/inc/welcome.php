@@ -48,6 +48,13 @@ add_action( 'admin_init', 'chuquipiondo_welcome_redirect' );
  */
 function chuquipiondo_set_welcome_transient() {
 	set_transient( 'chuquipiondo_welcome_redirect', 1, 30 );
+	// Marcar como primera activacion si la opcion no existe (instalacion nueva).
+	if ( ! get_option( 'chuquipiondo_theme_activated' ) ) {
+		update_option( 'chuquipiondo_theme_activated', 'first', false );
+	} else {
+		// Ya hubo activaciones anteriores: marcar como reactivacion.
+		update_option( 'chuquipiondo_theme_activated', 'reactivated', false );
+	}
 }
 add_action( 'after_switch_theme', 'chuquipiondo_set_welcome_transient' );
 
@@ -88,6 +95,70 @@ function chuquipiondo_welcome_render() {
 			<p class="chuquipiondo-welcome__tagline"><?php esc_html_e( 'Liderazgo, Gestion y Formacion con proposito.', 'chuquipiondo' ); ?></p>
 			<p class="chuquipiondo-welcome__version">v<?php echo esc_html( CHUQUIPIONDO_VERSION ); ?> · <?php esc_html_e( 'por Nelson Chuquipiondo', 'chuquipiondo' ); ?></p>
 		</div>
+
+		<?php
+		// Asistente de configuracion: detecta primera instalacion vs reactivacion.
+		$activation_state = get_option( 'chuquipiondo_theme_activated', 'first' );
+		$setup_done = get_option( 'chuquipiondo_setup_done', false );
+		if ( ! $setup_done ) :
+			$is_first = ( 'first' === $activation_state );
+			?>
+			<div class="chuquipiondo-welcome__setup notice notice-info">
+				<h2><span class="dashicons dashicons-welcome-add-page"></span>
+					<?php
+					if ( $is_first ) {
+						esc_html_e( 'Bienvenido a CHUQUIPIONDO', 'chuquipiondo' );
+					} else {
+						esc_html_e( 'CHUQUIPIONDO reactivado', 'chuquipiondo' );
+					}
+					?>
+				</h2>
+				<p>
+					<?php
+					if ( $is_first ) {
+						esc_html_e( 'Esta es la primera vez que activas el tema. Elige como quieres comenzar: instalar la demo completa con contenido de ejemplo, o solo la estructura del tema (sin contenido).', 'chuquipiondo' );
+					} else {
+						esc_html_e( 'Detectamos que ya habias activado CHUQUIPIONDO antes. Puedes importar la demo completa, o adaptar tu contenido existente a la arquitectura del tema (paginas, blog, articulos, menus y barras se reorganizaran automaticamente).', 'chuquipiondo' );
+					}
+					?>
+				</p>
+				<div class="chuquipiondo-welcome__setup-options">
+					<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="display:inline-block;max-width:48%;vertical-align:top;margin-right:1%;">
+						<input type="hidden" name="action" value="chuquipiondo_setup_wizard">
+						<input type="hidden" name="chuquipiondo_setup_mode" value="full_demo">
+						<?php wp_nonce_field( 'chuquipiondo_setup_wizard', 'chuquipiondo_nonce' ); ?>
+						<h3><?php esc_html_e( 'Instalar Demo Completa', 'chuquipiondo' ); ?></h3>
+						<p><?php esc_html_e( 'Importa contenido de ejemplo (articulos con imagenes, paginas, musica), ads ficticios y configura todo el tema automaticamente. Ideal para empezar desde cero.', 'chuquipiondo' ); ?></p>
+						<button type="submit" class="button button-primary button-large">
+							<?php esc_html_e( 'Importar demo y estructura', 'chuquipiondo' ); ?>
+						</button>
+					</form>
+					<?php if ( ! $is_first ) : ?>
+					<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="display:inline-block;max-width:48%;vertical-align:top;">
+						<input type="hidden" name="action" value="chuquipiondo_setup_wizard">
+						<input type="hidden" name="chuquipiondo_setup_mode" value="adapt">
+						<?php wp_nonce_field( 'chuquipiondo_setup_wizard', 'chuquipiondo_nonce' ); ?>
+						<h3><?php esc_html_e( 'Adaptar Contenido Existente', 'chuquipiondo' ); ?></h3>
+						<p><?php esc_html_e( 'Reorganiza y adapta tu contenido actual (paginas, blog, articulos, menus, barras laterales) a la arquitectura del tema. No crea contenido nuevo, solo reestructura el existente.', 'chuquipiondo' ); ?></p>
+						<button type="submit" class="button button-large">
+							<?php esc_html_e( 'Solo adaptar estructura del tema', 'chuquipiondo' ); ?>
+						</button>
+					</form>
+				<?php else : ?>
+					<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="display:inline-block;max-width:48%;vertical-align:top;">
+						<input type="hidden" name="action" value="chuquipiondo_setup_wizard">
+						<input type="hidden" name="chuquipiondo_setup_mode" value="structure_only">
+						<?php wp_nonce_field( 'chuquipiondo_setup_wizard', 'chuquipiondo_nonce' ); ?>
+						<h3><?php esc_html_e( 'Solo Estructura', 'chuquipiondo' ); ?></h3>
+						<p><?php esc_html_e( 'Configura el tema (presets, menus, widgets, opciones) sin crear ningun contenido. Para cuando ya tienes tu propio contenido.', 'chuquipiondo' ); ?></p>
+						<button type="submit" class="button button-large">
+							<?php esc_html_e( 'Solo estructura de plantilla', 'chuquipiondo' ); ?>
+						</button>
+					</form>
+				<?php endif; ?>
+				</div>
+			</div>
+		<?php endif; ?>
 
 		<div class="chuquipiondo-welcome__grid">
 
