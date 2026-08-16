@@ -113,6 +113,28 @@ function chuquipiondo_core_handle_demo_import() {
 	}
 
 	$demo_id = sanitize_key( $_POST['chuquipiondo_demo_id'] );
+	chuquipiondo_core_do_demo_import( $demo_id );
+
+	wp_safe_redirect( add_query_arg( 'chuquipiondo_demo_imported', '1', admin_url( 'admin.php?page=chuquipiondo-demo' ) ) );
+	exit;
+}
+add_action( 'admin_init', 'chuquipiondo_core_handle_demo_import' );
+
+/**
+ * Execute the demo import (without nonce checks or redirects).
+ * Called by both handle_demo_import() and the setup wizard.
+ *
+ * @param string $demo_id Demo ID to import.
+ */
+function chuquipiondo_core_do_demo_import( $demo_id ) {
+	$demos = chuquipiondo_core_get_demos();
+
+	if ( ! isset( $demos[ $demo_id ] ) ) {
+		return;
+	}
+
+	$demo    = $demos[ $demo_id ];
+	$content = $demo['content'];
 	$demos   = chuquipiondo_core_get_demos();
 
 	if ( ! isset( $demos[ $demo_id ] ) ) {
@@ -233,6 +255,12 @@ function chuquipiondo_core_handle_demo_import() {
 			$rich_content .= '<blockquote><p>' . __( 'El exito no es la clave de la felicidad. La felicidad es la clave del exito. Si amas lo que estas haciendo, tendras exito.', 'chuquipiondo-core' ) . '</p></blockquote>';
 			$rich_content .= '<p>' . __( 'Finalmente, recuerda que el camino no es lineal. Habra obstaculos, dudas y momentos de dificultad. Pero cada paso, por pequeno que sea, te acerca a tu destino. !Juntos, si podemos!', 'chuquipiondo-core' ) . '</p>';
 
+			// Verificar si ya existe un post con ese titulo (evitar duplicados).
+			$existing_post = get_page_by_title( $adata['title'], OBJECT, 'post' );
+			if ( $existing_post ) {
+				$created_posts[] = $existing_post->ID;
+				continue;
+			}
 			$post_id = wp_insert_post( array(
 				'post_title'    => $adata['title'],
 				'post_content'  => $rich_content,
@@ -262,6 +290,10 @@ function chuquipiondo_core_handle_demo_import() {
 		$num_pages = min( $content['pages'], count( $page_data ) );
 		for ( $i = 0; $i < $num_pages; $i++ ) {
 			$pdata = $page_data[ $i ];
+			$existing_page = get_page_by_title( $pdata[0], OBJECT, 'page' );
+			if ( $existing_page ) {
+				continue;
+			}
 			wp_insert_post( array(
 				'post_title'   => $pdata[0],
 				'post_content' => $pdata[1],
@@ -286,6 +318,10 @@ function chuquipiondo_core_handle_demo_import() {
 		$num_music = min( $content['music'], count( $music_data ) );
 		for ( $i = 0; $i < $num_music; $i++ ) {
 			$mdata = $music_data[ $i ];
+			$existing_music = get_page_by_title( $mdata[0], OBJECT, 'musica' );
+			if ( $existing_music ) {
+				continue;
+			}
 			$music_id = wp_insert_post( array(
 				'post_title'   => $mdata[0],
 				'post_content' => '<p>' . sprintf( __( 'Letra de %s. Una cancion inspirada en la fe y el liderazgo con proposito.', 'chuquipiondo-core' ), $mdata[0] ) . '</p>',
@@ -500,10 +536,7 @@ function chuquipiondo_core_handle_demo_import() {
 		chuquipiondo_apply_preset( 'original' );
 	}
 
-	wp_safe_redirect( add_query_arg( 'chuquipiondo_demo_imported', '1', admin_url( 'admin.php?page=chuquipiondo-demo' ) ) );
-	exit;
 }
-add_action( 'admin_init', 'chuquipiondo_core_handle_demo_import' );
 
 /**
  * Sideload an image from a URL and attach it to a post.
@@ -563,10 +596,9 @@ function chuquipiondo_core_handle_setup_wizard() {
 
 	switch ( $mode ) {
 		case 'full_demo':
-			// Simulate the editorial demo import.
-			$_POST['chuquipiondo_demo_id']     = 'editorial';
-			$_POST['chuquipiondo_demo_nonce']  = wp_create_nonce( 'chuquipiondo_demo_import' );
-			chuquipiondo_core_handle_demo_import();
+			// Import the editorial demo directly (no $_POST injection to avoid
+			// double execution via admin_init).
+			chuquipiondo_core_do_demo_import( 'editorial' );
 			break;
 
 		case 'adapt':
