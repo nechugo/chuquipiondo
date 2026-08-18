@@ -1,0 +1,24 @@
+/**
+ * CHUQUIPIONDO Companion - Admin styles.
+ */
+
+.chuquipiondo-companion-admin .chuqui-badge--ok { background: #d7f3ff; color: #0a1f44; }
+.chuquipiondo-companion-admin .chuqui-badge--warn { background: #fff3d6; color: #8a5a00; }
+
+.chuquipiondo-companion-admin .form-table th { width: 320px; }
+
+.chuqui-companion-analytics {
+	margin-top: 24px;
+	padding: 16px;
+	background: #fff;
+	border: 1px solid #e2e4e7;
+	border-radius: 6px;
+}
+
+#chuqui-mega-toggle {
+	margin-top: 12px;
+}
+#chuqui-mega-toggle label {
+	display: block;
+	margin-bottom: 8px;
+}
