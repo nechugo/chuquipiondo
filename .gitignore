@@ -10,7 +10,7 @@ node_modules/
 vendor/
 
 # Build artifacts
-dist/
+
 build/
 *.min.css
 *.min.js
@@ -52,6 +52,7 @@ htmlcov/
 *.tmp
 *.temp
 ```
-# Distribution ZIPs are kept under releases/ (versioned)
-!releases/
-!releases/**
+
+# Distribution artifacts are kept under dist/ (versioned, not ignored)
+!dist/
+!dist/**
