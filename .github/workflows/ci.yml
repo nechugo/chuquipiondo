@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main, 'vibe/**']
+  pull_request:
+    branches: [main]
+
+jobs:
+  php-lint:
+    name: PHP Lint (lint de sintaxis)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: ['7.4', '8.0', '8.1', '8.2', '8.3']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          coverage: none
+
+      - name: Lint theme (chuquipiondo-theme)
+        run: |
+          find chuquipiondo-theme -name "*.php" -print0 | xargs -0 -n1 php -l
+
+      - name: Lint core (chuquipiondo-core)
+        run: |
+          find chuquipiondo-core -name "*.php" -print0 | xargs -0 -n1 php -l
+
+      - name: Lint companion (chuquipiondo-companion)
+        run: |
+          find chuquipiondo-companion -name "*.php" -print0 | xargs -0 -n1 php -l
+
+      - name: Lint child (chuquipiondo-child)
+        run: |
+          find chuquipiondo-child -name "*.php" -print0 | xargs -0 -n1 php -l
