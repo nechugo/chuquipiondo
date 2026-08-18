@@ -14,6 +14,7 @@ dist/
 build/
 *.min.css
 *.min.js
+*.zip
 *.map
 
 # Environment
@@ -51,3 +52,6 @@ htmlcov/
 *.tmp
 *.temp
 ```
+# Distribution ZIPs are kept under releases/ (versioned)
+!releases/
+!releases/**
