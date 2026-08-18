@@ -52,3 +52,6 @@ htmlcov/
 *.tmp
 *.temp
 ```
+# Distribution ZIPs are kept under releases/ (versioned)
+!releases/
+!releases/**
