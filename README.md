@@ -9,6 +9,8 @@ Este repositorio contiene el tema WordPress **CHUQUIPIONDO** completo:
 - **`chuquipiondo-theme/`** — Tema padre (instalar y activar).
 - **`chuquipiondo-child/`** — Tema hijo (para personalizaciones seguras).
 
+- **`chuquipiondo-ai-studio/`** — Plugin de IA para editar Entradas/Paginas (textos, codigo HTML/PHP/JS, imagenes 500x900) y publicar articulos con SEO.
+
 Para instalar, comprime cada carpeta en un `.zip` y súbelo desde **Apariencia > Temas > Añadir nuevo > Subir tema**, o copia las carpetas a `wp-content/themes/`.
 
 ## Características principales
