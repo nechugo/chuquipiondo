@@ -38,3 +38,6 @@ jobs:
       - name: Lint child (chuquipiondo-child)
         run: |
           find chuquipiondo-child -name "*.php" -print0 | xargs -0 -n1 php -l
+      - name: Lint AI Studio (chuquipiondo-ai-studio)
+        run: |
+          find chuquipiondo-ai-studio -name "*.php" -print0 | xargs -0 -n1 php -l
