@@ -2,8 +2,8 @@
 /**
  * Plugin Name:       CHUQUIPIONDO Companion
  * Plugin URI:        https://www.chuquipiondo.com
- * Description:        Plugin companion del tema CHUQUIPIONDO (estilo Astra Pro). Anade Header Builder, Footer Builder, Mega Menu, modulos de blog/revista pro, sistema de ads avanzado y starter sites importables one-click. Requiere el tema CHUQUIPIONDO.
- * Version:           1.7.0
+ * Description:       Plugin companion del tema CHUQUIPIONDO (estilo Astra Pro). Anade Header Builder, Footer Builder, Mega Menu, modulos de blog/revista pro, sistema de ads avanzado y starter sites importables one-click. Requiere el tema CHUQUIPIONDO.
+ * Version:           1.11.0
  * Requires at least: 6.2
  * Requires PHP:      7.4
  * Author:            Nelson Chuquipiondo
@@ -21,44 +21,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- * Plugin version, reused for cache-busting assets.
- */
-define( 'CHUQUIPIONDO_COMPANION_VERSION', '1.7.0' );
+define( 'CHUQUIPIONDO_COMPANION_VERSION', '1.11.0' );
 define( 'CHUQUIPIONDO_COMPANION_FILE', __FILE__ );
 define( 'CHUQUIPIONDO_COMPANION_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CHUQUIPIONDO_COMPANION_URL', plugin_dir_url( __FILE__ ) );
 define( 'CHUQUIPIONDO_COMPANION_BASENAME', plugin_basename( __FILE__ ) );
 
-/**
- * Companion includes (modular, like the theme and core).
- *
- * Order matters: helpers first, then the main class, then modules.
- */
 require_once CHUQUIPIONDO_COMPANION_DIR . 'includes/helpers.php';
 require_once CHUQUIPIONDO_COMPANION_DIR . 'includes/defaults.php';
 require_once CHUQUIPIONDO_COMPANION_DIR . 'includes/class-chuquipiondo-companion.php';
 require_once CHUQUIPIONDO_COMPANION_DIR . 'includes/settings.php';
 require_once CHUQUIPIONDO_COMPANION_DIR . 'includes/admin.php';
 require_once CHUQUIPIONDO_COMPANION_DIR . 'includes/assets.php';
-
-// Module 1: Builders (Header, Footer) + Mega Menu.
 require_once CHUQUIPIONDO_COMPANION_DIR . 'includes/modules/header-builder.php';
 require_once CHUQUIPIONDO_COMPANION_DIR . 'includes/modules/footer-builder.php';
 require_once CHUQUIPIONDO_COMPANION_DIR . 'includes/modules/mega-menu.php';
-
-// Module 2: Blog / revista pro.
 require_once CHUQUIPIONDO_COMPANION_DIR . 'includes/modules/blog-pro.php';
-
-// Module 3: Ads pro.
 require_once CHUQUIPIONDO_COMPANION_DIR . 'includes/modules/ads-pro.php';
-
-// Module 4: Starter sites.
 require_once CHUQUIPIONDO_COMPANION_DIR . 'includes/modules/starter-sites.php';
 
-/**
- * Activation hook: register default options and flag first run.
- */
 function chuquipiondo_companion_activate() {
 	$defaults = chuquipiondo_companion_defaults();
 	foreach ( $defaults as $key => $value ) {
@@ -71,9 +52,6 @@ function chuquipiondo_companion_activate() {
 }
 register_activation_hook( __FILE__, 'chuquipiondo_companion_activate' );
 
-/**
- * Boot the companion.
- */
 function chuquipiondo_companion() {
 	return Chuquipiondo_Companion::instance();
 }
