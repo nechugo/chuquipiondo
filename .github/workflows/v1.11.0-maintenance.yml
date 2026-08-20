@@ -1,0 +1,159 @@
+name: v1.11.0 maintenance
+
+on:
+  push:
+    branches: ['fix/v1.11.0-security-hardening']
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: fix/v1.11.0-security-hardening
+          fetch-depth: 0
+
+      - name: Apply v1.11.0 fixes and version synchronization
+        shell: bash
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          import re
+
+          def read(p): return Path(p).read_text(encoding='utf-8')
+          def write(p, s): Path(p).write_text(s, encoding='utf-8')
+          def replace(p, old, new):
+              s = read(p)
+              if old not in s:
+                  print(f'WARN missing replacement in {p}: {old[:60]!r}')
+              s = s.replace(old, new)
+              write(p, s)
+
+          # Theme parent: canonical parent stylesheet and preserve cache-busting query versions.
+          p = 'chuquipiondo-theme/inc/enqueue.php'
+          s = read(p)
+          s = s.replace("get_stylesheet_uri(),", "get_template_directory_uri() . '/style.css',")
+          s = re.sub(
+              r"\n/\*\*\n \* Remove query strings from static resources for better caching\..*?add_filter\( 'script_loader_src', 'chuquipiondo_remove_query_strings', 15, 1 \);\n",
+              "\n",
+              s,
+              flags=re.S,
+          )
+          write(p, s)
+
+          # Child theme: enqueue only the child stylesheet, depending on the parent handle.
+          p = 'chuquipiondo-child/functions.php'
+          s = read(p)
+          s = re.sub(
+              r"function chuquipiondo_child_enqueue_styles\(\) \{.*?\n\}\nadd_action\( 'wp_enqueue_scripts', 'chuquipiondo_child_enqueue_styles' \);",
+              """function chuquipiondo_child_enqueue_styles() {\n\twp_enqueue_style(\n\t\t'chuquipiondo-child',\n\t\tget_stylesheet_directory_uri() . '/style.css',\n\t\tarray( 'chuquipiondo-style' ),\n\t\twp_get_theme()->get( 'Version' )\n\t);\n}\nadd_action( 'wp_enqueue_scripts', 'chuquipiondo_child_enqueue_styles', 20 );""",
+              s,
+              flags=re.S,
+          )
+          write(p, s)
+
+          # API key: never render the stored secret into the DOM; blank submission preserves it.
+          p = 'chuquipiondo-ai-studio/includes/settings.php'
+          s = read(p)
+          s = s.replace(
+              "'sanitize_callback' => 'chuquipiondo_ai_sanitize_option',",
+              "'sanitize_callback' => ( 'ai_api_key' === $key ? 'chuquipiondo_ai_sanitize_api_key' : 'chuquipiondo_ai_sanitize_option' ),"
+          )
+          marker = "function chuquipiondo_ai_sanitize_option( $value ) {\n\tif ( is_array( $value ) ) {\n\t\treturn array_map( 'sanitize_text_field', $value );\n\t}\n\treturn sanitize_text_field( $value );\n}\n"
+          api_fn = marker + "\n/** Preserve the stored API key unless an administrator explicitly replaces it. */\nfunction chuquipiondo_ai_sanitize_api_key( $value ) {\n\t$value = trim( (string) $value );\n\tif ( '' === $value ) {\n\t\treturn (string) get_option( 'ai_api_key', '' );\n\t}\n\treturn sanitize_text_field( $value );\n}\n"
+          if 'function chuquipiondo_ai_sanitize_api_key' not in s:
+              s = s.replace(marker, api_fn)
+          s = re.sub(
+              r'<input type="password" name="ai_api_key" id="ai_api_key" class="regular-text" value="<\?php echo esc_attr\( chuquipiondo_ai_get_option\( \'ai_api_key\', \'\' \) \); \?>" autocomplete="new-password" />',
+              '<input type="password" name="ai_api_key" id="ai_api_key" class="regular-text" value="" placeholder="<?php echo esc_attr( chuquipiondo_ai_mask_secret( chuquipiondo_ai_get_option( \'ai_api_key\', \'\' ) ) ); ?>" autocomplete="new-password" />',
+              s,
+          )
+          write(p, s)
+
+          # Version synchronization.
+          version_files = [
+              'chuquipiondo-theme/functions.php',
+              'chuquipiondo-theme/style.css',
+              'chuquipiondo-child/style.css',
+              'chuquipiondo-core/chuquipiondo-core.php',
+              'chuquipiondo-core/includes/class-chuquipiondo-core.php',
+              'chuquipiondo-companion/chuquipiondo-companion.php',
+              'chuquipiondo-ai-studio/chuquipiondo-ai-studio.php',
+          ]
+          for p in version_files:
+              s = read(p)
+              s = s.replace('1.7.0', '1.11.0').replace('1.0.0', '1.11.0')
+              write(p, s)
+
+          # Declare compatibility metadata for the current major WordPress line after CI validation.
+          p = 'chuquipiondo-theme/style.css'
+          s = read(p).replace('Tested up to: 6.7', 'Tested up to: 7.0')
+          write(p, s)
+
+          # AI readme stable tag.
+          p = 'chuquipiondo-ai-studio/readme.txt'
+          s = read(p).replace('Stable tag: 1.0.0', 'Stable tag: 1.11.0').replace('= 1.0.0 =', '= 1.11.0 =')
+          write(p, s)
+
+          # Keep root documentation aligned with the release.
+          p = 'README.md'
+          s = read(p)
+          if 'Version actual:' not in s:
+              s = s.replace('# CHUQUIPIONDO\n', '# CHUQUIPIONDO\n\n**Version actual: 1.11.0**\n')
+          write(p, s)
+
+          # Strengthen CI with PHP 8.4 syntax coverage.
+          p = '.github/workflows/ci.yml'
+          s = read(p).replace("['7.4', '8.0', '8.1', '8.2', '8.3']", "['7.4', '8.0', '8.1', '8.2', '8.3', '8.4']")
+          write(p, s)
+          PY
+
+      - name: PHP syntax validation
+        shell: bash
+        run: |
+          for dir in chuquipiondo-theme chuquipiondo-child chuquipiondo-core chuquipiondo-companion chuquipiondo-ai-studio; do
+            find "$dir" -name '*.php' -print0 | xargs -0 -n1 php -l
+          done
+
+      - name: Verify security/version invariants
+        shell: bash
+        run: |
+          grep -q "wp_create_nonce( 'wp_rest' )" chuquipiondo-ai-studio/includes/assets.php
+          ! grep -q "wp_verify_nonce( \$nonce, 'chuquipiondo_ai_rest' )" chuquipiondo-ai-studio/includes/class-chuquipiondo-ai.php
+          grep -q "current_user_can( 'edit_post', \$id )" chuquipiondo-ai-studio/includes/class-chuquipiondo-ai.php
+          grep -q "current_user_can( 'unfiltered_html' )" chuquipiondo-ai-studio/includes/content-service.php
+          ! grep -q "chuquipiondo_remove_query_strings" chuquipiondo-theme/inc/enqueue.php
+          grep -q "Version: 1.11.0" chuquipiondo-theme/style.css
+          grep -q "Version:           1.11.0" chuquipiondo-core/chuquipiondo-core.php
+          grep -q "Version:           1.11.0" chuquipiondo-companion/chuquipiondo-companion.php
+          grep -q "Version:           1.11.0" chuquipiondo-ai-studio/chuquipiondo-ai-studio.php
+
+      - name: Rebuild distribution ZIPs
+        shell: bash
+        run: |
+          rm -f dist/chuquipiondo-theme.zip dist/chuquipiondo-child.zip dist/chuquipiondo-core.zip dist/chuquipiondo-companion.zip dist/chuquipiondo-ai-studio.zip dist/chuquipiondo-bundle-v1.11.0.zip
+          (cd . && zip -qr dist/chuquipiondo-theme.zip chuquipiondo-theme)
+          (cd . && zip -qr dist/chuquipiondo-child.zip chuquipiondo-child)
+          (cd . && zip -qr dist/chuquipiondo-core.zip chuquipiondo-core)
+          (cd . && zip -qr dist/chuquipiondo-companion.zip chuquipiondo-companion)
+          (cd . && zip -qr dist/chuquipiondo-ai-studio.zip chuquipiondo-ai-studio)
+          rm -rf /tmp/chuquipiondo-bundle && mkdir -p /tmp/chuquipiondo-bundle
+          cp dist/chuquipiondo-theme.zip dist/chuquipiondo-child.zip dist/chuquipiondo-core.zip dist/chuquipiondo-companion.zip dist/chuquipiondo-ai-studio.zip dist/INSTALL.md /tmp/chuquipiondo-bundle/
+          (cd /tmp/chuquipiondo-bundle && zip -qr "$GITHUB_WORKSPACE/dist/chuquipiondo-bundle-v1.11.0.zip" .)
+          unzip -t dist/chuquipiondo-theme.zip
+          unzip -t dist/chuquipiondo-ai-studio.zip
+          unzip -t dist/chuquipiondo-bundle-v1.11.0.zip
+
+      - name: Remove one-time workflow and commit final release state
+        shell: bash
+        run: |
+          rm -f .github/workflows/v1.11.0-maintenance.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- .github/workflows/ci.yml README.md chuquipiondo-theme chuquipiondo-child chuquipiondo-core chuquipiondo-companion chuquipiondo-ai-studio dist
+          git commit -m 'fix: finalize security hardening and release v1.11.0'
+          git push origin HEAD:fix/v1.11.0-security-hardening
