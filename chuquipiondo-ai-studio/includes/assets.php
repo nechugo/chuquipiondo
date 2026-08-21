@@ -20,17 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function chuquipiondo_ai_admin_assets( $hook ) {
 	$screen = get_current_screen();
-	$pages  = array(
-		'toplevel_page_chuquipiondo-ai',
-		'chuquipiondo_page_chuquipiondo-ai',
-		'ai-studio_page_chuquipiondo-ai',
-		'chuquipiondo-ai_page_chuquipiondo-ai-generate',
-		'chuquipiondo-ai_page_chuquipiondo-ai-settings',
-	);
-
 	$is_ai_page = ( false !== strpos( (string) $hook, 'chuquipiondo-ai' ) );
 
-	// Always load the small meta-box script where the meta box appears.
+	// Always load the small meta-box stylesheet where the meta box appears.
 	if ( $screen && in_array( $screen->base, array( 'post', 'page' ), true ) ) {
 		wp_enqueue_style(
 			'chuquipiondo-ai-mb',
@@ -59,10 +51,12 @@ function chuquipiondo_ai_admin_assets( $hook ) {
 	);
 	wp_localize_script(
 		'chuquipiondo-ai-admin',
-		'CAI', array(
-			'rest'   => esc_url_raw( rest_url( 'chuquipiondo-ai/v1' ) ),
-			'nonce'  => wp_create_nonce( 'chuquipiondo_ai_rest' ),
-			'i18n'   => array(
+		'CAI',
+		array(
+			'rest'  => esc_url_raw( rest_url( 'chuquipiondo-ai/v1' ) ),
+			// X-WP-Nonce must use WordPress core's canonical REST action.
+			'nonce' => wp_create_nonce( 'wp_rest' ),
+			'i18n'  => array(
 				'loading'     => __( 'Cargando...', 'chuquipiondo-ai' ),
 				'saved'       => __( 'Guardado.', 'chuquipiondo-ai' ),
 				'error'       => __( 'Error: ', 'chuquipiondo-ai' ),

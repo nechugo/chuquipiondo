@@ -26,7 +26,7 @@ final class Chuquipiondo_Core {
 	 *
 	 * @var string
 	 */
-	public $version = '1.7.0';
+	public $version = '1.11.0';
 
 	/**
 	 * Get the single instance.

@@ -4,7 +4,7 @@
  * Author: Nelson Chuquipiondo
  * Author URI: https://www.chuquipiondo.com
  * Description: Tema hijo de CHUQUIPIONDO para personalizaciones seguras. Hereda toda la funcionalidad del tema padre.
- * Version: 1.7.0
+ * Version: 1.11.0
  * Requires at least: 6.2
  * Requires PHP: 7.4
  * Template: chuquipiondo-theme
@@ -14,18 +14,4 @@
  * Tags: custom-logo, custom-colors, custom-menu, featured-images, threaded-comments, translation-ready
  */
 
-/* En este tema hijo puedes sobrescribir estilos del padre.
-   El CSS del tema padre se carga automaticamente. Para sobrescribir,
-   edita este archivo o usa el area "Codigo personalizado" del Customizer. */
-
-/* Ejemplo: cambiar el color del acento */
-/*
-:root {
-	--accent: #ff6b00;
-}
-*/
-
-/* Ejemplo: ocultar la barra superior */
-/*
-.header-topbar { display: none; }
-*/
+/* En este tema hijo puedes sobrescribir estilos del padre. */
