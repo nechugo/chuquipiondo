@@ -15,11 +15,13 @@ function chuquipiondo_enqueue_styles() {
 		wp_enqueue_style( 'chuquipiondo-fonts', $fonts_url, array(), null );
 	}
 
+	// style.css remains the WordPress theme manifest; the optimized concatenated
+	// front-end CSS is kept in assets/css/main.css.
 	wp_enqueue_style(
 		'chuquipiondo-style',
-		get_template_directory_uri() . '/style.css',
+		get_template_directory_uri() . '/assets/css/main.css',
 		array( 'chuquipiondo-fonts' ),
-		chuquipiondo_asset_version( 'style.css' )
+		chuquipiondo_asset_version( 'assets/css/main.css' )
 	);
 }
 add_action( 'wp_enqueue_scripts', 'chuquipiondo_enqueue_styles' );
