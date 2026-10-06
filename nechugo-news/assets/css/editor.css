@@ -1,0 +1,6 @@
+/*
+ * Estilos del editor: reflejan los tamaños por defecto del tema
+ * (texto de articulo 12px, H1 16px).
+ */
+body { font-size: 12px; line-height: 1.7; }
+h1 { font-size: 16px; }
