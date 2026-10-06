@@ -55,14 +55,44 @@ function nechugo_defaults() {
 
 		// Header (4 diseños, full-width).
 		'header_layout'          => 'header-1',
+		'header_height'          => 64,
+		'header_font_family'     => 'roboto-condensed',
+		'header_font_size'       => 13,
+		'header_menu_size'       => 13,
+		'header_menu_color'      => '',
+		'header_menu_hover_color' => '',
+		'header_submenu_bg'      => '#ffffff',
+		'header_submenu_color'   => '#1c1c1c',
+		'header_submenu_hover_bg' => '#eef4fd',
+		'header_widgets_enable'  => true,
 		'header_sticky'          => true,
 		'header_search_enable'   => true,
 		'header_social_enable'   => true,
 		'header_topbar_enable'   => false,
 		'header_date_enable'     => true,
 
+		// Logo personalizable.
+		'logo_width'             => 220,
+		'logo_height'            => 120,
+
+		// Fondo de pagina personalizable.
+		'page_bg_type'           => 'color',
+		'page_bg_color'          => '#ffffff',
+		'page_bg_image'          => '',
+		'page_bg_overlay'        => 'none',
+		'page_bg_overlay_opacity' => 60,
+		'page_bg_gradient_from'  => '#0a1a3a',
+		'page_bg_gradient_to'    => '#123c6e',
+		'page_bg_fixed'          => false,
+
+		// Menu personalizable elegante.
+		'menu_font_family'       => 'roboto-condensed',
+		'menu_uppercase'         => true,
+		'menu_letter_spacing'    => 2,
+
 		// Footer (3 diseños, full-width).
 		'footer_layout'          => 'footer-1',
+		'footer_widgets_enable'  => true,
 		'footer_columns'          => 3,
 		'footer_copyright_enable' => true,
 		'footer_copyright_text'   => '© {year} {sitename} — Todos los derechos reservados.',
@@ -100,7 +130,7 @@ function nechugo_defaults() {
 		'home_slider_enable'     => true,
 		'home_slider_count'      => 5,
 		'home_slider_category'   => 0,
-		'home_slider_style'      => 'hero',
+		'home_slider_style'      => 'split',
 		'home_slider_autoplay'   => true,
 		'home_slider_interval'  => 5000,
 		'home_slider_show_meta'  => true,

@@ -10,7 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 $columns = (int) nechugo_get_option( 'footer_columns' );
 $columns = max( 1, min( 4, $columns ) );
+$widgets_on = nechugo_is_enabled( 'footer_widgets_enable' );
 ?>
+<?php if ( $widgets_on ) : ?>
 <div class="nechugo-footer-widgets">
 	<div class="nechugo-container footer__grid footer__grid--<?php echo esc_attr( $columns ); ?>">
 		<?php for ( $i = 1; $i <= $columns; $i++ ) : ?>
@@ -27,6 +29,7 @@ $columns = max( 1, min( 4, $columns ) );
 		<?php endfor; ?>
 	</div>
 </div>
+<?php endif; ?>
 <?php if ( nechugo_is_enabled( 'footer_copyright_enable' ) ) : ?>
 	<div class="nechugo-footer-bottom">
 		<div class="nechugo-container footer__bottom-inner">

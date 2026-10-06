@@ -77,6 +77,66 @@ function nechugo_customizer_css() {
 	$width = max( 1200, $width );
 	$css  .= '.nechugo-container{max-width:' . $width . 'px;}';
 
+	// ============ Header personalizable ============
+	$header_h   = max( 48, (int) nechugo_get_option( 'header_height' ) );
+	$h_font     = nechugo_font_stack( nechugo_get_option( 'header_font_family' ) );
+	$h_size     = max( 10, (int) nechugo_get_option( 'header_font_size' ) );
+	$menu_size  = max( 10, (int) nechugo_get_option( 'header_menu_size' ) );
+	$css       .= ':root{--nn-header-h:' . $header_h . 'px;}';
+	$css       .= '.site-header{font-family:' . $h_font . ';font-size:' . $h_size . 'px;}';
+	$css       .= '.header__inner{min-height:' . $header_h . 'px;}';
+	$css       .= '.nechugo-nav a{font-size:' . $menu_size . 'px;}';
+	$menu_color = nechugo_get_option( 'header_menu_color' );
+	if ( ! empty( $menu_color ) ) {
+		$css .= '.nechugo-nav > .nechugo-menu > li > a{color:' . sanitize_hex_color( $menu_color ) . ';}';
+	}
+	$hover_color = nechugo_get_option( 'header_menu_hover_color' );
+	if ( ! empty( $hover_color ) ) {
+		$css .= '.nechugo-nav a:hover,.nechugo-nav .current-menu-item > a{color:' . sanitize_hex_color( $hover_color ) . ';}';
+		$css .= '.nechugo-nav a::after{background:' . sanitize_hex_color( $hover_color ) . ';}';
+	}
+	$css .= '.nechugo-nav ul ul{background:' . sanitize_hex_color( nechugo_get_option( 'header_submenu_bg' ) ) . ';}';
+	$css .= '.nechugo-nav ul ul a{color:' . sanitize_hex_color( nechugo_get_option( 'header_submenu_color' ) ) . ';}';
+	$css .= '.nechugo-nav ul ul a:hover{background:' . sanitize_hex_color( nechugo_get_option( 'header_submenu_hover_bg' ) ) . ';}';
+
+	// Menu tipografia elegante.
+	$m_font = nechugo_font_stack( nechugo_get_option( 'menu_font_family' ) );
+	$css  .= '.nechugo-nav{font-family:' . $m_font . ';}';
+	if ( nechugo_is_enabled( 'menu_uppercase' ) ) {
+		$css .= '.nechugo-nav a{text-transform:uppercase;}';
+	} else {
+		$css .= '.nechugo-nav a{text-transform:none;}';
+	}
+	$css .= '.nechugo-nav a{letter-spacing:' . (int) nechugo_get_option( 'menu_letter_spacing' ) . 'px;}';
+
+	// ============ Logo personalizable ============
+	$logo_w = max( 120, (int) nechugo_get_option( 'logo_width' ) );
+	$logo_h = max( 40, (int) nechugo_get_option( 'logo_height' ) );
+	$css   .= '.custom-logo{width:' . $logo_w . 'px;min-width:' . $logo_w . 'px;height:' . $logo_h . 'px;object-fit:contain;}';
+
+	// ============ Fondo de pagina personalizable ============
+	$bg_type = nechugo_get_option( 'page_bg_type' );
+	if ( 'image' === $bg_type ) {
+		$bg_img  = nechugo_get_option( 'page_bg_image' );
+		$fixed   = nechugo_is_enabled( 'page_bg_fixed' ) ? 'fixed' : 'scroll';
+		$css    .= 'body{background-image:url(' . esc_url( $bg_img ) . ');background-size:cover;background-position:center;background-attachment:' . $fixed . ';}';
+		$overlay = nechugo_get_option( 'page_bg_overlay' );
+		if ( 'none' !== $overlay ) {
+			$op = (int) nechugo_get_option( 'page_bg_overlay_opacity' ) / 100;
+			if ( 'dark' === $overlay ) {
+				$css .= 'body::before{content:"";position:fixed;inset:0;background:rgba(0,0,0,' . $op . ');pointer-events:none;z-index:-1;}';
+			} elseif ( 'night-blue' === $overlay ) {
+				$css .= 'body::before{content:"";position:fixed;inset:0;background:rgba(10,26,58,' . $op . ');pointer-events:none;z-index:-1;}';
+			} elseif ( 'gradient' === $overlay ) {
+				$css .= 'body::before{content:"";position:fixed;inset:0;background:linear-gradient(135deg,rgba(10,26,58,' . $op . '),rgba(18,60,110,' . $op . '));pointer-events:none;z-index:-1;}';
+			}
+		}
+	} elseif ( 'gradient' === $bg_type ) {
+		$from = sanitize_hex_color( nechugo_get_option( 'page_bg_gradient_from' ) );
+		$to   = sanitize_hex_color( nechugo_get_option( 'page_bg_gradient_to' ) );
+		$css .= 'body{background:linear-gradient(135deg,' . $from . ',' . $to . ') fixed;}';
+	}
+
 	// Ancho de la barra lateral (por defecto 300px).
 	$sidebar = max( 240, (int) nechugo_get_option( 'sidebar_width' ) );
 	$css    .= ':root{--nn-sidebar:' . $sidebar . 'px;}';

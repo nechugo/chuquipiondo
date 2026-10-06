@@ -22,6 +22,9 @@
 
 <header id="masthead" class="site-header nechugo-header--full">
 	<?php get_template_part( 'template-parts/header/variants', nechugo_get_option( 'header_layout' ) ); ?>
+	<?php if ( nechugo_is_enabled( 'header_widgets_enable' ) ) : ?>
+		<?php get_template_part( 'template-parts/header/widgets' ); ?>
+	<?php endif; ?>
 </header><!-- #masthead -->
 
 <?php nechugo_ad_slot( 'ad_header_code' ); ?>
