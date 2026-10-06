@@ -30,13 +30,16 @@ function nechugo_defaults() {
 		'color_preset'           => 'blue',
 
 		// Tipografia (articulo 12px, H1 16px por defecto).
-		'body_font_size'         => 12,
-		'h1_font_size'           => 16,
-		'body_font_family'       => 'roboto',
-		'heading_font_family'    => 'google-sans',
+		'body_font_size'         => 14,
+		'h1_font_size'           => 18,
+		'body_font_family'       => 'roboto-condensed',
+		'heading_font_family'    => 'roboto-condensed',
 		'body_line_height'       => 1.7,
+		'h1_font_weight'         => 900,
 
 		// Layout.
+		'posts_per_page_mode'    => 'columns',
+		'posts_per_page'         => 10,
 		'content_width'          => 1200,
 		'blog_layout'            => 'grid',
 		'blog_columns'           => 2,
@@ -73,6 +76,19 @@ function nechugo_defaults() {
 		'ad_in_article_code'     => '',
 		'ad_sidebar_code'        => '',
 
+		// Footer personalizable.
+		'footer_heading_color'   => '#ffffff',
+		'footer_link_color'      => '#8ab4f8',
+		'footer_font_size'       => 13,
+		'footer_font_family'     => 'roboto-condensed',
+		'footer_border_enable'  => true,
+
+		// Redes sociales.
+		'social_facebook'        => '',
+		'social_twitter'         => '',
+		'social_instagram'       => '',
+		'social_youtube'         => '',
+
 		// Extras.
 		'show_breadcrumbs'       => true,
 		'show_author'            => true,
@@ -83,5 +99,10 @@ function nechugo_defaults() {
 		'back_to_top_enable'     => true,
 		'home_slider_enable'     => true,
 		'home_slider_count'      => 5,
+		'home_slider_category'   => 0,
+		'home_slider_style'      => 'hero',
+		'home_slider_autoplay'   => true,
+		'home_slider_interval'  => 5000,
+		'home_slider_show_meta'  => true,
 	);
 }

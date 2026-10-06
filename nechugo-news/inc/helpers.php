@@ -55,6 +55,9 @@ function nechugo_body_classes( $classes ) {
 	}
 	$classes[] = 'nechugo-header-' . nechugo_get_option( 'header_layout' );
 	$classes[] = 'nechugo-footer-' . nechugo_get_option( 'footer_layout' );
+	if ( nechugo_is_enabled( 'header_sticky' ) ) {
+		$classes[] = 'nechugo-sticky';
+	}
 
 	return $classes;
 }

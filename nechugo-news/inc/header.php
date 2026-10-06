@@ -47,6 +47,7 @@ function nechugo_google_font_name( $key ) {
 	$map = array(
 		'inter'        => 'Inter:wght@400;700',
 		'roboto'       => 'Roboto:wght@400;700',
+		'roboto-condensed' => 'Roboto+Condensed:wght@400;700;900',
 		'google-sans'  => 'Roboto:wght@400;700',
 		'open-sans'    => 'Open+Sans:wght@400;700',
 		'lato'         => 'Lato:wght@400;700',

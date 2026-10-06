@@ -1,6 +1,6 @@
 /*
- * Estilos del editor: reflejan los tamaños por defecto del tema
- * (texto de articulo 12px, H1 16px).
+ * Estilos del editor: reflejan los valores por defecto del tema
+ * (texto de articulo 14px, H1 18px peso 900, Roboto Condensed).
  */
-body { font-size: 12px; line-height: 1.7; }
-h1 { font-size: 16px; }
+body { font-size: 14px; line-height: 1.7; font-family: 'Roboto Condensed', Roboto, sans-serif; }
+h1 { font-size: 18px; font-weight: 900; }

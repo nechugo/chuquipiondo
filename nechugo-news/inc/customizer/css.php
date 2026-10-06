@@ -52,11 +52,25 @@ function nechugo_customizer_css() {
 
 	$body_size  = max( 10, (int) nechugo_get_option( 'body_font_size' ) );
 	$h1_size    = max( 14, (int) nechugo_get_option( 'h1_font_size' ) );
+	$h1_weight  = (int) nechugo_get_option( 'h1_font_weight' );
 	$line       = (int) nechugo_get_option( 'body_line_height' ) / 100;
+	$css        .= 'body{font-size:' . $body_size . 'px;line-height:' . $line . ';}';
+	$css        .= 'h1{font-size:' . $h1_size . 'px;font-weight:' . $h1_weight . ';}';
 	$css        .= '.entry-content{font-size:' . $body_size . 'px;line-height:' . $line . ';}';
-	$css        .= '.entry-content h1{font-size:' . $h1_size . 'px;}';
-	// Escala relativa del resto de encabezados dentro del articulo.
-	$css        .= '.entry-content h2{font-size:' . (int) ( $h1_size * 1.0 ) . 'px;}';
+	$css        .= '.entry-content h1{font-size:' . $h1_size . 'px;font-weight:' . $h1_weight . ';}';
+	$css        .= '.entry-title{font-size:' . $h1_size . 'px;font-weight:' . $h1_weight . ';}';
+
+	// Footer personalizable: colores, tamano y fuente propios.
+	$foot_heading = nechugo_get_option( 'footer_heading_color' );
+	$foot_link    = nechugo_get_option( 'footer_link_color' );
+	$foot_size    = max( 11, (int) nechugo_get_option( 'footer_font_size' ) );
+	$foot_font    = nechugo_font_stack( nechugo_get_option( 'footer_font_family' ) );
+	$css         .= '.site-footer{font-family:' . $foot_font . ';font-size:' . $foot_size . 'px;}';
+	$css         .= '.site-footer .widget-title,.site-footer h2,.site-footer .site-title-footer{color:' . sanitize_hex_color( $foot_heading ) . ';}';
+	$css         .= '.site-footer a{color:' . sanitize_hex_color( $foot_link ) . ';}';
+	if ( ! nechugo_is_enabled( 'footer_border_enable' ) ) {
+		$css .= '.nechugo-footer-bottom{border-top:0;}';
+	}
 
 	// Ancho del contenedor del blog (minimo 1200).
 	$width = (int) nechugo_get_option( 'content_width' );
@@ -99,6 +113,7 @@ function nechugo_font_stack( $key ) {
 		'google-sans'  => "'Google Sans', 'Product Sans', Roboto, -apple-system, sans-serif",
 		'inter'        => "'Inter', sans-serif",
 		'roboto'       => "'Roboto', sans-serif",
+		'roboto-condensed' => "'Roboto Condensed', 'Roboto', sans-serif",
 		'open-sans'    => "'Open Sans', sans-serif",
 		'lato'         => "'Lato', sans-serif",
 		'montserrat'   => "'Montserrat', sans-serif",

@@ -48,6 +48,8 @@ a:hover { color: var(--nn-secondary); }
 .skip-link { position: absolute; left: -9999px; }
 .skip-link:focus { left: 1rem; top: 1rem; z-index: 99999; background: var(--nn-primary); color: #fff; padding: .5rem 1rem; }
 
+h1 { font-size: 18px; font-weight: 900; }
+
 /* ============ Contenedor (blog >= 1200px) ============ */
 .nechugo-container {
 	max-width: var(--nn-container);
@@ -199,7 +201,7 @@ body.nechugo-nav-open .nechugo-menu-toggle span:nth-child(3) { transform: transl
 .entry-meta { font-size: 12px; color: #777; display: flex; flex-wrap: wrap; gap: .35rem; }
 
 /* Single */
-.entry-title { font-size: 28px; line-height: 1.25; margin: .35rem 0; }
+.entry-title { font-size: 18px; font-weight: 900; line-height: 1.3; margin: .35rem 0; }
 /* Imagen destacada de la entrada: minimo 900x520, sin perder calidad */
 .entry-thumb {
 	margin: 0 0 1.5rem;
@@ -376,3 +378,49 @@ body.nechugo-nav-open .nechugo-menu-toggle span:nth-child(3) { transform: transl
 .entry-content iframe, .entry-content embed, .entry-content video { max-width: 100%; }
 .entry-content .alignwide { width: 100%; }
 .entry-content > *:first-child { margin-top: 0; }
+
+/* Slider multifuncion: estilos grid y carrusel */
+.nechugo-hero-slider--grid .nechugo-hero-track { display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; }
+.nechugo-hero-slider--grid .nechugo-hero-slide { display: none; }
+.nechugo-hero-slider--grid .nechugo-hero-slide.is-active { display: block; grid-column: 1 / -1; }
+.nechugo-hero-slider--grid .nechugo-hero-slide.is-active ~ .nechugo-hero-slide.is-active { display: none; }
+.nechugo-hero-slider--carousel .nechugo-hero-track { display: flex; gap: 1rem; transition: transform .4s ease; }
+.nechugo-hero-slider--carousel .nechugo-hero-slide { flex: 0 0 80%; display: block; }
+.nechugo-hero-slide__meta { font-size: 12px; color: rgba(255,255,255,.85); display: flex; gap: .4rem; margin-top: .25rem; }
+@media (max-width: 782px) {
+	.nechugo-hero-slider--carousel .nechugo-hero-slide { flex: 0 0 92%; }
+}
+
+/* ============ Menus interactivos profesionales ============ */
+.nechugo-nav a { position: relative; transition: color .2s ease, background .2s ease; }
+.nechugo-nav a::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	width: 0;
+	height: 3px;
+	background: var(--nn-primary);
+	border-radius: 2px 2px 0 0;
+	transition: width .25s ease, left .25s ease;
+	transform: translateX(-50%);
+}
+.nechugo-nav a:hover::after,
+.nechugo-nav .current-menu-item > a::after { width: 100%; left: 50%; }
+.nechugo-nav .current-menu-item > a { color: var(--nn-primary); }
+.nechugo-nav .menu-item-has-children > a::before {
+	content: "\\25BE";
+	display: inline-block;
+	font-size: 10px;
+	margin-left: .35rem;
+	opacity: .7;
+}
+.nechugo-nav ul ul a::after { display: none; }
+.nechugo-nav ul ul a:hover { background: rgba(26,115,232,.06); }
+
+/* Encabezado fijo */
+body.nechugo-sticky .site-header {
+	position: sticky;
+	top: 0;
+	z-index: 100;
+}

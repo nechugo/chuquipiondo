@@ -62,3 +62,26 @@ function nechugo_defer_scripts( $tag, $handle ) {
 	return $tag;
 }
 add_filter( 'script_loader_tag', 'nechugo_defer_scripts', 10, 2 );
+
+/**
+ * Entradas por pagina segun columnas: 5 por columna (2 cols = 10, 3 = 15, 4 = 20).
+ * Modo "columns" automatico o "manual" con cantidad fija.
+ *
+ * @param WP_Query $query Query.
+ */
+function nechugo_posts_per_page( $query ) {
+	if ( is_admin() || ! $query->is_main_query() ) {
+		return;
+	}
+	if ( ! $query->is_home() && ! $query->is_archive() && ! $query->is_search() ) {
+		return;
+	}
+	$mode = nechugo_get_option( 'posts_per_page_mode' );
+	if ( 'manual' === $mode ) {
+		$query->set( 'posts_per_page', (int) nechugo_get_option( 'posts_per_page' ) );
+		return;
+	}
+	$columns = max( 1, min( 4, (int) nechugo_get_option( 'blog_columns' ) ) );
+	$query->set( 'posts_per_page', $columns * 5 );
+}
+add_action( 'pre_get_posts', 'nechugo_posts_per_page' );

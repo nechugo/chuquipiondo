@@ -32,24 +32,41 @@
 			});
 		}
 
-		// Hero slider.
+		// Hero slider (hero / grid / carrusel, autoplay configurable).
 		var slider = document.querySelector('[data-slider]');
 		if (slider) {
-			var slides = slider.querySelectorAll('.nechugo-hero-slide');
+			var slides = Array.prototype.slice.call(slider.querySelectorAll('.nechugo-hero-slide'));
 			var current = 0;
 			var timer = null;
+			var autoplay = slider.getAttribute('data-autoplay') !== 'false';
+			var interval = parseInt(slider.getAttribute('data-interval'), 10) || 5000;
+			var style = slider.getAttribute('data-style') || 'hero';
+			var track = slider.querySelector('.nechugo-hero-track');
 
 			var show = function (index) {
-				slides.forEach(function (s, i) {
-					s.classList.toggle('is-active', i === index);
-				});
-				current = index;
+				current = (index + slides.length) % slides.length;
+				if (style === 'carousel') {
+					var w = slides[0].offsetWidth + 16;
+					track.style.transform = 'translateX(-' + (current * w) + 'px)';
+				} else if (style === 'grid') {
+					slides.forEach(function (s, i) {
+						s.classList.toggle('is-active', i === current);
+					});
+				} else {
+					slides.forEach(function (s, i) {
+						s.classList.toggle('is-active', i === current);
+					});
+					track.style.transform = 'translateX(-' + (current * 100) + '%)';
+				}
 			};
 
-			var next = function () { show((current + 1) % slides.length); };
-			var prev = function () { show((current - 1 + slides.length) % slides.length); };
+			var next = function () { show(current + 1); };
+			var prev = function () { show(current - 1); };
 
-			var start = function () { timer = setInterval(next, 5000); };
+			var start = function () {
+				if (!autoplay || slides.length < 2) return;
+				timer = setInterval(next, interval);
+			};
 			var stop = function () { if (timer) clearInterval(timer); };
 
 			var nextBtn = slider.querySelector('.nechugo-hero-next');
@@ -58,6 +75,10 @@
 			if (prevBtn) prevBtn.addEventListener('click', function () { stop(); prev(); start(); });
 			slider.addEventListener('mouseenter', stop);
 			slider.addEventListener('mouseleave', start);
+			if (style === 'carousel') {
+				slides.forEach(function (s) { s.classList.add('is-active'); });
+			}
+			show(0);
 			start();
 		}
 

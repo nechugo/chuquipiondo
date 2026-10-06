@@ -9,11 +9,31 @@
 		"color": {
 			"custom": true,
 			"palette": [
-				{ "slug": "primary", "color": "#1a73e8", "name": "Primario" },
-				{ "slug": "secondary", "color": "#e8453c", "name": "Secundario" },
-				{ "slug": "accent", "color": "#fbbc04", "name": "Acento" },
-				{ "slug": "background", "color": "#ffffff", "name": "Fondo" },
-				{ "slug": "text", "color": "#1c1c1c", "name": "Texto" }
+				{
+					"slug": "primary",
+					"color": "#1a73e8",
+					"name": "Primario"
+				},
+				{
+					"slug": "secondary",
+					"color": "#e8453c",
+					"name": "Secundario"
+				},
+				{
+					"slug": "accent",
+					"color": "#fbbc04",
+					"name": "Acento"
+				},
+				{
+					"slug": "background",
+					"color": "#ffffff",
+					"name": "Fondo"
+				},
+				{
+					"slug": "text",
+					"color": "#1c1c1c",
+					"name": "Texto"
+				}
 			]
 		},
 		"typography": {
@@ -22,18 +42,26 @@
 			"lineHeight": true
 		},
 		"spacing": {
-			"units": ["px", "rem", "em", "%", "vw"]
+			"units": [
+				"px",
+				"rem",
+				"em",
+				"%",
+				"vw"
+			]
 		}
 	},
 	"styles": {
 		"typography": {
-			"fontSize": "12px",
-			"lineHeight": "1.7"
+			"fontSize": "14px",
+			"lineHeight": "1.7",
+			"fontFamily": "'Roboto Condensed', Roboto, sans-serif"
 		},
 		"elements": {
 			"h1": {
 				"typography": {
-					"fontSize": "16px"
+					"fontSize": "18px",
+					"fontWeight": "900"
 				}
 			}
 		}
