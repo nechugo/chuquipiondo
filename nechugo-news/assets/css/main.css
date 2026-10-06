@@ -96,11 +96,13 @@ h1 { font-size: 18px; font-weight: 900; }
 .nechugo-nav a {
 	display: block;
 	padding: .5rem .75rem;
+	position: relative;
 	color: var(--nn-header-text);
 	font-weight: 600;
 	font-size: 13px;
 	text-transform: uppercase;
 	letter-spacing: .02em;
+	transition: color .2s ease, background .2s ease;
 }
 .nechugo-nav a:hover { color: var(--nn-primary); }
 .nechugo-nav ul ul {
@@ -108,11 +110,14 @@ h1 { font-size: 18px; font-weight: 900; }
 	position: absolute;
 	top: 100%; left: 0;
 	background: var(--nn-header-bg);
-	min-width: 200px;
-	box-shadow: var(--nn-shadow);
+	min-width: 220px;
+	box-shadow: 0 10px 30px rgba(0,0,0,.14);
+	border-radius: 8px;
+	border-top: 3px solid var(--nn-primary);
 	z-index: 99;
 	list-style: none;
-	margin: 0; padding: .25rem 0;
+	margin: 0; padding: .4rem 0;
+	animation: nn-fade-in .18s ease;
 }
 .nechugo-nav li:hover > ul { display: block; }
 
@@ -218,8 +223,9 @@ body.nechugo-nav-open .nechugo-menu-toggle span:nth-child(3) { transform: transl
 	max-height: none;
 	object-fit: cover;
 	border-radius: var(--nn-radius);
+	box-shadow: 0 4px 18px rgba(0,0,0,.09);
 }
-.entry-content { font-size: 14px; }
+.entry-content { font-size: 14px; color: #333; }
 .entry-content h1 { font-size: 18px; font-weight: 900; }
 .entry-content p { margin: 0 0 1.25em; }
 
@@ -386,7 +392,7 @@ body.nechugo-nav-open .nechugo-menu-toggle span:nth-child(3) { transform: transl
 .nechugo-hero-slider--grid .nechugo-hero-slide { display: none; }
 .nechugo-hero-slider--grid .nechugo-hero-slide.is-active { display: block; grid-column: 1 / -1; }
 .nechugo-hero-slider--grid .nechugo-hero-slide.is-active ~ .nechugo-hero-slide.is-active { display: none; }
-.nechugo-hero-slider--carousel .nechugo-hero-track { display: flex; gap: 1rem; transition: transform .4s ease; }
+.nechugo-hero-slider--carousel .nechugo-hero-track { display: flex; gap: 1rem; transition: transform .4s ease; will-change: transform; }
 .nechugo-hero-slider--carousel .nechugo-hero-slide { flex: 0 0 80%; display: block; }
 .nechugo-hero-slide__meta { font-size: 12px; color: rgba(255,255,255,.85); display: flex; gap: .4rem; margin-top: .25rem; }
 @media (max-width: 782px) {
@@ -394,7 +400,6 @@ body.nechugo-nav-open .nechugo-menu-toggle span:nth-child(3) { transform: transl
 }
 
 /* ============ Menus interactivos profesionales ============ */
-.nechugo-nav a { position: relative; transition: color .2s ease, background .2s ease; }
 .nechugo-nav a::after {
 	content: "";
 	position: absolute;
@@ -437,8 +442,6 @@ input:focus-visible,
 	border-radius: 4px;
 }
 
-/* Carrusel del slider: respetar el ancho con gap variable */
-.nechugo-hero-slider--carousel .nechugo-hero-track { will-change: transform; }
 
 /* ============ Slider dividido (split): main 620x520 + 3 filas 16:9, gap 5px ============ */
 .nechugo-hero-slider--split { margin-bottom: 2rem; }
@@ -507,14 +510,6 @@ input:focus-visible,
 .header-widgets__grid--4 { grid-template-columns: repeat(4, 1fr); }
 
 /* Submenus elegantes */
-.nechugo-nav ul ul {
-	border-radius: 8px;
-	border-top: 3px solid var(--nn-primary);
-	padding: .4rem 0;
-	min-width: 220px;
-	box-shadow: 0 10px 30px rgba(0,0,0,.14);
-	animation: nn-fade-in .18s ease;
-}
 .nechugo-nav ul ul a {
 	padding: .5rem 1rem;
 	font-size: 12.5px;
@@ -544,12 +539,7 @@ input:focus-visible,
 
 /* ============ Estilo profesional de contenido (paginas y blog) ============ */
 .nechugo-single .entry-header { margin-bottom: 1.25rem; }
-.entry-title {
-	font-weight: 900;
-	letter-spacing: -0.01em;
-	color: var(--nn-text);
-}
-.entry-content { color: #333; }
+.entry-title { letter-spacing: -0.01em; color: var(--nn-text); }
 .entry-content p { margin: 0 0 1.35em; }
 .entry-content h2 { font-size: 17px; font-weight: 800; margin: 1.6em 0 .6em; color: var(--nn-text); }
 .entry-content h3 { font-size: 15px; font-weight: 700; margin: 1.4em 0 .5em; color: var(--nn-text); }
@@ -561,7 +551,6 @@ input:focus-visible,
 .entry-content > h2:first-child, .entry-content > p:first-child { margin-top: 0; }
 
 /* Imagenes con estilo editorial */
-.entry-thumb img { box-shadow: 0 4px 18px rgba(0,0,0,.09); }
 .wp-block-image img, .entry-content > img { border-radius: var(--nn-radius); box-shadow: 0 3px 14px rgba(0,0,0,.08); }
 
 /* Titulo de pagina centrado */
@@ -581,3 +570,20 @@ input:focus-visible,
 	letter-spacing: -0.01em;
 }
 .archive-description { font-size: 13px; color: #666; margin-top: .35rem; }
+
+/* ============ Clases complementarias auditadas ============ */
+.nechugo-404 { text-align: center; padding: 4rem 0; }
+.nechugo-404 h1 { font-size: 56px; font-weight: 900; color: var(--nn-primary); margin: 0 0 .5rem; }
+.nechugo-no-results { text-align: center; padding: 3rem 1rem; color: #777; }
+.nechugo-no-results h2 { font-weight: 800; color: var(--nn-text); }
+.nechugo-ad--in-article { margin: 1.5rem 0; }
+.nechugo-ad--widget { margin: 0; }
+.nechugo-header--full { width: 100%; }
+.nechugo-footer--full { width: 100%; }
+.nechugo-header-nav-row { width: 100%; border-top: 1px solid #eee; }
+.topbar__date { font-weight: 600; letter-spacing: .02em; }
+.footer__brand { display: flex; flex-direction: column; align-items: center; gap: .25rem; }
+.footer__copyright { opacity: .8; }
+.split-slide__link { display: block; position: relative; height: 100%; }
+.split-slide__link img { width: 100%; height: 100%; object-fit: cover; }
+.nechugo-card__cats { display: flex; }

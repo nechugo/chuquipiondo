@@ -83,6 +83,17 @@ function nechugo_widgets_init() {
 		)
 	);
 
+	register_sidebar(
+		array(
+			'name'          => __( 'Pie de pagina 4', 'nechugo-news' ),
+			'id'            => 'footer-4',
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+
 	// Zonas de widgets del encabezado (4 espacios).
 	for ( $i = 1; $i <= 4; $i++ ) {
 		register_sidebar(
