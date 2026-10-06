@@ -29,8 +29,8 @@ function nechugo_setup() {
 	add_theme_support(
 		'custom-logo',
 		array(
-			'height'      => 60,
-			'width'       => 240,
+			'height'      => 120,
+			'width'       => 440,
 			'flex-height' => true,
 			'flex-width'  => true,
 		)

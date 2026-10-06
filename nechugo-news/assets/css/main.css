@@ -85,7 +85,7 @@ a:hover { color: var(--nn-secondary); }
 .site-title { margin: 0; font-size: 1.5rem; font-weight: 700; }
 .site-title a { color: var(--nn-header-text); }
 .site-description { font-size: 12px; opacity: .75; }
-.custom-logo { max-height: 48px; width: auto; }
+.custom-logo { max-height: 120px; min-width: 220px; width: auto; height: auto; }
 
 /* Menu */
 .nechugo-nav .nechugo-menu { display: flex; list-style: none; margin: 0; padding: 0; gap: .25rem; }

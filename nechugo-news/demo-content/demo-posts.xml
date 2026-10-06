@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0"
+	xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:wp="http://wordpress.org/export/1.2/">
+<channel>
+	<title>nechugo News</title>
+	<link>https://demo.nechugo.news</link>
+	<description>Portal de empleos demo</description>
+	<pubDate>Mon, 06 Oct 2026 08:00:00 +0000</pubDate>
+	<language>es</language>
+	<wp:wxr_version>1.2</wp:wxr_version>
+	<wp:base_site_url>https://demo.nechugo.news</wp:base_site_url>
+	<wp:base_blog_url>https://demo.nechugo.news</wp:base_blog_url>
+	<wp:author><wp:author_id>1</wp:author_id><wp:author_login><![CDATA[admin]]></wp:author_login><wp:author_email><![CDATA[admin@nechugo.news]]></wp:author_email><wp:author_display_name><![CDATA[Redaccion NECHUGO NEWS]]></wp:author_display_name><wp:author_first_name><![CDATA[]]></wp:author_first_name><wp:author_last_name><![CDATA[]]></wp:author_last_name></wp:author>
+
+	<wp:category>
+		<wp:term_id>10</wp:term_id>
+		<wp:category_nicename><![CDATA[empleos]]></wp:category_nicename>
+		<wp:category_parent><![CDATA[]]></wp:category_parent>
+		<wp:cat_name><![CDATA[Empleos]]></wp:cat_name>
+	</wp:category>
+	<wp:term><wp:term_id>10</wp:term_id><wp:term_taxonomy><![CDATA[category]]></wp:term_taxonomy><wp:term_slug><![CDATA[empleos]]></wp:term_slug><wp:term_parent><![CDATA[]]></wp:term_parent><wp:term_name><![CDATA[Empleos]]></wp:term_name></wp:term>
+	<wp:category>
+		<wp:term_id>11</wp:term_id>
+		<wp:category_nicename><![CDATA[peru]]></wp:category_nicename>
+		<wp:category_parent><![CDATA[]]></wp:category_parent>
+		<wp:cat_name><![CDATA[Peru]]></wp:cat_name>
+	</wp:category>
+	<wp:term><wp:term_id>11</wp:term_id><wp:term_taxonomy><![CDATA[category]]></wp:term_taxonomy><wp:term_slug><![CDATA[peru]]></wp:term_slug><wp:term_parent><![CDATA[]]></wp:term_parent><wp:term_name><![CDATA[Peru]]></wp:term_name></wp:term>
+	<wp:category>
+		<wp:term_id>12</wp:term_id>
+		<wp:category_nicename><![CDATA[mexico]]></wp:category_nicename>
+		<wp:category_parent><![CDATA[]]></wp:category_parent>
+		<wp:cat_name><![CDATA[Mexico]]></wp:cat_name>
+	</wp:category>
+	<wp:term><wp:term_id>12</wp:term_id><wp:term_taxonomy><![CDATA[category]]></wp:term_taxonomy><wp:term_slug><![CDATA[mexico]]></wp:term_slug><wp:term_parent><![CDATA[]]></wp:term_parent><wp:term_name><![CDATA[Mexico]]></wp:term_name></wp:term>
+	<wp:category>
+		<wp:term_id>13</wp:term_id>
+		<wp:category_nicename><![CDATA[fabrica]]></wp:category_nicename>
+		<wp:category_parent><![CDATA[]]></wp:category_parent>
+		<wp:cat_name><![CDATA[FABRICA]]></wp:cat_name>
+	</wp:category>
+	<wp:term><wp:term_id>13</wp:term_id><wp:term_taxonomy><![CDATA[category]]></wp:term_taxonomy><wp:term_slug><![CDATA[fabrica]]></wp:term_slug><wp:term_parent><![CDATA[]]></wp:term_parent><wp:term_name><![CDATA[FABRICA]]></wp:term_name></wp:term>
+	<wp:category>
+		<wp:term_id>14</wp:term_id>
+		<wp:category_nicename><![CDATA[chile]]></wp:category_nicename>
+		<wp:category_parent><![CDATA[]]></wp:category_parent>
+		<wp:cat_name><![CDATA[Chile]]></wp:cat_name>
+	</wp:category>
+	<wp:term><wp:term_id>14</wp:term_id><wp:term_taxonomy><![CDATA[category]]></wp:term_taxonomy><wp:term_slug><![CDATA[chile]]></wp:term_slug><wp:term_parent><![CDATA[]]></wp:term_parent><wp:term_name><![CDATA[Chile]]></wp:term_name></wp:term>
+	<wp:category>
+		<wp:term_id>15</wp:term_id>
+		<wp:category_nicename><![CDATA[suiza]]></wp:category_nicename>
+		<wp:category_parent><![CDATA[]]></wp:category_parent>
+		<wp:cat_name><![CDATA[SUIZA]]></wp:cat_name>
+	</wp:category>
+	<wp:term><wp:term_id>15</wp:term_id><wp:term_taxonomy><![CDATA[category]]></wp:term_taxonomy><wp:term_slug><![CDATA[suiza]]></wp:term_slug><wp:term_parent><![CDATA[]]></wp:term_parent><wp:term_name><![CDATA[SUIZA]]></wp:term_name></wp:term>
+	<wp:category>
+		<wp:term_id>16</wp:term_id>
+		<wp:category_nicename><![CDATA[canada]]></wp:category_nicename>
+		<wp:category_parent><![CDATA[]]></wp:category_parent>
+		<wp:cat_name><![CDATA[Canada]]></wp:cat_name>
+	</wp:category>
+	<wp:term><wp:term_id>16</wp:term_id><wp:term_taxonomy><![CDATA[category]]></wp:term_taxonomy><wp:term_slug><![CDATA[canada]]></wp:term_slug><wp:term_parent><![CDATA[]]></wp:term_parent><wp:term_name><![CDATA[Canada]]></wp:term_name></wp:term>
+	<wp:category>
+		<wp:term_id>17</wp:term_id>
+		<wp:category_nicename><![CDATA[espana]]></wp:category_nicename>
+		<wp:category_parent><![CDATA[]]></wp:category_parent>
+		<wp:cat_name><![CDATA[Espana]]></wp:cat_name>
+	</wp:category>
+	<wp:term><wp:term_id>17</wp:term_id><wp:term_taxonomy><![CDATA[category]]></wp:term_taxonomy><wp:term_slug><![CDATA[espana]]></wp:term_slug><wp:term_parent><![CDATA[]]></wp:term_parent><wp:term_name><![CDATA[Espana]]></wp:term_name></wp:term>
+	<wp:category>
+		<wp:term_id>18</wp:term_id>
+		<wp:category_nicename><![CDATA[estados-unidos]]></wp:category_nicename>
+		<wp:category_parent><![CDATA[]]></wp:category_parent>
+		<wp:cat_name><![CDATA[Estados Unidos]]></wp:cat_name>
+	</wp:category>
+	<wp:term><wp:term_id>18</wp:term_id><wp:term_taxonomy><![CDATA[category]]></wp:term_taxonomy><wp:term_slug><![CDATA[estados-unidos]]></wp:term_slug><wp:term_parent><![CDATA[]]></wp:term_parent><wp:term_name><![CDATA[Estados Unidos]]></wp:term_name></wp:term>
+
+	<item>
+		<title>Grupo Auna busca Ejecutivo(a) Comercial Corporativo</title>
+		<link>https://demo.nechugo.news/grupo-auna-ejecutivo-comercial-corporativo/</link>
+		<pubDate>Mon, 06 Oct 2026 08:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">https://demo.nechugo.news/?p=1001</guid>
+		<description></description>
+		<content:encoded><![CDATA[<p>La empresa <strong>Grupo Auna</strong> ha abierto una nueva convocatoria para el puesto de <strong>Ejecutivo Comercial Corporativo</strong> en Peru (Lima). Esta oportunidad laboral corresponde a un contrato de tipo indefinido, tiempo completo, con una remuneracion que parte de S/ 3,500 mensuales mas comisiones segun la experiencia y las competencias demostradas por cada candidato durante el proceso de seleccion. A continuacion encontraras toda la informacion necesaria para postular: perfil buscado, funciones principales, beneficios incluidos, etapas del proceso y el paso a paso para enviar tu candidatura sin errores.</p>
+<h2>Sobre la empresa</h2>
+<p>Grupo Auna es una organizacion consolidada que opera en Peru (Lima) y mantiene un compromiso permanente con el desarrollo de su equipo de colaboradores. La empresa invierte en formacion continua, condiciones laborales estables y un ambiente de trabajo basado en el respeto, la colaboracion y el crecimiento profesional medible. Cada ano incorpora nuevos talentos a sus distintas areas operativas y administrativas, por lo que esta convocatoria representa una puerta de entrada real para quienes buscan estabilidad laboral y proyeccion de carrera dentro de una estructura organizacional clara.</p>
+<h2>Descripcion del puesto</h2>
+<p>El rol de Ejecutivo Comercial Corporativo implica trabajar de manera activa dentro de la operacion diaria de Grupo Auna, reportando al responsable del area correspondiente. El contrato es indefinido, tiempo completo, con horarios organizados segun las necesidades del servicio y un periodo de adaptacion acompañado por personal con experiencia. Durante los primeros meses, la persona seleccionada recibira acompanamiento cercano, retroalimentacion constante y acceso a los manuales internos de procedimiento para garantizar una integracion rapida y eficiente al equipo de trabajo.</p>
+<h2>Perfil del candidato</h2>
+<p>Los interesados en esta vacante deberan cumplir con el siguiente perfil general, que combina formacion academica, experiencia practica y competencias personales verificables durante las entrevistas. La empresa valora tanto los conocimientos tecnicos como la actitud frente al trabajo en equipo, la resolucion de problemas bajo presion y la disposicion para aprender procesos nuevos en periodos cortos de adaptacion. No es indispensable cumplir el cien por ciento de los requisitos para postular: aquellos candidatos que se acerquen al perfil y demuestren motivacion tambien seran evaluados.</p>
+<ul><li>Titulo universitario en Administracion, Marketing o carreras afines</li><li>Experiencia comprobable de dos anos en ventas B2B o servicios corporativos</li><li>Manejo de CRM y paquete Office a nivel intermedio-avanzado</li><li>Disponibilidad para visitas comerciales dentro de la ciudad</li><li>Licencia de conducir vigente (deseable)</li></ul>
+<h2>Funciones principales</h2>
+<p>La persona seleccionada sera responsable de las siguientes funciones dentro del area correspondiente. Las tareas se distribuyen segun la operacion diaria y pueden ajustarse conforme a la evolucion del proyecto, siempre dentro del ambito del puesto y con el respaldo del equipo de supervision asignado a cada turno o departamento. El cumplimiento de estandares de calidad, seguridad y puntualidad forma parte transversal de todas las funciones descritas a continuacion.</p>
+<ul><li>Prospectar y captar nuevos clientes corporativos</li><li>Elaborar propuestas comerciales y presentaciones de venta</li><li>Cumplir metas mensuales y trimestrales asignadas</li><li>Dar seguimiento a la cartera de clientes y fidelizar la relacion</li><li>Reportar indicadores de gestion al jefe comercial</li></ul>
+<h2>Beneficios y condiciones</h2>
+<p>El paquete de compensacion incluye ademas del salario base una serie de beneficios orientados al bienestar del colaborador y su grupo familiar. Estos beneficios se formalizan por contrato desde el primer dia de labores y se revisan de manera periodica conforme a la politica interna de recursos humanos y a la normativa laboral vigente en el pais de contratacion. La empresa garantiza condiciones de trabajo seguras, equipos apropiados para el desempeno de cada funcion y espacios de descanso adecuados dentro de sus instalaciones.</p>
+<ul><li>Salario fijo mas comisiones por cumplimiento de metas</li><li>Seguro de salud EPS desde el primer dia</li><li>Capacitaciones continuas y plan de carrera</li><li>Movilidad y viaticos para visitas comerciales</li><li>Linea telefonica corporativa</li></ul>
+<h2>Proceso de postulacion</h2>
+<p>Los interesados deben enviar su hoja de vida al correo de talento humano indicado en la publicacion original, con el asunto Ejecutivo Comercial Corporativo. El proceso completo tiene una duracion estimada de dos a tres semanas desde la publicacion de esta convocatoria hasta la incorporacion del candidato seleccionado. Recomendamos revisar cuidadosamente los requisitos antes de postular y preparar la documentacion solicitada para no generar demoras en las etapas de verificacion de datos, referencias laborales y evaluaciones tecnicas o psicologicas que forman parte del filtro estandar de seleccion.</p>
+<h2>Etapas de seleccion</h2>
+<p>El proceso se compone de cuatro etapas bien definidas. Primero, la revision curricular realizada por el equipo de reclutamiento, que verifica el ajuste entre el perfil publicado y la experiencia declarada. Segundo, una entrevista telefonica o en linea de aproximadamente veinte minutos para confirmar disponibilidad, expectativas salariales y datos basicos. Tercero, la entrevista presencial o tecnica con el jefe directo del area, que profundiza en conocimientos practicos y casos de trabajo reales. Finalmente, la verificacion de referencias y antecedentes antes de extender la oferta formal de empleo con la fecha de incorporacion acordada.</p>
+<h2>Recomendaciones finales</h2>
+<p>Antes de enviar tu postulacion revisa tu hoja de vida y adapta la informacion al puesto ofertado, destacando aquellas experiencias que guarden relacion directa con las funciones descritas. Una postulacion bien presentada, sin errores ortograficos y con datos de contacto actualizados, aumenta considerablemente las posibilidades de avanzar a la etapa de entrevista. Te deseamos mucho exito en este nuevo paso de tu carrera profesional y te invitamos a seguir atento a nuestras proximas convocatorias, que publicamos de manera permanente en este portal con oportunidades actualizadas cada semana para distintos sectores, paises y niveles de experiencia laboral.</p>]]></content:encoded>
+		<excerpt:encoded><![CDATA[Convocatoria abierta. Requisitos, funciones, beneficios y como postular. Actualizado este mes.]]></excerpt:encoded>
+		<wp:post_id>1001</wp:post_id>
+		<wp:post_date><![CDATA[Mon, 06 Oct 2026 08:00:00 +0000]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[Mon, 06 Oct 2026 08:00:00 +0000]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[open]]></wp:comment_status>
+		<wp:ping_status><![CDATA[open]]></wp:ping_status>
+		<wp:post_name><![CDATA[grupo-auna-ejecutivo-comercial-corporativo]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[post]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="empleos"><![CDATA[Empleos]]></category>
+		<category domain="post_tag" nicename="demo"><![CDATA[demo]]></category>
+		<category domain="category" nicename="peru"><![CDATA[Peru]]></category>
+	</item>
+
+	<item>
+		<title>Vacantes en Coppel Mexico y como postular</title>
+		<link>https://demo.nechugo.news/vacantes-coppel-mexico/</link>
+		<pubDate>Fri, 03 Oct 2026 08:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">https://demo.nechugo.news/?p=1002</guid>
+		<description></description>
+		<content:encoded><![CDATA[<p>La empresa <strong>Coppel Mexico</strong> ha abierto una nueva convocatoria para el puesto de <strong>Asistente de Tienda y Almacen</strong> en Mexico (varias ciudades). Esta oportunidad laboral corresponde a un contrato de tipo indefinido, tiempo completo, con una remuneracion que parte de $ 8,500 MXN mensuales segun la experiencia y las competencias demostradas por cada candidato durante el proceso de seleccion. A continuacion encontraras toda la informacion necesaria para postular: perfil buscado, funciones principales, beneficios incluidos, etapas del proceso y el paso a paso para enviar tu candidatura sin errores.</p>
+<h2>Sobre la empresa</h2>
+<p>Coppel Mexico es una organizacion consolidada que opera en Mexico (varias ciudades) y mantiene un compromiso permanente con el desarrollo de su equipo de colaboradores. La empresa invierte en formacion continua, condiciones laborales estables y un ambiente de trabajo basado en el respeto, la colaboracion y el crecimiento profesional medible. Cada ano incorpora nuevos talentos a sus distintas areas operativas y administrativas, por lo que esta convocatoria representa una puerta de entrada real para quienes buscan estabilidad laboral y proyeccion de carrera dentro de una estructura organizacional clara.</p>
+<h2>Descripcion del puesto</h2>
+<p>El rol de Asistente de Tienda y Almacen implica trabajar de manera activa dentro de la operacion diaria de Coppel Mexico, reportando al responsable del area correspondiente. El contrato es indefinido, tiempo completo, con horarios organizados segun las necesidades del servicio y un periodo de adaptacion acompañado por personal con experiencia. Durante los primeros meses, la persona seleccionada recibira acompanamiento cercano, retroalimentacion constante y acceso a los manuales internos de procedimiento para garantizar una integracion rapida y eficiente al equipo de trabajo.</p>
+<h2>Perfil del candidato</h2>
+<p>Los interesados en esta vacante deberan cumplir con el siguiente perfil general, que combina formacion academica, experiencia practica y competencias personales verificables durante las entrevistas. La empresa valora tanto los conocimientos tecnicos como la actitud frente al trabajo en equipo, la resolucion de problemas bajo presion y la disposicion para aprender procesos nuevos en periodos cortos de adaptacion. No es indispensable cumplir el cien por ciento de los requisitos para postular: aquellos candidatos que se acerquen al perfil y demuestren motivacion tambien seran evaluados.</p>
+<ul><li>Secundaria o preparatoria concluida</li><li>Edad entre 18 y 45 anos</li><li>Disponibilidad de horario rotativo</li><li>Actitud de servicio y trabajo en equipo</li><li>Experiencia en retail (deseable, no excluyente)</li></ul>
+<h2>Funciones principales</h2>
+<p>La persona seleccionada sera responsable de las siguientes funciones dentro del area correspondiente. Las tareas se distribuyen segun la operacion diaria y pueden ajustarse conforme a la evolucion del proyecto, siempre dentro del ambito del puesto y con el respaldo del equipo de supervision asignado a cada turno o departamento. El cumplimiento de estandares de calidad, seguridad y puntualidad forma parte transversal de todas las funciones descritas a continuacion.</p>
+<ul><li>Atencion al cliente en piso de venta</li><li>Organizacion y surtido de mercancia en almacen</li><li>Inventario y control de existencias</li><li>Apoyo en caja en horas pico</li><li>Mantenimiento del orden general de la tienda</li></ul>
+<h2>Beneficios y condiciones</h2>
+<p>El paquete de compensacion incluye ademas del salario base una serie de beneficios orientados al bienestar del colaborador y su grupo familiar. Estos beneficios se formalizan por contrato desde el primer dia de labores y se revisan de manera periodica conforme a la politica interna de recursos humanos y a la normativa laboral vigente en el pais de contratacion. La empresa garantiza condiciones de trabajo seguras, equipos apropiados para el desempeno de cada funcion y espacios de descanso adecuados dentro de sus instalaciones.</p>
+<ul><li>Contratacion directa por la empresa</li><li>Prestaciones superiores a la ley</li><li>Fondo de ahorro y utilidades</li><li>Descuentos en productos de la cadena</li><li>Estabilidad y crecimiento interno real</li></ul>
+<h2>Proceso de postulacion</h2>
+<p>Las postulaciones se reciben exclusivamente por el portal oficial de empleos de la empresa o directamente en la sucursal mas cercana dejando tu solicitud. El proceso completo tiene una duracion estimada de dos a tres semanas desde la publicacion de esta convocatoria hasta la incorporacion del candidato seleccionado. Recomendamos revisar cuidadosamente los requisitos antes de postular y preparar la documentacion solicitada para no generar demoras en las etapas de verificacion de datos, referencias laborales y evaluaciones tecnicas o psicologicas que forman parte del filtro estandar de seleccion.</p>
+<h2>Etapas de seleccion</h2>
+<p>El proceso se compone de cuatro etapas bien definidas. Primero, la revision curricular realizada por el equipo de reclutamiento, que verifica el ajuste entre el perfil publicado y la experiencia declarada. Segundo, una entrevista telefonica o en linea de aproximadamente veinte minutos para confirmar disponibilidad, expectativas salariales y datos basicos. Tercero, la entrevista presencial o tecnica con el jefe directo del area, que profundiza en conocimientos practicos y casos de trabajo reales. Finalmente, la verificacion de referencias y antecedentes antes de extender la oferta formal de empleo con la fecha de incorporacion acordada.</p>
+<h2>Recomendaciones finales</h2>
+<p>Antes de enviar tu postulacion revisa tu hoja de vida y adapta la informacion al puesto ofertado, destacando aquellas experiencias que guarden relacion directa con las funciones descritas. Una postulacion bien presentada, sin errores ortograficos y con datos de contacto actualizados, aumenta considerablemente las posibilidades de avanzar a la etapa de entrevista. Te deseamos mucho exito en este nuevo paso de tu carrera profesional y te invitamos a seguir atento a nuestras proximas convocatorias, que publicamos de manera permanente en este portal con oportunidades actualizadas cada semana para distintos sectores, paises y niveles de experiencia laboral.</p>]]></content:encoded>
+		<excerpt:encoded><![CDATA[Convocatoria abierta. Requisitos, funciones, beneficios y como postular. Actualizado este mes.]]></excerpt:encoded>
+		<wp:post_id>1002</wp:post_id>
+		<wp:post_date><![CDATA[Fri, 03 Oct 2026 08:00:00 +0000]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[Fri, 03 Oct 2026 08:00:00 +0000]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[open]]></wp:comment_status>
+		<wp:ping_status><![CDATA[open]]></wp:ping_status>
+		<wp:post_name><![CDATA[vacantes-coppel-mexico]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[post]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="empleos"><![CDATA[Empleos]]></category>
+		<category domain="post_tag" nicename="demo"><![CDATA[demo]]></category>
+		<category domain="category" nicename="mexico"><![CDATA[Mexico]]></category>
+	</item>
+
+	<item>
+		<title>Empleos en Coca-Cola FEMSA Mexico: vacantes y requisitos</title>
+		<link>https://demo.nechugo.news/empleos-coca-cola-femsa-mexico/</link>
+		<pubDate>Wed, 01 Oct 2026 08:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">https://demo.nechugo.news/?p=1003</guid>
+		<description></description>
+		<content:encoded><![CDATA[<p>La empresa <strong>Coca-Cola FEMSA</strong> ha abierto una nueva convocatoria para el puesto de <strong>Operador de Produccion</strong> en Mexico (planta industrial). Esta oportunidad laboral corresponde a un contrato de tipo indefinido, tiempo completo, con una remuneracion que parte de $ 12,000 MXN mensuales segun la experiencia y las competencias demostradas por cada candidato durante el proceso de seleccion. A continuacion encontraras toda la informacion necesaria para postular: perfil buscado, funciones principales, beneficios incluidos, etapas del proceso y el paso a paso para enviar tu candidatura sin errores.</p>
+<h2>Sobre la empresa</h2>
+<p>Coca-Cola FEMSA es una organizacion consolidada que opera en Mexico (planta industrial) y mantiene un compromiso permanente con el desarrollo de su equipo de colaboradores. La empresa invierte en formacion continua, condiciones laborales estables y un ambiente de trabajo basado en el respeto, la colaboracion y el crecimiento profesional medible. Cada ano incorpora nuevos talentos a sus distintas areas operativas y administrativas, por lo que esta convocatoria representa una puerta de entrada real para quienes buscan estabilidad laboral y proyeccion de carrera dentro de una estructura organizacional clara.</p>
+<h2>Descripcion del puesto</h2>
+<p>El rol de Operador de Produccion implica trabajar de manera activa dentro de la operacion diaria de Coca-Cola FEMSA, reportando al responsable del area correspondiente. El contrato es indefinido, tiempo completo, con horarios organizados segun las necesidades del servicio y un periodo de adaptacion acompañado por personal con experiencia. Durante los primeros meses, la persona seleccionada recibira acompanamiento cercano, retroalimentacion constante y acceso a los manuales internos de procedimiento para garantizar una integracion rapida y eficiente al equipo de trabajo.</p>
+<h2>Perfil del candidato</h2>
+<p>Los interesados en esta vacante deberan cumplir con el siguiente perfil general, que combina formacion academica, experiencia practica y competencias personales verificables durante las entrevistas. La empresa valora tanto los conocimientos tecnicos como la actitud frente al trabajo en equipo, la resolucion de problemas bajo presion y la disposicion para aprender procesos nuevos en periodos cortos de adaptacion. No es indispensable cumplir el cien por ciento de los requisitos para postular: aquellos candidatos que se acerquen al perfil y demuestren motivacion tambien seran evaluados.</p>
+<ul><li>Preparatoria concluida</li><li>Experiencia minima de un ano en plantas de produccion</li><li>Conocimiento de normas de seguridad industrial</li><li>Disponibilidad para turnos rotativos</li><li>Manejo basico de equipos y maquinaria</li></ul>
+<h2>Funciones principales</h2>
+<p>La persona seleccionada sera responsable de las siguientes funciones dentro del area correspondiente. Las tareas se distribuyen segun la operacion diaria y pueden ajustarse conforme a la evolucion del proyecto, siempre dentro del ambito del puesto y con el respaldo del equipo de supervision asignado a cada turno o departamento. El cumplimiento de estandares de calidad, seguridad y puntualidad forma parte transversal de todas las funciones descritas a continuacion.</p>
+<ul><li>Operar maquinaria de la linea de embotellado</li><li>Control de calidad en linea de produccion</li><li>Registro de indicadores de produccion</li><li>Limpieza y orden del area de trabajo bajo estandares 5S</li><li>Apoyo en mantenimiento preventivo basico</li></ul>
+<h2>Beneficios y condiciones</h2>
+<p>El paquete de compensacion incluye ademas del salario base una serie de beneficios orientados al bienestar del colaborador y su grupo familiar. Estos beneficios se formalizan por contrato desde el primer dia de labores y se revisan de manera periodica conforme a la politica interna de recursos humanos y a la normativa laboral vigente en el pais de contratacion. La empresa garantiza condiciones de trabajo seguras, equipos apropiados para el desempeno de cada funcion y espacios de descanso adecuados dentro de sus instalaciones.</p>
+<ul><li>Salario competitivo con prestaciones de ley ampliadas</li><li>Seguro de gastos medicos mayores</li><li>Comedor y transporte de personal</li><li>Ahorro y fondo de pension</li><li>Programa de desarrollo de operadores</li></ul>
+<h2>Proceso de postulacion</h2>
+<p>La postulacion se realiza en el portal oficial de la compania adjuntando tu CV; los preseleccionados seran contactados para examen medico y pruebas de aptitud. El proceso completo tiene una duracion estimada de dos a tres semanas desde la publicacion de esta convocatoria hasta la incorporacion del candidato seleccionado. Recomendamos revisar cuidadosamente los requisitos antes de postular y preparar la documentacion solicitada para no generar demoras en las etapas de verificacion de datos, referencias laborales y evaluaciones tecnicas o psicologicas que forman parte del filtro estandar de seleccion.</p>
+<h2>Etapas de seleccion</h2>
+<p>El proceso se compone de cuatro etapas bien definidas. Primero, la revision curricular realizada por el equipo de reclutamiento, que verifica el ajuste entre el perfil publicado y la experiencia declarada. Segundo, una entrevista telefonica o en linea de aproximadamente veinte minutos para confirmar disponibilidad, expectativas salariales y datos basicos. Tercero, la entrevista presencial o tecnica con el jefe directo del area, que profundiza en conocimientos practicos y casos de trabajo reales. Finalmente, la verificacion de referencias y antecedentes antes de extender la oferta formal de empleo con la fecha de incorporacion acordada.</p>
+<h2>Recomendaciones finales</h2>
+<p>Antes de enviar tu postulacion revisa tu hoja de vida y adapta la informacion al puesto ofertado, destacando aquellas experiencias que guarden relacion directa con las funciones descritas. Una postulacion bien presentada, sin errores ortograficos y con datos de contacto actualizados, aumenta considerablemente las posibilidades de avanzar a la etapa de entrevista. Te deseamos mucho exito en este nuevo paso de tu carrera profesional y te invitamos a seguir atento a nuestras proximas convocatorias, que publicamos de manera permanente en este portal con oportunidades actualizadas cada semana para distintos sectores, paises y niveles de experiencia laboral.</p>]]></content:encoded>
+		<excerpt:encoded><![CDATA[Convocatoria abierta. Requisitos, funciones, beneficios y como postular. Actualizado este mes.]]></excerpt:encoded>
+		<wp:post_id>1003</wp:post_id>
+		<wp:post_date><![CDATA[Wed, 01 Oct 2026 08:00:00 +0000]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[Wed, 01 Oct 2026 08:00:00 +0000]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[open]]></wp:comment_status>
+		<wp:ping_status><![CDATA[open]]></wp:ping_status>
+		<wp:post_name><![CDATA[empleos-coca-cola-femsa-mexico]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[post]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="empleos"><![CDATA[Empleos]]></category>
+		<category domain="post_tag" nicename="demo"><![CDATA[demo]]></category>
+		<category domain="category" nicename="fabrica"><![CDATA[FABRICA]]></category>
+	</item>
+
+	<item>
+		<title>Oportunidades de empleo en Minera Chinalco</title>
+		<link>https://demo.nechugo.news/empleos-minera-chinalco/</link>
+		<pubDate>Mon, 29 Sep 2026 08:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">https://demo.nechugo.news/?p=1004</guid>
+		<description></description>
+		<content:encoded><![CDATA[<p>La empresa <strong>Minera Chinalco</strong> ha abierto una nueva convocatoria para el puesto de <strong>Tecnico de Mantenimiento Industrial</strong> en Chile (region minera). Esta oportunidad laboral corresponde a un contrato de tipo contrato por obra o faena, con una remuneracion que parte de $ 1,800,000 CLP brutos segun la experiencia y las competencias demostradas por cada candidato durante el proceso de seleccion. A continuacion encontraras toda la informacion necesaria para postular: perfil buscado, funciones principales, beneficios incluidos, etapas del proceso y el paso a paso para enviar tu candidatura sin errores.</p>
+<h2>Sobre la empresa</h2>
+<p>Minera Chinalco es una organizacion consolidada que opera en Chile (region minera) y mantiene un compromiso permanente con el desarrollo de su equipo de colaboradores. La empresa invierte en formacion continua, condiciones laborales estables y un ambiente de trabajo basado en el respeto, la colaboracion y el crecimiento profesional medible. Cada ano incorpora nuevos talentos a sus distintas areas operativas y administrativas, por lo que esta convocatoria representa una puerta de entrada real para quienes buscan estabilidad laboral y proyeccion de carrera dentro de una estructura organizacional clara.</p>
+<h2>Descripcion del puesto</h2>
+<p>El rol de Tecnico de Mantenimiento Industrial implica trabajar de manera activa dentro de la operacion diaria de Minera Chinalco, reportando al responsable del area correspondiente. El contrato es contrato por obra o faena, con horarios organizados segun las necesidades del servicio y un periodo de adaptacion acompañado por personal con experiencia. Durante los primeros meses, la persona seleccionada recibira acompanamiento cercano, retroalimentacion constante y acceso a los manuales internos de procedimiento para garantizar una integracion rapida y eficiente al equipo de trabajo.</p>
+<h2>Perfil del candidato</h2>
+<p>Los interesados en esta vacante deberan cumplir con el siguiente perfil general, que combina formacion academica, experiencia practica y competencias personales verificables durante las entrevistas. La empresa valora tanto los conocimientos tecnicos como la actitud frente al trabajo en equipo, la resolucion de problemas bajo presion y la disposicion para aprender procesos nuevos en periodos cortos de adaptacion. No es indispensable cumplir el cien por ciento de los requisitos para postular: aquellos candidatos que se acerquen al perfil y demuestren motivacion tambien seran evaluados.</p>
+<ul><li>Tecnico profesional en mecanica, electricidad o automatizacion</li><li>Experiencia de dos anos en mineria o industria pesada</li><li>Licencia interna para trabajo en faenas mineras (deseable)</li><li>Conocimiento de planificacion de mantenimiento</li><li>Disponibilidad para sistema de turnos 7x7</li></ul>
+<h2>Funciones principales</h2>
+<p>La persona seleccionada sera responsable de las siguientes funciones dentro del area correspondiente. Las tareas se distribuyen segun la operacion diaria y pueden ajustarse conforme a la evolucion del proyecto, siempre dentro del ambito del puesto y con el respaldo del equipo de supervision asignado a cada turno o departamento. El cumplimiento de estandares de calidad, seguridad y puntualidad forma parte transversal de todas las funciones descritas a continuacion.</p>
+<ul><li>Ejecutar mantenimiento preventivo y correctivo de equipos</li><li>Inspeccion de maquinaria pesada y correas transportadoras</li><li>Registro de intervenciones en el sistema CMMS</li><li>Apoyo en montajes y puestas en marcha</li><li>Cumplimiento estricto de estandares de seguridad</li></ul>
+<h2>Beneficios y condiciones</h2>
+<p>El paquete de compensacion incluye ademas del salario base una serie de beneficios orientados al bienestar del colaborador y su grupo familiar. Estos beneficios se formalizan por contrato desde el primer dia de labores y se revisan de manera periodica conforme a la politica interna de recursos humanos y a la normativa laboral vigente en el pais de contratacion. La empresa garantiza condiciones de trabajo seguras, equipos apropiados para el desempeno de cada funcion y espacios de descanso adecuados dentro de sus instalaciones.</p>
+<ul><li>Renta bruta competitiva del sector minero</li><li>Alojamiento y alimentacion en faena</li><li>Seguro de salud y mutualidad</li><li>Bonos por cumplimiento y antiguedad</li><li>Capacitaciones tecnicas certificadas</li></ul>
+<h2>Proceso de postulacion</h2>
+<p>Envia tu CV actualizado con certificados a la bolsa de empleo oficial de la faena; el proceso incluye entrevistas tecnicas y revision de antecedentes. El proceso completo tiene una duracion estimada de dos a tres semanas desde la publicacion de esta convocatoria hasta la incorporacion del candidato seleccionado. Recomendamos revisar cuidadosamente los requisitos antes de postular y preparar la documentacion solicitada para no generar demoras en las etapas de verificacion de datos, referencias laborales y evaluaciones tecnicas o psicologicas que forman parte del filtro estandar de seleccion.</p>
+<h2>Etapas de seleccion</h2>
+<p>El proceso se compone de cuatro etapas bien definidas. Primero, la revision curricular realizada por el equipo de reclutamiento, que verifica el ajuste entre el perfil publicado y la experiencia declarada. Segundo, una entrevista telefonica o en linea de aproximadamente veinte minutos para confirmar disponibilidad, expectativas salariales y datos basicos. Tercero, la entrevista presencial o tecnica con el jefe directo del area, que profundiza en conocimientos practicos y casos de trabajo reales. Finalmente, la verificacion de referencias y antecedentes antes de extender la oferta formal de empleo con la fecha de incorporacion acordada.</p>
+<h2>Recomendaciones finales</h2>
+<p>Antes de enviar tu postulacion revisa tu hoja de vida y adapta la informacion al puesto ofertado, destacando aquellas experiencias que guarden relacion directa con las funciones descritas. Una postulacion bien presentada, sin errores ortograficos y con datos de contacto actualizados, aumenta considerablemente las posibilidades de avanzar a la etapa de entrevista. Te deseamos mucho exito en este nuevo paso de tu carrera profesional y te invitamos a seguir atento a nuestras proximas convocatorias, que publicamos de manera permanente en este portal con oportunidades actualizadas cada semana para distintos sectores, paises y niveles de experiencia laboral.</p>]]></content:encoded>
+		<excerpt:encoded><![CDATA[Convocatoria abierta. Requisitos, funciones, beneficios y como postular. Actualizado este mes.]]></excerpt:encoded>
+		<wp:post_id>1004</wp:post_id>
+		<wp:post_date><![CDATA[Mon, 29 Sep 2026 08:00:00 +0000]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[Mon, 29 Sep 2026 08:00:00 +0000]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[open]]></wp:comment_status>
+		<wp:ping_status><![CDATA[open]]></wp:ping_status>
+		<wp:post_name><![CDATA[empleos-minera-chinalco]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[post]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="empleos"><![CDATA[Empleos]]></category>
+		<category domain="post_tag" nicename="demo"><![CDATA[demo]]></category>
+		<category domain="category" nicename="chile"><![CDATA[Chile]]></category>
+	</item>
+
+	<item>
+		<title>Trabajo en Suiza cuidando casas en 2026</title>
+		<link>https://demo.nechugo.news/trabajo-suiza-cuidando-casas/</link>
+		<pubDate>Thu, 25 Sep 2026 08:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">https://demo.nechugo.news/?p=1005</guid>
+		<description></description>
+		<content:encoded><![CDATA[<p>La empresa <strong>Agencias asociadas en Suiza</strong> ha abierto una nueva convocatoria para el puesto de <strong>Personal de Cuidado de Residencias (Housekeeping)</strong> en Suiza (cantones de habla alemana). Esta oportunidad laboral corresponde a un contrato de tipo contrato temporal con renovacion, con una remuneracion que parte de CHF 3,200 mensuales aprox. segun la experiencia y las competencias demostradas por cada candidato durante el proceso de seleccion. A continuacion encontraras toda la informacion necesaria para postular: perfil buscado, funciones principales, beneficios incluidos, etapas del proceso y el paso a paso para enviar tu candidatura sin errores.</p>
+<h2>Sobre la empresa</h2>
+<p>Agencias asociadas en Suiza es una organizacion consolidada que opera en Suiza (cantones de habla alemana) y mantiene un compromiso permanente con el desarrollo de su equipo de colaboradores. La empresa invierte en formacion continua, condiciones laborales estables y un ambiente de trabajo basado en el respeto, la colaboracion y el crecimiento profesional medible. Cada ano incorpora nuevos talentos a sus distintas areas operativas y administrativas, por lo que esta convocatoria representa una puerta de entrada real para quienes buscan estabilidad laboral y proyeccion de carrera dentro de una estructura organizacional clara.</p>
+<h2>Descripcion del puesto</h2>
+<p>El rol de Personal de Cuidado de Residencias (Housekeeping) implica trabajar de manera activa dentro de la operacion diaria de Agencias asociadas en Suiza, reportando al responsable del area correspondiente. El contrato es contrato temporal con renovacion, con horarios organizados segun las necesidades del servicio y un periodo de adaptacion acompañado por personal con experiencia. Durante los primeros meses, la persona seleccionada recibira acompanamiento cercano, retroalimentacion constante y acceso a los manuales internos de procedimiento para garantizar una integracion rapida y eficiente al equipo de trabajo.</p>
+<h2>Perfil del candidato</h2>
+<p>Los interesados en esta vacante deberan cumplir con el siguiente perfil general, que combina formacion academica, experiencia practica y competencias personales verificables durante las entrevistas. La empresa valora tanto los conocimientos tecnicos como la actitud frente al trabajo en equipo, la resolucion de problemas bajo presion y la disposicion para aprender procesos nuevos en periodos cortos de adaptacion. No es indispensable cumplir el cien por ciento de los requisitos para postular: aquellos candidatos que se acerquen al perfil y demuestren motivacion tambien seran evaluados.</p>
+<ul><li>Experiencia en limpieza o cuidado de hogares</li><li>Nivel basico de ingles o aleman</li><li>Pasaporte vigente y antecedentes limpios</li><li>Referencias verificables de empleos anteriores</li><li>Disponibilidad para vivir en la propiedad (segun caso)</li></ul>
+<h2>Funciones principales</h2>
+<p>La persona seleccionada sera responsable de las siguientes funciones dentro del area correspondiente. Las tareas se distribuyen segun la operacion diaria y pueden ajustarse conforme a la evolucion del proyecto, siempre dentro del ambito del puesto y con el respaldo del equipo de supervision asignado a cada turno o departamento. El cumplimiento de estandares de calidad, seguridad y puntualidad forma parte transversal de todas las funciones descritas a continuacion.</p>
+<ul><li>Limpieza y mantenimiento de residencias privadas</li><li>Cuidado de plantas y areas exteriores</li><li>Control de provisiones y compras basicas</li><li>Coordinacion con propietarios y administradores</li><li>Reporte de incidencias o danos detectados</li></ul>
+<h2>Beneficios y condiciones</h2>
+<p>El paquete de compensacion incluye ademas del salario base una serie de beneficios orientados al bienestar del colaborador y su grupo familiar. Estos beneficios se formalizan por contrato desde el primer dia de labores y se revisan de manera periodica conforme a la politica interna de recursos humanos y a la normativa laboral vigente en el pais de contratacion. La empresa garantiza condiciones de trabajo seguras, equipos apropiados para el desempeno de cada funcion y espacios de descanso adecuados dentro de sus instalaciones.</p>
+<ul><li>Salario acorde al mercado suizo</li><li>Alojamiento incluido en la mayoria de casos</li><li>Seguro de salud obligatorio contratado por el empleador</li><li>Descansos semanales pagados</li><li>Renovacion de contrato segun desempeno</li></ul>
+<h2>Proceso de postulacion</h2>
+<p>Las postulaciones se canalizan a traves de agencias autorizadas; verifica siempre el registro de la agencia antes de pagar cualquier gestion. El proceso completo tiene una duracion estimada de dos a tres semanas desde la publicacion de esta convocatoria hasta la incorporacion del candidato seleccionado. Recomendamos revisar cuidadosamente los requisitos antes de postular y preparar la documentacion solicitada para no generar demoras en las etapas de verificacion de datos, referencias laborales y evaluaciones tecnicas o psicologicas que forman parte del filtro estandar de seleccion.</p>
+<h2>Etapas de seleccion</h2>
+<p>El proceso se compone de cuatro etapas bien definidas. Primero, la revision curricular realizada por el equipo de reclutamiento, que verifica el ajuste entre el perfil publicado y la experiencia declarada. Segundo, una entrevista telefonica o en linea de aproximadamente veinte minutos para confirmar disponibilidad, expectativas salariales y datos basicos. Tercero, la entrevista presencial o tecnica con el jefe directo del area, que profundiza en conocimientos practicos y casos de trabajo reales. Finalmente, la verificacion de referencias y antecedentes antes de extender la oferta formal de empleo con la fecha de incorporacion acordada.</p>
+<h2>Recomendaciones finales</h2>
+<p>Antes de enviar tu postulacion revisa tu hoja de vida y adapta la informacion al puesto ofertado, destacando aquellas experiencias que guarden relacion directa con las funciones descritas. Una postulacion bien presentada, sin errores ortograficos y con datos de contacto actualizados, aumenta considerablemente las posibilidades de avanzar a la etapa de entrevista. Te deseamos mucho exito en este nuevo paso de tu carrera profesional y te invitamos a seguir atento a nuestras proximas convocatorias, que publicamos de manera permanente en este portal con oportunidades actualizadas cada semana para distintos sectores, paises y niveles de experiencia laboral.</p>]]></content:encoded>
+		<excerpt:encoded><![CDATA[Convocatoria abierta. Requisitos, funciones, beneficios y como postular. Actualizado este mes.]]></excerpt:encoded>
+		<wp:post_id>1005</wp:post_id>
+		<wp:post_date><![CDATA[Thu, 25 Sep 2026 08:00:00 +0000]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[Thu, 25 Sep 2026 08:00:00 +0000]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[open]]></wp:comment_status>
+		<wp:ping_status><![CDATA[open]]></wp:ping_status>
+		<wp:post_name><![CDATA[trabajo-suiza-cuidando-casas]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[post]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="empleos"><![CDATA[Empleos]]></category>
+		<category domain="post_tag" nicename="demo"><![CDATA[demo]]></category>
+		<category domain="category" nicename="suiza"><![CDATA[SUIZA]]></category>
+	</item>
+
+	<item>
+		<title>Oportunidades de empleo para latinos en Canada</title>
+		<link>https://demo.nechugo.news/empleos-canada-latinos/</link>
+		<pubDate>Tue, 23 Sep 2026 08:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">https://demo.nechugo.news/?p=1006</guid>
+		<description></description>
+		<content:encoded><![CDATA[<p>La empresa <strong>Empresas asociadas en Canada</strong> ha abierto una nueva convocatoria para el puesto de <strong>Operario General y Personal de Almacen</strong> en Canada (Ontario y Alberta). Esta oportunidad laboral corresponde a un contrato de tipo contrato temporal con visa de trabajo, con una remuneracion que parte de CAD 18-22 por hora segun la experiencia y las competencias demostradas por cada candidato durante el proceso de seleccion. A continuacion encontraras toda la informacion necesaria para postular: perfil buscado, funciones principales, beneficios incluidos, etapas del proceso y el paso a paso para enviar tu candidatura sin errores.</p>
+<h2>Sobre la empresa</h2>
+<p>Empresas asociadas en Canada es una organizacion consolidada que opera en Canada (Ontario y Alberta) y mantiene un compromiso permanente con el desarrollo de su equipo de colaboradores. La empresa invierte en formacion continua, condiciones laborales estables y un ambiente de trabajo basado en el respeto, la colaboracion y el crecimiento profesional medible. Cada ano incorpora nuevos talentos a sus distintas areas operativas y administrativas, por lo que esta convocatoria representa una puerta de entrada real para quienes buscan estabilidad laboral y proyeccion de carrera dentro de una estructura organizacional clara.</p>
+<h2>Descripcion del puesto</h2>
+<p>El rol de Operario General y Personal de Almacen implica trabajar de manera activa dentro de la operacion diaria de Empresas asociadas en Canada, reportando al responsable del area correspondiente. El contrato es contrato temporal con visa de trabajo, con horarios organizados segun las necesidades del servicio y un periodo de adaptacion acompañado por personal con experiencia. Durante los primeros meses, la persona seleccionada recibira acompanamiento cercano, retroalimentacion constante y acceso a los manuales internos de procedimiento para garantizar una integracion rapida y eficiente al equipo de trabajo.</p>
+<h2>Perfil del candidato</h2>
+<p>Los interesados en esta vacante deberan cumplir con el siguiente perfil general, que combina formacion academica, experiencia practica y competencias personales verificables durante las entrevistas. La empresa valora tanto los conocimientos tecnicos como la actitud frente al trabajo en equipo, la resolucion de problemas bajo presion y la disposicion para aprender procesos nuevos en periodos cortos de adaptacion. No es indispensable cumplir el cien por ciento de los requisitos para postular: aquellos candidatos que se acerquen al perfil y demuestren motivacion tambien seran evaluados.</p>
+<ul><li>Nivel basico o intermedio de ingles</li><li>Experiencia en almacenes, agricultura o alimentos (deseable)</li><li>Pasaporte vigente con validez minima de dos anos</li><li>Disponibilidad para trabajo fisico</li><li>Perfil compatible con programas de movilidad temporal</li></ul>
+<h2>Funciones principales</h2>
+<p>La persona seleccionada sera responsable de las siguientes funciones dentro del area correspondiente. Las tareas se distribuyen segun la operacion diaria y pueden ajustarse conforme a la evolucion del proyecto, siempre dentro del ambito del puesto y con el respaldo del equipo de supervision asignado a cada turno o departamento. El cumplimiento de estandares de calidad, seguridad y puntualidad forma parte transversal de todas las funciones descritas a continuacion.</p>
+<ul><li>Preparacion y empaque de pedidos</li><li>Carga y descarga de mercancia</li><li>Clasificacion de productos en lineas de produccion</li><li>Apoyo en areas agricolas segun temporada</li><li>Cumplimiento de normas de higiene y seguridad</li></ul>
+<h2>Beneficios y condiciones</h2>
+<p>El paquete de compensacion incluye ademas del salario base una serie de beneficios orientados al bienestar del colaborador y su grupo familiar. Estos beneficios se formalizan por contrato desde el primer dia de labores y se revisan de manera periodica conforme a la politica interna de recursos humanos y a la normativa laboral vigente en el pais de contratacion. La empresa garantiza condiciones de trabajo seguras, equipos apropiados para el desempeno de cada funcion y espacios de descanso adecuados dentro de sus instalaciones.</p>
+<ul><li>Pago por hora competitivo del mercado canadiense</li><li>Horas extra remuneradas conforme a la ley</li><li>Alojamiento asistido durante las primeras semanas</li><li>Apoyo con el proceso de permiso de trabajo</li><li>Posible via de residencia segun programa</li></ul>
+<h2>Proceso de postulacion</h2>
+<p>Revisa los requisitos del programa de movilidad temporal de tu pais y postula con tu CV en ingles; las entrevistas se realizan en linea. El proceso completo tiene una duracion estimada de dos a tres semanas desde la publicacion de esta convocatoria hasta la incorporacion del candidato seleccionado. Recomendamos revisar cuidadosamente los requisitos antes de postular y preparar la documentacion solicitada para no generar demoras en las etapas de verificacion de datos, referencias laborales y evaluaciones tecnicas o psicologicas que forman parte del filtro estandar de seleccion.</p>
+<h2>Etapas de seleccion</h2>
+<p>El proceso se compone de cuatro etapas bien definidas. Primero, la revision curricular realizada por el equipo de reclutamiento, que verifica el ajuste entre el perfil publicado y la experiencia declarada. Segundo, una entrevista telefonica o en linea de aproximadamente veinte minutos para confirmar disponibilidad, expectativas salariales y datos basicos. Tercero, la entrevista presencial o tecnica con el jefe directo del area, que profundiza en conocimientos practicos y casos de trabajo reales. Finalmente, la verificacion de referencias y antecedentes antes de extender la oferta formal de empleo con la fecha de incorporacion acordada.</p>
+<h2>Recomendaciones finales</h2>
+<p>Antes de enviar tu postulacion revisa tu hoja de vida y adapta la informacion al puesto ofertado, destacando aquellas experiencias que guarden relacion directa con las funciones descritas. Una postulacion bien presentada, sin errores ortograficos y con datos de contacto actualizados, aumenta considerablemente las posibilidades de avanzar a la etapa de entrevista. Te deseamos mucho exito en este nuevo paso de tu carrera profesional y te invitamos a seguir atento a nuestras proximas convocatorias, que publicamos de manera permanente en este portal con oportunidades actualizadas cada semana para distintos sectores, paises y niveles de experiencia laboral.</p>]]></content:encoded>
+		<excerpt:encoded><![CDATA[Convocatoria abierta. Requisitos, funciones, beneficios y como postular. Actualizado este mes.]]></excerpt:encoded>
+		<wp:post_id>1006</wp:post_id>
+		<wp:post_date><![CDATA[Tue, 23 Sep 2026 08:00:00 +0000]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[Tue, 23 Sep 2026 08:00:00 +0000]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[open]]></wp:comment_status>
+		<wp:ping_status><![CDATA[open]]></wp:ping_status>
+		<wp:post_name><![CDATA[empleos-canada-latinos]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[post]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="empleos"><![CDATA[Empleos]]></category>
+		<category domain="post_tag" nicename="demo"><![CDATA[demo]]></category>
+		<category domain="category" nicename="canada"><![CDATA[Canada]]></category>
+	</item>
+
+	<item>
+		<title>Trabajo Disponible en una Fabrica Textil en Espana</title>
+		<link>https://demo.nechugo.news/trabajo-fabrica-textil-espana/</link>
+		<pubDate>Fri, 19 Sep 2026 08:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">https://demo.nechugo.news/?p=1007</guid>
+		<description></description>
+		<content:encoded><![CDATA[<p>La empresa <strong>Confecciones del Sur SL</strong> ha abierto una nueva convocatoria para el puesto de <strong>Operario/a de Maquina Textil</strong> en Espana (Valencia). Esta oportunidad laboral corresponde a un contrato de tipo contrato temporal con posibilidad de fijo, con una remuneracion que parte de 1,400 EUR mensuales segun convenio segun la experiencia y las competencias demostradas por cada candidato durante el proceso de seleccion. A continuacion encontraras toda la informacion necesaria para postular: perfil buscado, funciones principales, beneficios incluidos, etapas del proceso y el paso a paso para enviar tu candidatura sin errores.</p>
+<h2>Sobre la empresa</h2>
+<p>Confecciones del Sur SL es una organizacion consolidada que opera en Espana (Valencia) y mantiene un compromiso permanente con el desarrollo de su equipo de colaboradores. La empresa invierte en formacion continua, condiciones laborales estables y un ambiente de trabajo basado en el respeto, la colaboracion y el crecimiento profesional medible. Cada ano incorpora nuevos talentos a sus distintas areas operativas y administrativas, por lo que esta convocatoria representa una puerta de entrada real para quienes buscan estabilidad laboral y proyeccion de carrera dentro de una estructura organizacional clara.</p>
+<h2>Descripcion del puesto</h2>
+<p>El rol de Operario/a de Maquina Textil implica trabajar de manera activa dentro de la operacion diaria de Confecciones del Sur SL, reportando al responsable del area correspondiente. El contrato es contrato temporal con posibilidad de fijo, con horarios organizados segun las necesidades del servicio y un periodo de adaptacion acompañado por personal con experiencia. Durante los primeros meses, la persona seleccionada recibira acompanamiento cercano, retroalimentacion constante y acceso a los manuales internos de procedimiento para garantizar una integracion rapida y eficiente al equipo de trabajo.</p>
+<h2>Perfil del candidato</h2>
+<p>Los interesados en esta vacante deberan cumplir con el siguiente perfil general, que combina formacion academica, experiencia practica y competencias personales verificables durante las entrevistas. La empresa valora tanto los conocimientos tecnicos como la actitud frente al trabajo en equipo, la resolucion de problemas bajo presion y la disposicion para aprender procesos nuevos en periodos cortos de adaptacion. No es indispensable cumplir el cien por ciento de los requisitos para postular: aquellos candidatos que se acerquen al perfil y demuestren motivacion tambien seran evaluados.</p>
+<ul><li>No se exige experiencia: formacion inicial remunerada</li><li>Carnet de trabajo en Espana o permiso vigente</li><li>Disponibilidad para turnos de manana o tarde</li><li>Precision manual y buena actitud</li><li>Residencia en la zona o disposicion a trasladarse</li></ul>
+<h2>Funciones principales</h2>
+<p>La persona seleccionada sera responsable de las siguientes funciones dentro del area correspondiente. Las tareas se distribuyen segun la operacion diaria y pueden ajustarse conforme a la evolucion del proyecto, siempre dentro del ambito del puesto y con el respaldo del equipo de supervision asignado a cada turno o departamento. El cumplimiento de estandares de calidad, seguridad y puntualidad forma parte transversal de todas las funciones descritas a continuacion.</p>
+<ul><li>Operar maquinas de confeccion y corte textil</li><li>Control de calidad de prendas terminadas</li><li>Preparacion de materiales y tejidos</li><li>Empaquetado y etiquetado de producto</li><li>Orden y limpieza del puesto de trabajo</li></ul>
+<h2>Beneficios y condiciones</h2>
+<p>El paquete de compensacion incluye ademas del salario base una serie de beneficios orientados al bienestar del colaborador y su grupo familiar. Estos beneficios se formalizan por contrato desde el primer dia de labores y se revisan de manera periodica conforme a la politica interna de recursos humanos y a la normativa laboral vigente en el pais de contratacion. La empresa garantiza condiciones de trabajo seguras, equipos apropiados para el desempeno de cada funcion y espacios de descanso adecuados dentro de sus instalaciones.</p>
+<ul><li>Contrato conforme al convenio textil espanol</li><li>Formacion practica remunerada desde el primer dia</li><li>Pagas extraordinarias y cotizacion completa</li><li>Comedor con precio subvencionado</li><li>Posibilidad de contratacion indefinida</li></ul>
+<h2>Proceso de postulacion</h2>
+<p>Envia tu candidatura con copia del DNI o NIE a la direccion de contacto publicada; preseleccion telefonica dentro de los cinco dias habiles. El proceso completo tiene una duracion estimada de dos a tres semanas desde la publicacion de esta convocatoria hasta la incorporacion del candidato seleccionado. Recomendamos revisar cuidadosamente los requisitos antes de postular y preparar la documentacion solicitada para no generar demoras en las etapas de verificacion de datos, referencias laborales y evaluaciones tecnicas o psicologicas que forman parte del filtro estandar de seleccion.</p>
+<h2>Etapas de seleccion</h2>
+<p>El proceso se compone de cuatro etapas bien definidas. Primero, la revision curricular realizada por el equipo de reclutamiento, que verifica el ajuste entre el perfil publicado y la experiencia declarada. Segundo, una entrevista telefonica o en linea de aproximadamente veinte minutos para confirmar disponibilidad, expectativas salariales y datos basicos. Tercero, la entrevista presencial o tecnica con el jefe directo del area, que profundiza en conocimientos practicos y casos de trabajo reales. Finalmente, la verificacion de referencias y antecedentes antes de extender la oferta formal de empleo con la fecha de incorporacion acordada.</p>
+<h2>Recomendaciones finales</h2>
+<p>Antes de enviar tu postulacion revisa tu hoja de vida y adapta la informacion al puesto ofertado, destacando aquellas experiencias que guarden relacion directa con las funciones descritas. Una postulacion bien presentada, sin errores ortograficos y con datos de contacto actualizados, aumenta considerablemente las posibilidades de avanzar a la etapa de entrevista. Te deseamos mucho exito en este nuevo paso de tu carrera profesional y te invitamos a seguir atento a nuestras proximas convocatorias, que publicamos de manera permanente en este portal con oportunidades actualizadas cada semana para distintos sectores, paises y niveles de experiencia laboral.</p>]]></content:encoded>
+		<excerpt:encoded><![CDATA[Convocatoria abierta. Requisitos, funciones, beneficios y como postular. Actualizado este mes.]]></excerpt:encoded>
+		<wp:post_id>1007</wp:post_id>
+		<wp:post_date><![CDATA[Fri, 19 Sep 2026 08:00:00 +0000]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[Fri, 19 Sep 2026 08:00:00 +0000]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[open]]></wp:comment_status>
+		<wp:ping_status><![CDATA[open]]></wp:ping_status>
+		<wp:post_name><![CDATA[trabajo-fabrica-textil-espana]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[post]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="empleos"><![CDATA[Empleos]]></category>
+		<category domain="post_tag" nicename="demo"><![CDATA[demo]]></category>
+		<category domain="category" nicename="espana"><![CDATA[Espana]]></category>
+	</item>
+
+	<item>
+		<title>Oportunidad de trabajo en fabrica de cajas de carton</title>
+		<link>https://demo.nechugo.news/empleo-fabrica-cajas-carton/</link>
+		<pubDate>Wed, 17 Sep 2026 08:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">https://demo.nechugo.news/?p=1008</guid>
+		<description></description>
+		<content:encoded><![CDATA[<p>La empresa <strong>PackAndina S.A.</strong> ha abierto una nueva convocatoria para el puesto de <strong>Operario de Maquina Corrugadora</strong> en Peru (Lima Norte). Esta oportunidad laboral corresponde a un contrato de tipo indefinido, tiempo completo, con una remuneracion que parte de S/ 1,800 mas horas extra segun la experiencia y las competencias demostradas por cada candidato durante el proceso de seleccion. A continuacion encontraras toda la informacion necesaria para postular: perfil buscado, funciones principales, beneficios incluidos, etapas del proceso y el paso a paso para enviar tu candidatura sin errores.</p>
+<h2>Sobre la empresa</h2>
+<p>PackAndina S.A. es una organizacion consolidada que opera en Peru (Lima Norte) y mantiene un compromiso permanente con el desarrollo de su equipo de colaboradores. La empresa invierte en formacion continua, condiciones laborales estables y un ambiente de trabajo basado en el respeto, la colaboracion y el crecimiento profesional medible. Cada ano incorpora nuevos talentos a sus distintas areas operativas y administrativas, por lo que esta convocatoria representa una puerta de entrada real para quienes buscan estabilidad laboral y proyeccion de carrera dentro de una estructura organizacional clara.</p>
+<h2>Descripcion del puesto</h2>
+<p>El rol de Operario de Maquina Corrugadora implica trabajar de manera activa dentro de la operacion diaria de PackAndina S.A., reportando al responsable del area correspondiente. El contrato es indefinido, tiempo completo, con horarios organizados segun las necesidades del servicio y un periodo de adaptacion acompañado por personal con experiencia. Durante los primeros meses, la persona seleccionada recibira acompanamiento cercano, retroalimentacion constante y acceso a los manuales internos de procedimiento para garantizar una integracion rapida y eficiente al equipo de trabajo.</p>
+<h2>Perfil del candidato</h2>
+<p>Los interesados en esta vacante deberan cumplir con el siguiente perfil general, que combina formacion academica, experiencia practica y competencias personales verificables durante las entrevistas. La empresa valora tanto los conocimientos tecnicos como la actitud frente al trabajo en equipo, la resolucion de problemas bajo presion y la disposicion para aprender procesos nuevos en periodos cortos de adaptacion. No es indispensable cumplir el cien por ciento de los requisitos para postular: aquellos candidatos que se acerquen al perfil y demuestren motivacion tambien seran evaluados.</p>
+<ul><li>Secundaria completa</li><li>Experiencia de seis meses en plantas de empaques (deseable)</li><li>Disponibilidad para turnos rotativos</li><li>Salud compatible con trabajo fisico</li><li>Conocimiento de seguridad industrial basico</li></ul>
+<h2>Funciones principales</h2>
+<p>La persona seleccionada sera responsable de las siguientes funciones dentro del area correspondiente. Las tareas se distribuyen segun la operacion diaria y pueden ajustarse conforme a la evolucion del proyecto, siempre dentro del ambito del puesto y con el respaldo del equipo de supervision asignado a cada turno o departamento. El cumplimiento de estandares de calidad, seguridad y puntualidad forma parte transversal de todas las funciones descritas a continuacion.</p>
+<ul><li>Operar maquina corrugadora y de corte</li><li>Ajuste de formatos segun orden de produccion</li><li>Inspeccion visual de calidad de placas</li><li>Recuento y apilado de producto terminado</li><li>Registro de produccion por turno</li></ul>
+<h2>Beneficios y condiciones</h2>
+<p>El paquete de compensacion incluye ademas del salario base una serie de beneficios orientados al bienestar del colaborador y su grupo familiar. Estos beneficios se formalizan por contrato desde el primer dia de labores y se revisan de manera periodica conforme a la politica interna de recursos humanos y a la normativa laboral vigente en el pais de contratacion. La empresa garantiza condiciones de trabajo seguras, equipos apropiados para el desempeno de cada funcion y espacios de descanso adecuados dentro de sus instalaciones.</p>
+<ul><li>Planilla completa con todos los beneficios de ley</li><li>Horas extra pagadas al 100% adicional</li><li>Movilidad y refrigerio en turnos nocturnos</li><li>Bono por cumplimiento de metas del area</li><li>Oportunidades de ascenso a operario maestro</li></ul>
+<h2>Proceso de postulacion</h2>
+<p>Acude con tu CV y DNI a la oficina de personal de la planta o escribe al WhatsApp de reclutamiento publicado; entrevistas presenciales toda la semana. El proceso completo tiene una duracion estimada de dos a tres semanas desde la publicacion de esta convocatoria hasta la incorporacion del candidato seleccionado. Recomendamos revisar cuidadosamente los requisitos antes de postular y preparar la documentacion solicitada para no generar demoras en las etapas de verificacion de datos, referencias laborales y evaluaciones tecnicas o psicologicas que forman parte del filtro estandar de seleccion.</p>
+<h2>Etapas de seleccion</h2>
+<p>El proceso se compone de cuatro etapas bien definidas. Primero, la revision curricular realizada por el equipo de reclutamiento, que verifica el ajuste entre el perfil publicado y la experiencia declarada. Segundo, una entrevista telefonica o en linea de aproximadamente veinte minutos para confirmar disponibilidad, expectativas salariales y datos basicos. Tercero, la entrevista presencial o tecnica con el jefe directo del area, que profundiza en conocimientos practicos y casos de trabajo reales. Finalmente, la verificacion de referencias y antecedentes antes de extender la oferta formal de empleo con la fecha de incorporacion acordada.</p>
+<h2>Recomendaciones finales</h2>
+<p>Antes de enviar tu postulacion revisa tu hoja de vida y adapta la informacion al puesto ofertado, destacando aquellas experiencias que guarden relacion directa con las funciones descritas. Una postulacion bien presentada, sin errores ortograficos y con datos de contacto actualizados, aumenta considerablemente las posibilidades de avanzar a la etapa de entrevista. Te deseamos mucho exito en este nuevo paso de tu carrera profesional y te invitamos a seguir atento a nuestras proximas convocatorias, que publicamos de manera permanente en este portal con oportunidades actualizadas cada semana para distintos sectores, paises y niveles de experiencia laboral.</p>]]></content:encoded>
+		<excerpt:encoded><![CDATA[Convocatoria abierta. Requisitos, funciones, beneficios y como postular. Actualizado este mes.]]></excerpt:encoded>
+		<wp:post_id>1008</wp:post_id>
+		<wp:post_date><![CDATA[Wed, 17 Sep 2026 08:00:00 +0000]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[Wed, 17 Sep 2026 08:00:00 +0000]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[open]]></wp:comment_status>
+		<wp:ping_status><![CDATA[open]]></wp:ping_status>
+		<wp:post_name><![CDATA[empleo-fabrica-cajas-carton]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[post]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="empleos"><![CDATA[Empleos]]></category>
+		<category domain="post_tag" nicename="demo"><![CDATA[demo]]></category>
+		<category domain="category" nicename="fabrica"><![CDATA[FABRICA]]></category>
+	</item>
+
+	<item>
+		<title>Restaurantes en Estados Unidos contratan personal hispanohablante</title>
+		<link>https://demo.nechugo.news/restaurantes-estados-unidos-personal-hispanohablante/</link>
+		<pubDate>Mon, 15 Sep 2026 08:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">https://demo.nechugo.news/?p=1009</guid>
+		<description></description>
+		<content:encoded><![CDATA[<p>La empresa <strong>Cadenas de restaurantes asociadas</strong> ha abierto una nueva convocatoria para el puesto de <strong>Ayudante de Cocina y Mesero(a) Bilingue</strong> en Estados Unidos (Texas y Florida). Esta oportunidad laboral corresponde a un contrato de tipo tiempo completo, contrato anual, con una remuneracion que parte de USD 14-19 por hora mas propinas segun la experiencia y las competencias demostradas por cada candidato durante el proceso de seleccion. A continuacion encontraras toda la informacion necesaria para postular: perfil buscado, funciones principales, beneficios incluidos, etapas del proceso y el paso a paso para enviar tu candidatura sin errores.</p>
+<h2>Sobre la empresa</h2>
+<p>Cadenas de restaurantes asociadas es una organizacion consolidada que opera en Estados Unidos (Texas y Florida) y mantiene un compromiso permanente con el desarrollo de su equipo de colaboradores. La empresa invierte en formacion continua, condiciones laborales estables y un ambiente de trabajo basado en el respeto, la colaboracion y el crecimiento profesional medible. Cada ano incorpora nuevos talentos a sus distintas areas operativas y administrativas, por lo que esta convocatoria representa una puerta de entrada real para quienes buscan estabilidad laboral y proyeccion de carrera dentro de una estructura organizacional clara.</p>
+<h2>Descripcion del puesto</h2>
+<p>El rol de Ayudante de Cocina y Mesero(a) Bilingue implica trabajar de manera activa dentro de la operacion diaria de Cadenas de restaurantes asociadas, reportando al responsable del area correspondiente. El contrato es tiempo completo, contrato anual, con horarios organizados segun las necesidades del servicio y un periodo de adaptacion acompañado por personal con experiencia. Durante los primeros meses, la persona seleccionada recibira acompanamiento cercano, retroalimentacion constante y acceso a los manuales internos de procedimiento para garantizar una integracion rapida y eficiente al equipo de trabajo.</p>
+<h2>Perfil del candidato</h2>
+<p>Los interesados en esta vacante deberan cumplir con el siguiente perfil general, que combina formacion academica, experiencia practica y competencias personales verificables durante las entrevistas. La empresa valora tanto los conocimientos tecnicos como la actitud frente al trabajo en equipo, la resolucion de problemas bajo presion y la disposicion para aprender procesos nuevos en periodos cortos de adaptacion. No es indispensable cumplir el cien por ciento de los requisitos para postular: aquellos candidatos que se acerquen al perfil y demuestren motivacion tambien seran evaluados.</p>
+<ul><li>Ingles conversacional basico para comunicarse con el equipo</li><li>Experiencia en gastronomia (deseable)</li><li>Documentacion legal para trabajar en EE.UU.</li><li>Disponibilidad para fines de semana y dias festivos</li><li>Presentacion personal e higiene impecables</li></ul>
+<h2>Funciones principales</h2>
+<p>La persona seleccionada sera responsable de las siguientes funciones dentro del area correspondiente. Las tareas se distribuyen segun la operacion diaria y pueden ajustarse conforme a la evolucion del proyecto, siempre dentro del ambito del puesto y con el respaldo del equipo de supervision asignado a cada turno o departamento. El cumplimiento de estandares de calidad, seguridad y puntualidad forma parte transversal de todas las funciones descritas a continuacion.</p>
+<ul><li>Preparacion de ingredientes y estaciones de cocina</li><li>Atencion al cliente en sala y barra</li><li>Apoyo en el emplatado bajo supervision del chef</li><li>Limpieza y organizacion del area de trabajo</li><li>Manejo de pedidos en sistema POS</li></ul>
+<h2>Beneficios y condiciones</h2>
+<p>El paquete de compensacion incluye ademas del salario base una serie de beneficios orientados al bienestar del colaborador y su grupo familiar. Estos beneficios se formalizan por contrato desde el primer dia de labores y se revisan de manera periodica conforme a la politica interna de recursos humanos y a la normativa laboral vigente en el pais de contratacion. La empresa garantiza condiciones de trabajo seguras, equipos apropiados para el desempeno de cada funcion y espacios de descanso adecuados dentro de sus instalaciones.</p>
+<ul><li>Propinas promedio del sector incluidas en la remuneracion</li><li>Comidas de personal durante el turno</li><li>Seguro medico despues de los primeros meses</li><li>Descuentos en otras sedes de la cadena</li><li>Programa interno de ascenso a supervisor de sala</li></ul>
+<h2>Proceso de postulacion</h2>
+<p>Aplica directamente en el portal de empleos de la cadena con tu numero de seguro social o permiso de trabajo; entrevistas en persona en cada local. El proceso completo tiene una duracion estimada de dos a tres semanas desde la publicacion de esta convocatoria hasta la incorporacion del candidato seleccionado. Recomendamos revisar cuidadosamente los requisitos antes de postular y preparar la documentacion solicitada para no generar demoras en las etapas de verificacion de datos, referencias laborales y evaluaciones tecnicas o psicologicas que forman parte del filtro estandar de seleccion.</p>
+<h2>Etapas de seleccion</h2>
+<p>El proceso se compone de cuatro etapas bien definidas. Primero, la revision curricular realizada por el equipo de reclutamiento, que verifica el ajuste entre el perfil publicado y la experiencia declarada. Segundo, una entrevista telefonica o en linea de aproximadamente veinte minutos para confirmar disponibilidad, expectativas salariales y datos basicos. Tercero, la entrevista presencial o tecnica con el jefe directo del area, que profundiza en conocimientos practicos y casos de trabajo reales. Finalmente, la verificacion de referencias y antecedentes antes de extender la oferta formal de empleo con la fecha de incorporacion acordada.</p>
+<h2>Recomendaciones finales</h2>
+<p>Antes de enviar tu postulacion revisa tu hoja de vida y adapta la informacion al puesto ofertado, destacando aquellas experiencias que guarden relacion directa con las funciones descritas. Una postulacion bien presentada, sin errores ortograficos y con datos de contacto actualizados, aumenta considerablemente las posibilidades de avanzar a la etapa de entrevista. Te deseamos mucho exito en este nuevo paso de tu carrera profesional y te invitamos a seguir atento a nuestras proximas convocatorias, que publicamos de manera permanente en este portal con oportunidades actualizadas cada semana para distintos sectores, paises y niveles de experiencia laboral.</p>]]></content:encoded>
+		<excerpt:encoded><![CDATA[Convocatoria abierta. Requisitos, funciones, beneficios y como postular. Actualizado este mes.]]></excerpt:encoded>
+		<wp:post_id>1009</wp:post_id>
+		<wp:post_date><![CDATA[Mon, 15 Sep 2026 08:00:00 +0000]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[Mon, 15 Sep 2026 08:00:00 +0000]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[open]]></wp:comment_status>
+		<wp:ping_status><![CDATA[open]]></wp:ping_status>
+		<wp:post_name><![CDATA[restaurantes-estados-unidos-personal-hispanohablante]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[post]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="empleos"><![CDATA[Empleos]]></category>
+		<category domain="post_tag" nicename="demo"><![CDATA[demo]]></category>
+		<category domain="category" nicename="estados-unidos"><![CDATA[Estados Unidos]]></category>
+	</item>
+
+</channel>
+</rss>
