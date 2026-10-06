@@ -156,8 +156,21 @@ body.nechugo-nav-open .nechugo-menu-toggle span:nth-child(3) { transform: transl
 	transition: transform .2s ease, box-shadow .2s ease;
 }
 .nechugo-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0, 0, 0, .1); }
-.nechugo-card__thumb { display: block; aspect-ratio: 16/10; overflow: hidden; }
-.nechugo-card__thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+/* Caja de imagen por defecto: 900x520 (ratio 16:9.24, "16.4") */
+.nechugo-card__thumb {
+	display: block;
+	aspect-ratio: 900 / 520;
+	min-width: 100%;
+	overflow: hidden;
+	background: #f0f0f0;
+}
+.nechugo-card__thumb img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	image-rendering: auto;
+}
 .nechugo-card:hover .nechugo-card__thumb img { transform: scale(1.05); }
 .nechugo-card__body { padding: 1rem 1.1rem 1.25rem; display: flex; flex-direction: column; gap: .5rem; }
 .nechugo-card__title { font-size: 16px; margin: 0; line-height: 1.35; }
@@ -181,7 +194,21 @@ body.nechugo-nav-open .nechugo-menu-toggle span:nth-child(3) { transform: transl
 
 /* Single */
 .entry-title { font-size: 28px; line-height: 1.25; margin: .35rem 0; }
-.entry-thumb img { border-radius: var(--nn-radius); }
+/* Imagen destacada de la entrada: minimo 900x520, sin perder calidad */
+.entry-thumb {
+	margin: 0 0 1.5rem;
+	border-radius: var(--nn-radius);
+	overflow: hidden;
+	background: #f0f0f0;
+}
+.entry-thumb img {
+	display: block;
+	width: 100%;
+	height: auto;
+	max-height: none;
+	object-fit: cover;
+	border-radius: var(--nn-radius);
+}
 .entry-content { font-size: 14px; }
 .entry-content h1 { font-size: 16px; }
 .entry-content p { margin: 0 0 1.25em; }

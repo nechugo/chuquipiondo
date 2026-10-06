@@ -24,6 +24,7 @@ require_once NECHUGO_NEWS_DIR . '/inc/enqueue.php';
 require_once NECHUGO_NEWS_DIR . '/inc/widgets.php';
 require_once NECHUGO_NEWS_DIR . '/inc/template-tags.php';
 require_once NECHUGO_NEWS_DIR . '/inc/schema.php';
+require_once NECHUGO_NEWS_DIR . '/inc/images.php';
 require_once NECHUGO_NEWS_DIR . '/inc/compatibility.php';
 require_once NECHUGO_NEWS_DIR . '/inc/customizer/defaults.php';
 require_once NECHUGO_NEWS_DIR . '/inc/customizer/register.php';

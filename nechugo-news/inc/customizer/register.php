@@ -112,6 +112,8 @@ function nechugo_customize_register( $wp_customize ) {
 
 	$fonts = array(
 		'system'        => __( 'Sistema (mas rapido)', 'nechugo-news' ),
+		'google-sans'   => 'Google Sans',
+		'roboto'        => 'Roboto',
 		'inter'         => 'Inter',
 		'roboto'        => 'Roboto',
 		'open-sans'     => 'Open Sans',

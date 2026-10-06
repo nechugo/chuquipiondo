@@ -32,8 +32,8 @@ function nechugo_defaults() {
 		// Tipografia (articulo 12px, H1 16px por defecto).
 		'body_font_size'         => 12,
 		'h1_font_size'           => 16,
-		'body_font_family'       => 'system',
-		'heading_font_family'    => 'system',
+		'body_font_family'       => 'roboto',
+		'heading_font_family'    => 'google-sans',
 		'body_line_height'       => 1.7,
 
 		// Layout.

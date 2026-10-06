@@ -24,7 +24,7 @@ get_header();
 						<?php nechugo_post_meta(); ?>
 					</header>
 					<?php if ( has_post_thumbnail() ) : ?>
-						<figure class="entry-thumb"><?php the_post_thumbnail( 'large' ); ?></figure>
+						<figure class="entry-thumb"><?php the_post_thumbnail( 'nechugo-single' ); ?></figure>
 					<?php endif; ?>
 					<div class="entry-content">
 						<?php

@@ -38,8 +38,10 @@ function nechugo_setup() {
 	add_theme_support( 'custom-background', array( 'default-color' => 'ffffff' ) );
 
 	// Imagenes responsivas adicionales.
-	add_image_size( 'nechugo-card', 480, 300, true );
-	add_image_size( 'nechugo-slider', 1200, 600, true );
+	// Caja por defecto de cada entrada: 900x520 (16:9 aprox), recorte centrado sin perder calidad.
+	add_image_size( 'nechugo-card', 900, 520, true );
+	add_image_size( 'nechugo-single', 900, 520, true );
+	add_image_size( 'nechugo-slider', 1200, 520, true );
 
 	register_nav_menus(
 		array(

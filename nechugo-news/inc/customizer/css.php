@@ -92,6 +92,7 @@ function nechugo_color_presets() {
 function nechugo_font_stack( $key ) {
 	$stacks = array(
 		'system'       => "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+		'google-sans'  => "'Google Sans', 'Product Sans', Roboto, -apple-system, sans-serif",
 		'inter'        => "'Inter', sans-serif",
 		'roboto'       => "'Roboto', sans-serif",
 		'open-sans'    => "'Open Sans', sans-serif",
