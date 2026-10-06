@@ -34,3 +34,4 @@ require_once NECHUGO_NEWS_DIR . '/inc/header.php';
 require_once NECHUGO_NEWS_DIR . '/inc/footer.php';
 require_once NECHUGO_NEWS_DIR . '/inc/ads.php';
 require_once NECHUGO_NEWS_DIR . '/inc/extras.php';
+require_once NECHUGO_NEWS_DIR . '/inc/legacy.php';

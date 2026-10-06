@@ -357,3 +357,22 @@ body.nechugo-nav-open .nechugo-menu-toggle span:nth-child(3) { transform: transl
 	.footer__grid--2, .footer__grid--3, .footer__grid--4 { grid-template-columns: 1fr; }
 	.header__inner--reverse { flex-wrap: wrap; }
 }
+
+/* ============ Contenido heredado de otras plantillas ============ */
+/* Entradas creadas con otros temas se adaptan al estilo de nechugo News
+   sin modificar su contenido en la base de datos. */
+.entry-content img.aligncenter { margin-left: auto; margin-right: auto; display: block; }
+.entry-content img.alignleft { float: left; margin: 0 1.5rem 1rem 0; }
+.entry-content img.alignright { float: right; margin: 0 0 1rem 1.5rem; }
+.entry-content .wp-caption { max-width: 100%; margin-bottom: 1.25em; }
+.entry-content .wp-caption-text { font-size: 12px; color: #777; text-align: center; padding: .5rem 0; }
+.entry-content .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; margin-bottom: 1.5em; }
+.entry-content .gallery-item { margin: 0; }
+.entry-content .gallery-columns-2 .gallery { grid-template-columns: repeat(2, 1fr); }
+.entry-content table { width: 100%; border-collapse: collapse; margin-bottom: 1.5em; font-size: 13px; }
+.entry-content th, .entry-content td { border: 1px solid #e5e5e5; padding: .5rem .75rem; text-align: left; }
+.entry-content th { background: #f7f7f7; font-weight: 700; }
+.entry-content blockquote { margin: 1.5em 0; padding: .75rem 1.25rem; border-left: 4px solid var(--nn-primary); background: #f8f9fa; }
+.entry-content iframe, .entry-content embed, .entry-content video { max-width: 100%; }
+.entry-content .alignwide { width: 100%; }
+.entry-content > *:first-child { margin-top: 0; }
