@@ -27,6 +27,9 @@ while ( have_posts() ) :
 						<header class="entry-header">
 							<h1 class="entry-title"><?php the_title(); ?></h1>
 						</header>
+						<?php if ( nechugo_is_enabled( 'page_show_thumb' ) && has_post_thumbnail() ) : ?>
+							<figure class="entry-thumb"><?php the_post_thumbnail( 'nechugo-single' ); ?></figure>
+						<?php endif; ?>
 						<div class="entry-content">
 							<?php
 							the_content();

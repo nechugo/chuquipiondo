@@ -29,4 +29,4 @@
 
 <?php nechugo_ad_slot( 'ad_header_code' ); ?>
 
-<div id="content" class="site-content">
+<div id="content" class="site-content" style="padding-top: var(--nn-space-hb, 30px);">

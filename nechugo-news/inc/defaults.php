@@ -71,6 +71,15 @@ function nechugo_defaults() {
 		'header_topbar_enable'   => false,
 		'header_date_enable'     => true,
 
+		// Espaciados estructurales.
+		'spacing_header_body'    => 30,
+		'spacing_body_footer'    => 30,
+
+		// Estilo profesional de contenido.
+		'page_title_style'       => 'centered',
+		'page_show_thumb'        => true,
+		'page_thumb_radius'     => 12,
+
 		// Logo personalizable.
 		'logo_width'             => 220,
 		'logo_height'            => 120,

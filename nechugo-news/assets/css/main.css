@@ -85,7 +85,7 @@ h1 { font-size: 18px; font-weight: 900; }
 .header__inner--reverse .header__tools { order: 2; margin-left: auto; }
 .header__inner--reverse .header__brand { order: 3; }
 
-.site-title { margin: 0; font-size: 1.5rem; font-weight: 700; }
+.site-title { margin: 0; font-size: 20px; font-weight: 900; letter-spacing: -0.01em; }
 .site-title a { color: var(--nn-header-text); }
 .site-description { font-size: 12px; opacity: .75; }
 .custom-logo { max-height: 120px; min-width: 220px; width: auto; height: auto; }
@@ -138,7 +138,7 @@ body.nechugo-nav-open .nechugo-menu-toggle span:nth-child(2) { opacity: 0; }
 body.nechugo-nav-open .nechugo-menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ============ Layout blog ============ */
-.nechugo-content-area { padding: 1.5rem 0 3rem; }
+.nechugo-content-area { padding: 0 0 3rem; }
 .nechugo-layout { display: grid; gap: 2rem; }
 .nechugo-layout--sidebar-right { grid-template-columns: minmax(0, 1fr) var(--nn-sidebar); }
 .nechugo-layout--sidebar-left  { grid-template-columns: var(--nn-sidebar) minmax(0, 1fr); }
@@ -541,3 +541,43 @@ input:focus-visible,
 	.nechugo-split__row { height: 110px; grid-template-columns: 40% 1fr; }
 	.header-widgets__grid--2, .header-widgets__grid--3, .header-widgets__grid--4 { grid-template-columns: 1fr; }
 }
+
+/* ============ Estilo profesional de contenido (paginas y blog) ============ */
+.nechugo-single .entry-header { margin-bottom: 1.25rem; }
+.entry-title {
+	font-weight: 900;
+	letter-spacing: -0.01em;
+	color: var(--nn-text);
+}
+.entry-content { color: #333; }
+.entry-content p { margin: 0 0 1.35em; }
+.entry-content h2 { font-size: 17px; font-weight: 800; margin: 1.6em 0 .6em; color: var(--nn-text); }
+.entry-content h3 { font-size: 15px; font-weight: 700; margin: 1.4em 0 .5em; color: var(--nn-text); }
+.entry-content strong { color: var(--nn-text); font-weight: 700; }
+.entry-content ul, .entry-content ol { padding-left: 1.4em; margin: 0 0 1.35em; }
+.entry-content li { margin-bottom: .4em; }
+.entry-content a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(26,115,232,.4); }
+.entry-content a:hover { text-decoration-color: var(--nn-primary); }
+.entry-content > h2:first-child, .entry-content > p:first-child { margin-top: 0; }
+
+/* Imagenes con estilo editorial */
+.entry-thumb img { box-shadow: 0 4px 18px rgba(0,0,0,.09); }
+.wp-block-image img, .entry-content > img { border-radius: var(--nn-radius); box-shadow: 0 3px 14px rgba(0,0,0,.08); }
+
+/* Titulo de pagina centrado */
+.nechugo-main--page .entry-header { border-bottom: 1px solid #efefef; }
+.nechugo-main--page .entry-title { margin: 0 0 .35rem; }
+
+/* Blog: encabezado de archivos elegante */
+.nechugo-archive-header {
+	padding: 1rem 0 1.25rem;
+	margin-bottom: 1.25rem;
+	border-bottom: 2px solid var(--nn-primary);
+}
+.nechugo-archive-header .archive-title {
+	font-size: 20px;
+	font-weight: 900;
+	margin: 0;
+	letter-spacing: -0.01em;
+}
+.archive-description { font-size: 13px; color: #666; margin-top: .35rem; }

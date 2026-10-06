@@ -137,6 +137,18 @@ function nechugo_customizer_css() {
 		$css .= 'body{background:linear-gradient(135deg,' . $from . ',' . $to . ') fixed;}';
 	}
 
+	// ============ Espaciados estructurales (default 30px) ============
+	$sp_hb = max( 0, (int) nechugo_get_option( 'spacing_header_body' ) );
+	$sp_bf = max( 0, (int) nechugo_get_option( 'spacing_body_footer' ) );
+	$css  .= ':root{--nn-space-hb:' . $sp_hb . 'px;--nn-space-bf:' . $sp_bf . 'px;}';
+
+	// ============ Estilo profesional de paginas ============
+	$thumb_r = max( 0, (int) nechugo_get_option( 'page_thumb_radius' ) );
+	$css   .= '.entry-thumb,.nechugo-card,.nechugo-hero-slider{border-radius:' . $thumb_r . 'px;}';
+	if ( 'centered' === nechugo_get_option( 'page_title_style' ) ) {
+		$css .= '.nechugo-main--page .entry-header{text-align:center;padding-bottom:' . $sp_hb . 'px;}';
+	}
+
 	// Ancho de la barra lateral (por defecto 300px).
 	$sidebar = max( 240, (int) nechugo_get_option( 'sidebar_width' ) );
 	$css    .= ':root{--nn-sidebar:' . $sidebar . 'px;}';
