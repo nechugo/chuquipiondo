@@ -63,6 +63,10 @@ function nechugo_customizer_css() {
 	$width = max( 1200, $width );
 	$css  .= '.nechugo-container{max-width:' . $width . 'px;}';
 
+	// Ancho de la barra lateral (por defecto 300px).
+	$sidebar = max( 240, (int) nechugo_get_option( 'sidebar_width' ) );
+	$css    .= ':root{--nn-sidebar:' . $sidebar . 'px;}';
+
 	return nechugo_minify_css( $css );
 }
 

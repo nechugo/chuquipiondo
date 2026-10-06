@@ -6,7 +6,6 @@
  */
 
 get_header();
-$sidebar = nechugo_get_option( 'sidebar_position' );
 ?>
 
 <div class="nechugo-container nechugo-content-area">
@@ -17,10 +16,10 @@ $sidebar = nechugo_get_option( 'sidebar_position' );
 			?>
 		</h1>
 	</header>
-	<div class="nechugo-layout nechugo-layout--sidebar-<?php echo esc_attr( $sidebar ); ?>">
+	<div class="<?php echo esc_attr( nechugo_layout_classes() ); ?>">
 		<main id="primary" class="nechugo-main">
 			<?php if ( have_posts() ) : ?>
-				<div class="nechugo-posts nechugo-posts--list">
+				<div class="<?php echo esc_attr( nechugo_posts_classes() ); ?>">
 					<?php
 					while ( have_posts() ) :
 						the_post();
@@ -39,7 +38,7 @@ $sidebar = nechugo_get_option( 'sidebar_position' );
 				</div>
 			<?php endif; ?>
 		</main>
-		<?php if ( 'none' !== $sidebar && is_active_sidebar( 'sidebar-1' ) ) : ?>
+		<?php if ( nechugo_show_sidebar() && is_active_sidebar( 'sidebar-1' ) ) : ?>
 			<aside class="nechugo-sidebar">
 				<?php dynamic_sidebar( 'sidebar-1' ); ?>
 			</aside>

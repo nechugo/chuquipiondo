@@ -360,7 +360,7 @@ function nechugo_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'blog_layout',
 		array(
-			'default'           => 'grid-3',
+			'default'           => 'grid',
 			'sanitize_callback' => 'sanitize_key',
 		)
 	);
@@ -371,13 +371,75 @@ function nechugo_customize_register( $wp_customize ) {
 			'section' => 'nechugo_blog',
 			'type'    => 'radio',
 			'choices' => array(
-				'grid-2'   => __( 'Cuadricula 2 columnas', 'nechugo-news' ),
-				'grid-3'   => __( 'Cuadricula 3 columnas', 'nechugo-news' ),
-				'list'     => __( 'Lista horizontal (imagen + texto)', 'nechugo-news' ),
-				'masonry'  => __( 'Masonry', 'nechugo-news' ),
+				'grid'    => __( 'Cuadricula de columnas', 'nechugo-news' ),
+				'list'    => __( 'Lista horizontal (imagen + texto)', 'nechugo-news' ),
+				'masonry' => __( 'Masonry', 'nechugo-news' ),
 			),
 		)
 	);
+
+	$wp_customize->add_setting(
+		'blog_columns',
+		array(
+			'default'           => 2,
+			'sanitize_callback' => 'nechugo_sanitize_number',
+		)
+	);
+	$wp_customize->add_control(
+		'blog_columns',
+		array(
+			'label'       => __( 'Numero de columnas (cuadricula y masonry)', 'nechugo-news' ),
+			'description' => __( 'Por defecto 2. Se ajusta automaticamente en pantallas pequenas.', 'nechugo-news' ),
+			'section'     => 'nechugo_blog',
+			'type'        => 'number',
+			'input_attrs' => array( 'min' => 1, 'max' => 4 ),
+		)
+	);
+
+	// ---- Sidebar ----
+	$wp_customize->add_setting(
+		'sidebar_width',
+		array(
+			'default'           => 300,
+			'sanitize_callback' => 'nechugo_sanitize_number',
+			'transport'         => 'postMessage',
+		)
+	);
+	$wp_customize->add_control(
+		'sidebar_width',
+		array(
+			'label'       => __( 'Ancho de la barra lateral (px)', 'nechugo-news' ),
+			'description' => __( 'Por defecto 300px.', 'nechugo-news' ),
+			'section'     => 'nechugo_blog',
+			'type'        => 'number',
+			'input_attrs' => array( 'min' => 240, 'max' => 480, 'step' => 10 ),
+		)
+	);
+
+	$sidebar_toggles = array(
+		'sidebar_on_blog'    => __( 'Mostrar sidebar en el blog / portada', 'nechugo-news' ),
+		'sidebar_on_archive' => __( 'Mostrar sidebar en archivos y categorias', 'nechugo-news' ),
+		'sidebar_on_posts'   => __( 'Mostrar sidebar en entradas', 'nechugo-news' ),
+		'sidebar_on_pages'   => __( 'Mostrar sidebar en paginas', 'nechugo-news' ),
+		'sidebar_on_search'  => __( 'Mostrar sidebar en resultados de busqueda', 'nechugo-news' ),
+	);
+	foreach ( $sidebar_toggles as $key => $label ) {
+		$wp_customize->add_setting(
+			$key,
+			array(
+				'default'           => nechugo_get_option( $key ),
+				'sanitize_callback' => 'nechugo_sanitize_checkbox',
+			)
+		);
+		$wp_customize->add_control(
+			$key,
+			array(
+				'label'   => $label,
+				'section' => 'nechugo_blog',
+				'type'    => 'checkbox',
+			)
+		);
+	}
 
 	$wp_customize->add_setting(
 		'sidebar_position',

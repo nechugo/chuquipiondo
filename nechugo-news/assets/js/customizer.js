@@ -40,6 +40,14 @@
 		});
 	});
 
+	// Ancho de la barra lateral.
+	api('sidebar_width', function (value) {
+		value.bind(function (to) {
+			to = Math.max(240, parseInt(to, 10) || 300);
+			document.documentElement.style.setProperty('--nn-sidebar', to + 'px');
+		});
+	});
+
 	// Nombre del sitio.
 	api('blogname', function (value) {
 		value.bind(function (to) {

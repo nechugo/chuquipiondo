@@ -38,8 +38,15 @@ function nechugo_defaults() {
 
 		// Layout.
 		'content_width'          => 1200,
-		'blog_layout'            => 'grid-3',
+		'blog_layout'            => 'grid',
+		'blog_columns'           => 2,
 		'sidebar_position'       => 'right',
+		'sidebar_width'           => 300,
+		'sidebar_on_blog'        => true,
+		'sidebar_on_archive'     => true,
+		'sidebar_on_posts'       => true,
+		'sidebar_on_pages'       => true,
+		'sidebar_on_search'      => true,
 		'excerpt_length'         => 24,
 		'read_more_text'         => 'Leer mas',
 

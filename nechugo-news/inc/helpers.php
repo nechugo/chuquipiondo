@@ -76,3 +76,61 @@ function nechugo_is_elementor_page() {
 	$document = $plugin->documents->get( get_the_ID() );
 	return $document && $document->is_built_with_elementor();
 }
+
+/**
+ * Decide si la barra lateral debe mostrarse en el contexto actual,
+ * segun los toggles del personalizador y el ancho configurado.
+ *
+ * @return bool
+ */
+function nechugo_show_sidebar() {
+	if ( 'none' === nechugo_get_option( 'sidebar_position' ) ) {
+		return false;
+	}
+	if ( is_front_page() && is_home() ) {
+		return nechugo_is_enabled( 'sidebar_on_blog' );
+	}
+	if ( is_home() ) {
+		return nechugo_is_enabled( 'sidebar_on_blog' );
+	}
+	if ( is_singular( 'post' ) ) {
+		return nechugo_is_enabled( 'sidebar_on_posts' );
+	}
+	if ( is_page() ) {
+		return nechugo_is_enabled( 'sidebar_on_pages' );
+	}
+	if ( is_search() ) {
+		return nechugo_is_enabled( 'sidebar_on_search' );
+	}
+	if ( is_archive() ) {
+		return nechugo_is_enabled( 'sidebar_on_archive' );
+	}
+	return true;
+}
+
+/**
+ * Clases del listado de entradas: layout + numero de columnas (1-4).
+ *
+ * @return string
+ */
+function nechugo_posts_classes() {
+	$layout  = nechugo_get_option( 'blog_layout' );
+	$columns = max( 1, min( 4, (int) nechugo_get_option( 'blog_columns' ) ) );
+	return 'nechugo-posts nechugo-posts--' . sanitize_html_class( $layout ) . ' nechugo-posts--cols-' . $columns;
+}
+
+/**
+ * Clases del layout principal: posicion del sidebar solo si este
+ * se va a mostrar en el contexto actual.
+ *
+ * @return string
+ */
+function nechugo_layout_classes() {
+	$classes = 'nechugo-layout';
+	if ( nechugo_show_sidebar() ) {
+		$classes .= ' nechugo-layout--sidebar-' . sanitize_html_class( nechugo_get_option( 'sidebar_position' ) );
+	} else {
+		$classes .= ' nechugo-layout--sidebar-none';
+	}
+	return $classes;
+}
