@@ -32,6 +32,35 @@
 			});
 		}
 
+		// Slider dividido (split): rotacion automatica de grupos de 4 entradas.
+		var split = document.querySelector('.nechugo-hero-slider--split');
+		if (split) {
+			var groups = Array.prototype.slice.call(split.querySelectorAll('.split-group'));
+			if (groups.length > 1) {
+				var currentGroup = 0;
+				var splitTimer = null;
+				var showGroup = function (index) {
+					currentGroup = (index + groups.length) % groups.length;
+					groups.forEach(function (g, gi) {
+						g.classList.toggle('is-active', gi === currentGroup);
+					});
+				};
+				var startSplit = function () {
+					splitTimer = setInterval(function () {
+						showGroup(currentGroup + 1);
+					}, 5000);
+				};
+				var stopSplit = function () { if (splitTimer) clearInterval(splitTimer); };
+				var prevBtnS = split.querySelector('.nechugo-hero-prev');
+				var nextBtnS = split.querySelector('.nechugo-hero-next');
+				if (nextBtnS) nextBtnS.addEventListener('click', function () { stopSplit(); showGroup(currentGroup + 1); startSplit(); });
+				if (prevBtnS) prevBtnS.addEventListener('click', function () { stopSplit(); showGroup(currentGroup - 1); startSplit(); });
+				split.addEventListener('mouseenter', stopSplit);
+				split.addEventListener('mouseleave', startSplit);
+				startSplit();
+			}
+		}
+
 		// Hero slider (hero / grid / carrusel, autoplay configurable).
 		var slider = document.querySelector('[data-slider]');
 		if (slider) {

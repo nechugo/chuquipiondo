@@ -1188,7 +1188,7 @@ function nechugo_customize_register( $wp_customize ) {
 			'section' => 'nechugo_blog',
 			'type'    => 'radio',
 			'choices' => array(
-				'split'  => __( 'Dividido: imagen grande + 3 filas (recomendado)', 'nechugo-news' ),
+				'split'  => __( 'Dividido: 890x520 izquierda + 3 filas derecha (recomendado)', 'nechugo-news' ),
 				'hero'   => __( 'Hero grande (una entrada por pantalla)', 'nechugo-news' ),
 				'grid'   => __( 'Cuadricula 2x2 con activo grande', 'nechugo-news' ),
 				'carousel' => __( 'Carrusel horizontal', 'nechugo-news' ),
@@ -1256,6 +1256,7 @@ function nechugo_customize_register( $wp_customize ) {
 		'home_slider_count',
 		array(
 			'label'       => __( 'Entradas en el slider', 'nechugo-news' ),
+			'description' => __( 'En el estilo dividido se usan las ultimas 6 entradas con imagen: 1 grande + 3 filas por grupo.', 'nechugo-news' ),
 			'section'     => 'nechugo_blog',
 			'type'        => 'number',
 			'input_attrs' => array( 'min' => 2, 'max' => 10 ),
