@@ -1475,26 +1475,3 @@ function nechugo_customize_register( $wp_customize ) {
 	}
 }
 add_action( 'customize_register', 'nechugo_customize_register' );
-	$wp_customize->add_setting(
-		'sidebar_pos_pages',
-		array(
-			'default'           => 'default',
-			'sanitize_callback' => 'sanitize_key',
-		)
-	);
-	$wp_customize->add_control(
-		'sidebar_pos_pages',
-		array(
-			'label'   => __( 'Posicion de la barra lateral en paginas', 'nechugo-news' ),
-			'section' => 'nechugo_pages',
-			'type'    => 'radio',
-			'choices' => array(
-				'default' => __( 'Predeterminado (hereda la global)', 'nechugo-news' ),
-				'right'   => __( 'Derecha', 'nechugo-news' ),
-				'left'    => __( 'Izquierda', 'nechugo-news' ),
-				'none'    => __( 'Sin barra lateral (ancho completo)', 'nechugo-news' ),
-			),
-		)
-	);
-
-
