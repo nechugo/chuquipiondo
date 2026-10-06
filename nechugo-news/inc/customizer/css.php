@@ -137,6 +137,16 @@ function nechugo_customizer_css() {
 		$css .= 'body{background:linear-gradient(135deg,' . $from . ',' . $to . ') fixed;}';
 	}
 
+	// ============ Alineacion del menu (dentro de su caja) ============
+	$align = nechugo_get_option( 'menu_align' );
+	if ( 'left' === $align ) {
+		$css .= '.header__inner--split .header__nav{margin-right:auto;}';
+	} elseif ( 'center' === $align ) {
+		$css .= '.header__inner--split .header__nav{margin-left:auto;margin-right:auto;}';
+	} else {
+		$css .= '.header__inner--split .header__nav{margin-left:auto;}';
+	}
+
 	// ============ Espaciados estructurales (default 30px) ============
 	$sp_hb = max( 0, (int) nechugo_get_option( 'spacing_header_body' ) );
 	$sp_bf = max( 0, (int) nechugo_get_option( 'spacing_body_footer' ) );

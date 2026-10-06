@@ -44,6 +44,14 @@ function nechugo_defaults() {
 		'blog_layout'            => 'grid',
 		'blog_columns'           => 2,
 		'sidebar_position'       => 'right',
+		// Posicion de sidebar por contexto (estilo Astra: 'default' hereda la global).
+		'sidebar_pos_blog'       => 'default',
+		'sidebar_pos_archive'    => 'default',
+		'sidebar_pos_posts'      => 'default',
+		'sidebar_pos_pages'      => 'default',
+		'sidebar_pos_search'     => 'default',
+		// Alineacion del menu dentro de su caja.
+		'menu_align'             => 'right',
 		'sidebar_width'           => 300,
 		'sidebar_on_blog'        => true,
 		'sidebar_on_archive'     => true,

@@ -58,6 +58,7 @@ function nechugo_body_classes( $classes ) {
 	if ( nechugo_is_enabled( 'header_sticky' ) ) {
 		$classes[] = 'nechugo-sticky';
 	}
+	$classes[] = 'nechugo-menu-align-' . nechugo_get_option( 'menu_align' );
 
 	return $classes;
 }
@@ -81,19 +82,47 @@ function nechugo_is_elementor_page() {
 }
 
 /**
+ * Posicion del sidebar para el contexto actual (estilo Astra Pro):
+ * cada contexto tiene su propia opcion; 'default' hereda la global.
+ *
+ * @return string right|left|none
+ */
+function nechugo_sidebar_position() {
+	$map = array(
+		'blog'    => 'sidebar_pos_blog',
+		'archive' => 'sidebar_pos_archive',
+		'post'    => 'sidebar_pos_posts',
+		'page'    => 'sidebar_pos_pages',
+		'search'  => 'sidebar_pos_search',
+	);
+	$context = 'archive';
+	if ( ( is_front_page() && is_home() ) || is_home() ) {
+		$context = 'blog';
+	} elseif ( is_singular( 'post' ) ) {
+		$context = 'post';
+	} elseif ( is_page() ) {
+		$context = 'page';
+	} elseif ( is_search() ) {
+		$context = 'search';
+	}
+	$pos = nechugo_get_option( $map[ $context ] );
+	if ( 'default' === $pos || '' === $pos ) {
+		$pos = nechugo_get_option( 'sidebar_position' );
+	}
+	return $pos;
+}
+
+/**
  * Decide si la barra lateral debe mostrarse en el contexto actual,
- * segun los toggles del personalizador y el ancho configurado.
+ * combinando los toggles de visibilidad y la posicion por contexto.
  *
  * @return bool
  */
 function nechugo_show_sidebar() {
-	if ( 'none' === nechugo_get_option( 'sidebar_position' ) ) {
+	if ( 'none' === nechugo_sidebar_position() ) {
 		return false;
 	}
-	if ( is_front_page() && is_home() ) {
-		return nechugo_is_enabled( 'sidebar_on_blog' );
-	}
-	if ( is_home() ) {
+	if ( ( is_front_page() && is_home() ) || is_home() ) {
 		return nechugo_is_enabled( 'sidebar_on_blog' );
 	}
 	if ( is_singular( 'post' ) ) {
@@ -112,6 +141,15 @@ function nechugo_show_sidebar() {
 }
 
 /**
+ * Posicion efectiva del sidebar (la que se usa en las clases CSS).
+ *
+ * @return string
+ */
+function nechugo_sidebar_class_position() {
+	return nechugo_show_sidebar() ? nechugo_sidebar_position() : 'none';
+}
+
+/**
  * Clases del listado de entradas: layout + numero de columnas (1-4).
  *
  * @return string
@@ -123,17 +161,10 @@ function nechugo_posts_classes() {
 }
 
 /**
- * Clases del layout principal: posicion del sidebar solo si este
- * se va a mostrar en el contexto actual.
+ * Clases del layout principal: posicion del sidebar efectiva del contexto.
  *
  * @return string
  */
 function nechugo_layout_classes() {
-	$classes = 'nechugo-layout';
-	if ( nechugo_show_sidebar() ) {
-		$classes .= ' nechugo-layout--sidebar-' . sanitize_html_class( nechugo_get_option( 'sidebar_position' ) );
-	} else {
-		$classes .= ' nechugo-layout--sidebar-none';
-	}
-	return $classes;
+	return 'nechugo-layout nechugo-layout--sidebar-' . sanitize_html_class( nechugo_sidebar_class_position() );
 }

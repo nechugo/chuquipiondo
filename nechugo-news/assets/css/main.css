@@ -587,3 +587,10 @@ input:focus-visible,
 .split-slide__link { display: block; position: relative; height: 100%; }
 .split-slide__link img { width: 100%; height: 100%; object-fit: cover; }
 .nechugo-card__cats { display: flex; }
+
+/* ============ Alineacion del menu dentro de su caja (default derecha) ============ */
+.header__inner--split .header__nav { margin-left: auto; }
+.nechugo-menu-align-left .header__inner--split .header__nav { margin-left: 0; margin-right: auto; }
+.nechugo-menu-align-center .header__inner--split .header__nav { margin-left: auto; margin-right: auto; }
+.nechugo-menu-align-right .header__inner--split .header__nav { margin-left: auto; margin-right: 0; }
+.header__inner--split .header__tools { position: relative; }
