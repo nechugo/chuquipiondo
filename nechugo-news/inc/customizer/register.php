@@ -1,0 +1,584 @@
+<?php
+/**
+ * Registro del personalizador: paneles, secciones y controles.
+ *
+ * @package nechugo_News
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * Registra todo en el Personalizador.
+ *
+ * @param WP_Customize_Manager $wp_customize Manager.
+ */
+function nechugo_customize_register( $wp_customize ) {
+
+	$wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
+	$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
+
+	// ============================== PANEL PRINCIPAL ==============================
+	$wp_customize->add_panel(
+		'nechugo_options',
+		array(
+			'title'       => __( 'nechugo News: Opciones', 'nechugo-news' ),
+			'description' => __( 'Encabezados, pies de pagina, colores, tipografia, blog y anuncios.', 'nechugo-news' ),
+			'priority'    => 10,
+		)
+	);
+
+	// ============================== COLORES ==============================
+	$wp_customize->add_section(
+		'nechugo_colors',
+		array(
+			'title'    => __( 'Colores', 'nechugo-news' ),
+			'panel'    => 'nechugo_options',
+			'priority' => 20,
+		)
+	);
+
+	$colors = array(
+		'primary_color'    => __( 'Color primario', 'nechugo-news' ),
+		'secondary_color'  => __( 'Color secundario', 'nechugo-news' ),
+		'accent_color'     => __( 'Color de acento', 'nechugo-news' ),
+		'background_color' => __( 'Fondo del sitio', 'nechugo-news' ),
+		'text_color'       => __( 'Color de texto', 'nechugo-news' ),
+		'header_bg_color'  => __( 'Fondo del encabezado', 'nechugo-news' ),
+		'header_text_color' => __( 'Texto del encabezado', 'nechugo-news' ),
+		'footer_bg_color'  => __( 'Fondo del pie de pagina', 'nechugo-news' ),
+		'footer_text_color' => __( 'Texto del pie de pagina', 'nechugo-news' ),
+	);
+	foreach ( $colors as $key => $label ) {
+		$wp_customize->add_setting(
+			$key,
+			array(
+				'default'           => nechugo_get_option( $key ),
+				'sanitize_callback' => 'sanitize_hex_color',
+				'transport'         => 'postMessage',
+			)
+		);
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				$key,
+				array(
+					'label'   => $label,
+					'section' => 'nechugo_colors',
+				)
+			)
+		);
+	}
+
+	// Presets multicolor.
+	$wp_customize->add_setting(
+		'color_preset',
+		array(
+			'default'           => 'blue',
+			'sanitize_callback' => 'sanitize_key',
+			'transport'         => 'refresh',
+		)
+	);
+	$wp_customize->add_control(
+		'color_preset',
+		array(
+			'label'       => __( 'Preset multicolor', 'nechugo-news' ),
+			'description' => __( 'Aplica una combinacion rapida de colores. Los colores individuales siguen editables.', 'nechugo-news' ),
+			'section'     => 'nechugo_colors',
+			'type'        => 'select',
+			'choices'     => array(
+				'blue'    => __( 'Azul', 'nechugo-news' ),
+				'red'     => __( 'Rojo', 'nechugo-news' ),
+				'green'   => __( 'Verde', 'nechugo-news' ),
+				'orange'  => __( 'Naranja', 'nechugo-news' ),
+				'purple'  => __( 'Morado', 'nechugo-news' ),
+				'teal'    => __( 'Turquesa', 'nechugo-news' ),
+				'dark'    => __( 'Oscuro', 'nechugo-news' ),
+				'custom'  => __( 'Personalizado', 'nechugo-news' ),
+			),
+		)
+	);
+
+	// ============================== TIPOGRAFIA ==============================
+	$wp_customize->add_section(
+		'nechugo_typography',
+		array(
+			'title'    => __( 'Tipografia', 'nechugo-news' ),
+			'panel'    => 'nechugo_options',
+			'priority' => 30,
+		)
+	);
+
+	$fonts = array(
+		'system'        => __( 'Sistema (mas rapido)', 'nechugo-news' ),
+		'inter'         => 'Inter',
+		'roboto'        => 'Roboto',
+		'open-sans'     => 'Open Sans',
+		'lato'          => 'Lato',
+		'montserrat'    => 'Montserrat',
+		'oswald'        => 'Oswald',
+		'merriweather'  => 'Merriweather',
+		'playfair'      => 'Playfair Display',
+	);
+
+	$wp_customize->add_setting(
+		'body_font_family',
+		array(
+			'default'           => 'system',
+			'sanitize_callback' => 'sanitize_key',
+			'transport'         => 'postMessage',
+		)
+	);
+	$wp_customize->add_control(
+		'body_font_family',
+		array(
+			'label'   => __( 'Fuente del texto', 'nechugo-news' ),
+			'section' => 'nechugo_typography',
+			'type'    => 'select',
+			'choices' => $fonts,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'heading_font_family',
+		array(
+			'default'           => 'system',
+			'sanitize_callback' => 'sanitize_key',
+			'transport'         => 'postMessage',
+		)
+	);
+	$wp_customize->add_control(
+		'heading_font_family',
+		array(
+			'label'   => __( 'Fuente de titulares', 'nechugo-news' ),
+			'section' => 'nechugo_typography',
+			'type'    => 'select',
+			'choices' => $fonts,
+		)
+	);
+
+	$sizes = array(
+		'body_font_size'   => array( __( 'Tamano del texto en articulos (px)', 'nechugo-news' ), 10, 24 ),
+		'h1_font_size'     => array( __( 'Tamano del H1 (px)', 'nechugo-news' ), 14, 48 ),
+		'body_line_height' => array( __( 'Altura de linea del texto', 'nechugo-news' ), 130, 220 ),
+	);
+	foreach ( $sizes as $key => $data ) {
+		$wp_customize->add_setting(
+			$key,
+			array(
+				'default'           => nechugo_get_option( $key ),
+				'sanitize_callback' => 'nechugo_sanitize_number',
+				'transport'         => 'postMessage',
+			)
+		);
+		$wp_customize->add_control(
+			$key,
+			array(
+				'label'       => $data[0],
+				'section'     => 'nechugo_typography',
+				'type'        => 'number',
+				'input_attrs' => array(
+					'min'  => $data[1],
+					'max'  => $data[2],
+					'step' => 'line_height' === $key ? 5 : 1,
+				),
+			)
+		);
+	}
+
+	// ============================== HEADER (4 diseños) ==============================
+	$wp_customize->add_section(
+		'nechugo_header',
+		array(
+			'title'    => __( 'Encabezado (4 diseños)', 'nechugo-news' ),
+			'panel'    => 'nechugo_options',
+			'priority' => 40,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'header_layout',
+		array(
+			'default'           => 'header-1',
+			'sanitize_callback' => 'sanitize_key',
+		)
+	);
+	$wp_customize->add_control(
+		'header_layout',
+		array(
+			'label'       => __( 'Diseno del encabezado', 'nechugo-news' ),
+			'description' => __( 'Todos los encabezados se expanden de extremo a extremo.', 'nechugo-news' ),
+			'section'     => 'nechugo_header',
+			'type'        => 'radio',
+			'choices'     => array(
+				'header-1' => __( '1 - Clasico: logo + menu horizontal', 'nechugo-news' ),
+				'header-2' => __( '2 - Revista: logo centrado + menu abajo', 'nechugo-news' ),
+				'header-3' => __( '3 - Moderno: menu izquierda + logo derecha', 'nechugo-news' ),
+				'header-4' => __( '4 - Compacto: logo + menu en una barra', 'nechugo-news' ),
+			),
+		)
+	);
+
+	$header_toggles = array(
+		'header_topbar_enable' => __( 'Mostrar barra superior (topbar)', 'nechugo-news' ),
+		'header_date_enable'   => __( 'Mostrar fecha actual en topbar', 'nechugo-news' ),
+		'header_search_enable' => __( 'Mostrar boton de busqueda', 'nechugo-news' ),
+		'header_social_enable' => __( 'Mostrar redes sociales en topbar', 'nechugo-news' ),
+		'header_sticky'        => __( 'Encabezado fijo al hacer scroll', 'nechugo-news' ),
+	);
+	foreach ( $header_toggles as $key => $label ) {
+		$wp_customize->add_setting(
+			$key,
+			array(
+				'default'           => nechugo_get_option( $key ),
+				'sanitize_callback' => 'nechugo_sanitize_checkbox',
+			)
+		);
+		$wp_customize->add_control(
+			$key,
+			array(
+				'label'   => $label,
+				'section' => 'nechugo_header',
+				'type'    => 'checkbox',
+			)
+		);
+	}
+
+	// ============================== FOOTER (3 diseños) ==============================
+	$wp_customize->add_section(
+		'nechugo_footer',
+		array(
+			'title'    => __( 'Pie de pagina (3 diseños)', 'nechugo-news' ),
+			'panel'    => 'nechugo_options',
+			'priority' => 50,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'footer_layout',
+		array(
+			'default'           => 'footer-1',
+			'sanitize_callback' => 'sanitize_key',
+		)
+	);
+	$wp_customize->add_control(
+		'footer_layout',
+		array(
+			'label'       => __( 'Diseno del pie de pagina', 'nechugo-news' ),
+			'description' => __( 'Todos los pies de pagina se expanden de extremo a extremo.', 'nechugo-news' ),
+			'section'     => 'nechugo_footer',
+			'type'        => 'radio',
+			'choices'     => array(
+				'footer-1' => __( '1 - Columnas de widgets', 'nechugo-news' ),
+				'footer-2' => __( '2 - Logo centrado + menu', 'nechugo-news' ),
+				'footer-3' => __( '3 - Minimal: una linea + copyright', 'nechugo-news' ),
+			),
+		)
+	);
+
+	$wp_customize->add_setting(
+		'footer_columns',
+		array(
+			'default'           => 3,
+			'sanitize_callback' => 'nechugo_sanitize_number',
+		)
+	);
+	$wp_customize->add_control(
+		'footer_columns',
+		array(
+			'label'       => __( 'Numero de columnas (diseno 1)', 'nechugo-news' ),
+			'section'     => 'nechugo_footer',
+			'type'        => 'number',
+			'input_attrs' => array( 'min' => 1, 'max' => 4 ),
+		)
+	);
+
+	$wp_customize->add_setting(
+		'footer_copyright_enable',
+		array(
+			'default'           => true,
+			'sanitize_callback' => 'nechugo_sanitize_checkbox',
+		)
+	);
+	$wp_customize->add_control(
+		'footer_copyright_enable',
+		array(
+			'label'   => __( 'Mostrar linea de copyright', 'nechugo-news' ),
+			'section' => 'nechugo_footer',
+			'type'    => 'checkbox',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'footer_copyright_text',
+		array(
+			'default'           => nechugo_get_option( 'footer_copyright_text' ),
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+	$wp_customize->add_control(
+		'footer_copyright_text',
+		array(
+			'label'       => __( 'Texto de copyright', 'nechugo-news' ),
+			'description' => __( 'Usa {year} y {sitename} como variables.', 'nechugo-news' ),
+			'section'     => 'nechugo_footer',
+			'type'        => 'text',
+		)
+	);
+
+	// ============================== BLOG / LAYOUT ==============================
+	$wp_customize->add_section(
+		'nechugo_blog',
+		array(
+			'title'    => __( 'Blog y layout', 'nechugo-news' ),
+			'panel'    => 'nechugo_options',
+			'priority' => 60,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'content_width',
+		array(
+			'default'           => 1200,
+			'sanitize_callback' => 'nechugo_sanitize_number',
+			'transport'         => 'postMessage',
+		)
+	);
+	$wp_customize->add_control(
+		'content_width',
+		array(
+			'label'       => __( 'Ancho del contenedor del blog (px, minimo 1200)', 'nechugo-news' ),
+			'section'     => 'nechugo_blog',
+			'type'        => 'number',
+			'input_attrs' => array( 'min' => 1200, 'max' => 1600, 'step' => 10 ),
+		)
+	);
+
+	$wp_customize->add_setting(
+		'blog_layout',
+		array(
+			'default'           => 'grid-3',
+			'sanitize_callback' => 'sanitize_key',
+		)
+	);
+	$wp_customize->add_control(
+		'blog_layout',
+		array(
+			'label'   => __( 'Diseno del listado de entradas', 'nechugo-news' ),
+			'section' => 'nechugo_blog',
+			'type'    => 'radio',
+			'choices' => array(
+				'grid-2'   => __( 'Cuadricula 2 columnas', 'nechugo-news' ),
+				'grid-3'   => __( 'Cuadricula 3 columnas', 'nechugo-news' ),
+				'list'     => __( 'Lista horizontal (imagen + texto)', 'nechugo-news' ),
+				'masonry'  => __( 'Masonry', 'nechugo-news' ),
+			),
+		)
+	);
+
+	$wp_customize->add_setting(
+		'sidebar_position',
+		array(
+			'default'           => 'right',
+			'sanitize_callback' => 'sanitize_key',
+		)
+	);
+	$wp_customize->add_control(
+		'sidebar_position',
+		array(
+			'label'   => __( 'Posicion de la barra lateral', 'nechugo-news' ),
+			'section' => 'nechugo_blog',
+			'type'    => 'radio',
+			'choices' => array(
+				'right' => __( 'Derecha', 'nechugo-news' ),
+				'left'  => __( 'Izquierda', 'nechugo-news' ),
+				'none'  => __( 'Sin barra lateral (ancho completo)', 'nechugo-news' ),
+			),
+		)
+	);
+
+	$wp_customize->add_setting(
+		'excerpt_length',
+		array(
+			'default'           => 24,
+			'sanitize_callback' => 'nechugo_sanitize_number',
+		)
+	);
+	$wp_customize->add_control(
+		'excerpt_length',
+		array(
+			'label'       => __( 'Palabras del extracto', 'nechugo-news' ),
+			'section'     => 'nechugo_blog',
+			'type'        => 'number',
+			'input_attrs' => array( 'min' => 5, 'max' => 80 ),
+		)
+	);
+
+	$blog_toggles = array(
+		'show_breadcrumbs'  => __( 'Mostrar breadcrumbs', 'nechugo-news' ),
+		'show_author'       => __( 'Mostrar autor', 'nechugo-news' ),
+		'show_date'         => __( 'Mostrar fecha', 'nechugo-news' ),
+		'show_reading_time' => __( 'Mostrar tiempo de lectura', 'nechugo-news' ),
+		'show_share_buttons' => __( 'Mostrar botones para compartir', 'nechugo-news' ),
+		'home_slider_enable' => __( 'Slider de destacados en portada', 'nechugo-news' ),
+		'back_to_top_enable' => __( 'Boton volver arriba', 'nechugo-news' ),
+	);
+	foreach ( $blog_toggles as $key => $label ) {
+		$wp_customize->add_setting(
+			$key,
+			array(
+				'default'           => nechugo_get_option( $key ),
+				'sanitize_callback' => 'nechugo_sanitize_checkbox',
+			)
+		);
+		$wp_customize->add_control(
+			$key,
+			array(
+				'label'   => $label,
+				'section' => 'nechugo_blog',
+				'type'    => 'checkbox',
+			)
+		);
+	}
+
+	$wp_customize->add_setting(
+		'home_slider_count',
+		array(
+			'default'           => 5,
+			'sanitize_callback' => 'nechugo_sanitize_number',
+		)
+	);
+	$wp_customize->add_control(
+		'home_slider_count',
+		array(
+			'label'       => __( 'Entradas en el slider', 'nechugo-news' ),
+			'section'     => 'nechugo_blog',
+			'type'        => 'number',
+			'input_attrs' => array( 'min' => 2, 'max' => 10 ),
+		)
+	);
+
+	// ============================== ADSENSE ==============================
+	$wp_customize->add_section(
+		'nechugo_ads',
+		array(
+			'title'    => __( 'Google AdSense', 'nechugo-news' ),
+			'panel'    => 'nechugo_options',
+			'priority' => 70,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'ads_master_switch',
+		array(
+			'default'           => false,
+			'sanitize_callback' => 'nechugo_sanitize_checkbox',
+		)
+	);
+	$wp_customize->add_control(
+		'ads_master_switch',
+		array(
+			'label'       => __( 'Activar anuncios', 'nechugo-news' ),
+			'description' => __( 'Interruptor principal de todos los bloques de anuncio.', 'nechugo-news' ),
+			'section'     => 'nechugo_ads',
+			'type'        => 'checkbox',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'adsense_publisher_id',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+	$wp_customize->add_control(
+		'adsense_publisher_id',
+		array(
+			'label'       => __( 'ID de publicante AdSense', 'nechugo-news' ),
+			'description' => __( 'Ejemplo: ca-pub-1234567890123456', 'nechugo-news' ),
+			'section'     => 'nechugo_ads',
+			'type'        => 'text',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'ads_mode',
+		array(
+			'default'           => 'manual',
+			'sanitize_callback' => 'sanitize_key',
+		)
+	);
+	$wp_customize->add_control(
+		'ads_mode',
+		array(
+			'label'   => __( 'Modo de anuncios', 'nechugo-news' ),
+			'section' => 'nechugo_ads',
+			'type'    => 'radio',
+			'choices' => array(
+				'auto'   => __( 'Auto Ads (Google coloca los anuncios)', 'nechugo-news' ),
+				'manual' => __( 'Manual (solo los espacios del tema)', 'nechugo-news' ),
+				'both'   => __( 'Ambos', 'nechugo-news' ),
+			),
+		)
+	);
+
+	$ad_slots = array(
+		'ad_header_code'     => __( 'Anuncio bajo el encabezado (728x90 / responsive)', 'nechugo-news' ),
+		'ad_in_article_code' => __( 'Anuncio dentro del articulo (tras el primer parrafo)', 'nechugo-news' ),
+		'ad_after_post_code' => __( 'Anuncio tras el contenido', 'nechugo-news' ),
+		'ad_sidebar_code'    => __( 'Anuncio al inicio de la barra lateral', 'nechugo-news' ),
+	);
+	foreach ( $ad_slots as $key => $label ) {
+		$wp_customize->add_setting(
+			$key,
+			array(
+				'default'           => '',
+				'sanitize_callback' => 'nechugo_sanitize_ad_code',
+			)
+		);
+		$wp_customize->add_control(
+			$key,
+			array(
+				'label'       => $label,
+				'section'     => 'nechugo_ads',
+				'type'        => 'textarea',
+			)
+		);
+	}
+
+	// Redes sociales (topbar y footer).
+	$wp_customize->add_section(
+		'nechugo_social',
+		array(
+			'title'    => __( 'Redes sociales', 'nechugo-news' ),
+			'panel'    => 'nechugo_options',
+			'priority' => 55,
+		)
+	);
+	foreach ( array(
+		'social_facebook'  => __( 'URL de Facebook', 'nechugo-news' ),
+		'social_twitter'   => __( 'URL de Twitter / X', 'nechugo-news' ),
+		'social_instagram' => __( 'URL de Instagram', 'nechugo-news' ),
+		'social_youtube'   => __( 'URL de YouTube', 'nechugo-news' ),
+	) as $key => $label ) {
+		$wp_customize->add_setting(
+			$key,
+			array(
+				'default'           => '',
+				'sanitize_callback' => 'esc_url_raw',
+			)
+		);
+		$wp_customize->add_control(
+			$key,
+			array(
+				'label'   => $label,
+				'section' => 'nechugo_social',
+				'type'    => 'url',
+			)
+		);
+	}
+}
+add_action( 'customize_register', 'nechugo_customize_register' );
+
