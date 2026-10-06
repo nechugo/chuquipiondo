@@ -496,6 +496,34 @@ function nechugo_customize_register( $wp_customize ) {
 		)
 	);
 
+	// Tipografia por contexto.
+	$ctx_typo = array(
+		'post_title_font_size'   => array( __( 'Tamano del titulo de entrada (px)', 'nechugo-news' ), 12, 40 ),
+		'post_title_font_weight' => array( __( 'Peso del titulo de entrada', 'nechugo-news' ), 100, 900 ),
+		'page_title_font_size'   => array( __( 'Tamano del titulo de pagina (px)', 'nechugo-news' ), 12, 40 ),
+		'page_title_font_weight' => array( __( 'Peso del titulo de pagina', 'nechugo-news' ), 100, 900 ),
+		'widget_title_font_size' => array( __( 'Tamano del titulo de widgets (px)', 'nechugo-news' ), 10, 24 ),
+		'widget_title_font_weight' => array( __( 'Peso del titulo de widgets', 'nechugo-news' ), 100, 900 ),
+	);
+	foreach ( $ctx_typo as $key => $data ) {
+		$wp_customize->add_setting(
+			$key,
+			array(
+				'default'           => nechugo_get_option( $key ),
+				'sanitize_callback' => 'nechugo_sanitize_number',
+			)
+		);
+		$wp_customize->add_control(
+			$key,
+			array(
+				'label'       => $data[0],
+				'section'     => 'nechugo_typography',
+				'type'        => 'number',
+				'input_attrs' => array( 'min' => $data[1], 'max' => $data[2] ),
+			)
+		);
+	}
+
 	// ============================== HEADER (4 diseños) ==============================
 	$wp_customize->add_section(
 		'nechugo_header',
@@ -952,6 +980,26 @@ function nechugo_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
+		'container_type',
+		array(
+			'default'           => 'boxed',
+			'sanitize_callback' => 'sanitize_key',
+		)
+	);
+	$wp_customize->add_control(
+		'container_type',
+		array(
+			'label'   => __( 'Tipo de contenedor', 'nechugo-news' ),
+			'section' => 'nechugo_blog',
+			'type'    => 'radio',
+			'choices' => array(
+				'boxed' => __( 'Encajonado (ancho limitado)', 'nechugo-news' ),
+				'full'  => __( 'Ancho completo de pantalla', 'nechugo-news' ),
+			),
+		)
+	);
+
+	$wp_customize->add_setting(
 		'sidebar_width',
 		array(
 			'default'           => 300,
@@ -1214,6 +1262,75 @@ function nechugo_customize_register( $wp_customize ) {
 		)
 	);
 
+	// Meta y contenido de entradas.
+	$post_meta_toggles = array(
+		'show_post_category' => __( 'Mostrar categorias en la entrada', 'nechugo-news' ),
+		'show_post_tags'     => __( 'Mostrar etiquetas al final', 'nechugo-news' ),
+		'show_post_nav'      => __( 'Mostrar navegacion anterior/siguiente', 'nechugo-news' ),
+		'show_author_box'    => __( 'Mostrar caja del autor', 'nechugo-news' ),
+	);
+	foreach ( $post_meta_toggles as $key => $label ) {
+		$wp_customize->add_setting(
+			$key,
+			array(
+				'default'           => nechugo_get_option( $key ),
+				'sanitize_callback' => 'nechugo_sanitize_checkbox',
+			)
+		);
+		$wp_customize->add_control(
+			$key,
+			array(
+				'label'   => $label,
+				'section' => 'nechugo_posts_layout',
+				'type'    => 'checkbox',
+			)
+		);
+	}
+
+	$post_spacing = array(
+		'spacing_post_title' => array( __( 'Espacio bajo el titulo de entrada (px)', 'nechugo-news' ), 0, 60 ),
+		'spacing_post_meta' => array( __( 'Espacio bajo los metadatos (px)', 'nechugo-news' ), 0, 60 ),
+	);
+	foreach ( $post_spacing as $key => $data ) {
+		$wp_customize->add_setting(
+			$key,
+			array(
+				'default'           => nechugo_get_option( $key ),
+				'sanitize_callback' => 'nechugo_sanitize_number',
+			)
+		);
+		$wp_customize->add_control(
+			$key,
+			array(
+				'label'       => $data[0],
+				'section'     => 'nechugo_posts_layout',
+				'type'        => 'number',
+				'input_attrs' => array( 'min' => $data[1], 'max' => $data[2] ),
+			)
+		);
+	}
+
+	// Comentarios.
+	$wp_customize->add_setting(
+		'comments_style',
+		array(
+			'default'           => 'boxed',
+			'sanitize_callback' => 'sanitize_key',
+		)
+	);
+	$wp_customize->add_control(
+		'comments_style',
+		array(
+			'label'   => __( 'Estilo de comentarios', 'nechugo-news' ),
+			'section' => 'nechugo_posts_layout',
+			'type'    => 'radio',
+			'choices' => array(
+				'boxed'   => __( 'Con tarjetas y sombra', 'nechugo-news' ),
+				'minimal' => __( 'Minimal con separadores', 'nechugo-news' ),
+			),
+		)
+	);
+
 	// ============================== PAGINAS ==============================
 	$wp_customize->add_section(
 		'nechugo_pages',
@@ -1352,6 +1469,66 @@ function nechugo_customize_register( $wp_customize ) {
 			'input_attrs' => array( 'min' => 0, 'max' => 120, 'step' => 5 ),
 		)
 	);
+
+	// ============================== BOTONES ==============================
+	$wp_customize->add_section(
+		'nechugo_buttons',
+		array(
+			'title'    => __( 'Botones', 'nechugo-news' ),
+			'panel'    => 'nechugo_options',
+			'priority' => 46,
+		)
+	);
+
+	$btn_colors = array(
+		'btn_bg_color'        => __( 'Color de fondo', 'nechugo-news' ),
+		'btn_text_color'      => __( 'Color del texto', 'nechugo-news' ),
+		'btn_hover_bg_color'  => __( 'Color de fondo al pasar el mouse', 'nechugo-news' ),
+	);
+	foreach ( $btn_colors as $key => $label ) {
+		$wp_customize->add_setting(
+			$key,
+			array(
+				'default'           => nechugo_get_option( $key ),
+				'sanitize_callback' => 'sanitize_hex_color',
+			)
+		);
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				$key,
+				array(
+					'label'   => $label,
+					'section' => 'nechugo_buttons',
+				)
+			)
+		);
+	}
+
+	$btn_numbers = array(
+		'btn_radius'     => array( __( 'Redondeo (px)', 'nechugo-news' ), 0, 40 ),
+		'btn_padding'    => array( __( 'Relleno horizontal (px)', 'nechugo-news' ), 4, 40 ),
+		'btn_font_size'  => array( __( 'Tamano de fuente (px)', 'nechugo-news' ), 10, 22 ),
+		'btn_font_weight' => array( __( 'Peso de fuente (100-900)', 'nechugo-news' ), 100, 900 ),
+	);
+	foreach ( $btn_numbers as $key => $data ) {
+		$wp_customize->add_setting(
+			$key,
+			array(
+				'default'           => nechugo_get_option( $key ),
+				'sanitize_callback' => 'nechugo_sanitize_number',
+			)
+		);
+		$wp_customize->add_control(
+			$key,
+			array(
+				'label'       => $data[0],
+				'section'     => 'nechugo_buttons',
+				'type'        => 'number',
+				'input_attrs' => array( 'min' => $data[1], 'max' => $data[2] ),
+			)
+		);
+	}
 
 	// ============================== ADSENSE ==============================
 	$wp_customize->add_section(

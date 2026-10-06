@@ -137,6 +137,52 @@ function nechugo_customizer_css() {
 		$css .= 'body{background:linear-gradient(135deg,' . $from . ',' . $to . ') fixed;}';
 	}
 
+	// ============ Tipografia por contexto (Astra Pro style) ============
+	$pt_size = max( 12, (int) nechugo_get_option( 'post_title_font_size' ) );
+	$pt_w    = (int) nechugo_get_option( 'post_title_font_weight' );
+	$pg_size = max( 12, (int) nechugo_get_option( 'page_title_font_size' ) );
+	$pg_w    = (int) nechugo_get_option( 'page_title_font_weight' );
+	$wt_size = max( 10, (int) nechugo_get_option( 'widget_title_font_size' ) );
+	$wt_w    = (int) nechugo_get_option( 'widget_title_font_weight' );
+	$css    .= '.single .entry-title{font-size:' . $pt_size . 'px;font-weight:' . $pt_w . ';}';
+	$css    .= '.nechugo-main--page .entry-title{font-size:' . $pg_size . 'px;font-weight:' . $pg_w . ';}';
+	$css    .= '.widget-title{font-size:' . $wt_size . 'px;font-weight:' . $wt_w . ';}';
+
+	// ============ Botones personalizados ============
+	$btn_bg = nechugo_get_option( 'btn_bg_color' );
+	$btn_hb = nechugo_get_option( 'btn_hover_bg_color' );
+	$btn_tx = nechugo_get_option( 'btn_text_color' );
+	$btn_r  = max( 0, (int) nechugo_get_option( 'btn_radius' ) );
+	$btn_p  = max( 4, (int) nechugo_get_option( 'btn_padding' ) );
+	$btn_fs = max( 10, (int) nechugo_get_option( 'btn_font_size' ) );
+	$btn_fw = (int) nechugo_get_option( 'btn_font_weight' );
+	$css   .= '.nechugo-btn,.nechugo-search-submit,button,input[type="submit"],input[type="button"],.wp-block-button__link{border-radius:' . $btn_r . 'px;padding:' . (int) ( $btn_p / 2 ) . 'px ' . $btn_p . 'px;font-size:' . $btn_fs . 'px;font-weight:' . $btn_fw . ';}';
+	if ( ! empty( $btn_bg ) ) {
+		$css .= '.nechugo-btn,.nechugo-search-submit,input[type="submit"],.wp-block-button__link{background:' . sanitize_hex_color( $btn_bg ) . ';}';
+	}
+	if ( ! empty( $btn_tx ) ) {
+		$css .= '.nechugo-btn,.nechugo-search-submit,input[type="submit"],.wp-block-button__link{color:' . sanitize_hex_color( $btn_tx ) . ';}';
+	}
+	if ( ! empty( $btn_hb ) ) {
+		$css .= '.nechugo-btn:hover,.nechugo-search-submit:hover,input[type="submit"]:hover,.wp-block-button__link:hover{background:' . sanitize_hex_color( $btn_hb ) . ';}';
+	}
+
+	// ============ Espaciados por componente ============
+	$spt = max( 0, (int) nechugo_get_option( 'spacing_post_title' ) );
+	$spm = max( 0, (int) nechugo_get_option( 'spacing_post_meta' ) );
+	$css .= '.single .entry-title{margin-bottom:' . $spt . 'px;}';
+	$css .= '.entry-meta{margin-bottom:' . $spm . 'px;}';
+
+	// ============ Container boxed / full-width ============
+	if ( 'full' === nechugo_get_option( 'container_type' ) ) {
+		$css .= '.nechugo-container{max-width:100%;padding-left:2rem;padding-right:2rem;}';
+	}
+
+	// ============ Comentarios boxed / minimal ============
+	if ( 'minimal' === nechugo_get_option( 'comments_style' ) ) {
+		$css .= '.comment-body{box-shadow:none;background:transparent;border-bottom:1px solid #eee;border-radius:0;}';
+	}
+
 	// ============ Alineacion del menu (dentro de su caja) ============
 	$align = nechugo_get_option( 'menu_align' );
 	if ( 'left' === $align ) {

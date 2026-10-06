@@ -79,6 +79,39 @@ function nechugo_defaults() {
 		'header_topbar_enable'   => false,
 		'header_date_enable'     => true,
 
+		// Tipografia por contexto (estilo Astra Pro).
+		'post_title_font_size'    => 18,
+		'post_title_font_weight'  => 900,
+		'page_title_font_size'    => 18,
+		'page_title_font_weight'  => 900,
+		'widget_title_font_size'  => 14,
+		'widget_title_font_weight' => 700,
+
+		// Botones personalizados.
+		'btn_bg_color'            => '',
+		'btn_text_color'          => '#ffffff',
+		'btn_hover_bg_color'     => '',
+		'btn_radius'              => 6,
+		'btn_padding'            => 12,
+		'btn_font_size'          => 13,
+		'btn_font_weight'        => 600,
+
+		// Espaciados por componente.
+		'spacing_post_title'      => 15,
+		'spacing_post_meta'       => 10,
+
+		// Contenido de entrada (meta completo).
+		'show_post_category'     => true,
+		'show_post_tags'          => true,
+		'show_post_nav'           => true,
+		'show_author_box'         => false,
+
+		// Container por contexto (estilo Astra: boxed/full).
+		'container_type'         => 'boxed',
+
+		// Comentarios.
+		'comments_style'          => 'boxed',
+
 		// Espaciados estructurales.
 		'spacing_header_body'    => 30,
 		'spacing_body_footer'    => 30,
