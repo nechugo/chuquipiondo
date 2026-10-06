@@ -80,6 +80,7 @@ h1 { font-size: 18px; font-weight: 900; }
 .header__inner { display: flex; align-items: center; gap: 1.5rem; min-height: 64px; }
 .header__inner--split { justify-content: space-between; }
 .header__inner--center { flex-direction: column; justify-content: center; padding: 1.5rem 0; gap: .5rem; }
+.header__inner--center .header__tools { position: static; }
 .header__inner--reverse .header__nav { order: 1; }
 .header__inner--reverse .header__tools { order: 2; margin-left: auto; }
 .header__inner--reverse .header__brand { order: 3; }
@@ -116,6 +117,7 @@ h1 { font-size: 18px; font-weight: 900; }
 .nechugo-nav li:hover > ul { display: block; }
 
 .nechugo-search-toggle { background: none; border: 0; color: inherit; cursor: pointer; padding: .5rem; }
+.header__tools { position: relative; margin-left: auto; }
 .nechugo-search-form { position: absolute; right: 0; top: 100%; background: var(--nn-header-bg); padding: 1rem; box-shadow: var(--nn-shadow); z-index: 98; width: min(420px, 90vw); }
 
 /* Toggle menu movil */
@@ -218,7 +220,7 @@ body.nechugo-nav-open .nechugo-menu-toggle span:nth-child(3) { transform: transl
 	border-radius: var(--nn-radius);
 }
 .entry-content { font-size: 14px; }
-.entry-content h1 { font-size: 16px; }
+.entry-content h1 { font-size: 18px; font-weight: 900; }
 .entry-content p { margin: 0 0 1.25em; }
 
 .nechugo-share { margin: 1.5rem 0; display: flex; gap: .5rem; align-items: center; font-size: 13px; flex-wrap: wrap; }
@@ -355,7 +357,7 @@ body.nechugo-nav-open .nechugo-menu-toggle span:nth-child(3) { transform: transl
 	.nechugo-posts--list .nechugo-card { flex-direction: column; }
 	.nechugo-posts--list .nechugo-card__thumb { flex: none; }
 	.hero-slide__title { font-size: 18px; }
-	.entry-title { font-size: 22px; }
+	.entry-title { font-size: 18px; }
 	.footer__grid--2, .footer__grid--3, .footer__grid--4 { grid-template-columns: 1fr; }
 	.header__inner--reverse { flex-wrap: wrap; }
 }
@@ -424,3 +426,16 @@ body.nechugo-sticky .site-header {
 	top: 0;
 	z-index: 100;
 }
+
+/* ============ Accesibilidad: foco visible ============ */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+.nechugo-nav a:focus-visible {
+	outline: 2px solid var(--nn-primary);
+	outline-offset: 2px;
+	border-radius: 4px;
+}
+
+/* Carrusel del slider: respetar el ancho con gap variable */
+.nechugo-hero-slider--carousel .nechugo-hero-track { will-change: transform; }
