@@ -112,6 +112,7 @@ function nechugo_customize_register( $wp_customize ) {
 
 	$fonts = array(
 		'system'        => __( 'Sistema (mas rapido)', 'nechugo-news' ),
+		'sans-serif'    => 'Sans-serif',
 		'google-sans'   => 'Google Sans',
 		'roboto'        => 'Roboto',
 		'roboto-condensed' => 'Roboto Condensed',
@@ -679,6 +680,66 @@ function nechugo_customize_register( $wp_customize ) {
 			)
 		);
 	}
+
+	$wp_customize->add_setting(
+		'header_gap',
+		array(
+			'default'           => 5,
+			'sanitize_callback' => 'nechugo_sanitize_number',
+			'transport'         => 'postMessage',
+		)
+	);
+	$wp_customize->add_control(
+		'header_gap',
+		array(
+			'label'       => __( 'Separacion entre cajas del encabezado (px)', 'nechugo-news' ),
+			'description' => __( 'Espacio que diferencia cada objeto (logo, menu, buscador). Aplica a todos los heads y al topbar.', 'nechugo-news' ),
+			'section'     => 'nechugo_header',
+			'type'        => 'number',
+			'input_attrs' => array( 'min' => 0, 'max' => 40, 'step' => 1 ),
+		)
+	);
+
+	$wp_customize->add_setting(
+		'logo_align',
+		array(
+			'default'           => 'left',
+			'sanitize_callback' => 'sanitize_key',
+		)
+	);
+	$wp_customize->add_control(
+		'logo_align',
+		array(
+			'label'   => __( 'Alineacion del logo', 'nechugo-news' ),
+			'section' => 'nechugo_header',
+			'type'    => 'radio',
+			'choices' => array(
+				'left'   => __( 'Izquierda (por defecto)', 'nechugo-news' ),
+				'center' => __( 'Centro', 'nechugo-news' ),
+				'right'  => __( 'Derecha', 'nechugo-news' ),
+			),
+		)
+	);
+
+	$wp_customize->add_setting(
+		'search_align',
+		array(
+			'default'           => 'right',
+			'sanitize_callback' => 'sanitize_key',
+		)
+	);
+	$wp_customize->add_control(
+		'search_align',
+		array(
+			'label'   => __( 'Alineacion del buscador', 'nechugo-news' ),
+			'section' => 'nechugo_header',
+			'type'    => 'radio',
+			'choices' => array(
+				'left'   => __( 'Izquierda', 'nechugo-news' ),
+				'right'  => __( 'Derecha (por defecto)', 'nechugo-news' ),
+			),
+		)
+	);
 
 	$wp_customize->add_setting(
 		'header_widgets_enable',

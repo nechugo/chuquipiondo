@@ -66,7 +66,10 @@ function nechugo_defaults() {
 		'header_height'          => 64,
 		'header_font_family'     => 'roboto-condensed',
 		'header_font_size'       => 13,
-		'header_menu_size'       => 13,
+		'header_menu_size'       => 14,
+		'header_gap'             => 5,
+		'logo_align'             => 'left',
+		'search_align'           => 'right',
 		'header_menu_color'      => '',
 		'header_menu_hover_color' => '',
 		'header_submenu_bg'      => '#ffffff',
@@ -136,7 +139,7 @@ function nechugo_defaults() {
 		'page_bg_fixed'          => false,
 
 		// Menu personalizable elegante.
-		'menu_font_family'       => 'roboto-condensed',
+		'menu_font_family'       => 'sans-serif',
 		'menu_uppercase'         => true,
 		'menu_letter_spacing'    => 2,
 

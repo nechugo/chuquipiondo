@@ -137,6 +137,34 @@ function nechugo_customizer_css() {
 		$css .= 'body{background:linear-gradient(135deg,' . $from . ',' . $to . ') fixed;}';
 	}
 
+	// ============ Header: gap, alineaciones y fuente del menu ============
+	$gap = max( 0, (int) nechugo_get_option( 'header_gap' ) );
+	$css .= '.header__inner{gap:' . $gap . 'px;}';
+	$css .= '.topbar__inner{gap:' . $gap . 'px;}';
+	$css .= '.topbar__left,.topbar__right{gap:' . $gap . 'px;}';
+	$css .= '.header-widgets__grid{gap:' . max( $gap, 10 ) . 'px;}';
+	$css .= '.nechugo-menu{gap:' . $gap . 'px;}';
+
+	// Fuente del menu: sans-serif 14px por defecto (configurable).
+	$menu_size = max( 10, (int) nechugo_get_option( 'header_menu_size' ) );
+	$css      .= '.nechugo-nav a{font-size:' . $menu_size . 'px;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;}';
+
+	// Alineacion del logo.
+	$logo_align = nechugo_get_option( 'logo_align' );
+	if ( 'center' === $logo_align ) {
+		$css .= '.header__inner--split .header__brand{margin-left:auto;margin-right:auto;}';
+	} elseif ( 'right' === $logo_align ) {
+		$css .= '.header__inner--split .header__brand{margin-left:auto;order:3;}';
+		$css .= '.header__inner--split .header__nav{margin-right:auto;margin-left:0;order:1;}';
+		$css .= '.header__inner--split .header__tools{order:2;}';
+	}
+
+	// Alineacion del buscador (dentro de su caja).
+	$search_align = nechugo_get_option( 'search_align' );
+	if ( 'left' === $search_align ) {
+		$css .= '.header__inner--split .header__tools{margin-left:0;margin-right:auto;}';
+	}
+
 	// ============ Tipografia por contexto (Astra Pro style) ============
 	$pt_size = max( 12, (int) nechugo_get_option( 'post_title_font_size' ) );
 	$pt_w    = (int) nechugo_get_option( 'post_title_font_weight' );
@@ -238,6 +266,7 @@ function nechugo_color_presets() {
 function nechugo_font_stack( $key ) {
 	$stacks = array(
 		'system'       => "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+		'sans-serif'   => "Helvetica Neue, Helvetica, Arial, sans-serif",
 		'google-sans'  => "'Google Sans', 'Product Sans', Roboto, -apple-system, sans-serif",
 		'inter'        => "'Inter', sans-serif",
 		'roboto'       => "'Roboto', sans-serif",
