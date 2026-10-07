@@ -537,6 +537,26 @@ function chuquipiondo_register_home( $wp_customize ) {
  * BLOG / archive section.
  * ===================================================================== */
 
+/**
+ * Category choices for the blog hero slider: all posts or one category.
+ *
+ * @return array
+ */
+function chuquipiondo_blog_hero_category_choices() {
+	$choices = array( '0' => __( 'Todas las categorias (ultimas publicaciones)', 'chuquipiondo' ) );
+	$terms = get_terms( array(
+		'taxonomy'   => 'category',
+		'hide_empty' => true,
+		'number'     => 50,
+	) );
+	if ( ! is_wp_error( $terms ) ) {
+		foreach ( $terms as $term ) {
+			$choices[ (string) $term->term_id ] = $term->name;
+		}
+	}
+	return $choices;
+}
+
 function chuquipiondo_register_blog( $wp_customize ) {
 	chuquipiondo_add_section( $wp_customize, 'chuquipiondo_blog', array(
 		'title'    => __( 'CHUQUIPIONDO: Blog', 'chuquipiondo' ),
@@ -546,6 +566,7 @@ function chuquipiondo_register_blog( $wp_customize ) {
 	chuquipiondo_add_setting_control( $wp_customize, 'blog_columns', array( 'section' => 'chuquipiondo_blog', 'label' => __( 'Columnas (desktop)', 'chuquipiondo' ), 'type' => 'select', 'choices' => array( '1' => '1', '2' => '2', '3' => '3', '4' => '4' ), 'sanitize_callback' => 'chuquipiondo_sanitize_select', 'priority' => 5 ) );
 	chuquipiondo_add_setting_control( $wp_customize, 'blog_hero_enable', array( 'section' => 'chuquipiondo_blog', 'label' => __( 'Mostrar slider destacado', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'priority' => 5, 'description' => __( 'Slider de entradas destacadas arriba del grid del blog.', 'chuquipiondo' ) ) );
 	chuquipiondo_add_setting_control( $wp_customize, 'blog_hero_count', array( 'section' => 'chuquipiondo_blog', 'label' => __( 'Diapositivas del slider (blog)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 2, 'max' => 10, 'step' => 1 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'priority' => 5 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'blog_hero_category', array( 'section' => 'chuquipiondo_blog', 'label' => __( 'Categoria del slider (blog)', 'chuquipiondo' ), 'type' => 'select', 'choices' => chuquipiondo_blog_hero_category_choices(), 'sanitize_callback' => 'chuquipiondo_sanitize_select', 'priority' => 5, 'description' => __( 'Ultimas publicaciones de todas las categorias o solo de la elegida.', 'chuquipiondo' ) ) );
 	chuquipiondo_add_setting_control( $wp_customize, 'blog_hero_effect', array( 'section' => 'chuquipiondo_blog', 'label' => __( 'Efecto del slider (blog)', 'chuquipiondo' ), 'type' => 'select', 'choices' => array( 'fade' => __( 'Fundido', 'chuquipiondo' ), 'slide' => __( 'Deslizamiento', 'chuquipiondo' ), 'zoom' => __( 'Zoom (Ken Burns)', 'chuquipiondo' ) ), 'sanitize_callback' => 'chuquipiondo_sanitize_select', 'priority' => 5 ) );
 	chuquipiondo_add_setting_control( $wp_customize, 'blog_hero_autoplay', array( 'section' => 'chuquipiondo_blog', 'label' => __( 'Reproduccion automatica (blog)', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'priority' => 5 ) );
 	chuquipiondo_add_setting_control( $wp_customize, 'blog_hero_speed', array( 'section' => 'chuquipiondo_blog', 'label' => __( 'Velocidad de cambio (ms, blog)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 1000, 'max' => 15000, 'step' => 250 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'priority' => 5 ) );

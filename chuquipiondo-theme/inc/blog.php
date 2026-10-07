@@ -54,13 +54,20 @@ function chuquipiondo_blog_hero_slider() {
 	$height = (int) chuquipiondo_get_option( 'blog_hero_height' );
 	$height = ( $height >= 180 ) ? $height : 390;
 
-	$hero_q = new WP_Query( array(
+	// Fuente de las diapositivas: ultimas publicaciones (todas las categorias)
+// o solo una categoria elegida en el Customizer.
+	$query_args = array(
 		'post_type'           => 'post',
 		'posts_per_page'      => $count,
 		'ignore_sticky_posts' => 1,
 		'orderby'             => 'date',
 		'order'               => 'DESC',
-	) );
+	);
+	$hero_cat = (int) chuquipiondo_get_option( 'blog_hero_category' );
+	if ( $hero_cat > 0 ) {
+		$query_args['cat'] = $hero_cat;
+	}
+	$hero_q = new WP_Query( $query_args );
 
 	if ( ! $hero_q->have_posts() ) {
 		return;
@@ -72,8 +79,6 @@ function chuquipiondo_blog_hero_slider() {
 		$height,
 		esc_attr__( 'Entradas destacadas', 'chuquipiondo' )
 	);
-
-	echo '<div class="blog-hero" aria-label="' . esc_attr__( 'Entradas destacadas', 'chuquipiondo' ) . '">';
 
 	$i = 0;
 	while ( $hero_q->have_posts() ) {

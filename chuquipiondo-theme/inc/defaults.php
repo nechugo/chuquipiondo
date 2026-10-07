@@ -269,7 +269,9 @@ function chuquipiondo_defaults() {
 		'blog_columns_tablet'    => '2',
 		'blog_columns_mobile'    => '1',
 		'blog_hero_enable'       => '1',
-		'blog_hero_count'        => '3',
+		'blog_hero_count'        => '5',
+		'blog_hero_category'    => '0',
+
 		'blog_hero_effect'      => 'fade',
 		'blog_hero_autoplay'    => '1',
 		'blog_hero_speed'       => '6000',
