@@ -155,25 +155,16 @@
 	display: none;
 }
 
-/* Tarjetas para cada widget del sidebar. */
+/* Tarjetas para cada widget del sidebar: single source of truth.
+ * --sidebar-card-gap / --sidebar-card-padding siguen personalizables. */
 .widget-area .widget {
-	border-radius: var(--radius-content, 7px);
 	background: var(--white, #ffffff);
+	border-radius: var(--sidebar-card-radius, var(--radius-content, 7px));
 	padding: var(--sidebar-card-padding, 16px);
 	margin-bottom: var(--sidebar-card-gap, 12px);
-	border-width: 1px;
-	border-style: solid;
-	border-color: rgba(10, 31, 68, 0.06);
+	border: 1px solid rgba(10, 31, 68, 0.06);
+	box-shadow: var(--shadow-soft);
 	box-sizing: border-box;
-}
-
-/* Sidebar widget styling. */
-.widget-area .widget {
-	margin-bottom: var(--space-6);
-	padding: var(--space-4);
-	background: var(--white);
-	border-radius: var(--radius-content);
-	box-shadow: var(--shadow-sm);
 }
 
 .widget-area .widget:last-child {

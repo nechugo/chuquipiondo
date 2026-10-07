@@ -137,6 +137,7 @@ function chuquipiondo_dynamic_css() {
 	// Sidebar card style.
 	$vars['sidebar-card-padding'] = chuquipiondo_get_option( 'sidebar_card_padding' ) . 'px';
 	$vars['sidebar-card-gap']     = chuquipiondo_get_option( 'sidebar_card_gap' ) . 'px';
+	$vars['sidebar-card-radius']  = max( 0, (int) chuquipiondo_get_option( 'sidebar_card_radius' ) ) . 'px';
 
 	// Related posts columns.
 	$vars['related-cols'] = chuquipiondo_get_option( 'single_related_columns' );
