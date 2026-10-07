@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // No direct access.
 }
 
-define( 'NECHUGO_NEWS_VERSION', '1.7.0' );
+define( 'NECHUGO_NEWS_VERSION', '1.7.1' );
 define( 'NECHUGO_NEWS_DIR', get_template_directory() );
 define( 'NECHUGO_NEWS_URI', get_template_directory_uri() );
 
