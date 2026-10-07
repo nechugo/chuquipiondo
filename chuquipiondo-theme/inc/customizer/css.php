@@ -363,9 +363,28 @@ function chuquipiondo_dynamic_css() {
  * Print the dynamic CSS in <head>.
  */
 function chuquipiondo_print_dynamic_css() {
-	$css = chuquipiondo_dynamic_css();
+	// Cache the generated CSS string: rebuilt only when Customizer saves.
+	$cache_key = 'chuquipiondo_dynamic_css_v' . CHUQUIPIONDO_VERSION;
+	if ( is_customize_preview() ) {
+		$css = chuquipiondo_dynamic_css();
+	} else {
+		$css = get_transient( $cache_key );
+		if ( false === $css ) {
+			$css = chuquipiondo_dynamic_css();
+			set_transient( $cache_key, $css, DAY_IN_SECONDS );
+		}
+	}
 	if ( $css ) {
 		echo '<style id="chuquipiondo-dynamic-css">' . wp_strip_all_tags( $css ) . '</style>' . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput -- CSS only, stripped.
 	}
 }
 add_action( 'wp_head', 'chuquipiondo_print_dynamic_css', 20 );
+
+/**
+ * Invalidate the cached dynamic CSS when the Customizer saves.
+ */
+function chuquipiondo_flush_dynamic_css_cache() {
+	delete_transient( 'chuquipiondo_dynamic_css_v' . CHUQUIPIONDO_VERSION );
+}
+add_action( 'customize_save_after', 'chuquipiondo_flush_dynamic_css_cache' );
+add_action( 'switch_theme', 'chuquipiondo_flush_dynamic_css_cache' );

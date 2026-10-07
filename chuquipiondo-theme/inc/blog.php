@@ -60,6 +60,7 @@ function chuquipiondo_blog_hero_slider() {
 		'post_type'           => 'post',
 		'posts_per_page'      => $count,
 		'ignore_sticky_posts' => 1,
+		'no_found_rows'          => true,
 		'orderby'             => 'date',
 		'order'               => 'DESC',
 	);

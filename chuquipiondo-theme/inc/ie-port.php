@@ -80,6 +80,7 @@ function chuquipiondo_handle_import() {
 		set_theme_mod( $key, $value );
 	}
 
+	chuquipiondo_flush_dynamic_css_cache();
 	wp_safe_redirect( add_query_arg( 'chuquipiondo_import', 'success', admin_url( 'admin.php?page=chuquipiondo-options' ) ) );
 	exit;
 }
@@ -105,6 +106,7 @@ function chuquipiondo_handle_reset() {
 
 	// Apply the original preset defaults.
 	chuquipiondo_apply_preset( 'original' );
+	chuquipiondo_flush_dynamic_css_cache();
 
 	wp_safe_redirect( add_query_arg( 'chuquipiondo_reset', 'success', admin_url( 'admin.php?page=chuquipiondo-options' ) ) );
 	exit;
@@ -125,6 +127,7 @@ function chuquipiondo_handle_apply_preset() {
 	if ( $preset ) {
 		chuquipiondo_apply_preset( $preset );
 	}
+	chuquipiondo_flush_dynamic_css_cache();
 	wp_safe_redirect( add_query_arg( 'chuquipiondo_preset', 'applied', admin_url( 'admin.php?page=chuquipiondo-options' ) ) );
 	exit;
 }

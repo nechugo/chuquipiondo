@@ -123,6 +123,7 @@ function chuquipiondo_home_featured() {
 		'post_type'           => 'post',
 		'posts_per_page'      => $count,
 		'ignore_sticky_posts' => 1,
+		'no_found_rows'          => true,
 		'tax_query'           => array(
 			array(
 				'taxonomy' => 'post_tag',
@@ -139,6 +140,7 @@ function chuquipiondo_home_featured() {
 			'post_type'           => 'post',
 			'posts_per_page'      => $count,
 			'ignore_sticky_posts' => 1,
+		'no_found_rows'          => true,
 			'orderby'             => 'date',
 			'order'               => 'DESC',
 		) );
@@ -173,6 +175,7 @@ function chuquipiondo_home_latest() {
 		'post_type'           => 'post',
 		'posts_per_page'      => $count,
 		'ignore_sticky_posts' => 1,
+		'no_found_rows'          => true,
 		'orderby'             => 'date',
 		'order'               => 'DESC',
 	) );
