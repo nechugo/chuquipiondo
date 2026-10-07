@@ -620,7 +620,7 @@ function chuquipiondo_register_ads( $wp_customize ) {
 	chuquipiondo_add_setting_control( $wp_customize, 'ads_client_id', array( 'section' => 'chuquipiondo_ads', 'label' => __( 'AdSense Client ID (ca-pub-...)', 'chuquipiondo' ), 'sanitize_callback' => 'chuquipiondo_sanitize_text', 'priority' => 7 ) );
 	chuquipiondo_add_setting_control( $wp_customize, 'ads_blog_after_posts', array( 'section' => 'chuquipiondo_ads', 'label' => __( 'Insertar anuncio cada X posts (blog)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 2, 'max' => 12, 'step' => 1 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'priority' => 8 ) );
 
-	// Ad slots (codes). Registered from /inc/ads/slots.php metadata.
+	// Ad slots (codes + format). Registered from /inc/ads/slots.php metadata.
 	$slots = chuquipiondo_ad_slots();
 	$i     = 20;
 	foreach ( $slots as $slot_key => $slot ) {
@@ -630,6 +630,19 @@ function chuquipiondo_register_ads( $wp_customize ) {
 			'type'              => 'textarea',
 			'sanitize_callback' => 'chuquipiondo_sanitize_ad_code',
 			'description'       => isset( $slot['description'] ) ? $slot['description'] : '',
+			'priority'          => $i++,
+		) );
+		chuquipiondo_add_setting_control( $wp_customize, 'ad_format_' . $slot_key, array(
+			'section'           => 'chuquipiondo_ads',
+			/* translators: %s: slot label. */
+			'label'             => sprintf( __( 'Formato de: %s', 'chuquipiondo' ), $slot['label'] ),
+			'type'              => 'select',
+			'choices'           => array(
+				'horizontal' => __( 'Horizontal (adaptable al contenido)', 'chuquipiondo' ),
+				'box'        => __( 'Caja 300x250 (centrado)', 'chuquipiondo' ),
+				'hidden'     => __( 'Oculto', 'chuquipiondo' ),
+			),
+			'sanitize_callback' => 'chuquipiondo_sanitize_select',
 			'priority'          => $i++,
 		) );
 	}

@@ -96,6 +96,9 @@ function chuquipiondo_defaults() {
 		'spacing_base'           => '8',
 		'media_aspect_ratio'     => '16 / 9',
 		'ad_gap'                 => '15',
+		'ad_format_ads_sidebar_top'    => 'box',
+		'ad_format_ads_sidebar_middle' => 'box',
+		'ad_format_ads_sidebar_bottom' => 'box',
 
 		/* ===== Header system ===== */
 		/* ===== Pre-header (2 columnas encima del header) ===== */

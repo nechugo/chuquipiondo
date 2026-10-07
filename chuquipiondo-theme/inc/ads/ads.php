@@ -59,11 +59,31 @@ function chuquipiondo_adsense_auto_script() {
 add_action( 'wp_head', 'chuquipiondo_adsense_auto_script', 5 );
 
 /**
+ * Get the display format for a slot: horizontal | box | hidden.
+ *
+ * Per-slot Customizer option wins; falls back to the default per-zone
+ * format so unconfigured slots keep a sensible default.
+ *
+ * @param string $slot Slot key.
+ * @return string
+ */
+function chuquipiondo_ad_format( $slot ) {
+	$format = chuquipiondo_get_option( 'ad_format_' . $slot );
+	if ( in_array( $format, array( 'horizontal', 'box', 'hidden' ), true ) ) {
+		return $format;
+	}
+	$sidebar = array( 'ads_sidebar_top', 'ads_sidebar_middle', 'ads_sidebar_bottom' );
+	return in_array( $slot, $sidebar, true ) ? 'box' : 'horizontal';
+}
+
+/**
  * Render an ad slot by key.
  *
  * - If the master switch is OFF, nothing is rendered (no HTML).
  * - If the slot code is empty, nothing is rendered (no HTML).
- * - Otherwise the slot code is wrapped in a div with data-slot.
+ * - If the slot format is hidden, nothing is rendered (no HTML).
+ * - Otherwise the slot code is wrapped in a div with data-slot and the
+ *   format modifier class (horizontal / box).
  *
  * @param string $slot Slot key (must exist in chuquipiondo_ad_slots()).
  */
@@ -93,7 +113,12 @@ function chuquipiondo_ad_slot( $slot ) {
 		return; // No empty HTML.
 	}
 
-	printf( '<div class="chuqui-ad chuqui-ad--%1$s" data-slot="%1$s">', esc_attr( $slot ) );
+	$format = chuquipiondo_ad_format( $slot );
+	if ( 'hidden' === $format ) {
+		return; // Slot disabled by format choice.
+	}
+
+	printf( '<div class="chuqui-ad chuqui-ad--%1$s chuqui-ad--fmt-%2$s" data-slot="%1$s">', esc_attr( $slot ), esc_attr( $format ) );
 	echo $code; // phpcs:ignore WordPress.Security.EscapeOutput -- sanitized on save via chuquipiondo_sanitize_ad_code.
 	echo '</div>';
 }
@@ -149,8 +174,9 @@ function chuquipiondo_insert_ads_in_content( $content ) {
 			$p_count++;
 			if ( isset( $insertion_points[ $p_count ] ) ) {
 				$code = $insertion_points[ $p_count ];
-				if ( '' !== trim( (string) $code ) ) {
-					$out .= '<div class="chuqui-ad chuqui-ad--in-content" data-slot="ads_after_paragraph_' . (int) $p_count . '">';
+				$format = chuquipiondo_ad_format( 'ads_after_paragraph_' . $p_count );
+				if ( '' !== trim( (string) $code ) && 'hidden' !== $format ) {
+					$out .= '<div class="chuqui-ad chuqui-ad--in-content chuqui-ad--fmt-' . esc_attr( $format ) . '" data-slot="ads_after_paragraph_' . (int) $p_count . '">';
 					$out .= $code; // Already sanitized on save.
 					$out .= '</div>';
 				}
