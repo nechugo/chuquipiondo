@@ -73,7 +73,7 @@ function chuquipiondo_core_posts_shortcode( $atts ) {
 	$style   = sanitize_html_class( $atts['style'] );
 
 	ob_start();
-	echo '<div class="post-grid chuquipiondo-core-posts" style="grid-template-columns: repeat(' . $columns . ', minmax(0, 1fr));">';
+	echo '<div class="post-grid chuquipiondo-core-posts chuquipiondo-core-posts--cols-' . $columns . '">';
 
 	while ( $q->have_posts() ) {
 		$q->the_post();
@@ -112,7 +112,7 @@ function chuquipiondo_core_music_shortcode( $atts ) {
 	$columns = max( 1, min( 3, (int) $atts['columns'] ) );
 
 	ob_start();
-	echo '<div class="music-grid chuquipiondo-core-music" style="grid-template-columns: repeat(' . $columns . ', minmax(0, 1fr));">';
+	echo '<div class="music-grid chuquipiondo-core-music chuquipiondo-core-music--cols-' . $columns . '">';
 
 	while ( $q->have_posts() ) {
 		$q->the_post();
@@ -211,3 +211,109 @@ function chuquipiondo_core_breadcrumbs_shortcode() {
 	return ob_get_clean();
 }
 add_shortcode( 'chuquipiondo_breadcrumbs', 'chuquipiondo_core_breadcrumbs_shortcode' );
+
+/**
+ * Shortcode: [chuquipiondo_trending count="4" days="30"]
+ * Top posts by comments in a recent window; falls back to most commented.
+ */
+function chuquipiondo_core_trending_shortcode( $atts ) {
+	$atts = shortcode_atts( array( 'count' => '4', 'days' => '30' ), $atts, 'chuquipiondo_trending' );
+	$days = max( 1, (int) $atts['days'] );
+	$q = new WP_Query( array(
+		'post_type'           => 'post',
+		'posts_per_page'      => max( 1, (int) $atts['count'] ),
+		'ignore_sticky_posts' => 1,
+		'no_found_rows'       => true,
+		'orderby'             => 'comment_count',
+		'date_query'          => array( array( 'after' => $days . ' days ago' ) ),
+	) );
+	if ( ! $q->have_posts() ) {
+		$q = new WP_Query( array(
+			'post_type'           => 'post',
+			'posts_per_page'      => max( 1, (int) $atts['count'] ),
+			'ignore_sticky_posts' => 1,
+			'no_found_rows'       => true,
+			'orderby'             => 'comment_count',
+		) );
+	}
+	if ( ! $q->have_posts() ) {
+		return '';
+	}
+	$out = '<ul class="chuqui-trending">';
+	while ( $q->have_posts() ) {
+		$q->the_post();
+		$comments = (int) get_comments_number();
+		$out .= '<li class="chuqui-trending__item">';
+		$out .= '<a href="' . esc_url( get_permalink() ) . '">' . esc_html( get_the_title() ) . '</a>';
+		$out .= '<span class="chuqui-trending__meta">' . esc_html( sprintf( _n( '%s comentario', '%s comentarios', $comments, 'chuquipiondo-core' ), number_format_i18n( $comments ) ) ) . '</span>';
+		$out .= '</li>';
+	}
+	$out .= '</ul>';
+	wp_reset_postdata();
+	return $out;
+}
+add_shortcode( 'chuquipiondo_trending', 'chuquipiondo_core_trending_shortcode' );
+
+/**
+ * Shortcode: [chuquipiondo_quote text="..." author="..." align="center"]
+ * Editorial pull-quote in the Chuquipiondo aesthetic.
+ */
+function chuquipiondo_core_quote_shortcode( $atts, $content = '' ) {
+	$atts = shortcode_atts( array( 'text' => '', 'author' => '', 'align' => 'center' ), $atts, 'chuquipiondo_quote' );
+	$text = '' !== trim( (string) $content ) ? trim( wp_strip_all_tags( $content ) ) : sanitize_text_field( $atts['text'] );
+	if ( '' === $text ) {
+		return '';
+	}
+	$align = in_array( $atts['align'], array( 'left', 'center', 'right' ), true ) ? $atts['align'] : 'center';
+	$author = sanitize_text_field( $atts['author'] );
+	$out = '<figure class="chuqui-quote chuqui-quote--' . esc_attr( $align ) . '">';
+	$out .= '<blockquote class="chuqui-quote__text">&ldquo;' . esc_html( $text ) . '&rdquo;</blockquote>';
+	if ( '' !== $author ) {
+		$out .= '<figcaption class="chuqui-quote__author">&mdash; ' . esc_html( $author ) . '</figcaption>';
+	}
+	$out .= '</figure>';
+	return $out;
+}
+add_shortcode( 'chuquipiondo_quote', 'chuquipiondo_core_quote_shortcode' );
+
+/**
+ * Shortcode: [chuquipiondo_series ids="12,34,56" title="Serie"]
+ * Editorial series: linked parts with current-post highlighting.
+ */
+function chuquipiondo_core_series_shortcode( $atts ) {
+	$atts = shortcode_atts( array( 'ids' => '', 'title' => '' ), $atts, 'chuquipiondo_series' );
+	$ids = array_filter( array_map( 'absint', explode( ',', $atts['ids'] ) ) );
+	if ( empty( $ids ) ) {
+		return '';
+	}
+	$q = new WP_Query( array(
+		'post_type'      => 'any',
+		'post__in'       => $ids,
+		'orderby'        => 'post__in',
+		'posts_per_page' => count( $ids ),
+		'no_found_rows'  => true,
+	) );
+	if ( ! $q->have_posts() ) {
+		return '';
+	}
+	$current = get_the_ID();
+	$out = '<nav class="chuqui-series">';
+	if ( '' !== $atts['title'] ) {
+		$out .= '<h3 class="chuqui-series__title">' . esc_html( sanitize_text_field( $atts['title'] ) ) . '</h3>';
+	}
+	$out .= '<ol class="chuqui-series__list">';
+	while ( $q->have_posts() ) {
+		$q->the_post();
+		$is_current = ( get_the_ID() === $current );
+		$out .= '<li class="chuqui-series__item' . ( $is_current ? ' chuqui-series__item--current' : '' ) . '">';
+		$out .= $is_current
+			? '<span class="chuqui-series__current">' . esc_html( get_the_title() ) . '</span>'
+			: '<a href="' . esc_url( get_permalink() ) . '">' . esc_html( get_the_title() ) . '</a>';
+		$out .= '</li>';
+	}
+	$out .= '</ol>';
+	$out .= '</nav>';
+	wp_reset_postdata();
+	return $out;
+}
+add_shortcode( 'chuquipiondo_series', 'chuquipiondo_core_series_shortcode' );

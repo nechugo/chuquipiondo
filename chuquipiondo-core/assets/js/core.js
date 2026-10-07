@@ -20,14 +20,23 @@
 			return;
 		}
 
+		var ticking = false;
 		function update() {
 			var scrollTop = window.scrollY;
 			var docHeight = document.documentElement.scrollHeight - window.innerHeight;
 			var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
 			bar.style.width = pct + '%';
+			// WCAG: expose progress to assistive technology.
+			bar.setAttribute('aria-valuenow', Math.round(pct));
+			ticking = false;
 		}
-
-		window.addEventListener('scroll', update, { passive: true });
+		function onScroll() {
+			if (!ticking) {
+				ticking = true;
+				window.requestAnimationFrame(update);
+			}
+		}
+		window.addEventListener('scroll', onScroll, { passive: true });
 		update();
 	}
 

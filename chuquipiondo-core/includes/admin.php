@@ -122,6 +122,33 @@ function chuquipiondo_core_admin_page_render() {
 				</p>
 			</div>
 		</div>
+		<?php do_action( 'chuquipiondo_core_after_admin_page' ); ?>
 	</div>
 	<?php
 }
+
+/**
+ * AI Studio bridge: quick "generate article" launcher inside the Core admin
+ * when the AI plugin is active. Gracefully hidden otherwise.
+ */
+function chuquipiondo_core_ai_bridge_box() {
+	if ( ! current_user_can( 'edit_posts' ) ) {
+		return;
+	}
+	if ( ! function_exists( 'chuquipiondo_ai' ) ) {
+		return;
+	}
+	?>
+	<div class="card" style="max-width:600px;margin-top:16px;padding:16px;">
+		<h2 style="margin-top:0;"><?php esc_html_e( 'CHUQUIPIONDO AI Studio', 'chuquipiondo-core' ); ?></h2>
+		<p><?php esc_html_e( 'Genera articulos con la voz del portal (800-1200 palabras, SEO Yoast, imagenes duales) directamente desde AI Studio.', 'chuquipiondo-core' ); ?></p>
+		<?php
+		$ai_url = admin_url( 'admin.php?page=chuquipiondo-ai-generate' );
+		if ( function_exists( 'chuquipiondo_ai_generate_page_render' ) ) {
+			printf( '<a class="button button-primary" href="%s">%s</a>', esc_url( $ai_url ), esc_html__( 'Generar articulo con IA', 'chuquipiondo-core' ) );
+		}
+		?>
+	</div>
+	<?php
+}
+add_action( 'chuquipiondo_core_after_admin_page', 'chuquipiondo_core_ai_bridge_box' );

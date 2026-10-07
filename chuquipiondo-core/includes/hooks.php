@@ -19,12 +19,13 @@ function chuquipiondo_core_reading_progress() {
 		return;
 	}
 	?>
-	<div class="chuqui-reading-progress" id="chuqui-reading-progress">
+	<div class="chuqui-reading-progress" id="chuqui-reading-progress" role="progressbar" aria-label="<?php esc_attr_e( 'Progreso de lectura', 'chuquipiondo-core' ); ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
 		<div class="chuqui-reading-progress__bar"></div>
 	</div>
 	<?php
 }
 add_action( 'wp_body_open', 'chuquipiondo_core_reading_progress' );
+
 
 /**
  * Add estimated reading time to post meta.

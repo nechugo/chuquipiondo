@@ -35,13 +35,16 @@ class Chuquipiondo_Core_Recent_Posts_Widget extends WP_Widget {
 	public function widget( $args, $instance ) {
 		$count = isset( $instance['count'] ) ? (int) $instance['count'] : 5;
 
-		$q = new WP_Query( array(
-			'post_type'           => 'post',
-			'posts_per_page'      => $count,
-			'ignore_sticky_posts' => 1,
-		) );
-
-		if ( ! $q->have_posts() ) {
+		// Fragment cache (15 min): invalidated on save_post/transition.
+		$cache_key = 'chuqui_recent_posts_' . md5( (string) $args['widget_id'] . '|' . $count );
+		$inner = get_transient( $cache_key );
+		if ( ! is_string( $inner ) ) {
+			$inner = $this->render_list( $count );
+			if ( '' !== $inner ) {
+				set_transient( $cache_key, $inner, 15 * MINUTE_IN_SECONDS );
+			}
+		}
+		if ( '' === $inner ) {
 			return;
 		}
 
@@ -49,24 +52,44 @@ class Chuquipiondo_Core_Recent_Posts_Widget extends WP_Widget {
 		if ( ! empty( $instance['title'] ) ) {
 			echo wp_kses_post( $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'] );
 		}
+		echo $inner; // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside render_list().
+		echo wp_kses_post( $args['after_widget'] );
+	}
 
-		echo '<ul class="chuqui-recent-posts">';
+	/**
+	 * Build the posts list HTML (cacheable fragment).
+	 *
+	 * @param int $count Posts to show.
+	 * @return string
+	 */
+	private function render_list( $count ) {
+		$q = new WP_Query( array(
+			'post_type'           => 'post',
+			'posts_per_page'      => $count,
+			'ignore_sticky_posts' => 1,
+			'no_found_rows'       => true,
+		) );
+
+		if ( ! $q->have_posts() ) {
+			return '';
+		}
+
+		$html = '<ul class="chuqui-recent-posts">';
 		while ( $q->have_posts() ) {
 			$q->the_post();
-			echo '<li class="chuqui-recent-post">';
+			$html .= '<li class="chuqui-recent-post">';
 			if ( has_post_thumbnail() ) {
-				echo '<a href="' . esc_url( get_permalink() ) . '" class="chuqui-recent-post__thumb">' . get_the_post_thumbnail( get_the_ID(), 'thumbnail', array( 'loading' => 'lazy' ) ) . '</a>';
+				$html .= '<a href="' . esc_url( get_permalink() ) . '" class="chuqui-recent-post__thumb">' . get_the_post_thumbnail( get_the_ID(), 'thumbnail', array( 'loading' => 'lazy' ) ) . '</a>';
 			}
-			echo '<div class="chuqui-recent-post__body">';
-			echo '<h4 class="chuqui-recent-post__title"><a href="' . esc_url( get_permalink() ) . '">' . esc_html( get_the_title() ) . '</a></h4>';
-			echo '<span class="chuqui-recent-post__date">' . esc_html( get_the_date() ) . '</span>';
-			echo '</div>';
-			echo '</li>';
+			$html .= '<div class="chuqui-recent-post__body">';
+			$html .= '<h4 class="chuqui-recent-post__title"><a href="' . esc_url( get_permalink() ) . '">' . esc_html( get_the_title() ) . '</a></h4>';
+			$html .= '<span class="chuqui-recent-post__date">' . esc_html( get_the_date() ) . '</span>';
+			$html .= '</div>';
+			$html .= '</li>';
 		}
-		echo '</ul>';
-
-		echo wp_kses_post( $args['after_widget'] );
+		$html .= '</ul>';
 		wp_reset_postdata();
+		return $html;
 	}
 
 	public function form( $instance ) {
@@ -225,3 +248,13 @@ class Chuquipiondo_Core_Stats_Widget extends WP_Widget {
 		return array( 'title' => sanitize_text_field( $new['title'] ) );
 	}
 }
+
+/**
+ * Invalidate the recent-posts widget fragment cache on post changes.
+ */
+function chuquipiondo_core_flush_recent_posts_cache() {
+	global $wpdb;
+	$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_chuqui_recent_posts_%' OR option_name LIKE '_transient_timeout_chuqui_recent_posts_%'" );
+}
+add_action( 'transition_post_status', 'chuquipiondo_core_flush_recent_posts_cache' );
+add_action( 'save_post', 'chuquipiondo_core_flush_recent_posts_cache' );

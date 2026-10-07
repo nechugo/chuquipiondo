@@ -111,7 +111,7 @@ final class Chuquipiondo_Core {
 		wp_enqueue_script(
 			'chuquipiondo-core-editor',
 			CHUQUIPIONDO_CORE_URL . 'assets/js/editor.js',
-			array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components' ),
+			array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-data' ),
 			CHUQUIPIONDO_CORE_VERSION,
 			true
 		);
