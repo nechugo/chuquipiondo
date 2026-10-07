@@ -225,3 +225,90 @@
 		grid-template-columns: 1fr !important;
 	}
 }
+
+/* Core shortcode grids: desktop columns via class, theme responsive takes over. */
+@media (min-width: 1024px) {
+	.chuquipiondo-core-posts--cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.chuquipiondo-core-posts--cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	.chuquipiondo-core-posts--cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+	.chuquipiondo-core-music--cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.chuquipiondo-core-music--cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	.chuquipiondo-core-music--cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 1023px) {
+	.chuquipiondo-core-posts[class*="cols-"],
+	.chuquipiondo-core-music[class*="cols-"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+	.chuquipiondo-core-posts[class*="cols-"],
+	.chuquipiondo-core-music[class*="cols-"] { grid-template-columns: 1fr; }
+}
+
+/* [chuquipiondo_quote]: editorial pull-quote. */
+.chuqui-quote {
+	margin: var(--chuqui-space, 24px) auto;
+	max-width: 640px;
+	text-align: center;
+}
+.chuqui-quote--left { text-align: left; margin-left: 0; }
+.chuqui-quote--right { text-align: right; margin-right: 0; }
+.chuqui-quote__text {
+	font-family: Georgia, 'Times New Roman', serif;
+	font-size: 1.375rem;
+	line-height: 1.5;
+	color: #0a1f44;
+	border-left: 4px solid #27b6ff;
+	padding-left: 16px;
+	margin: 0;
+}
+.chuqui-quote__author {
+	margin-top: 8px;
+	font-size: 0.875rem;
+	color: #5b6678;
+	font-style: italic;
+}
+
+/* [chuquipiondo_trending] */
+.chuqui-trending {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.chuqui-trending__item {
+	padding: 10px 0;
+	border-bottom: 1px solid rgba(10, 31, 68, 0.08);
+}
+.chuqui-trending__meta {
+	display: block;
+	font-size: 0.8125rem;
+	color: #5b6678;
+}
+
+/* [chuquipiondo_series] */
+.chuqui-series {
+	background: #f5f8ff;
+	border: 1px solid rgba(10, 31, 68, 0.08);
+	border-radius: 7px;
+	padding: 16px 20px;
+	margin: 24px 0;
+}
+.chuqui-series__title {
+	margin: 0 0 8px;
+	font-size: 1rem;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: #0a1f44;
+}
+.chuqui-series__list {
+	margin: 0;
+	padding-left: 20px;
+}
+.chuqui-series__item {
+	padding: 4px 0;
+}
+.chuqui-series__item--current {
+	font-weight: 700;
+}
+.chuqui-series__current {
+	color: #0a1f44;
+}

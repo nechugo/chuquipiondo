@@ -18,11 +18,15 @@ function chuquipiondo_core_reading_progress() {
 	if ( ! is_singular( 'post' ) ) {
 		return;
 	}
+	printf(
+		'<div class="chuqui-reading-progress" id="chuqui-reading-progress" role="progressbar" aria-label="%s" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">',
+		esc_attr__( 'Progreso de lectura', 'chuquipiondo-core' )
+	);
 	?>
-	<div class="chuqui-reading-progress" id="chuqui-reading-progress">
-		<div class="chuqui-reading-progress__bar"></div>
+	<div class="chuqui-reading-progress__bar"></div>
 	</div>
 	<?php
+		<?php
 }
 add_action( 'wp_body_open', 'chuquipiondo_core_reading_progress' );
 

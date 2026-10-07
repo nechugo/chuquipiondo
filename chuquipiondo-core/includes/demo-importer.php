@@ -144,6 +144,21 @@ add_action( 'admin_init', 'chuquipiondo_core_handle_demo_import' );
  *
  * @param string $demo_id Demo ID to import.
  */
+/**
+ * Build a local SVG data-URI ad placeholder (no external service dependency).
+ *
+ * @param int    $w    Width.
+ * @param int    $h    Height.
+ * @param string $bg   Background hex (no #).
+ * @param string $fg   Foreground hex (no #).
+ * @param string $text Label.
+ * @return string Data URI.
+ */
+function chuquipiondo_core_svg_placeholder( $w, $h, $bg, $fg, $text ) {
+	$svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' . (int) $w . '" height="' . (int) $h . '" role="img" aria-label="' . esc_attr( $text ) . '"><rect width="100%" height="100%" fill="#' . $bg . '"/><text x="50%" y="50%" fill="#' . $fg . '" font-family="sans-serif" font-size="28" font-weight="700" text-anchor="middle" dominant-baseline="middle">' . esc_html( $text ) . '</text></svg>';
+	return 'data:image/svg+xml;base64,' . base64_encode( $svg );
+}
+
 function chuquipiondo_core_do_demo_import( $demo_id ) {
 	$demos = chuquipiondo_core_get_demos();
 
@@ -180,10 +195,10 @@ function chuquipiondo_core_do_demo_import( $demo_id ) {
 	}
 
 	// ===== 2. Fictitious ad code (image-based placeholders) =====
-	$ad_wide  = '<a href="#" target="_blank"><img src="https://via.placeholder.com/728x90/06133a/7fd6ff?text=AD+728x90" alt="Ad" style="width:100%;max-width:728px;height:auto;display:block;margin:0 auto;" /></a>';
-	$ad_box   = '<a href="#" target="_blank"><img src="https://via.placeholder.com/336x280/0a1f44/ffffff?text=AD+336x280" alt="Ad" style="width:100%;max-width:336px;height:auto;display:block;margin:0 auto;" /></a>';
-	$ad_resp  = '<a href="#" target="_blank"><img src="https://via.placeholder.com/970x250/06133a/27b6ff?text=AD+Responsive" alt="Ad" style="width:100%;max-width:970px;height:auto;display:block;margin:0 auto;" /></a>';
-	$ad_tall  = '<a href="#" target="_blank"><img src="https://via.placeholder.com/300x600/0a1f44/7fd6ff?text=AD+300x600" alt="Ad" style="width:100%;max-width:300px;height:auto;display:block;margin:0 auto;" /></a>';
+	$ad_wide  = '<a href="#" target="_blank"><img src="' . esc_url( chuquipiondo_core_svg_placeholder( 728, 90, '06133a', '7fd6ff', 'AD 728x90' ) ) . '" alt="Ad" style="width:100%;max-width:728px;height:auto;display:block;margin:0 auto;" /></a>';
+	$ad_box   = '<a href="#" target="_blank"><img src="' . esc_url( chuquipiondo_core_svg_placeholder( 336, 280, '0a1f44', 'ffffff', 'AD 336x280' ) ) . '" alt="Ad" style="width:100%;max-width:336px;height:auto;display:block;margin:0 auto;" /></a>';
+	$ad_resp  = '<a href="#" target="_blank"><img src="' . esc_url( chuquipiondo_core_svg_placeholder( 970, 250, '06133a', '27b6ff', 'AD Responsive' ) ) . '" alt="Ad" style="width:100%;max-width:970px;height:auto;display:block;margin:0 auto;" /></a>';
+	$ad_tall  = '<a href="#" target="_blank"><img src="' . esc_url( chuquipiondo_core_svg_placeholder( 300, 600, '0a1f44', '7fd6ff', 'AD 300x600' ) ) . '" alt="Ad" style="width:100%;max-width:300px;height:auto;display:block;margin:0 auto;" /></a>';
 
 	// ===== 3. Article titles and content templates =====
 	$article_data = array(
