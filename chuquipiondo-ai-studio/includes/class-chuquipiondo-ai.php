@@ -60,6 +60,18 @@ final class Chuquipiondo_AI {
 			'permission_callback' => array( $this, 'rest_can_edit' ),
 		) );
 
+		register_rest_route( $namespace, '/queue-batch', array(
+			'methods' => 'POST',
+			'callback' => array( $this, 'rest_queue_batch' ),
+			'permission_callback' => array( $this, 'rest_can_edit' ),
+		) );
+
+		register_rest_route( $namespace, '/queue-status', array(
+			'methods' => 'POST',
+			'callback' => array( $this, 'rest_queue_status' ),
+			'permission_callback' => array( $this, 'rest_can_edit' ),
+		) );
+
 		register_rest_route( $namespace, '/generate', array(
 			'methods' => 'POST',
 			'callback' => array( $this, 'rest_generate' ),
@@ -251,6 +263,30 @@ final class Chuquipiondo_AI {
 			return new WP_Error( 'no_access', __( 'No puedes acceder a este contenido.', 'chuquipiondo-ai' ), array( 'status' => 403 ) );
 		}
 		return rest_ensure_response( chuquipiondo_ai_analyze_post_images( $post ) );
+	}
+
+	public function rest_queue_batch( $request ) {
+		$topics  = (array) $request->get_param( 'topics' );
+		$publish = (bool) $request->get_param( 'publish' );
+		$extra   = (string) $request->get_param( 'prompt' );
+		$batch   = array();
+		foreach ( $topics as $topic ) {
+			$topic = sanitize_text_field( (string) $topic );
+			if ( '' === $topic ) {
+				continue;
+			}
+			$batch[] = array( 'topic' => $topic, 'prompt' => $extra );
+		}
+		if ( empty( $batch ) ) {
+			return new WP_Error( 'ai_no_topics', __( 'No hay temas validos para encolar.', 'chuquipiondo-ai' ), array( 'status' => 400 ) );
+		}
+		$result = chuquipiondo_ai_queue_batch( $batch, $publish );
+		return rest_ensure_response( $result );
+	}
+
+	public function rest_queue_status( $request ) {
+		$ids = (array) $request->get_param( 'ids' );
+		return rest_ensure_response( chuquipiondo_ai_queue_status( $ids ) );
 	}
 
 	public function rest_generate( $request ) {

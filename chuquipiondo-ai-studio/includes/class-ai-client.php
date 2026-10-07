@@ -44,6 +44,9 @@ final class Chuquipiondo_AI_Client {
 		$cfg        = $providers[ $key ];
 		$cfg['key'] = $cfg['id'] = $key;
 		$cfg['api_key']  = (string) chuquipiondo_ai_get_option( 'ai_api_key', '' );
+		if ( function_exists( 'chuquipiondo_ai_decrypt_secret' ) ) {
+			$cfg['api_key'] = chuquipiondo_ai_decrypt_secret( $cfg['api_key'] );
+		}
 		$cfg['model']    = (string) chuquipiondo_ai_get_option( 'ai_model', isset( $cfg['models'][0] ) ? $cfg['models'][0] : '' );
 		$cfg['timeout']  = (int) chuquipiondo_ai_get_int_option( 'ai_timeout', 10, 120 );
 		$cfg['temp']     = (float) chuquipiondo_ai_get_option( 'ai_temperature', '0.7' );
@@ -124,9 +127,58 @@ final class Chuquipiondo_AI_Client {
 			$body['max_tokens'] = $max_tokens > 0 ? $max_tokens : min( $cfg['max_tok'], 4096 );
 		}
 
+		$endpoint = $cfg['endpoint'];
+		if ( 'gemini' === $cfg['id'] ) {
+			// Gemini: convert OpenAI-style messages to contents[] + systemInstruction.
+			$contents = array();
+			$system_text = '';
+			foreach ( $messages as $m ) {
+				if ( 'system' === $m['role'] ) {
+					$system_text .= (string) $m['content'] . "\n";
+				} else {
+					$role = ( 'assistant' === $m['role'] ) ? 'model' : 'user';
+					$contents[] = array( 'role' => $role, 'parts' => array( array( 'text' => (string) $m['content'] ) ) );
+				}
+			}
+			$body = array(
+				'contents' => $contents,
+				'generationConfig' => array(
+					'temperature' => $cfg['temp'],
+					'maxOutputTokens' => isset( $body['max_tokens'] ) ? $body['max_tokens'] : $cfg['max_tok'],
+				),
+			);
+			if ( '' !== $system_text ) {
+				$body['systemInstruction'] = array( 'parts' => array( array( 'text' => trim( $system_text ) ) ) );
+			}
+			$endpoint = str_replace( '{model}', rawurlencode( $cfg['model'] ), $endpoint ) . '?key=' . rawurlencode( $cfg['api_key'] );
+			$headers  = array( 'Content-Type' => 'application/json' );
+			$payload  = wp_json_encode( $body );
+			$response = wp_remote_post(
+				$endpoint,
+				array(
+					'timeout'   => $cfg['timeout'],
+					'headers'   => $headers,
+					'body'      => $payload,
+					'sslverify' => true,
+				)
+			);
+			$this->maybe_log( $cfg, $messages, $response );
+			$this->bump_usage();
+			if ( is_wp_error( $response ) ) {
+				return new WP_Error( 'ai_http', $response->get_error_message() );
+			}
+			$code = wp_remote_retrieve_response_code( $response );
+			$raw  = wp_remote_retrieve_body( $response );
+			$data = json_decode( $raw, true );
+			if ( $code < 200 || $code >= 300 ) {
+				$err = isset( $data['error']['message'] ) ? $data['error']['message'] : sprintf( __( 'Error HTTP %d al llamar a Gemini.', 'chuquipiondo-ai' ), $code );
+				return new WP_Error( 'ai_http_' . $code, $err );
+			}
+			return $this->extract_text( 'gemini', $data );
+		}
 		$payload = wp_json_encode( $body );
 		$response = wp_remote_post(
-			$cfg['endpoint'],
+				$cfg['endpoint'],
 			array(
 				'timeout'    => $cfg['timeout'],
 				'headers'    => $headers,
@@ -155,6 +207,33 @@ final class Chuquipiondo_AI_Client {
 	}
 
 	/**
+	 * Monthly usage counter + budget guard.
+	 *
+	 * @return bool True when the budget allows another call.
+	 */
+	public function budget_allows() {
+		$limit = (int) chuquipiondo_ai_get_option( 'ai_budget_calls', '0' );
+		if ( $limit < 1 ) {
+			return true;
+		}
+		return (int) chuquipiondo_ai_get_option( 'ai_usage_calls', '0' ) < $limit;
+	}
+
+	/**
+	 * Increment the monthly usage counter (auto-resets each calendar month).
+	 */
+	public function bump_usage() {
+		$month = gmdate( 'Y-m' );
+		$stored = (string) chuquipiondo_ai_get_option( 'ai_usage_month', '' );
+		$calls = (int) chuquipiondo_ai_get_option( 'ai_usage_calls', '0' );
+		if ( $stored !== $month ) {
+			$calls = 0;
+			update_option( 'ai_usage_month', $month, false );
+		}
+		update_option( 'ai_usage_calls', $calls + 1, false );
+	}
+
+	/**
 	 * Extract assistant text from the raw provider response.
 	 *
 	 * @param string $provider Provider id.
@@ -164,6 +243,12 @@ final class Chuquipiondo_AI_Client {
 	private function extract_text( $provider, $data ) {
 		if ( ! is_array( $data ) ) {
 			return new WP_Error( 'ai_parse', __( 'Respuesta no valida de la IA.', 'chuquipiondo-ai' ) );
+		}
+		if ( 'gemini' === $provider ) {
+			if ( isset( $data['candidates'][0]['content']['parts'][0]['text'] ) ) {
+				return (string) $data['candidates'][0]['content']['parts'][0]['text'];
+			}
+			return new WP_Error( 'ai_parse', __( 'Respuesta Gemini vacia.', 'chuquipiondo-ai' ) );
 		}
 		if ( 'anthropic' === $provider ) {
 			if ( isset( $data['content'][0]['text'] ) ) {
@@ -235,6 +320,9 @@ final class Chuquipiondo_AI_Client {
 	 * @return array|WP_Error
 	 */
 	public function run_task( $task, $context, $prompt = '', array $params = array() ) {
+		if ( ! $this->budget_allows() ) {
+			return new WP_Error( 'ai_budget', __( 'Presupuesto mensual de IA agotado. Aumentalo en Ajustes o usa el modo local.', 'chuquipiondo-ai' ) );
+		}
 		$cfg   = $this->provider();
 		$lang  = $cfg['lang'];
 
@@ -293,13 +381,29 @@ final class Chuquipiondo_AI_Client {
 				break;
 
 			case 'full_article':
-				$word_target = isset( $params['words'] ) ? absint( $params['words'] ) : 800;
-				$img_count   = isset( $params['images'] ) ? absint( $params['images'] ) : 3;
+				$word_min  = max( 300, (int) chuquipiondo_ai_get_option( 'ai_word_min', '800' ) );
+				$word_max  = max( $word_min, (int) chuquipiondo_ai_get_option( 'ai_word_max', '1200' ) );
+				$img_count = isset( $params['images'] ) ? absint( $params['images'] ) : 2;
+				$brand = (string) chuquipiondo_ai_get_option( 'ai_brand_voice', '' );
+				$human = chuquipiondo_ai_is_enabled( 'ai_humanize' ) ? chuquipiondo_ai_humanize_rules() : '';
 				$messages = array(
-					array( 'role' => 'system', 'content' => $sys . ' Usa encabezados H2/H3, listas cuando aporten, e inserta marcadores de imagen con el formato exacto <!--AI_IMAGE:descripcion--> entre parrafos.' ),
-					array( 'role' => 'user', 'content' => "Escribe un articulo de blog de unos {$word_target} palabras sobre: " . (string) $context . ". Inserta exactamente {$img_count} marcadores <!--AI_IMAGE:descripcion breve de la imagen--> distribuidos en el cuerpo. Idioma: {$lang}. Devuelve solo el HTML del articulo.\n\nTono/extra: " . (string) $prompt ),
+					array( 'role' => 'system', 'content' => $sys
+					. ' Usa encabezados H2/H3, listas solo cuando aporten, ejemplos concretos y anecdotas breves. '
+					. 'PRIMERA linea: marcador <!--AI_HERO_IMAGE:descripcion de la imagen principal, fotografica y natural-->. '
+					. 'En medio del articulo inserta exactamente ' . (int) ( $img_count - 1 ) . ' marcador(es) <!--AI_IMAGE:imagen contextual segun el contenido-->. '
+					. 'OBLIGATORIO: total entre ' . $word_min . ' y ' . $word_max . ' palabras. No menciones el recuento.' ),
+					array( 'role' => 'user', 'content' => "Escribe un articulo ORIGINAL e inedito sobre: " . (string) $context . ".\n\nIdentidad editorial (respeta el tono): {$brand}\n{$human}\nIdioma: {$lang}. Devuelve solo el HTML del articulo, sin markdown.\n\nEnfoque extra: " . (string) $prompt ),
 				);
 				$answer = $this->chat( $messages );
+				break;
+			case 'seo_full':
+				$kw_count = max( 3, (int) chuquipiondo_ai_get_option( 'ai_seo_keywords_count', '8' ) );
+				$desc_len = (int) chuquipiondo_ai_get_option( 'ai_seo_meta_desc_len', '155' );
+				$messages = array(
+					array( 'role' => 'system', 'content' => 'Eres un especialista SEO que sigue las reglas de Yoast SEO. Respondes SOLO con el formato pedido.' ),
+					array( 'role' => 'user', 'content' => "Articulo:\n" . mb_substr( wp_strip_all_tags( (string) $context ), 0, 6000 ) . "\n\nDevuelve EXACTAMENTE este formato:\nFOCUS_KEYWORD: [palabra clave principal, 2-4 palabras]\nSYNONYMS: [3-5 sinonimos separados por coma]\nMETA_DESCRIPTION: [max {$desc_len} caracteres, incluye la palabra clave]\nSLUG: [slug-seo-corto]\nTAGS: [4-6 etiquetas separadas por coma]\nINTERNAL_LINKS: [2-3 sugerencias con formato ancla -> url-relativa]\nLINK_ANCHORS: [2-3 palabras del articulo idoneas como texto ancla]\nIdioma: {$lang}" ),
+				);
+				$answer = $this->chat( $messages, 700 );
 				break;
 
 			default:

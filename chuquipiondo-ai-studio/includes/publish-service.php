@@ -62,8 +62,11 @@ final class Chuquipiondo_AI_Publish_Service {
 			return new WP_Error( 'ai_no_topic', __( 'Indica un tema para el articulo.', 'chuquipiondo-ai' ) );
 		}
 
-		$words  = isset( $params['words'] ) ? absint( $params['words'] ) : 800;
-		$imgs   = isset( $params['images'] ) ? absint( $params['images'] ) : 3;
+		$word_min = max( 300, (int) chuquipiondo_ai_get_option( 'ai_word_min', '800' ) );
+		$word_max = max( $word_min, (int) chuquipiondo_ai_get_option( 'ai_word_max', '1200' ) );
+		$words  = isset( $params['words'] ) ? absint( $params['words'] ) : $word_min;
+		$words  = max( $word_min, min( $word_max, $words ) );
+		$imgs   = isset( $params['images'] ) ? max( 1, min( 4, absint( $params['images'] ) ) ) : 2;
 		$extra  = isset( $params['prompt'] ) ? sanitize_textarea_field( $params['prompt'] ) : '';
 
 		$client = Chuquipiondo_AI::instance()->client;
@@ -120,24 +123,33 @@ final class Chuquipiondo_AI_Publish_Service {
 		$content = chuquipiondo_ai_force_image_dimensions_in_content( $content );
 
 		// 5) SEO: meta description, keywords, slug, excerpt.
-		$seo    = $client->run_task( 'seo_meta', $content ? $content : $topic, '', array() );
+		$seo    = $client->run_task( 'seo_full', $content ? $content : $topic, '', array() );
 		$meta_desc = '';
 		$keywords  = array();
+		$focus_kw  = '';
+		$synonyms  = array();
+		$seo_slug  = '';
+		$seo_tags  = array();
+		$internal_links = array();
+		$link_anchors  = array();
 		if ( ! is_wp_error( $seo ) ) {
-			$parts = preg_split( '/\r?\nKEYWORDS:\s*/i', (string) $seo['content'], 2 );
-			$meta_desc = trim( $parts[0] );
-			$meta_desc = mb_substr( $meta_desc, 0, (int) chuquipiondo_ai_get_int_option( 'ai_seo_meta_desc_len', 80, 320 ) );
-			if ( isset( $parts[1] ) ) {
-				$keywords = array_filter( array_map( 'trim', explode( ',', $parts[1] ) ) );
-				$keywords = array_slice( $keywords, 0, (int) chuquipiondo_ai_get_int_option( 'ai_seo_keywords_count', 3, 30 ) );
-			}
+			$pkg = chuquipiondo_ai_parse_seo_package( (string) $seo['content'] );
+			$meta_desc = $pkg['meta_description'];
+			$focus_kw  = $pkg['focus_keyword'];
+			$keywords  = array_merge( array_filter( array( $focus_kw ) ), $pkg['synonyms'] );
+			$synonyms  = $pkg['synonyms'];
+			$seo_slug  = $pkg['slug'];
+			$seo_tags  = $pkg['tags'];
+			$internal_links = $pkg['internal_links'];
+			$link_anchors  = $pkg['link_anchors'];
+			$keywords = array_slice( array_filter( $keywords ), 0, max( 3, (int) chuquipiondo_ai_get_option( 'ai_seo_keywords_count', '8' ) ) );
 		}
 		if ( '' === $meta_desc ) {
 			$meta_desc = wp_strip_all_tags( $content );
 			$meta_desc = mb_substr( trim( preg_replace( '/\s+/', ' ', $meta_desc ) ), 0, (int) chuquipiondo_ai_get_int_option( 'ai_seo_meta_desc_len', 80, 320 ) );
 		}
 
-		$slug = sanitize_title( $title );
+		$slug = '' !== $seo_slug ? sanitize_title( $seo_slug ) : sanitize_title( $title );
 		if ( chuquipiondo_ai_is_enabled( 'ai_seo_generate_slug' ) ) {
 			$slug = wp_unique_post_slug( $slug, $post_id, 'draft', $post_type, 0 );
 		}
@@ -162,10 +174,20 @@ final class Chuquipiondo_AI_Publish_Service {
 
 		// 7) SEO meta + tags + categories.
 		chuquipiondo_ai_set_meta_description( $post_id, $meta_desc );
+		if ( '' !== $focus_kw ) {
+			update_post_meta( $post_id, '_yoast_wpseo_focuskw', sanitize_text_field( $focus_kw ) );
+			update_post_meta( $post_id, 'rank_math_focus_keyword', sanitize_text_field( $focus_kw ) );
+			update_post_meta( $post_id, '_chuquipiondo_ai_focuskw', sanitize_text_field( $focus_kw ) );
+			if ( ! empty( $synonyms ) ) {
+				update_post_meta( $post_id, '_chuquipiondo_ai_synonyms', array_map( 'sanitize_text_field', $synonyms ) );
+			}
+			update_post_meta( $post_id, '_chuquipiondo_ai_internal_links', array_map( 'sanitize_text_field', $internal_links ) );
+			update_post_meta( $post_id, '_chuquipiondo_ai_link_anchors', array_map( 'sanitize_text_field', $link_anchors ) );
+		}
 
 		$tags = isset( $params['tags'] ) ? (array) $params['tags'] : array();
 		if ( chuquipiondo_ai_is_enabled( 'ai_seo_generate_tags' ) && 'post' === $post_type ) {
-			$tags = array_merge( $tags, $keywords );
+			$tags = array_merge( $tags, $seo_tags, $keywords );
 		}
 		if ( 'post' === $post_type && ! empty( $tags ) ) {
 			wp_set_post_tags( $post_id, array_map( 'sanitize_text_field', $tags ), false );
