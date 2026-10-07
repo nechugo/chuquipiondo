@@ -505,6 +505,49 @@ function chuquipiondo_core_do_demo_import( $demo_id ) {
 
 		update_option( 'widget_text', $text_widgets );
 		update_option( 'sidebars_widgets', $sidebars );
+
+		// ===== 11b. Populate the main content sidebars (single + blog) =====
+		// Without this, imported articles show an empty sidebar column.
+		$single_widgets = array(
+			array(
+				'title' => __( 'MEDITACION ESPIRITUAL', 'chuquipiondo-core' ),
+				'text'  => '<p>' . __( 'Reflexiona: el proposito no se encuentra, se construye. Toma hoy un paso pequeno hacia tu vision.', 'chuquipiondo-core' ) . '</p>',
+			),
+			array(
+				'title' => __( 'LO MAS LEIDO', 'chuquipiondo-core' ),
+				'text'  => '<ul><li><a href="#">' . esc_html__( 'Produccion musical independiente', 'chuquipiondo-core' ) . '</a></li><li><a href="#">' . esc_html__( 'El arte de la oracion', 'chuquipiondo-core' ) . '</a></li><li><a href="#">' . esc_html__( 'Gestion financiera personal', 'chuquipiondo-core' ) . '</a></li></ul>',
+			),
+			array(
+				'title' => __( 'CATEGORIAS', 'chuquipiondo-core' ),
+				'text'  => '<ul><li><a href="#">' . esc_html__( 'Liderazgo', 'chuquipiondo-core' ) . '</a></li><li><a href="#">' . esc_html__( 'Gestion', 'chuquipiondo-core' ) . '</a></li><li><a href="#">' . esc_html__( 'Formacion', 'chuquipiondo-core' ) . '</a></li><li><a href="#">' . esc_html__( 'Fe Cristiana', 'chuquipiondo-core' ) . '</a></li></ul>',
+			),
+		);
+		$sidebars = get_option( 'sidebars_widgets', array() );
+		$text_widgets = get_option( 'widget_text', array() );
+		$assign = function ( $sidebar_key, $widgets, $start_id ) use ( &$text_widgets, &$sidebars ) {
+			$next_id = $start_id;
+			if ( empty( $sidebars[ $sidebar_key ] ) ) {
+				$sidebars[ $sidebar_key ] = array();
+				foreach ( $widgets as $wdata ) {
+					while ( isset( $text_widgets[ $next_id ] ) ) {
+						$next_id++;
+					}
+					$text_widgets[ $next_id ] = array(
+						'title'  => $wdata['title'],
+						'text'   => $wdata['text'],
+						'filter' => true,
+						'visual' => true,
+					);
+					$sidebars[ $sidebar_key ][] = 'text-' . $next_id;
+				}
+			}
+			return $next_id;
+		};
+		$next_id = $assign( 'sidebar-single', $single_widgets, 100 );
+		$next_id = $assign( 'sidebar-blog', $single_widgets, $next_id + 1 );
+		$next_id = $assign( 'sidebar-1', $single_widgets, $next_id + 1 );
+		update_option( 'widget_text', $text_widgets );
+		update_option( 'sidebars_widgets', $sidebars );
 	}
 
 	// ===== 12. Create menu (if not exists) =====
