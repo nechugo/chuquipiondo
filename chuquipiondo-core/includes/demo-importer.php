@@ -14,16 +14,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Register the demo importer admin page.
+ *
+ * Hangs under the theme options menu when the CHUQUIPIONDO theme is
+ * active; falls back to its own top-level page when the theme is
+ * inactive, so switching/deactivating the theme never breaks admin
+ * navigation or leaves orphaned menu entries.
  */
 function chuquipiondo_core_demo_admin_menu() {
-	add_submenu_page(
-		'chuquipiondo-options',
-		__( 'Importar Demo', 'chuquipiondo-core' ),
-		__( 'Importar Demo', 'chuquipiondo-core' ),
-		'manage_options',
-		'chuquipiondo-demo',
-		'chuquipiondo_core_demo_page_render'
-	);
+	$theme_active = function_exists( 'chuquipiondo_core' ) && chuquipiondo_core()->is_theme_active();
+	if ( $theme_active ) {
+		add_submenu_page(
+			'chuquipiondo-options',
+			__( 'Importar Demo', 'chuquipiondo-core' ),
+			__( 'Importar Demo', 'chuquipiondo-core' ),
+			'manage_options',
+			'chuquipiondo-demo',
+			'chuquipiondo_core_demo_page_render'
+		);
+	} else {
+		add_menu_page(
+			__( 'CHUQUIPIONDO Demo', 'chuquipiondo-core' ),
+			__( 'Importar Demo', 'chuquipiondo-core' ),
+			'manage_options',
+			'chuquipiondo-demo',
+			'chuquipiondo_core_demo_page_render',
+			'dashicons-download',
+			59
+		);
+	}
 }
 add_action( 'admin_menu', 'chuquipiondo_core_demo_admin_menu' );
 

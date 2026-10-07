@@ -1,47 +1,129 @@
 /**
  * Advertising slots.
  *
- * All ads are constrained to their container and never overflow
- * the 1280px max-width. Each ad type has its own max-width so
- * it stays within its widget/box without breaking layout.
+ * Two ad display formats, per slot, chosen in the Customizer:
+ *  - horizontal: fluid banner that adapts to the content width.
+ *  - box: fixed 300x250 rectangle, centered.
+ * Ads keep a fixed breathing room above and below (--ad-gap, default 15px),
+ * never overflow the theme container, and on mobile are centered with a
+ * fixed 5px separation from both screen edges.
  */
 
-/* Generic ad wrapper: centered, never overflows. */
-.chuqui-ad {
-	margin: var(--space-5) auto;
-	max-width: var(--container-width);
-	padding-inline: 1.5rem;
-	text-align: center;
-	display: flex;
-	justify-content: center;
-	overflow: hidden;
-	box-sizing: border-box;
+/* Fixed ad separation: 15px above and below every banner (Customizer). */
+:root {
+	--ad-gap: 15px;
+	--ad-edge-mobile: 5px;
 }
 
-/* In-content ads: 300x250 max, 5px gap, never wider than container. */
-.chuqui-ad--in-content {
-	margin: 5px auto;
-	padding: 0;
-	max-width: 300px;
-	min-height: 250px;
+/* Generic ad wrapper: never overflows. Format applied via modifier class. */
+.chuqui-ad {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 5px;
+	width: 100%;
+	max-width: 100%;
+	margin-top: var(--ad-gap, 15px);
+	margin-bottom: var(--ad-gap, 15px);
+	text-align: center;
 	overflow: hidden;
 	box-sizing: border-box;
 }
-
-.entry-content .chuqui-ad--in-content {
-	margin-top: 5px;
-	margin-bottom: 5px;
+.chuqui-ad > * {
+	max-width: 100%;
+	margin-inline: auto;
+	box-sizing: border-box;
 }
 
-/* Sidebar ads: never wider than the sidebar. */
+/* Format: horizontal (fluid banner, adapts to content width). */
+.chuqui-ad--horizontal,
+.chuqui-ad--in-content {
+	flex-direction: column;
+	width: 100%;
+	max-width: 100%;
+	padding: 0;
+}
+.chuqui-ad--horizontal > *,
+.chuqui-ad--in-content > * {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	margin-inline: auto;
+	box-sizing: border-box;
+}
+
+/* Format: box (fixed 300x250, centered). */
+.chuqui-ad--box {
+	width: 300px;
+	max-width: 300px;
+	min-height: 250px;
+	margin-inline: auto;
+	padding: 0;
+}
+.chuqui-ad--box > * {
+	display: block;
+	width: 300px;
+	max-width: 300px;
+	min-height: 250px;
+	margin-inline: auto;
+	box-sizing: border-box;
+}
+
+/* Hidden ads render nothing visually. */
+.chuqui-ad--hidden,
+.chuqui-ad--fmt-hidden {
+	display: none;
+}
+
+/* Format modifiers (rendered by chuquipiondo_ad_format). */
+.chuqui-ad--fmt-horizontal {
+	flex-direction: column;
+	width: 100%;
+	max-width: 100%;
+	padding: 0;
+}
+.chuqui-ad--fmt-horizontal > * {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	margin-inline: auto;
+	box-sizing: border-box;
+}
+.chuqui-ad--fmt-box {
+	width: 300px;
+	max-width: 300px;
+	min-height: 250px;
+	margin-inline: auto;
+	padding: 0;
+}
+.chuqui-ad--fmt-box > * {
+	display: block;
+	width: 300px;
+	max-width: 300px;
+	min-height: 250px;
+	margin-inline: auto;
+	box-sizing: border-box;
+}
+
+/* Between blog grid rows and home modules: full-width horizontal strip. */
+.home-builder__ads,
+.chuqui-ad--wide,
+.chuqui-ad--ads_blog_after_row,
+.chuqui-ad--ads_blog_top,
+.chuqui-ad--ads_blog_bottom {
+	width: 100%;
+	max-width: 100%;
+	margin-top: var(--ad-gap, 15px);
+	margin-bottom: var(--ad-gap, 15px);
+}
+
+/* Sidebar ads: vertical column, same 15px separation. */
 .chuqui-ad--sidebar_top,
 .chuqui-ad--sidebar_middle,
 .chuqui-ad--sidebar_bottom {
-	margin: var(--space-4) 0;
+	margin-top: var(--ad-gap, 15px);
+	margin-bottom: var(--ad-gap, 15px);
 	padding: 0;
 	max-width: 100%;
 	overflow: hidden;
@@ -51,31 +133,49 @@
 /* AdSense responsive units: constrain to parent. */
 .chuqui-ad ins.adsbygoogle {
 	display: block;
+	width: 100%;
 	max-width: 100%;
 	overflow: hidden;
 }
 
-/* Mobile: reduce margins, keep ads within viewport. */
-@media (max-width: 767px) {
-	.chuqui-ad {
-		margin: var(--space-4) auto;
-		padding-inline: 1rem;
-	}
-	.chuqui-ad--in-content {
-		max-width: 100%;
-		margin: 5px auto;
-	}
-}
-
 /* Prevent any ad child from breaking layout. */
-.chuqui-ad > * {
-	max-width: 100%;
-	box-sizing: border-box;
-}
-
 .chuqui-ad iframe,
 .chuqui-ad ins,
 .chuqui-ad div {
 	max-width: 100% !important;
 	overflow: hidden;
+}
+
+/* Mobile: ads centered, 5px fixed separation from both screen edges.
+ * Box format shrinks to the available width when the screen is smaller
+ * than 300px + edges, keeping the 5px on each side. */
+@media (max-width: 767px) {
+	.chuqui-ad,
+	.chuqui-ad--in-content,
+	.chuqui-ad--horizontal,
+	.chuqui-ad--box {
+		width: auto;
+		max-width: calc(100vw - 2 * var(--ad-edge-mobile, 5px));
+		margin-top: var(--ad-gap, 15px);
+		margin-bottom: var(--ad-gap, 15px);
+		margin-inline: auto;
+		padding-inline: var(--ad-edge-mobile, 5px);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+	}
+	.chuqui-ad > *,
+	.chuqui-ad--horizontal > *,
+	.chuqui-ad--in-content > * {
+		margin-inline: auto;
+	}
+	.chuqui-ad--box,
+	.chuqui-ad--fmt-box,
+	.chuqui-ad--box > *,
+	.chuqui-ad--fmt-box > * {
+		width: 100%;
+		max-width: 100%;
+		min-height: 250px;
+	}
 }

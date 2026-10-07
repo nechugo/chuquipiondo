@@ -6,19 +6,65 @@
  * must ALWAYS work. Never use overflow: hidden on html or body.
  */
 
-/* Force all iframes and embeds to respect container width. */
+/* Media embeds: 16:9 by default, fluid to the user's container, never overflow.
+ * --media-aspect (e.g. 16 / 9, 4 / 3, 1 / 1) is customizable via Customizer
+ * or custom CSS; applies to video iframes, embeds and video elements.
+ * Audio (iframe de MP3 o <audio>) keeps its natural height (aspect skipped). */
 .entry-content iframe,
 .entry-content embed,
 .entry-content object,
-.entry-content video,
 .widget iframe,
 .widget embed,
 .chuqui-container iframe,
 .chuqui-container embed {
 	max-width: 100% !important;
-	width: 100% !important;
-	height: auto;
+	width: 100%;
 	overflow: hidden;
+}
+
+/* Video-like embeds: force 16:9 (customizable via --media-aspect). */
+.wp-block-embed iframe,
+.wp-block-embed embed,
+.wp-block-embed > .wp-block-embed__wrapper > iframe,
+.entry-content .wp-has-aspect-ratio iframe,
+.chuqui-media-16-9 {
+	width: 100%;
+	height: 100%;
+}
+.wp-block-embed.is-type-video,
+.chuqui-media-frame {
+	aspect-ratio: var(--media-aspect, 16 / 9);
+	width: 100%;
+	max-width: 100%;
+	overflow: hidden;
+	border-radius: var(--radius-content, 7px);
+}
+
+/* Native video: 16:9 too. */
+.entry-content video,
+.widget video,
+.chuqui-container video {
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	aspect-ratio: var(--media-aspect, 16 / 9);
+	object-fit: contain;
+	border-radius: var(--radius-content, 7px);
+	overflow: hidden;
+}
+
+/* Audio embeds: fluid width, natural height, no forced aspect. */
+.entry-content audio,
+.widget audio,
+.chuqui-container audio,
+.wp-block-embed.is-type-audio,
+.wp-block-embed.is-type-audio iframe {
+	aspect-ratio: auto;
+	height: auto;
+	max-width: 100%;
+}
+.wp-block-embed.is-audio iframe {
+	height: auto !important;
 }
 
 /* Plugin forms stay within bounds. */
@@ -70,13 +116,18 @@
 	.widget > *,
 	.chuqui-container > * {
 		max-width: 100% !important;
-		overflow-x: auto;
 	}
-	.entry-content img,
+	.entry-content img {
+		max-width: 100%;
+		height: auto;
+	}
 	.entry-content video,
 	.entry-content iframe {
 		max-width: 100%;
 		height: auto;
+	}
+	.entry-content .wp-block-embed iframe {
+		height: 100%;
 	}
 }
 

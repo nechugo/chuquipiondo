@@ -39,19 +39,47 @@ function chuquipiondo_blog_header() {
  * Render the blog hero slider with the 3 latest posts.
  */
 function chuquipiondo_blog_hero_slider() {
-	$hero_q = new WP_Query( array(
+	// Fully customizable via Customizer: show/hide, slide count, autoplay,
+	// speed, effect and height. Auto-fits the content width (up to the
+	// sidebar edge) without hard-coded values.
+	if ( ! chuquipiondo_is_enabled( 'blog_hero_enable' ) ) {
+		return;
+	}
+	$count = (int) chuquipiondo_get_option( 'blog_hero_count' );
+	$count = max( 2, min( 10, $count ) );
+	$effect = chuquipiondo_get_option( 'blog_hero_effect' );
+	$autoplay = chuquipiondo_is_enabled( 'blog_hero_autoplay' );
+	$speed = (int) chuquipiondo_get_option( 'blog_hero_speed' );
+	$speed = ( $speed >= 1000 ) ? $speed : 6000;
+	$height = (int) chuquipiondo_get_option( 'blog_hero_height' );
+	$height = ( $height >= 180 ) ? $height : 390;
+
+	// Fuente de las diapositivas: ultimas publicaciones (todas las categorias)
+// o solo una categoria elegida en el Customizer.
+	$query_args = array(
 		'post_type'           => 'post',
-		'posts_per_page'      => 3,
+		'posts_per_page'      => $count,
 		'ignore_sticky_posts' => 1,
+		'no_found_rows'          => true,
 		'orderby'             => 'date',
 		'order'               => 'DESC',
-	) );
+	);
+	$hero_cat = (int) chuquipiondo_get_option( 'blog_hero_category' );
+	if ( $hero_cat > 0 ) {
+		$query_args['cat'] = $hero_cat;
+	}
+	$hero_q = new WP_Query( $query_args );
 
 	if ( ! $hero_q->have_posts() ) {
 		return;
 	}
 
-	echo '<div class="blog-hero" aria-label="' . esc_attr__( 'Entradas destacadas', 'chuquipiondo' ) . '">';
+	printf(
+		'<div class="blog-hero blog-hero--effect-%1$s" style="--blog-hero-height: %2$dpx" aria-label="%3$s">',
+		esc_attr( $effect ),
+		$height,
+		esc_attr__( 'Entradas destacadas', 'chuquipiondo' )
+	);
 
 	$i = 0;
 	while ( $hero_q->have_posts() ) {
@@ -62,7 +90,7 @@ function chuquipiondo_blog_hero_slider() {
 		<article class="blog-hero__slide<?php echo esc_attr( $active ); ?>">
 			<a href="<?php the_permalink(); ?>">
 				<?php if ( has_post_thumbnail() ) : ?>
-					<?php the_post_thumbnail( 'chuquipiondo-featured', array( 'loading' => ( 0 === $i ? 'eager' : 'lazy' ) ) ); ?>
+					<?php the_post_thumbnail( 'chuquipiondo-featured', array( 'loading' => ( 0 === $i ? 'eager' : 'lazy' ), 'sizes' => '(max-width: 767px) 100vw, 100vw' ) ); ?>
 				<?php else : ?>
 					<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'%3E%3Crect fill='%23ddd' width='1280' height='720'/%3E%3C/svg%3E" alt="<?php the_title_attribute(); ?>">
 				<?php endif; ?>
@@ -82,12 +110,14 @@ function chuquipiondo_blog_hero_slider() {
 	wp_reset_postdata();
 
 	// Inline JS for slider (lightweight, no dependency).
+	// Autoplay, speed and effect are driven by Customizer options.
 	?>
 	<script>
 	(function() {
 		var slides = document.querySelectorAll('.blog-hero__slide');
 		if (slides.length < 2) return;
 		var index = 0;
+		var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		function show(n) {
 			slides[index].classList.remove('blog-hero__slide--active');
 			index = (n + slides.length) % slides.length;
@@ -97,7 +127,11 @@ function chuquipiondo_blog_hero_slider() {
 		var next = document.querySelector('.blog-hero__arrow--next');
 		if (prev) prev.onclick = function() { show(index - 1); };
 		if (next) next.onclick = function() { show(index + 1); };
-		setInterval(function() { show(index + 1); }, 6000);
+		<?php if ( $autoplay ) : ?>
+		if (!reduce) {
+			setInterval(function() { show(index + 1); }, <?php echo (int) $speed; ?>);
+		}
+		<?php endif; ?>
 	})();
 	</script>
 	<?php

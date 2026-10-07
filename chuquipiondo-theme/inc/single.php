@@ -118,6 +118,14 @@ function chuquipiondo_single() {
 			chuquipiondo_related_posts();
 		}
 
+		// Author bio.
+		if ( chuquipiondo_is_enabled( 'single_show_author' ) ) {
+			chuquipiondo_author_bio();
+		}
+
+		// Post End Extension (widgets + HTML/shortcode area).
+		chuquipiondo_post_end_extension();
+
 		// Social share (before).
 		if ( in_array( chuquipiondo_get_option( 'social_position' ), array( 'before', 'both' ), true ) ) {
 			chuquipiondo_social_share();
@@ -192,6 +200,7 @@ function chuquipiondo_single_carousel() {
 		'posts_per_page'      => $carousel_count,
 		'post__not_in'        => array( get_the_ID() ),
 		'ignore_sticky_posts' => 1,
+		'no_found_rows'          => true,
 		'orderby'             => 'rand',
 	) );
 
@@ -315,6 +324,7 @@ function chuquipiondo_related_posts() {
 		'category__in'        => $cat_ids,
 		'post__not_in'        => array( get_the_ID() ),
 		'ignore_sticky_posts' => 1,
+		'no_found_rows'          => true,
 		'orderby'             => 'rand',
 	) );
 

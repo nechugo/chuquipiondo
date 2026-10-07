@@ -29,40 +29,31 @@ add_action( 'wp_enqueue_scripts', 'chuquipiondo_enqueue_styles' );
 function chuquipiondo_enqueue_scripts() {
 	wp_enqueue_script(
 		'chuquipiondo-navigation',
-		CHUQUIPONDO_URI . '/assets/js/navigation.js',
+		CHUQUIPIONDO_URI . '/assets/js/navigation.js',
 		array(),
 		chuquipiondo_asset_version( 'assets/js/navigation.js' ),
 		true
 	);
 
-	wp_localize_script( 'chuquipiondo-navigation', 'chuquipiondoData', array(
-		'ajaxUrl'     => admin_url( 'admin-ajax.php' ),
-		'nonce'       => wp_create_nonce( 'chuquipiondo_nonce' ),
-		'menuLabel'   => __( 'Menu', 'chuquipiondo' ),
-		'closeLabel'  => __( 'Cerrar', 'chuquipiondo' ),
-		'searchLabel' => __( 'Buscar', 'chuquipiondo' ),
-	) );
-
 	if ( chuquipiondo_should_load_slider() ) {
 		wp_enqueue_script(
 			'chuquipiondo-slider',
-			CHUQUIPONDO_URI . '/assets/js/slider.js',
+			CHUQUIPIONDO_URI . '/assets/js/slider.js',
 			array(),
 			chuquipiondo_asset_version( 'assets/js/slider.js' ),
 			true
 		);
 		wp_localize_script( 'chuquipiondo-slider', 'chuquipiondoHero', array(
-			'effect'        => chuquipiondo_get_option( 'hero_effect' ),
-			'autoplay'      => chuquipiondo_is_enabled( 'hero_autoplay' ),
-			'speed'         => (int) chuquipiondo_get_option( 'hero_speed' ),
-			'reducedMotion' => (bool) get_user_meta( get_current_user_id(), 'reduce_motion', true ),
+			'effect'   => chuquipiondo_get_option( 'hero_effect' ),
+			'autoplay' => chuquipiondo_is_enabled( 'hero_autoplay' ),
+			'speed'    => (int) chuquipiondo_get_option( 'hero_speed' ),
 		) );
 	}
 
 	if ( chuquipiondo_needs_music_assets() ) {
 		wp_enqueue_script(
 			'chuquipiondo-player',
-			CHUQUIPONDO_URI . '/assets/js/player.js',
+			CHUQUIPIONDO_URI . '/assets/js/player.js',
 			array(),
 			chuquipiondo_asset_version( 'assets/js/player.js' ),
 			true
@@ -77,7 +68,7 @@ function chuquipiondo_enqueue_scripts() {
 	if ( chuquipiondo_should_load_social() ) {
 		wp_enqueue_script(
 			'chuquipiondo-social',
-			CHUQUIPONDO_URI . '/assets/js/social.js',
+			CHUQUIPIONDO_URI . '/assets/js/social.js',
 			array(),
 			chuquipiondo_asset_version( 'assets/js/social.js' ),
 			true
@@ -85,14 +76,13 @@ function chuquipiondo_enqueue_scripts() {
 		wp_localize_script( 'chuquipiondo-social', 'chuquipiondoSocial', array(
 			'copyLabel' => __( 'Copiar enlace', 'chuquipiondo' ),
 			'copied'    => __( 'Enlace copiado', 'chuquipiondo' ),
-			'nonce'     => wp_create_nonce( 'chuquipiondo_social_nonce' ),
 		) );
 	}
 
 	if ( chuquipiondo_is_enabled( 'whatsapp_master_switch' ) ) {
 		wp_enqueue_script(
 			'chuquipiondo-whatsapp',
-			CHUQUIPONDO_URI . '/assets/js/whatsapp.js',
+			CHUQUIPIONDO_URI . '/assets/js/whatsapp.js',
 			array(),
 			chuquipiondo_asset_version( 'assets/js/whatsapp.js' ),
 			true
@@ -179,6 +169,9 @@ function chuquipiondo_disable_emojis() {
 }
 add_action( 'init', 'chuquipiondo_disable_emojis', 9999 );
 
-remove_action( 'wp_head', 'wp_generator' );
-remove_action( 'wp_head', 'wlwmanifest_link' );
-remove_action( 'wp_head', 'rsd_link' );
+function chuquipiondo_remove_head_bloat() {
+	remove_action( 'wp_head', 'wp_generator' );
+	remove_action( 'wp_head', 'wlwmanifest_link' );
+	remove_action( 'wp_head', 'rsd_link' );
+}
+add_action( 'init', 'chuquipiondo_remove_head_bloat', 9999 );

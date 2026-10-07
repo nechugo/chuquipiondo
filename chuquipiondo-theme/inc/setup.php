@@ -54,12 +54,22 @@ function chuquipiondo_setup() {
 	// Editor styles (Gutenberg).
 	add_editor_style( 'assets/css/_editor.css' );
 
-	// Image sizes for the magazine layout.
-	add_image_size( 'chuquipiondo-card', 640, 400, true );
+	// WooCommerce (external plugin): declare basic support so its
+	// templates render with the theme layout; no WooCommerce-specific
+	// styling is forced when the plugin is inactive.
+	add_theme_support( 'woocommerce' );
+	add_theme_support( 'wc-product-gallery-zoom' );
+	add_theme_support( 'wc-product-gallery-lightbox' );
+	add_theme_support( 'wc-product-gallery-slider' );
+
+	// Image sizes for the magazine layout. Ratios match the CSS containers
+	// (16:9 cards/featured, 1:1 square, ~21:9 hero) so nothing gets
+	// double-cropped, pixelated or stretched.
+	add_image_size( 'chuquipiondo-card', 640, 360, true );
 	add_image_size( 'chuquipiondo-card-large', 960, 540, true );
 	add_image_size( 'chuquipiondo-featured', 1280, 720, true );
 	add_image_size( 'chuquipiondo-square', 600, 600, true );
-	add_image_size( 'chuquipiondo-hero', 1920, 800, true );
+	add_image_size( 'chuquipiondo-hero', 1920, 1080, true );
 
 	// Navigation menus.
 	register_nav_menus( array(
@@ -76,6 +86,20 @@ function chuquipiondo_setup() {
 	}
 }
 add_action( 'after_setup_theme', 'chuquipiondo_setup' );
+
+/**
+ * Keep resized images sharp: high JPEG quality so thumbnails never look
+ * pixelated or degraded after WordPress compression.
+ *
+ * @param int    $quality Quality (0-100).
+ * @param string $context Context.
+ * @return int
+ */
+function chuquipiondo_image_quality( $quality, $context ) {
+	return (int) apply_filters( 'chuquipiondo_image_quality', 82, $context );
+}
+add_filter( 'jpeg_quality', 'chuquipiondo_image_quality', 10, 2 );
+add_filter( 'wp_editor_set_quality', 'chuquipiondo_image_quality', 10, 2 );
 
 /**
  * Register image sizes for the media library choice list.

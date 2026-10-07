@@ -85,6 +85,9 @@ final class Chuquipiondo_Core {
 	 * Enqueue front-end styles and scripts.
 	 */
 	public function enqueue_front_assets() {
+		if ( ! $this->is_theme_active() ) {
+			return;
+		}
 		wp_enqueue_style(
 			'chuquipiondo-core',
 			CHUQUIPIONDO_CORE_URL . 'assets/css/core.css',

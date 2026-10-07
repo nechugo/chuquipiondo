@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php if ( has_post_thumbnail() ) : ?>
 		<div class="post-card__media">
 			<a href="<?php the_permalink(); ?>" aria-label="<?php the_title_attribute(); ?>">
-				<?php the_post_thumbnail( 'chuquipiondo-square', array( 'loading' => 'lazy' ) ); ?>
+				<?php the_post_thumbnail( 'chuquipiondo-square', array( 'loading' => 'lazy', 'sizes' => '(max-width: 767px) 100vw, 33vw' ) ); ?>
 			</a>
 		</div>
 	<?php endif; ?>

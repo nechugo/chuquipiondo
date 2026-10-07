@@ -62,6 +62,20 @@ img, video, svg {
 	max-width: 100%;
 	height: auto;
 	display: block;
+	/* Never pixelate: preserve detail when the browser scales down. */
+	image-rendering: auto;
+}
+/* Media inside content keeps its natural ratio (no crop, no stretch).
+ * Excludes ad containers: content-visibility on ads breaks AdSense
+ * impression counting and lazy-rendering of ad iframes is not allowed. */
+.entry-content img:not(.chuqui-ad img),
+.entry-content figure img:not(.chuqui-ad img) {
+	object-fit: contain;
+	content-visibility: auto;
+}
+.chuqui-ad img,
+.chuqui-ad iframe {
+	content-visibility: visible !important;
 }
 
 img {

@@ -25,25 +25,12 @@ function chuquipiondo_security_headers() {
 	header( 'X-Content-Type-Options: nosniff' );
 	header( 'X-Frame-Options: SAMEORIGIN' );
 	header( 'Referrer-Policy: strict-origin-when-cross-origin' );
-	header( 'X-XSS-Protection: 1; mode=block' );
 	// Permissions Policy: allow ads and payment but restrict sensitive APIs.
 	header( 'Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(self)' );
 }
 add_action( 'send_headers', 'chuquipiondo_security_headers' );
 
-/**
- * Ensure assets use protocol-relative or HTTPS URLs.
- * This makes the theme work seamlessly with HTTPS, HTTP, or VPN.
- */
-function chuquipiondo_protocol_relative_assets( $src, $handle ) {
-	// Only modify URLs that are on known CDNs.
-	if ( is_admin() ) {
-		return $src;
-	}
-	return $src;
-}
-add_filter( 'script_loader_src', 'chuquipiondo_protocol_relative_assets', 10, 2 );
-add_filter( 'style_loader_src', 'chuquipiondo_protocol_relative_assets', 10, 2 );
+
 
 /**
  * Anti-ad-block: ensure theme ads are not blocked by third-party plugins.
@@ -75,6 +62,11 @@ function chuquipiondo_ad_container_fallback() {
 		setTimeout(function() {
 			var ads = document.querySelectorAll('.chuqui-ad');
 			ads.forEach(function(ad) {
+				// Never hide AdSense units (ins.adsbygoogle): they fill
+				// asynchronously; hiding them loses valid impressions.
+				if (ad.querySelector('ins.adsbygoogle')) {
+					return;
+				}
 				if (!ad.innerHTML.trim() || ad.offsetHeight === 0) {
 					ad.style.display = 'none';
 				}

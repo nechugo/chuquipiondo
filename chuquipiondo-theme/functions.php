@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 define( 'CHUQUIPIONDO_VERSION', '1.11.0' );
 define( 'CHUQUIPIONDO_DIR', get_template_directory() );
-define( 'CHUQUIPONDO_URI', get_template_directory_uri() );
+define( 'CHUQUIPIONDO_URI', get_template_directory_uri() );
 
 require_once CHUQUIPIONDO_DIR . '/inc/helpers.php';
 require_once CHUQUIPIONDO_DIR . '/inc/sanitize.php';

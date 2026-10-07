@@ -56,6 +56,30 @@ function chuquipiondo_version() {
 }
 
 /**
+ * Version-based upgrade routine.
+ *
+ * Runs once per theme version change (update or re-activation). Keeps the
+ * ecosystem in sync: flushes generated caches so new code regenerates them,
+ * without ever touching user content, theme_mods or other plugins' data.
+ */
+function chuquipiondo_upgrade_routine() {
+	$stored = get_option( 'chuquipiondo_theme_version' );
+	if ( CHUQUIPIONDO_VERSION === $stored ) {
+		return;
+	}
+	// Regenerate caches tied to the previous version.
+	if ( function_exists( 'chuquipiondo_flush_dynamic_css_cache' ) ) {
+		chuquipiondo_flush_dynamic_css_cache();
+	}
+	// Re-check plugin conflicts against the new version.
+	if ( function_exists( 'chuquipiondo_check_plugin_conflicts' ) ) {
+		chuquipiondo_check_plugin_conflicts();
+	}
+	update_option( 'chuquipiondo_theme_version', CHUQUIPIONDO_VERSION, false );
+}
+add_action( 'after_setup_theme', 'chuquipiondo_upgrade_routine', 1 );
+
+/**
  * Cache-busting version for an asset file.
  *
  * @param string $relative Relative path inside the theme (e.g. "assets/js/slider.js").

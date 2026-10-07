@@ -537,6 +537,26 @@ function chuquipiondo_register_home( $wp_customize ) {
  * BLOG / archive section.
  * ===================================================================== */
 
+/**
+ * Category choices for the blog hero slider: all posts or one category.
+ *
+ * @return array
+ */
+function chuquipiondo_blog_hero_category_choices() {
+	$choices = array( '0' => __( 'Todas las categorias (ultimas publicaciones)', 'chuquipiondo' ) );
+	$terms = get_terms( array(
+		'taxonomy'   => 'category',
+		'hide_empty' => true,
+		'number'     => 50,
+	) );
+	if ( ! is_wp_error( $terms ) ) {
+		foreach ( $terms as $term ) {
+			$choices[ (string) $term->term_id ] = $term->name;
+		}
+	}
+	return $choices;
+}
+
 function chuquipiondo_register_blog( $wp_customize ) {
 	chuquipiondo_add_section( $wp_customize, 'chuquipiondo_blog', array(
 		'title'    => __( 'CHUQUIPIONDO: Blog', 'chuquipiondo' ),
@@ -544,6 +564,13 @@ function chuquipiondo_register_blog( $wp_customize ) {
 	) );
 
 	chuquipiondo_add_setting_control( $wp_customize, 'blog_columns', array( 'section' => 'chuquipiondo_blog', 'label' => __( 'Columnas (desktop)', 'chuquipiondo' ), 'type' => 'select', 'choices' => array( '1' => '1', '2' => '2', '3' => '3', '4' => '4' ), 'sanitize_callback' => 'chuquipiondo_sanitize_select', 'priority' => 5 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'blog_hero_enable', array( 'section' => 'chuquipiondo_blog', 'label' => __( 'Mostrar slider destacado', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'priority' => 5, 'description' => __( 'Slider de entradas destacadas arriba del grid del blog.', 'chuquipiondo' ) ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'blog_hero_count', array( 'section' => 'chuquipiondo_blog', 'label' => __( 'Diapositivas del slider (blog)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 2, 'max' => 10, 'step' => 1 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'priority' => 5 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'blog_hero_category', array( 'section' => 'chuquipiondo_blog', 'label' => __( 'Categoria del slider (blog)', 'chuquipiondo' ), 'type' => 'select', 'choices' => chuquipiondo_blog_hero_category_choices(), 'sanitize_callback' => 'chuquipiondo_sanitize_select', 'priority' => 5, 'description' => __( 'Ultimas publicaciones de todas las categorias o solo de la elegida.', 'chuquipiondo' ) ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'blog_hero_effect', array( 'section' => 'chuquipiondo_blog', 'label' => __( 'Efecto del slider (blog)', 'chuquipiondo' ), 'type' => 'select', 'choices' => array( 'fade' => __( 'Fundido', 'chuquipiondo' ), 'slide' => __( 'Deslizamiento', 'chuquipiondo' ), 'zoom' => __( 'Zoom (Ken Burns)', 'chuquipiondo' ) ), 'sanitize_callback' => 'chuquipiondo_sanitize_select', 'priority' => 5 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'blog_hero_autoplay', array( 'section' => 'chuquipiondo_blog', 'label' => __( 'Reproduccion automatica (blog)', 'chuquipiondo' ), 'type' => 'checkbox', 'sanitize_callback' => 'chuquipiondo_sanitize_checkbox', 'priority' => 5 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'blog_hero_speed', array( 'section' => 'chuquipiondo_blog', 'label' => __( 'Velocidad de cambio (ms, blog)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 1000, 'max' => 15000, 'step' => 250 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'priority' => 5 ) );
+	chuquipiondo_add_setting_control( $wp_customize, 'blog_hero_height', array( 'section' => 'chuquipiondo_blog', 'label' => __( 'Altura del slider (px, blog)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 180, 'max' => 640, 'step' => 10 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'priority' => 5 ) );
 	chuquipiondo_add_setting_control( $wp_customize, 'blog_columns_tablet', array( 'section' => 'chuquipiondo_blog', 'label' => __( 'Columnas (tablet)', 'chuquipiondo' ), 'type' => 'select', 'choices' => array( '1' => '1', '2' => '2' ), 'sanitize_callback' => 'chuquipiondo_sanitize_select', 'priority' => 6 ) );
 	chuquipiondo_add_setting_control( $wp_customize, 'blog_columns_mobile', array( 'section' => 'chuquipiondo_blog', 'label' => __( 'Columnas (movil)', 'chuquipiondo' ), 'type' => 'select', 'choices' => array( '1' => '1', '2' => '2' ), 'sanitize_callback' => 'chuquipiondo_sanitize_select', 'priority' => 7 ) );
 	chuquipiondo_add_setting_control( $wp_customize, 'blog_card_style', array( 'section' => 'chuquipiondo_blog', 'label' => __( 'Estilo de tarjeta', 'chuquipiondo' ), 'type' => 'select', 'choices' => array( 'minimal' => 'Minimal', 'editorial' => 'Editorial', 'elegant' => 'Elegant', 'magazine' => 'Magazine', 'image-focus' => 'Image Focus' ), 'sanitize_callback' => 'chuquipiondo_sanitize_select', 'priority' => 8 ) );
@@ -620,7 +647,7 @@ function chuquipiondo_register_ads( $wp_customize ) {
 	chuquipiondo_add_setting_control( $wp_customize, 'ads_client_id', array( 'section' => 'chuquipiondo_ads', 'label' => __( 'AdSense Client ID (ca-pub-...)', 'chuquipiondo' ), 'sanitize_callback' => 'chuquipiondo_sanitize_text', 'priority' => 7 ) );
 	chuquipiondo_add_setting_control( $wp_customize, 'ads_blog_after_posts', array( 'section' => 'chuquipiondo_ads', 'label' => __( 'Insertar anuncio cada X posts (blog)', 'chuquipiondo' ), 'type' => 'range', 'input_attrs' => array( 'min' => 2, 'max' => 12, 'step' => 1 ), 'sanitize_callback' => 'chuquipiondo_sanitize_range', 'priority' => 8 ) );
 
-	// Ad slots (codes). Registered from /inc/ads/slots.php metadata.
+	// Ad slots (codes + format). Registered from /inc/ads/slots.php metadata.
 	$slots = chuquipiondo_ad_slots();
 	$i     = 20;
 	foreach ( $slots as $slot_key => $slot ) {
@@ -630,6 +657,19 @@ function chuquipiondo_register_ads( $wp_customize ) {
 			'type'              => 'textarea',
 			'sanitize_callback' => 'chuquipiondo_sanitize_ad_code',
 			'description'       => isset( $slot['description'] ) ? $slot['description'] : '',
+			'priority'          => $i++,
+		) );
+		chuquipiondo_add_setting_control( $wp_customize, 'ad_format_' . $slot_key, array(
+			'section'           => 'chuquipiondo_ads',
+			/* translators: %s: slot label. */
+			'label'             => sprintf( __( 'Formato de: %s', 'chuquipiondo' ), $slot['label'] ),
+			'type'              => 'select',
+			'choices'           => array(
+				'horizontal' => __( 'Horizontal (adaptable al contenido)', 'chuquipiondo' ),
+				'box'        => __( 'Caja 300x250 (centrado)', 'chuquipiondo' ),
+				'hidden'     => __( 'Oculto', 'chuquipiondo' ),
+			),
+			'sanitize_callback' => 'chuquipiondo_sanitize_select',
 			'priority'          => $i++,
 		) );
 	}

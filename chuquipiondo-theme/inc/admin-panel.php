@@ -35,13 +35,13 @@ add_action( 'admin_menu', 'chuquipiondo_admin_menu' );
 function chuquipiondo_admin_page_assets() {
 	wp_enqueue_style(
 		'chuquipiondo-admin',
-		CHUQUIPONDO_URI . '/assets/css/admin.css',
+		CHUQUIPIONDO_URI . '/assets/css/admin.css',
 		array(),
 		chuquipiondo_asset_version( 'assets/css/admin.css' )
 	);
 	wp_enqueue_script(
 		'chuquipiondo-admin',
-		CHUQUIPONDO_URI . '/assets/js/admin.js',
+		CHUQUIPIONDO_URI . '/assets/js/admin.js',
 		array( 'jquery' ),
 		chuquipiondo_asset_version( 'assets/js/admin.js' ),
 		true

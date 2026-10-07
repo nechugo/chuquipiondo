@@ -29,25 +29,58 @@
 	color: var(--muted);
 }
 
-/* ===== Blog hero slider (3 primeras entradas) ===== */
+/* ===== Blog hero slider (personalizable via Customizer) =====
+ * Height: --blog-hero-height (inline, desde el Customizer).
+ * Width: fluido al ancho de la columna de contenido (hasta el borde del
+ * sidebar) porque vive dentro de .site-main; nunca desborda.
+ * Effects: fade / slide / zoom (Ken Burns) via .blog-hero--effect-*. */
 .blog-hero {
 	position: relative;
-	height: 390px;
-	border-radius: 9px;
+	height: var(--blog-hero-height, 390px);
+	border-radius: var(--radius-content, 7px);
 	overflow: hidden;
-	background: #ddd;
-	margin-bottom: 40px;
+	background: var(--paper, #e8edf5);
+	margin-bottom: var(--space-10);
+	box-shadow: var(--shadow);
 }
 
 .blog-hero__slide {
 	position: absolute;
 	inset: 0;
 	opacity: 0;
-	transition: opacity 0.35s ease;
+	transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 .blog-hero__slide--active {
 	opacity: 1;
+}
+
+/* Effect: slide (deslizamiento horizontal). */
+.blog-hero--effect-slide .blog-hero__slide {
+	transform: translateX(4%);
+	transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.blog-hero--effect-slide .blog-hero__slide--active {
+	transform: translateX(0);
+}
+
+/* Effect: zoom (Ken Burns suave). */
+.blog-hero--effect-zoom .blog-hero__slide img {
+	transform: scale(1);
+	transition: transform 6s linear;
+}
+.blog-hero--effect-zoom .blog-hero__slide--active img {
+	transform: scale(1.08);
+}
+@media (prefers-reduced-motion: reduce) {
+	.blog-hero--effect-zoom .blog-hero__slide--active img,
+	.blog-hero--effect-zoom .blog-hero__slide img {
+		transform: none;
+		transition: none;
+	}
+	.blog-hero__slide {
+		transition: opacity 0.2s ease;
+	}
 }
 
 .blog-hero__slide img {
@@ -64,12 +97,12 @@
 	transform: translate(-50%, -50%);
 	width: min(620px, 75%);
 	padding: 10px 14px;
-	border-radius: 12px;
+	border-radius: var(--radius-sm, 7px);
 	background: rgba(255, 255, 255, 0.92);
 	font-size: 23px;
 	font-weight: 700;
 	line-height: 1.35;
-	color: #555;
+	color: var(--ink, #1a2233);
 }
 
 .blog-hero__title {
@@ -81,7 +114,7 @@
 	text-align: center;
 	color: white;
 	font-size: 24px;
-	background: rgba(20, 101, 196, 0.75);
+	background: rgba(6, 19, 58, 0.72);
 }
 
 .blog-hero__arrow {
@@ -93,7 +126,7 @@
 	border-radius: 50%;
 	width: 28px;
 	height: 28px;
-	background: #070707;
+	background: var(--navy, #06133a);
 	color: white;
 	font-size: 18px;
 	cursor: pointer;
@@ -114,9 +147,9 @@
 .post-card {
 	background: white;
 	overflow: hidden;
-	border: 1px solid #e5e7eb;
-	border-radius: 10px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+	border: 1px solid rgba(10, 31, 68, 0.1);
+	border-radius: var(--radius-content, 7px);
+	box-shadow: var(--shadow-soft);
 	transition: transform 0.25s ease, box-shadow 0.25s ease;
 	display: flex;
 	flex-direction: column;
@@ -125,7 +158,7 @@
 
 .post-card:hover {
 	transform: translateY(-4px);
-	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+	box-shadow: var(--shadow-lg);
 }
 
 .post-card__media {
@@ -222,12 +255,18 @@
    sin placeholder gris. El slot real lo provee chuquipiondo_ad_slot(). */
 .wide-ad {
 	grid-column: 1 / -1;
+	width: 100%;
+	max-width: 100%;
 	min-height: 132px;
-	margin: 16px 0 18px;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: var(--ad-gap, 15px);
+	padding-bottom: var(--ad-gap, 15px);
 	display: grid;
 	place-items: center;
 	background: transparent;
 	overflow: hidden;
+	box-sizing: border-box;
 }
 
 /* ===== Sidebar ad tall ===== */
@@ -242,9 +281,9 @@
 
 /* ===== Skeleton cards (placeholder widgets) ===== */
 .skeleton-card {
-	border: 1px solid #bbb;
-	background: #fff;
-	border-radius: 8px;
+	border: 1px solid rgba(10, 31, 68, 0.12);
+	background: var(--white, #fff);
+	border-radius: var(--radius-sm, 7px);
 	overflow: hidden;
 	margin-bottom: 12px;
 }
@@ -365,9 +404,12 @@
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
 	.blog-hero {
-		height: 55vw;
-		min-height: 330px;
-		max-height: 460px;
+		/* Auto-ajustable: en movil la altura escala con el viewport
+		 * manteniendo proporciones agradables, respetando la altura
+		 * configurada como techo. */
+	height: min(55vw, var(--blog-hero-height, 390px));
+		min-height: 220px;
+		max-height: var(--blog-hero-height, 390px);
 	}
 
 	.blog-hero__copy {

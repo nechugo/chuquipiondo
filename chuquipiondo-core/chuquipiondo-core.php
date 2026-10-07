@@ -40,6 +40,23 @@ function chuquipiondo_core() {
 }
 add_action( 'plugins_loaded', 'chuquipiondo_core' );
 
+/**
+ * Upgrade routine: runs once per plugin version change (update).
+ * Keeps rewrites and caches in sync with the new code.
+ */
+function chuquipiondo_core_upgrade_routine() {
+	$stored = get_option( 'chuquipiondo_core_version' );
+	if ( CHUQUIPIONDO_CORE_VERSION === $stored ) {
+		return;
+	}
+	flush_rewrite_rules();
+	if ( function_exists( 'chuquipiondo_flush_dynamic_css_cache' ) ) {
+		chuquipiondo_flush_dynamic_css_cache();
+	}
+	update_option( 'chuquipiondo_core_version', CHUQUIPIONDO_CORE_VERSION, false );
+}
+add_action( 'plugins_loaded', 'chuquipiondo_core_upgrade_routine', 20 );
+
 function chuquipiondo_core_activate() {
 	flush_rewrite_rules();
 }

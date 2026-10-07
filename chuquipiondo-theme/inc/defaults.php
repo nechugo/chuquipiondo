@@ -66,7 +66,7 @@ function chuquipiondo_defaults() {
 		'sidebar_card_shadow'    => '0',
 		'sidebar_card_gap'        => '12',
 		'sidebar_disable_scroll' => '1',
-		'content_radius'         => '10',
+		'content_radius'         => '7',
 		/* ===== Botones (sistema completo) ===== */
 		'button_width_mode'      => 'auto',          // auto | fixed | full | percent
 		'button_width'           => '50',            // px (modo fixed)
@@ -94,6 +94,11 @@ function chuquipiondo_defaults() {
 		'button_shadow_enable'   => '0',
 		'button_shadow_color'    => 'rgba(0,0,0,0.2)',
 		'spacing_base'           => '8',
+		'media_aspect_ratio'     => '16 / 9',
+		'ad_gap'                 => '15',
+		'ad_format_ads_sidebar_top'    => 'box',
+		'ad_format_ads_sidebar_middle' => 'box',
+		'ad_format_ads_sidebar_bottom' => 'box',
 
 		/* ===== Header system ===== */
 		/* ===== Pre-header (2 columnas encima del header) ===== */
@@ -263,6 +268,14 @@ function chuquipiondo_defaults() {
 		'blog_columns'           => '3',
 		'blog_columns_tablet'    => '2',
 		'blog_columns_mobile'    => '1',
+		'blog_hero_enable'       => '1',
+		'blog_hero_count'        => '5',
+		'blog_hero_category'    => '0',
+
+		'blog_hero_effect'      => 'fade',
+		'blog_hero_autoplay'    => '1',
+		'blog_hero_speed'       => '6000',
+		'blog_hero_height'      => '390',
 		'blog_card_style'        => 'editorial',
 		'blog_sidebar'           => 'right',
 		'blog_sidebar_desktop'  => '1',

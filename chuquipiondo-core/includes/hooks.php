@@ -55,24 +55,7 @@ function chuquipiondo_core_back_to_top() {
 }
 add_action( 'wp_footer', 'chuquipiondo_core_back_to_top' );
 
-/**
- * Add lazy loading to images that don't have it.
- */
-function chuquipiondo_core_lazy_load_images( $content ) {
-	if ( is_admin() || is_feed() ) {
-		return $content;
-	}
-	// Add loading="lazy" to img tags that don't have it.
-	$content = preg_replace_callback(
-		'/<img(?![^>]*loading=)[^>]*>/i',
-		function ( $matches ) {
-			return str_replace( '<img', '<img loading="lazy"', $matches[0] );
-		},
-		$content
-	);
-	return $content;
-}
-add_filter( 'the_content', 'chuquipiondo_core_lazy_load_images' );
+
 
 /**
  * Add custom body classes from the core plugin.
