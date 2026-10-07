@@ -42,14 +42,14 @@ class Chuquipiondo_Slides_Control extends WP_Customize_Control {
 	public function enqueue() {
 		wp_enqueue_script(
 			'chuquipiondo-customizer-slides',
-			CHUQUIPONDO_URI . '/assets/js/customizer-slides.js',
+			CHUQUIPIONDO_URI . '/assets/js/customizer-slides.js',
 			array( 'jquery', 'customize-controls' ),
 			chuquipiondo_asset_version( 'assets/js/customizer-slides.js' ),
 			true
 		);
 		wp_enqueue_style(
 			'chuquipiondo-customizer-slides',
-			CHUQUIPONDO_URI . '/assets/css/customizer.css',
+			CHUQUIPIONDO_URI . '/assets/css/customizer.css',
 			array(),
 			chuquipiondo_asset_version( 'assets/css/customizer.css' )
 		);
@@ -95,7 +95,7 @@ class Chuquipiondo_Slides_Control extends WP_Customize_Control {
 function chuquipiondo_enqueue_range_controls_script() {
 	wp_enqueue_script(
 		'chuquipiondo-customizer-range',
-		CHUQUIPONDO_URI . '/assets/js/customizer-range.js',
+		CHUQUIPIONDO_URI . '/assets/js/customizer-range.js',
 		array( 'jquery', 'customize-controls' ),
 		chuquipiondo_asset_version( 'assets/js/customizer-range.js' ),
 		true

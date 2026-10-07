@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function chuquipiondo_customize_preview_js() {
 	wp_enqueue_script(
 		'chuquipiondo-customizer-preview',
-		CHUQUIPONDO_URI . '/assets/js/customizer-preview.js',
+		CHUQUIPIONDO_URI . '/assets/js/customizer-preview.js',
 		array( 'customize-preview' ),
 		chuquipiondo_asset_version( 'assets/js/customizer-preview.js' ),
 		true

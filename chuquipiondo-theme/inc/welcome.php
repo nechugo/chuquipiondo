@@ -67,7 +67,7 @@ function chuquipiondo_welcome_assets( $hook ) {
 	}
 	wp_enqueue_style(
 		'chuquipiondo-welcome',
-		CHUQUIPONDO_URI . '/assets/css/admin.css',
+		CHUQUIPIONDO_URI . '/assets/css/admin.css',
 		array(),
 		chuquipiondo_asset_version( 'assets/css/admin.css' )
 	);
