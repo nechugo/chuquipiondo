@@ -52,6 +52,17 @@ function chuquipiondo_companion_activate() {
 }
 register_activation_hook( __FILE__, 'chuquipiondo_companion_activate' );
 
+/**
+ * On deactivation: clear the theme dynamic-CSS cache so front-end styles
+ * drop companion modules immediately. Never deletes user data.
+ */
+function chuquipiondo_companion_deactivate() {
+	if ( function_exists( 'chuquipiondo_flush_dynamic_css_cache' ) ) {
+		chuquipiondo_flush_dynamic_css_cache();
+	}
+}
+register_deactivation_hook( __FILE__, 'chuquipiondo_companion_deactivate' );
+
 function chuquipiondo_companion() {
 	return Chuquipiondo_Companion::instance();
 }

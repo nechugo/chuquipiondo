@@ -51,6 +51,15 @@ function chuquipiondo_ai_activate() {
 }
 register_activation_hook( __FILE__, 'chuquipiondo_ai_activate' );
 
+/**
+ * On deactivation: no data cleanup needed (options survive for reactivation).
+ */
+function chuquipiondo_ai_deactivate() {
+	// Intentionally empty: AI Studio writes no caches and hooks nothing
+	// persistent in the front-end; deactivation is instantly clean.
+}
+register_deactivation_hook( __FILE__, 'chuquipiondo_ai_deactivate' );
+
 function chuquipiondo_ai() {
 	return Chuquipiondo_AI::instance();
 }
