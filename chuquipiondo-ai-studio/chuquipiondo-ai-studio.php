@@ -27,19 +27,47 @@ define( 'CHUQUIPIONDO_AI_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CHUQUIPIONDO_AI_URL', plugin_dir_url( __FILE__ ) );
 define( 'CHUQUIPIONDO_AI_BASENAME', plugin_basename( __FILE__ ) );
 
-require_once CHUQUIPIONDO_AI_DIR . 'includes/helpers.php';
-require_once CHUQUIPIONDO_AI_DIR . 'includes/defaults.php';
-require_once CHUQUIPIONDO_AI_DIR . 'includes/secret-hardening.php';
-require_once CHUQUIPIONDO_AI_DIR . 'includes/class-chuquipiondo-ai.php';
-require_once CHUQUIPIONDO_AI_DIR . 'includes/class-ai-client.php';
-require_once CHUQUIPIONDO_AI_DIR . 'includes/content-service.php';
-require_once CHUQUIPIONDO_AI_DIR . 'includes/image-service.php';
-require_once CHUQUIPIONDO_AI_DIR . 'includes/publish-service.php';
-require_once CHUQUIPIONDO_AI_DIR . 'includes/queue-service.php';
-require_once CHUQUIPIONDO_AI_DIR . 'includes/site-reader.php';
-require_once CHUQUIPIONDO_AI_DIR . 'includes/settings.php';
-require_once CHUQUIPIONDO_AI_DIR . 'includes/admin.php';
-require_once CHUQUIPIONDO_AI_DIR . 'includes/assets.php';
+// Idempotent loading: if a stale copy of the plugin is already in memory
+// (update without deactivating), do not redeclare anything.
+if ( ! function_exists( 'chuquipiondo_ai_get_option' ) ) {
+	require_once CHUQUIPIONDO_AI_DIR . 'includes/helpers.php';
+}
+if ( ! function_exists( 'chuquipiondo_ai_defaults' ) ) {
+	require_once CHUQUIPIONDO_AI_DIR . 'includes/defaults.php';
+}
+if ( ! function_exists( 'chuquipiondo_ai_secret_key' ) ) {
+	require_once CHUQUIPIONDO_AI_DIR . 'includes/secret-hardening.php';
+}
+if ( ! class_exists( 'Chuquipiondo_AI_Client' ) ) {
+	require_once CHUQUIPIONDO_AI_DIR . 'includes/class-ai-client.php';
+}
+if ( ! class_exists( 'Chuquipiondo_AI' ) ) {
+	require_once CHUQUIPIONDO_AI_DIR . 'includes/class-chuquipiondo-ai.php';
+}
+if ( ! function_exists( 'chuquipiondo_ai_sanitize_content' ) ) {
+	require_once CHUQUIPIONDO_AI_DIR . 'includes/content-service.php';
+}
+if ( ! function_exists( 'chuquipiondo_ai_generate_image' ) ) {
+	require_once CHUQUIPIONDO_AI_DIR . 'includes/image-service.php';
+}
+if ( ! class_exists( 'Chuquipiondo_AI_Publish_Service' ) ) {
+	require_once CHUQUIPIONDO_AI_DIR . 'includes/publish-service.php';
+}
+if ( ! function_exists( 'chuquipiondo_ai_queue_batch' ) ) {
+	require_once CHUQUIPIONDO_AI_DIR . 'includes/queue-service.php';
+}
+if ( ! function_exists( 'chuquipiondo_ai_read_site' ) ) {
+	require_once CHUQUIPIONDO_AI_DIR . 'includes/site-reader.php';
+}
+if ( ! function_exists( 'chuquipiondo_ai_register_settings' ) ) {
+	require_once CHUQUIPIONDO_AI_DIR . 'includes/settings.php';
+}
+if ( ! function_exists( 'chuquipiondo_ai_admin_menu' ) ) {
+	require_once CHUQUIPIONDO_AI_DIR . 'includes/admin.php';
+}
+if ( ! function_exists( 'chuquipiondo_ai_admin_assets' ) ) {
+	require_once CHUQUIPIONDO_AI_DIR . 'includes/assets.php';
+}
 
 function chuquipiondo_ai_activate() {
 	$defaults = chuquipiondo_ai_defaults();

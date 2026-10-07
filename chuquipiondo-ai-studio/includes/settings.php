@@ -75,7 +75,7 @@ function chuquipiondo_ai_settings_page_render() {
 								<option value="<?php echo esc_attr( $slug ); ?>" <?php selected( $active, $slug ); ?>><?php echo esc_html( $cfg['label'] ); ?></option>
 							<?php endforeach; ?>
 						</select>
-						<p class="description"><?php esc_html_e( 'Recomendado: Mistral AI. Tambien OpenAI y Anthropic. "Local" usa plantillas sin API.', 'chuquipiondo-ai' ); ?></p>
+						<p class="description"><?php esc_html_e( 'Google Gemini es la opcion GRATIS (key en aistudio.google.com). Tambien Mistral, OpenAI y Anthropic. "Local" usa plantillas sin API.', 'chuquipiondo-ai' ); ?></p>
 					</td>
 				</tr>
 				<tr>
