@@ -160,3 +160,68 @@ function chuquipiondo_ai_mask_secret( $value ) {
 	}
 	return substr( $value, 0, 4 ) . str_repeat( '*', max( $len - 8, 4 ) ) . substr( $value, -4 );
 }
+
+/**
+ * Humanization rules injected into generation prompts.
+ *
+ * Makes the AI write like a person: varied rhythm, concrete details,
+ * first-person touches and zero AI-typical cliches, so content reads
+ * natural and does not trip AI-detector heuristics.
+ *
+ * @return string
+ */
+function chuquipiondo_ai_humanize_rules() {
+	return "REGLAS DE NATURALIDAD (obligatorias):\n"
+		. "- Alterna frases largas con cortas; alguna de 3-4 palabras.\n"
+		. "- Prohibido: 'en conclusion', 'en el mundo de hoy', 'es importante destacar', 'sumergirse', 'desbloquear', 'en el paisaje', 'navegar por', 'en la era digital', 'juego de cambios' y toda frase cliché de IA.\n"
+		. "- Usa transiciones naturales de persona: 'dicho esto', 'a mi me costo entenderlo', 'con los anios aprendi'.\n"
+		. "- Incluye 1-2 anecdotas o ejemplos concretos con nombres de situacion real (sin inventar datos verificables falsos).\n"
+		. "- Voz activa, segunda persona con moderacion ('puede que te pase lo mismo').\n"
+		. "- Nada de listas perfectas de 3 en todo el articulo; rompe el patron.\n"
+		. "- Parrafos de 2-4 lineas, algunos de una sola frase.\n"
+		. "- Cierra con una reflexion o pregunta al lector, no con resumen.\n";
+}
+
+/**
+ * Parse the seo_full response into a structured package.
+ *
+ * @param string $raw Raw AI response.
+ * @return array {focus_keyword, synonyms, meta_description, slug, tags, internal_links, link_anchors}
+ */
+function chuquipiondo_ai_parse_seo_package( $raw ) {
+	$pkg = array(
+		'focus_keyword'   => '',
+		'synonyms'        => array(),
+		'meta_description'=> '',
+		'slug'            => '',
+		'tags'            => array(),
+		'internal_links'  => array(),
+		'link_anchors'    => array(),
+	);
+	$raw = trim( (string) $raw );
+	$grab = function ( $key ) use ( $raw ) {
+		if ( preg_match( '/^' . $key . ':\s*(.+)$/im', $raw, $m ) ) {
+			return trim( $m[1] );
+		}
+		return '';
+	};
+	$pkg['focus_keyword'] = sanitize_text_field( $grab( 'FOCUS_KEYWORD' ) );
+	$pkg['meta_description'] = sanitize_text_field( $grab( 'META_DESCRIPTION' ) );
+	$pkg['slug'] = sanitize_title( $grab( 'SLUG' ) );
+	$syn = $grab( 'SYNONYMS' );
+	if ( '' !== $syn ) {
+		$pkg['synonyms'] = array_filter( array_map( 'sanitize_text_field', array_map( 'trim', explode( ',', $syn ) ) ) );
+	}
+	$tags = $grab( 'TAGS' );
+	if ( '' !== $tags ) {
+		$pkg['tags'] = array_slice( array_filter( array_map( 'sanitize_text_field', array_map( 'trim', explode( ',', $tags ) ) ) ), 0, 6 );
+	}
+	// INTERNAL_LINKS and LINK_ANCHORS: multi-line lists until the next KEY: header.
+	foreach ( array( 'internal_links' => 'INTERNAL_LINKS', 'link_anchors' => 'LINK_ANCHORS' ) as $field => $key ) {
+		if ( preg_match( '/^' . $key . ':(?:[ \t]*\n|\s)((?:[^A-Z_].*\n?)*)/m', $raw, $m ) ) {
+			$lines = array_filter( array_map( 'trim', explode( "\n", trim( $m[1] ) ) ) );
+			$pkg[ $field ] = array_slice( array_map( 'sanitize_text_field', $lines ), 0, 3 );
+		}
+	}
+	return $pkg;
+}

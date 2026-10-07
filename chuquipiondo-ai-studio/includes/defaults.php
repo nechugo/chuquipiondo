@@ -43,6 +43,15 @@ function chuquipiondo_ai_defaults() {
 		'ai_allowed_html'        => '1',         // allow pasting raw HTML/PHP/JS blocks
 		'ai_default_post_status' => 'draft',     // draft | pending | publish
 
+		// ===== Brand voice & humanization =====
+		'ai_brand_voice'        => 'CHUQUIPIONDO: liderazgo, gestion y formacion con proposito. Tono humano, cercano y motivador, desde la fe cristiana. Lema: "Juntos, si podemos!". Evita tecnicismos huerfanos, escribe como un mentor que comparte experiencia propia.',
+		'ai_humanize'           => '1',         // vary sentence length, use natural transitions, avoid AI cliches
+		'ai_word_min'           => '800',
+		'ai_word_max'           => '1200',
+		// ===== Usage tracking / budget =====
+		'ai_budget_calls'       => '0',         // 0 = unlimited
+		'ai_usage_calls'        => '0',         // this-month counter (reset manually)
+		'ai_usage_month'        => '',          // yyyy-mm when the counter started
 		// ===== Publishing / SEO defaults =====
 		'ai_seo_meta_desc_len'   => '160',
 		'ai_seo_generate_tags'    => '1',
@@ -85,6 +94,12 @@ function chuquipiondo_ai_providers() {
 			'label'   => __( 'Anthropic (Claude)', 'chuquipiondo-ai' ),
 			'endpoint' => 'https://api.anthropic.com/v1/messages',
 			'models'  => array( 'claude-3-5-sonnet-latest', 'claude-3-5-haiku-latest', 'claude-3-opus-latest' ),
+			'image'   => false,
+		),
+		'gemini'   => array(
+			'label'   => __( 'Google Gemini (nivel gratis)', 'chuquipiondo-ai' ),
+			'endpoint' => 'https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent',
+			'models'  => array( 'gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-flash-8b', 'gemini-1.5-pro' ),
 			'image'   => false,
 		),
 		'local'    => array(

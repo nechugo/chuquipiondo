@@ -50,3 +50,8 @@ $option_keys = array_keys(
 foreach ( $option_keys as $key ) {
 	delete_option( $key );
 }
+
+// Remove any leftover queue states.
+global $wpdb;
+$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'chuquipiondo_ai_queue_%'" );
+$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'chuquipiondo_ai_usage%'" );

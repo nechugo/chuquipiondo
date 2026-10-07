@@ -113,6 +113,36 @@ function chuquipiondo_ai_settings_page_render() {
 				</tr>
 			</table>
 
+			<h2 class="title"><?php esc_html_e( '1b. Voz editorial, naturalidad y presupuesto', 'chuquipiondo-ai' ); ?></h2>
+			<table class="form-table" role="presentation">
+				<tr>
+					<th scope="row"><label for="ai_brand_voice"><?php esc_html_e( 'Identidad editorial (voz de marca)', 'chuquipiondo-ai' ); ?></label></th>
+					<td>
+						<textarea name="ai_brand_voice" id="ai_brand_voice" rows="4" class="large-text"><?php echo esc_textarea( chuquipiondo_ai_get_option( 'ai_brand_voice', '' ) ); ?></textarea>
+						<span class="description"><?php esc_html_e( 'Tono, mision y estilo con el que la IA escribira cada articulo.', 'chuquipiondo-ai' ); ?></span>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row"><?php esc_html_e( 'Escritura humanizada', 'chuquipiondo-ai' ); ?></th>
+					<td><label><input type="checkbox" name="ai_humanize" value="1" <?php checked( chuquipiondo_ai_is_enabled( 'ai_humanize' ) ); ?> /> <?php esc_html_e( 'Reglas anti-deteccion IA: ritmo variado, transiciones humanas, sin cliches', 'chuquipiondo-ai' ); ?></label></td>
+				</tr>
+				<tr>
+					<th scope="row"><?php esc_html_e( 'Palabras por articulo', 'chuquipiondo-ai' ); ?></th>
+					<td>
+						<input type="number" min="300" max="3000" name="ai_word_min" class="small-text" value="<?php echo esc_attr( chuquipiondo_ai_get_option( 'ai_word_min', '800' ) ); ?>" /> -
+						<input type="number" min="300" max="3000" name="ai_word_max" class="small-text" value="<?php echo esc_attr( chuquipiondo_ai_get_option( 'ai_word_max', '1200' ) ); ?>" />
+						<span class="description"><?php esc_html_e( 'Rango obligatorio para cada articulo generado.', 'chuquipiondo-ai' ); ?></span>
+					</td>
+			</tr>
+				<tr>
+					<th scope="row"><label for="ai_budget_calls"><?php esc_html_e( 'Presupuesto mensual (llamadas)', 'chuquipiondo-ai' ); ?></label></th>
+					<td>
+						<input type="number" min="0" max="100000" name="ai_budget_calls" id="ai_budget_calls" class="small-text" value="<?php echo esc_attr( chuquipiondo_ai_get_option( 'ai_budget_calls', '0' ) ); ?>" />
+						<span class="description"><?php echo esc_html( sprintf( __( 'Usadas este mes: %d. 0 = sin limite.', 'chuquipiondo-ai' ), (int) chuquipiondo_ai_get_option( 'ai_usage_calls', '0' ) ) ); ?></span>
+					</td>
+			</tr>
+			</table>
+
 			<h2 class="title"><?php esc_html_e( '2. Imagenes por defecto (500px alto x 900px ancho)', 'chuquipiondo-ai' ); ?></h2>
 			<table class="form-table" role="presentation">
 				<tr>

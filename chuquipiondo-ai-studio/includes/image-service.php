@@ -173,10 +173,16 @@ function chuquipiondo_ai_force_image_dimensions_in_content( $content ) {
 	);
 }
 
-function chuquipiondo_ai_generate_image( $description, $post_id = 0 ) {
+function chuquipiondo_ai_generate_image( $description, $post_id = 0, $context = '' ) {
 	$provider = chuquipiondo_ai_get_option( 'ai_image_provider', 'local' );
 	$size = chuquipiondo_ai_image_target_size();
-	$prompt = rawurlencode( (string) $description );
+	if ( 'hero' === $context ) {
+		// Featured/hero: 16:9 to match the theme containers.
+		$size = array( 'width' => 1280, 'height' => 720 );
+	}
+	// Natural, humanized photography prompt for both slots.
+	$photo_prompt = (string) $description . ', fotografia natural, luz suave de ventana, estilo humano realista, sin texto ni marcas de agua, composicion autentica tipo revista';
+	$prompt = rawurlencode( $photo_prompt );
 	$remote = '';
 	$placeholder = false;
 
@@ -188,7 +194,7 @@ function chuquipiondo_ai_generate_image( $description, $post_id = 0 ) {
 			$remote = 'https://placehold.co/' . $size['width'] . 'x' . $size['height'] . '?text=' . rawurlencode( $description );
 			$placeholder = true;
 		} else {
-			$body = array( 'model' => 'dall-e-3', 'prompt' => (string) $description, 'n' => 1, 'size' => '1024x1024' );
+			$body = array( 'model' => 'dall-e-3', 'prompt' => (string) $photo_prompt, 'n' => 1, 'size' => '1024x1024' );
 			$resp = wp_remote_post(
 				'https://api.openai.com/v1/images/generations',
 				array(
@@ -254,6 +260,24 @@ function chuquipiondo_ai_replace_image_markers( $content, $post_id ) {
 			$ids[] = (int) $result['id'];
 			$size = chuquipiondo_ai_image_target_size();
 			return '<figure class="wp-block-image size-chuquipiondo-ai"><img src="' . esc_url( $result['url'] ) . '" alt="' . esc_attr( $desc ) . '" width="' . (int) $size['width'] . '" height="' . (int) $size['height'] . '" loading="lazy" /></figure>';
+		},
+		$content
+	);
+
+	// Hero/featured image marker: 16:9 natural photography for the reader.
+	$content = preg_replace_callback(
+		'/<!--AI_HERO_IMAGE:(.*?)-->/i',
+		function ( $m ) use ( $post_id, &$ids ) {
+			$desc = trim( $m[1] );
+			if ( '' === $desc ) {
+				$desc = __( 'Imagen principal del articulo', 'chuquipiondo-ai' );
+			}
+			$result = chuquipiondo_ai_generate_image( $desc, $post_id, 'hero' );
+			if ( is_wp_error( $result ) ) {
+				return '';
+			}
+			array_unshift( $ids, (int) $result['id'] );
+			return '';
 		},
 		$content
 	);

@@ -35,6 +35,7 @@ require_once CHUQUIPIONDO_AI_DIR . 'includes/class-ai-client.php';
 require_once CHUQUIPIONDO_AI_DIR . 'includes/content-service.php';
 require_once CHUQUIPIONDO_AI_DIR . 'includes/image-service.php';
 require_once CHUQUIPIONDO_AI_DIR . 'includes/publish-service.php';
+require_once CHUQUIPIONDO_AI_DIR . 'includes/queue-service.php';
 require_once CHUQUIPIONDO_AI_DIR . 'includes/settings.php';
 require_once CHUQUIPIONDO_AI_DIR . 'includes/admin.php';
 require_once CHUQUIPIONDO_AI_DIR . 'includes/assets.php';

@@ -71,3 +71,19 @@ Es una funcion privilegiada. En la version 1.11.0 requiere que la opcion este ha
 
 = 1.11.0 =
 Actualizacion recomendada por endurecimiento de permisos, autenticacion REST y manejo de secretos.
+
+== Providers soportados ==
+- Mistral AI (recomendado; nivel gratis disponible)
+- Google Gemini (nivel gratis: crea API key en aistudio.google.com -> Get API key; modelos gemini-2.0-flash / 1.5-flash)
+- OpenAI (GPT-4o) / Anthropic (Claude)
+- Modo local (sin API, plantillas)
+
+== Que genera cada articulo ==
+- 800-1200 palabras (configurable) con voz editorial propia del portal
+- Imagen destacada 16:9 fotografica + imagen interior contextual (Pollinations gratis / DALL-E)
+- Escritura humanizada anti-deteccion (ritmo variado, sin cliches IA)
+- Paquete SEO Yoast-compatible: focus keyword, sinonimos, meta description <=155, slug, tags,
+  enlaces internos sugeridos y palabras ancla; se guarda en _yoast_wpseo_focuskw y equivalentes
+- Cola WP-Cron para lotes sin agotar PHP (REST /queue-batch + /queue-status)
+- Presupuesto mensual de llamadas con contador automatico
+- API key cifrada en reposo con libsodium (derive de AUTH_KEY/SALT)
