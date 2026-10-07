@@ -205,6 +205,19 @@ function chuquipiondo_ai_generate_page_render() {
 	chuquipiondo_ai_screen_header();
 	?>
 	<p class="description"><?php esc_html_e( 'Crea un articulo nuevo con IA: titulo, contenido, imagenes 500x900, SEO, etiquetas y schema. Publicable en un clic.', 'chuquipiondo-ai' ); ?></p>
+
+	<?php if ( function_exists( 'chuquipiondo_ai_read_site' ) ) : ?>
+	<div class="card" style="max-width:860px;margin-bottom:20px;padding:16px;">
+		<h2 style="margin-top:0;"><?php esc_html_e( 'Analisis del sitio (IA lee tu web)', 'chuquipiondo-ai' ); ?></h2>
+		<p class="description"><?php esc_html_e( 'La IA revisa categorias, articulos recientes y los mas leidos para proponer y redactar en base a lo que tu audiencia realmente consume.', 'chuquipiondo-ai' ); ?></p>
+		<p>
+			<button type="button" class="button" id="cai-site-analysis"><?php esc_html_e( 'Ver articulos mas leidos', 'chuquipiondo-ai' ); ?></button>
+			<button type="button" class="button" id="cai-site-proposals"><?php esc_html_e( 'Proponer articulos con IA', 'chuquipiondo-ai' ); ?></button>
+		</p>
+		<div id="cai-site-results" style="margin-top:12px;"></div>
+	</div>
+	<?php endif; ?>
+
 	<div class="chuquipiondo-ai-generate">
 		<table class="form-table" role="presentation">
 			<tr>
