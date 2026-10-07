@@ -36,6 +36,7 @@ function chuquipiondo_dynamic_css() {
 		'navy'           => chuquipiondo_get_option( 'color_navy' ),
 		'navy-dark'      => chuquipiondo_get_option( 'color_navy_dark' ),
 		'sky'             => chuquipiondo_get_option( 'color_sky' ),
+		'sky-text'        => '#0a6fa8', // WCAG-AA text variant of the sky brand color.
 		'sky-soft'        => chuquipiondo_get_option( 'color_sky_soft' ),
 		'background'      => chuquipiondo_get_option( 'color_background' ),
 		'text'            => chuquipiondo_get_option( 'color_text' ),

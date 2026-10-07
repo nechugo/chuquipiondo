@@ -50,7 +50,7 @@ a {
 }
 
 a:hover, a:focus {
-	color: var(--sky);
+	color: var(--sky-text, #0a6fa8);
 }
 
 a:focus-visible {
@@ -252,5 +252,41 @@ th {
 		animation-iteration-count: 1 !important;
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
+	}
+}
+
+/* Print: clean reading copy for articles. */
+@media print {
+	.site-header,
+	.topbar,
+	.preheader,
+	.chuqui-ad,
+	.chuqui-whatsapp,
+	.social-share,
+	.music-mini-player,
+	.chuqui-back-to-top,
+	.chuqui-reading-progress,
+	.widget-area,
+	.site-footer,
+	.post-navigation,
+	.related-posts,
+	.article-carousel {
+		display: none !important;
+	}
+	body {
+		background: #fff;
+		color: #000;
+	}
+	.single-article__inner {
+		padding: 0;
+		max-width: 100%;
+	}
+	a {
+		color: #000;
+		text-decoration: underline;
+	}
+	a[href^="http"]::after {
+		content: " (" attr(href) ")";
+		font-size: 0.75rem;
 	}
 }

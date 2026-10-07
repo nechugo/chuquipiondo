@@ -196,7 +196,7 @@
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
-	color: var(--sky, #27b6ff);
+	color: var(--sky-text, #0a6fa8);
 	margin-bottom: var(--space-2);
 }
 
@@ -212,7 +212,7 @@
 }
 
 .post-card__title a:hover {
-	color: var(--sky, #27b6ff);
+	color: var(--sky-text, #0a6fa8);
 }
 
 .post-card__meta {
@@ -247,7 +247,7 @@
 }
 
 .post-card__more:hover {
-	color: var(--sky, #27b6ff);
+	color: var(--sky-text, #0a6fa8);
 }
 
 /* ===== Wide ad between rows ===== */
@@ -388,7 +388,7 @@
 }
 
 .chuqui-breadcrumbs a:hover {
-	color: var(--sky, #27b6ff);
+	color: var(--sky-text, #0a6fa8);
 }
 
 .chuqui-breadcrumbs .sep {

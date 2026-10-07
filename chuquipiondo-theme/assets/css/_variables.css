@@ -17,6 +17,9 @@
 	--muted: #5b6678;
 	--white: #ffffff;
 	--accent: #27b6ff;
+	/* Accessible text variant of the sky brand color: 5.45:1 on white (WCAG AA).
+	 * Use for link/category text on light backgrounds; keep --sky for decoration. */
+	--sky-text: #0a6fa8;
 
 	/* Button. */
 	--button-bg: #27b6ff;

@@ -31,7 +31,7 @@
 
 .home-module__more {
 	font-weight: 600;
-	color: var(--sky);
+	color: var(--sky-text, #0a6fa8);
 	font-size: 0.875rem;
 	white-space: nowrap;
 }
@@ -246,7 +246,7 @@
 	font-family: var(--font-heading);
 	font-size: clamp(4rem, 2rem + 10vw, 8rem);
 	font-weight: 800;
-	color: var(--sky);
+	color: var(--sky-text, #0a6fa8);
 	line-height: 1;
 	margin: 0 0 var(--space-4);
 }
