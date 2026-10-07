@@ -29,10 +29,14 @@
 	color: var(--muted);
 }
 
-/* ===== Blog hero slider (3 primeras entradas) ===== */
+/* ===== Blog hero slider (personalizable via Customizer) =====
+ * Height: --blog-hero-height (inline, desde el Customizer).
+ * Width: fluido al ancho de la columna de contenido (hasta el borde del
+ * sidebar) porque vive dentro de .site-main; nunca desborda.
+ * Effects: fade / slide / zoom (Ken Burns) via .blog-hero--effect-*. */
 .blog-hero {
 	position: relative;
-	height: 390px;
+	height: var(--blog-hero-height, 390px);
 	border-radius: var(--radius-content, 7px);
 	overflow: hidden;
 	background: var(--paper, #e8edf5);
@@ -44,11 +48,39 @@
 	position: absolute;
 	inset: 0;
 	opacity: 0;
-	transition: opacity 0.35s ease;
+	transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 .blog-hero__slide--active {
 	opacity: 1;
+}
+
+/* Effect: slide (deslizamiento horizontal). */
+.blog-hero--effect-slide .blog-hero__slide {
+	transform: translateX(4%);
+	transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.blog-hero--effect-slide .blog-hero__slide--active {
+	transform: translateX(0);
+}
+
+/* Effect: zoom (Ken Burns suave). */
+.blog-hero--effect-zoom .blog-hero__slide img {
+	transform: scale(1);
+	transition: transform 6s linear;
+}
+.blog-hero--effect-zoom .blog-hero__slide--active img {
+	transform: scale(1.08);
+}
+@media (prefers-reduced-motion: reduce) {
+	.blog-hero--effect-zoom .blog-hero__slide--active img,
+	.blog-hero--effect-zoom .blog-hero__slide img {
+		transform: none;
+		transition: none;
+	}
+	.blog-hero__slide {
+		transition: opacity 0.2s ease;
+	}
 }
 
 .blog-hero__slide img {
@@ -372,9 +404,12 @@
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
 	.blog-hero {
-		height: 55vw;
-		min-height: 330px;
-		max-height: 460px;
+		/* Auto-ajustable: en movil la altura escala con el viewport
+		 * manteniendo proporciones agradables, respetando la altura
+		 * configurada como techo. */
+	height: min(55vw, var(--blog-hero-height, 390px));
+		min-height: 220px;
+		max-height: var(--blog-hero-height, 390px);
 	}
 
 	.blog-hero__copy {
