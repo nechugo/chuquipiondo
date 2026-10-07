@@ -62,6 +62,14 @@ img, video, svg {
 	max-width: 100%;
 	height: auto;
 	display: block;
+	/* Never pixelate: preserve detail when the browser scales down. */
+	image-rendering: auto;
+}
+/* Media inside content keeps its natural ratio (no crop, no stretch). */
+.entry-content img,
+.entry-content figure img {
+	object-fit: contain;
+	content-visibility: auto;
 }
 
 img {

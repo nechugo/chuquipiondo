@@ -62,7 +62,7 @@ function chuquipiondo_blog_hero_slider() {
 		<article class="blog-hero__slide<?php echo esc_attr( $active ); ?>">
 			<a href="<?php the_permalink(); ?>">
 				<?php if ( has_post_thumbnail() ) : ?>
-					<?php the_post_thumbnail( 'chuquipiondo-featured', array( 'loading' => ( 0 === $i ? 'eager' : 'lazy' ) ) ); ?>
+					<?php the_post_thumbnail( 'chuquipiondo-featured', array( 'loading' => ( 0 === $i ? 'eager' : 'lazy' ), 'sizes' => '(max-width: 767px) 100vw, 100vw' ) ); ?>
 				<?php else : ?>
 					<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'%3E%3Crect fill='%23ddd' width='1280' height='720'/%3E%3C/svg%3E" alt="<?php the_title_attribute(); ?>">
 				<?php endif; ?>
