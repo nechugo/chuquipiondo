@@ -28,7 +28,7 @@
 .chuqui-layout.single-layout {
 	max-width: var(--container-width);
 	background: transparent;
-	margin-top: var(--header-content-gap, 25px);
+	margin-top: var(--header-content-gap, 30px);
 }
 
 /* Hero image variant. */
@@ -634,7 +634,7 @@
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
 	.chuqui-layout.single-layout {
-		margin-top: 28px;
+		margin-top: var(--header-content-gap, 30px);
 	}
 
 	.single-article__inner {

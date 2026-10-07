@@ -37,13 +37,8 @@ if ( ! $has_specific && ! $has_fallback ) {
 	// Ad slot: middle of sidebar.
 	chuquipiondo_ad_slot( 'ads_sidebar_middle' );
 
-	// If no widgets at all, show a friendly placeholder.
-	if ( ! $has_specific && ! $has_fallback ) {
-		echo '<section class="widget widget-placeholder">';
-		echo '<h2 class="widget-title">' . esc_html__( 'Barra lateral', 'chuquipiondo' ) . '</h2>';
-		echo '<p>' . esc_html__( 'Anade widgets desde Apariencia > Widgets.', 'chuquipiondo' ) . '</p>';
-		echo '</section>';
-	}
+	// Empty sidebar renders nothing: no placeholders, no padding, no gap.
+	// Content takes full width naturally.
 
 	// Ad slot: bottom of sidebar.
 	chuquipiondo_ad_slot( 'ads_sidebar_bottom' );

@@ -179,3 +179,9 @@
 		min-height: 250px;
 	}
 }
+
+/* Belt-and-suspenders: if any .chuqui-ad ends up empty (e.g. an ad blocked
+ * client-side), it collapses to zero height and no gap remains. */
+.chuqui-ad:empty {
+	display: none;
+}

@@ -311,7 +311,7 @@ function chuquipiondo_defaults() {
 		'single_related_columns'  => '2',
 		'single_related_rows'     => '1',
 		'single_related_style'    => 'editorial',
-		'header_content_gap'      => '25',
+		'header_content_gap'      => '30',
 		'single_img_aspect'       => '16-9',
 
 		/* ===== Page individual ===== */
