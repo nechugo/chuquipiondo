@@ -185,6 +185,7 @@
 	display: inline-block;
 	padding-inline: var(--topbar-gap, 4px);
 	opacity: 0.5;
+	-webkit-user-select: none;
 	user-select: none;
 }
 
@@ -496,6 +497,8 @@
 	background: rgba(255, 255, 255, 0.1);
 	border: 1px solid rgba(255, 255, 255, 0.2);
 	color: var(--white);
+	/* iOS: prevent auto-zoom on focus (needs >=16px). */
+	font-size: 16px;
 }
 
 .header-box--search .search-form__input::placeholder {

@@ -60,6 +60,7 @@
 		inset: 0;
 		background: rgba(6, 19, 58, 0.6);
 		z-index: var(--z-overlay);
+		-webkit-backdrop-filter: blur(2px);
 		backdrop-filter: blur(2px);
 	}
 }
@@ -167,5 +168,19 @@
 @media (min-width: 1280px) {
 	.chuqui-layout {
 		padding-inline: 1.5rem;
+	}
+}
+
+/* Notch / Dynamic Island: respect safe areas on iOS with viewport-fit=cover. */
+@supports (padding: env(safe-area-inset-bottom)) {
+	.chuqui-whatsapp {
+		bottom: calc(1.5rem + env(safe-area-inset-bottom));
+		right: calc(1.5rem + env(safe-area-inset-right));
+	}
+	.music-mini-player {
+		bottom: calc(0 + env(safe-area-inset-bottom));
+	}
+	.social-share-floating--mobile {
+		padding-bottom: env(safe-area-inset-bottom);
 	}
 }
