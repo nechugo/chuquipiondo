@@ -275,6 +275,14 @@ function chuquipiondo_register_global( $wp_customize ) {
 		'sanitize_callback' => 'chuquipiondo_sanitize_select',
 		'priority'          => 42,
 	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'ad_gap', array(
+		'label'             => __( 'Separacion de anuncios (px)', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_global',
+		'type'              => 'range',
+		'input_attrs'       => array( 'min' => 0, 'max' => 60, 'step' => 1 ),
+		'sanitize_callback' => 'chuquipiondo_sanitize_range',
+		'priority'          => 43,
+	) );
 	chuquipiondo_add_setting_control( $wp_customize, 'sidebar_width', array(
 		'label'             => __( 'Ancho de la barra lateral (px)', 'chuquipiondo' ),
 		'section'           => 'chuquipiondo_global',

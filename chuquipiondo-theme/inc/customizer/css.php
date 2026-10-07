@@ -72,6 +72,7 @@ function chuquipiondo_dynamic_css() {
 		'button-letter-sp'  => chuquipiondo_get_option( 'button_letter_spacing' ) . 'em',
 		'spacing-base'       => chuquipiondo_get_option( 'spacing_base' ) . 'px',
 		'media-aspect'       => chuquipiondo_media_aspect_css(),
+		'ad-gap'             => max( 0, (int) chuquipiondo_get_option( 'ad_gap' ) ) . 'px',
 	);
 
 	// Header colors (Astra-style per-row customization).
