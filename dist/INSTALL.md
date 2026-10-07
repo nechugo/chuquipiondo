@@ -10,7 +10,7 @@ Reconstrucción completa de los 4 entregables, verificados uno a uno.
 | `chuquipiondo-child.zip` | Tema hijo | 1.7.0 | ~2 KB |
 | `chuquipiondo-core.zip` | Plugin core | 1.7.0 | ~22 KB |
 | `chuquipiondo-companion.zip` | Plugin companion | 1.7.0 | ~36 KB |
-| `chuquipiondo-bundle-v1.7.0.zip` | Los 4 anteriores en un solo ZIP | 1.7.0 | ~295 KB |
+| `chuquipiondo-bundle-v1.11.0.zip` | Los 4 anteriores en un solo ZIP | 1.7.0 | ~295 KB |
 
 ## ⚠️ Cómo descargar SIN corrupción (repo privado)
 
