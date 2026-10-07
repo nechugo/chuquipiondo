@@ -54,6 +54,14 @@ function chuquipiondo_setup() {
 	// Editor styles (Gutenberg).
 	add_editor_style( 'assets/css/_editor.css' );
 
+	// WooCommerce (external plugin): declare basic support so its
+	// templates render with the theme layout; no WooCommerce-specific
+	// styling is forced when the plugin is inactive.
+	add_theme_support( 'woocommerce' );
+	add_theme_support( 'wc-product-gallery-zoom' );
+	add_theme_support( 'wc-product-gallery-lightbox' );
+	add_theme_support( 'wc-product-gallery-slider' );
+
 	// Image sizes for the magazine layout. Ratios match the CSS containers
 	// (16:9 cards/featured, 1:1 square, ~21:9 hero) so nothing gets
 	// double-cropped, pixelated or stretched.

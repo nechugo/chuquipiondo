@@ -3992,7 +3992,6 @@ body.has-hero .hero--full-viewport,
 	height: auto;
 	max-width: 100%;
 }
-.wp-block-embed.is-type-rich iframe,
 .wp-block-embed.is-audio iframe {
 	height: auto !important;
 }
