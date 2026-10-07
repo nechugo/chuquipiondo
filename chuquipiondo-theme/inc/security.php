@@ -62,6 +62,11 @@ function chuquipiondo_ad_container_fallback() {
 		setTimeout(function() {
 			var ads = document.querySelectorAll('.chuqui-ad');
 			ads.forEach(function(ad) {
+				// Never hide AdSense units (ins.adsbygoogle): they fill
+				// asynchronously; hiding them loses valid impressions.
+				if (ad.querySelector('ins.adsbygoogle')) {
+					return;
+				}
 				if (!ad.innerHTML.trim() || ad.offsetHeight === 0) {
 					ad.style.display = 'none';
 				}

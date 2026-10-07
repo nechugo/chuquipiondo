@@ -364,17 +364,20 @@ function chuquipiondo_dynamic_css() {
  */
 function chuquipiondo_print_dynamic_css() {
 	// Cache the generated CSS string: rebuilt only when Customizer saves.
+	// Guards: a corrupted object cache must NEVER white-screen the site.
 	$cache_key = 'chuquipiondo_dynamic_css_v' . CHUQUIPIONDO_VERSION;
 	if ( is_customize_preview() ) {
 		$css = chuquipiondo_dynamic_css();
 	} else {
 		$css = get_transient( $cache_key );
-		if ( false === $css ) {
+		if ( ! is_string( $css ) ) {
 			$css = chuquipiondo_dynamic_css();
-			set_transient( $cache_key, $css, DAY_IN_SECONDS );
+			if ( is_string( $css ) ) {
+				set_transient( $cache_key, $css, DAY_IN_SECONDS );
+			}
 		}
 	}
-	if ( $css ) {
+	if ( is_string( $css ) && '' !== $css ) {
 		echo '<style id="chuquipiondo-dynamic-css">' . wp_strip_all_tags( $css ) . '</style>' . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput -- CSS only, stripped.
 	}
 }
