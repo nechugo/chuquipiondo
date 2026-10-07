@@ -40,10 +40,11 @@
 	--reading-width: 800px;
 	--sidebar-width: 340px;
 
-	/* Radii. */
-	--radius-content: 10px;
-	--radius-button: 8px;
-	--radius-sm: 6px;
+	/* Radii. Unified 7px design language; content can scale via Customizer. */
+	--radius: 7px;
+	--radius-content: 7px;
+	--radius-button: 7px;
+	--radius-sm: 7px;
 
 	/* Spacing scale. */
 	--spacing-base: 8px;

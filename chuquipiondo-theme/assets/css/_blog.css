@@ -33,10 +33,11 @@
 .blog-hero {
 	position: relative;
 	height: 390px;
-	border-radius: 9px;
+	border-radius: var(--radius-content, 7px);
 	overflow: hidden;
-	background: #ddd;
-	margin-bottom: 40px;
+	background: var(--paper, #e8edf5);
+	margin-bottom: var(--space-10);
+	box-shadow: var(--shadow);
 }
 
 .blog-hero__slide {
@@ -64,12 +65,12 @@
 	transform: translate(-50%, -50%);
 	width: min(620px, 75%);
 	padding: 10px 14px;
-	border-radius: 12px;
+	border-radius: var(--radius-sm, 7px);
 	background: rgba(255, 255, 255, 0.92);
 	font-size: 23px;
 	font-weight: 700;
 	line-height: 1.35;
-	color: #555;
+	color: var(--ink, #1a2233);
 }
 
 .blog-hero__title {
@@ -81,7 +82,7 @@
 	text-align: center;
 	color: white;
 	font-size: 24px;
-	background: rgba(20, 101, 196, 0.75);
+	background: rgba(6, 19, 58, 0.72);
 }
 
 .blog-hero__arrow {
@@ -93,7 +94,7 @@
 	border-radius: 50%;
 	width: 28px;
 	height: 28px;
-	background: #070707;
+	background: var(--navy, #06133a);
 	color: white;
 	font-size: 18px;
 	cursor: pointer;
@@ -114,9 +115,9 @@
 .post-card {
 	background: white;
 	overflow: hidden;
-	border: 1px solid #e5e7eb;
-	border-radius: 10px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+	border: 1px solid rgba(10, 31, 68, 0.1);
+	border-radius: var(--radius-content, 7px);
+	box-shadow: var(--shadow-sm);
 	transition: transform 0.25s ease, box-shadow 0.25s ease;
 	display: flex;
 	flex-direction: column;
@@ -242,9 +243,9 @@
 
 /* ===== Skeleton cards (placeholder widgets) ===== */
 .skeleton-card {
-	border: 1px solid #bbb;
-	background: #fff;
-	border-radius: 8px;
+	border: 1px solid rgba(10, 31, 68, 0.12);
+	background: var(--white, #fff);
+	border-radius: var(--radius-sm, 7px);
 	overflow: hidden;
 	margin-bottom: 12px;
 }

@@ -29,8 +29,8 @@ blockquote {
 }
 
 .wp-block-button__link {
-	background: #27b6ff;
-	color: #0a1f44;
-	border-radius: 8px;
+	background: var(--button-bg, #27b6ff);
+	color: var(--button-text, #0a1f44);
+	border-radius: var(--radius-button, 7px);
 	font-weight: 600;
 }

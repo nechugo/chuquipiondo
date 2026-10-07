@@ -41,10 +41,11 @@
 	--reading-width: 800px;
 	--sidebar-width: 340px;
 
-	/* Radii. */
-	--radius-content: 10px;
-	--radius-button: 8px;
-	--radius-sm: 6px;
+	/* Radii. Unified 7px design language; content can scale via Customizer. */
+	--radius: 7px;
+	--radius-content: 7px;
+	--radius-button: 7px;
+	--radius-sm: 7px;
 
 	/* Spacing scale. */
 	--spacing-base: 8px;
@@ -502,7 +503,7 @@ th {
 
 /* Tarjetas para cada widget del sidebar. */
 .widget-area .widget {
-	border-radius: 0;
+	border-radius: var(--radius-content, 7px);
 	background: var(--white, #ffffff);
 	padding: var(--sidebar-card-padding, 16px);
 	margin-bottom: var(--sidebar-card-gap, 12px);
@@ -1695,10 +1696,11 @@ body.has-hero .hero--full-viewport,
 .blog-hero {
 	position: relative;
 	height: 390px;
-	border-radius: 9px;
+	border-radius: var(--radius-content, 7px);
 	overflow: hidden;
-	background: #ddd;
-	margin-bottom: 40px;
+	background: var(--paper, #e8edf5);
+	margin-bottom: var(--space-10);
+	box-shadow: var(--shadow);
 }
 
 .blog-hero__slide {
@@ -1726,12 +1728,12 @@ body.has-hero .hero--full-viewport,
 	transform: translate(-50%, -50%);
 	width: min(620px, 75%);
 	padding: 10px 14px;
-	border-radius: 12px;
+	border-radius: var(--radius-sm, 7px);
 	background: rgba(255, 255, 255, 0.92);
 	font-size: 23px;
 	font-weight: 700;
 	line-height: 1.35;
-	color: #555;
+	color: var(--ink, #1a2233);
 }
 
 .blog-hero__title {
@@ -1743,7 +1745,7 @@ body.has-hero .hero--full-viewport,
 	text-align: center;
 	color: white;
 	font-size: 24px;
-	background: rgba(20, 101, 196, 0.75);
+	background: rgba(6, 19, 58, 0.72);
 }
 
 .blog-hero__arrow {
@@ -1755,7 +1757,7 @@ body.has-hero .hero--full-viewport,
 	border-radius: 50%;
 	width: 28px;
 	height: 28px;
-	background: #070707;
+	background: var(--navy, #06133a);
 	color: white;
 	font-size: 18px;
 	cursor: pointer;
@@ -1776,9 +1778,9 @@ body.has-hero .hero--full-viewport,
 .post-card {
 	background: white;
 	overflow: hidden;
-	border: 1px solid #e5e7eb;
-	border-radius: 10px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+	border: 1px solid rgba(10, 31, 68, 0.1);
+	border-radius: var(--radius-content, 7px);
+	box-shadow: var(--shadow-sm);
 	transition: transform 0.25s ease, box-shadow 0.25s ease;
 	display: flex;
 	flex-direction: column;
@@ -1904,9 +1906,9 @@ body.has-hero .hero--full-viewport,
 
 /* ===== Skeleton cards (placeholder widgets) ===== */
 .skeleton-card {
-	border: 1px solid #bbb;
-	background: #fff;
-	border-radius: 8px;
+	border: 1px solid rgba(10, 31, 68, 0.12);
+	background: var(--white, #fff);
+	border-radius: var(--radius-sm, 7px);
 	overflow: hidden;
 	margin-bottom: 12px;
 }
@@ -2109,6 +2111,7 @@ body.has-hero .hero--full-viewport,
 	width: 100%;
 	height: 340px;
 	overflow: hidden;
+	border-radius: var(--radius-content, 7px);
 }
 
 .single-hero-image img {
@@ -2126,8 +2129,8 @@ body.has-hero .hero--full-viewport,
 /* ===== Author bar ===== */
 .author-bar {
 	height: 34px;
-	border-top: 1px solid #2572cf;
-	border-bottom: 1px solid #2572cf;
+	border-top: 1px solid rgba(39, 182, 255, 0.35);
+	border-bottom: 1px solid rgba(39, 182, 255, 0.35);
 	background: #fff;
 	display: flex;
 	align-items: center;
@@ -2147,8 +2150,8 @@ body.has-hero .hero--full-viewport,
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
-	background: #000;
-	color: #fff;
+	background: var(--navy, #0a1f44);
+	color: var(--white, #fff);
 	display: grid;
 	place-items: center;
 	font-size: 12px;
@@ -2198,10 +2201,12 @@ body.has-hero .hero--full-viewport,
 }
 
 .entry-title.single-article__title {
-	font-size: 18px;
-	margin: 0 0 5px;
+	font-family: var(--font-heading);
+	font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.125rem);
+	margin: 0 0 var(--space-3);
 	text-transform: uppercase;
-	line-height: 1.3;
+	line-height: 1.25;
+	color: var(--navy);
 }
 
 .entry-meta.single-article__meta {
@@ -2260,7 +2265,7 @@ body.has-hero .hero--full-viewport,
 	font-size: 14px;
 	font-weight: 700;
 	line-height: 1.35;
-	color: #555;
+	color: var(--ink, #1a2233);
 	z-index: 2;
 }
 
@@ -2611,7 +2616,7 @@ body.has-hero .hero--full-viewport,
 
 /* Mini skeleton cards for related. */
 .related-mini {
-	border: 1px solid #ddd;
+	border: 1px solid rgba(10, 31, 68, 0.12);
 	background: #fff;
 	overflow: hidden;
 }
@@ -2788,12 +2793,12 @@ body.has-hero .hero--full-viewport,
 	box-sizing: border-box;
 }
 
-/* In-content ads: 300x250 max, 5px gap, never wider than container. */
+/* In-content ads: fluid, adapt to available content width (never overflow). */
 .chuqui-ad--in-content {
-	margin: 5px auto;
+	margin: var(--space-4) auto;
 	padding: 0;
-	max-width: 300px;
-	min-height: 250px;
+	width: 100%;
+	max-width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -2801,10 +2806,15 @@ body.has-hero .hero--full-viewport,
 	overflow: hidden;
 	box-sizing: border-box;
 }
+.chuqui-ad--in-content > * {
+	margin-inline: auto;
+	max-width: 100%;
+	box-sizing: border-box;
+}
 
 .entry-content .chuqui-ad--in-content {
-	margin-top: 5px;
-	margin-bottom: 5px;
+	margin-top: var(--space-4);
+	margin-bottom: var(--space-4);
 }
 
 /* Sidebar ads: never wider than the sidebar. */
@@ -2830,10 +2840,6 @@ body.has-hero .hero--full-viewport,
 	.chuqui-ad {
 		margin: var(--space-4) auto;
 		padding-inline: 1rem;
-	}
-	.chuqui-ad--in-content {
-		max-width: 100%;
-		margin: 5px auto;
 	}
 }
 

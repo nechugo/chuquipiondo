@@ -37,6 +37,7 @@
 	width: 100%;
 	height: 340px;
 	overflow: hidden;
+	border-radius: var(--radius-content, 7px);
 }
 
 .single-hero-image img {
@@ -54,8 +55,8 @@
 /* ===== Author bar ===== */
 .author-bar {
 	height: 34px;
-	border-top: 1px solid #2572cf;
-	border-bottom: 1px solid #2572cf;
+	border-top: 1px solid rgba(39, 182, 255, 0.35);
+	border-bottom: 1px solid rgba(39, 182, 255, 0.35);
 	background: #fff;
 	display: flex;
 	align-items: center;
@@ -75,8 +76,8 @@
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
-	background: #000;
-	color: #fff;
+	background: var(--navy, #0a1f44);
+	color: var(--white, #fff);
 	display: grid;
 	place-items: center;
 	font-size: 12px;
@@ -126,10 +127,12 @@
 }
 
 .entry-title.single-article__title {
-	font-size: 18px;
-	margin: 0 0 5px;
+	font-family: var(--font-heading);
+	font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.125rem);
+	margin: 0 0 var(--space-3);
 	text-transform: uppercase;
-	line-height: 1.3;
+	line-height: 1.25;
+	color: var(--navy);
 }
 
 .entry-meta.single-article__meta {
@@ -188,7 +191,7 @@
 	font-size: 14px;
 	font-weight: 700;
 	line-height: 1.35;
-	color: #555;
+	color: var(--ink, #1a2233);
 	z-index: 2;
 }
 
@@ -539,7 +542,7 @@
 
 /* Mini skeleton cards for related. */
 .related-mini {
-	border: 1px solid #ddd;
+	border: 1px solid rgba(10, 31, 68, 0.12);
 	background: #fff;
 	overflow: hidden;
 }

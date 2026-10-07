@@ -66,7 +66,7 @@ function chuquipiondo_defaults() {
 		'sidebar_card_shadow'    => '0',
 		'sidebar_card_gap'        => '12',
 		'sidebar_disable_scroll' => '1',
-		'content_radius'         => '10',
+		'content_radius'         => '7',
 		/* ===== Botones (sistema completo) ===== */
 		'button_width_mode'      => 'auto',          // auto | fixed | full | percent
 		'button_width'           => '50',            // px (modo fixed)
