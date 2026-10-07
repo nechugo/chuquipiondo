@@ -1612,11 +1612,21 @@ body.has-hero .hero--full-viewport,
 	opacity: 0.8;
 }
 
-/* Home ad slots. */
+/* Home ad slots: horizontal fluid banners, 15px separation. */
 .home-builder__ads {
-	max-width: var(--container-width);
-	margin-inline: auto;
-	padding: 0 1.5rem;
+	width: 100%;
+	max-width: 100%;
+	margin-top: var(--ad-gap, 15px);
+	margin-bottom: var(--ad-gap, 15px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow: hidden;
+}
+.home-builder__ads > * {
+	width: 100%;
+	max-width: 100%;
+	margin: 0;
 }
 
 .home-ads-widget {
@@ -1887,8 +1897,10 @@ body.has-hero .hero--full-viewport,
    sin placeholder gris. El slot real lo provee chuquipiondo_ad_slot(). */
 .wide-ad {
 	grid-column: 1 / -1;
-	min-height: 132px;
-	margin: 16px 0 18px;
+	width: 100%;
+	max-width: 100%;
+	margin-top: var(--ad-gap, 15px);
+	margin-bottom: var(--ad-gap, 15px);
 	display: grid;
 	place-items: center;
 	background: transparent;
@@ -2050,7 +2062,8 @@ body.has-hero .hero--full-viewport,
 	}
 
 	.wide-ad {
-		height: 110px;
+		height: auto;
+		min-height: 0;
 		font-size: 18px;
 	}
 
@@ -2777,84 +2790,118 @@ body.has-hero .hero--full-viewport,
 /**
  * Advertising slots.
  *
- * All ads are constrained to their container and never overflow
- * the 1280px max-width. Each ad type has its own max-width so
- * it stays within its widget/box without breaking layout.
+ * Horizontal, fluid banners: every ad adapts to the width of its
+ * content column (blog sections, pages, single posts, between
+ * paragraphs) and keeps a fixed 15px breathing room above and below.
+ * Ads never overflow the theme container, on any device.
  */
 
-/* Generic ad wrapper: centered, never overflows. */
-.chuqui-ad {
-	margin: var(--space-5) auto;
-	max-width: var(--container-width);
-	padding-inline: 1.5rem;
-	text-align: center;
-	display: flex;
-	justify-content: center;
-	overflow: hidden;
-	box-sizing: border-box;
+/* Fixed ad separation: 15px above and below every banner. */
+:root {
+	--ad-gap: 15px;
 }
 
-/* In-content ads: fluid, adapt to available content width (never overflow). */
-.chuqui-ad--in-content {
-	margin: var(--space-4) auto;
-	padding: 0;
-	width: 100%;
-	max-width: 100%;
+/* Generic ad wrapper: horizontal, fluid, centered, never overflows. */
+.chuqui-ad {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 5px;
+	width: 100%;
+	max-width: 100%;
+	margin-top: var(--ad-gap, 15px);
+	margin-bottom: var(--ad-gap, 15px);
+	padding-inline: 0;
+	text-align: center;
 	overflow: hidden;
 	box-sizing: border-box;
 }
-.chuqui-ad--in-content > * {
-	margin-inline: auto;
+.chuqui-ad > * {
+	width: 100%;
 	max-width: 100%;
+	margin-inline: auto;
 	box-sizing: border-box;
 }
 
+/* In-content ads (between paragraphs, after title, etc.):
+   full width of the reading column, horizontal banner. */
+.chuqui-ad--in-content,
 .entry-content .chuqui-ad--in-content {
-	margin-top: var(--space-4);
-	margin-bottom: var(--space-4);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	max-width: 100%;
+	margin-top: var(--ad-gap, 15px);
+	margin-bottom: var(--ad-gap, 15px);
+	padding: 0;
+	overflow: hidden;
+	box-sizing: border-box;
 }
 
-/* Sidebar ads: never wider than the sidebar. */
+/* Wide horizontal banners (728x90 and similar) fill the content width. */
+.chuqui-ad--in-content > *,
+.chuqui-ad > ins,
+.chuqui-ad > iframe,
+.chuqui-ad > img {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	margin-inline: auto;
+	box-sizing: border-box;
+}
+
+/* Between blog grid rows and home modules: full-width horizontal strip. */
+.home-builder__ads,
+.chuqui-ad--wide,
+.chuqui-ad--ads_blog_after_row,
+.chuqui-ad--ads_blog_top,
+.chuqui-ad--ads_blog_bottom {
+	width: 100%;
+	max-width: 100%;
+	margin-top: var(--ad-gap, 15px);
+	margin-bottom: var(--ad-gap, 15px);
+}
+
+/* Sidebar ads: vertical column, still keep the 15px separation. */
 .chuqui-ad--sidebar_top,
 .chuqui-ad--sidebar_middle,
 .chuqui-ad--sidebar_bottom {
-	margin: var(--space-4) 0;
+	margin-top: var(--ad-gap, 15px);
+	margin-bottom: var(--ad-gap, 15px);
 	padding: 0;
 	max-width: 100%;
 	overflow: hidden;
 	box-sizing: border-box;
 }
 
-/* AdSense responsive units: constrain to parent. */
+/* AdSense responsive units: constrain to parent, horizontal flow. */
 .chuqui-ad ins.adsbygoogle {
 	display: block;
+	width: 100%;
 	max-width: 100%;
 	overflow: hidden;
 }
 
-/* Mobile: reduce margins, keep ads within viewport. */
-@media (max-width: 767px) {
-	.chuqui-ad {
-		margin: var(--space-4) auto;
-		padding-inline: 1rem;
-	}
-}
-
 /* Prevent any ad child from breaking layout. */
-.chuqui-ad > * {
-	max-width: 100%;
-	box-sizing: border-box;
-}
-
 .chuqui-ad iframe,
 .chuqui-ad ins,
 .chuqui-ad div {
 	max-width: 100% !important;
 	overflow: hidden;
+}
+
+/* Mobile: keep the 15px separation; banners stay fluid to viewport. */
+@media (max-width: 767px) {
+	.chuqui-ad,
+	.chuqui-ad--in-content,
+	.entry-content .chuqui-ad--in-content {
+		margin-top: var(--ad-gap, 15px);
+		margin-bottom: var(--ad-gap, 15px);
+		padding-inline: 0;
+	}
 }
 
 /* ===== assets/css/_social.css ===== */

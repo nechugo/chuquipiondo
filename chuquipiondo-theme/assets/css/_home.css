@@ -210,11 +210,21 @@
 	opacity: 0.8;
 }
 
-/* Home ad slots. */
+/* Home ad slots: horizontal fluid banners, 15px separation. */
 .home-builder__ads {
-	max-width: var(--container-width);
-	margin-inline: auto;
-	padding: 0 1.5rem;
+	width: 100%;
+	max-width: 100%;
+	margin-top: var(--ad-gap, 15px);
+	margin-bottom: var(--ad-gap, 15px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow: hidden;
+}
+.home-builder__ads > * {
+	width: 100%;
+	max-width: 100%;
+	margin: 0;
 }
 
 .home-ads-widget {
