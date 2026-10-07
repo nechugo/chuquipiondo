@@ -135,6 +135,7 @@ class Chuquipiondo_Core_Tabs_Widget extends WP_Widget {
 			'post_type'           => 'post',
 			'posts_per_page'      => $count,
 			'ignore_sticky_posts' => 1,
+			'no_found_rows'       => true,
 		) );
 
 		$popular = new WP_Query( array(
@@ -143,6 +144,7 @@ class Chuquipiondo_Core_Tabs_Widget extends WP_Widget {
 			'orderby'             => 'comment_count',
 			'order'               => 'DESC',
 			'ignore_sticky_posts' => 1,
+			'no_found_rows'       => true,
 		) );
 
 		echo wp_kses_post( $args['before_widget'] );

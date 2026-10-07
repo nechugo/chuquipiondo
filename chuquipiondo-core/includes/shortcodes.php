@@ -103,6 +103,7 @@ function chuquipiondo_core_music_shortcode( $atts ) {
 		'post_type'           => 'musica',
 		'posts_per_page'      => (int) $atts['count'],
 		'ignore_sticky_posts' => 1,
+		'no_found_rows'       => true,
 	) );
 
 	if ( ! $q->have_posts() ) {
