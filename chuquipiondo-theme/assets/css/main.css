@@ -2275,6 +2275,8 @@ body.has-hero .hero--full-viewport,
 	line-height: var(--single-content-lh, 1.7);
 	text-align: justify;
 	background: transparent;
+	overflow-wrap: break-word;
+	word-break: break-word;
 }
 
 .entry-content.single-article__content > p {

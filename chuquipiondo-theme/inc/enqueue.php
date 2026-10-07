@@ -169,6 +169,9 @@ function chuquipiondo_disable_emojis() {
 }
 add_action( 'init', 'chuquipiondo_disable_emojis', 9999 );
 
-remove_action( 'wp_head', 'wp_generator' );
-remove_action( 'wp_head', 'wlwmanifest_link' );
-remove_action( 'wp_head', 'rsd_link' );
+function chuquipiondo_remove_head_bloat() {
+	remove_action( 'wp_head', 'wp_generator' );
+	remove_action( 'wp_head', 'wlwmanifest_link' );
+	remove_action( 'wp_head', 'rsd_link' );
+}
+add_action( 'init', 'chuquipiondo_remove_head_bloat', 9999 );
