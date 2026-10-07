@@ -72,6 +72,19 @@ final class Chuquipiondo_AI {
 			'permission_callback' => array( $this, 'rest_can_edit' ),
 		) );
 
+		register_rest_route( $namespace, '/site-analysis', array(
+			'methods' => 'GET',
+			'callback' => array( $this, 'rest_site_analysis' ),
+			'permission_callback' => array( $this, 'rest_can_edit' ),
+		) );
+
+		register_rest_route( $namespace, '/site-proposals', array(
+			'methods' => 'POST',
+			'callback' => array( $this, 'rest_site_proposals' ),
+			'permission_callback' => array( $this, 'rest_can_edit' ),
+			'args' => array( 'count' => array( 'default' => 5, 'sanitize_callback' => 'absint' ) ),
+		) );
+
 		register_rest_route( $namespace, '/generate', array(
 			'methods' => 'POST',
 			'callback' => array( $this, 'rest_generate' ),
@@ -263,6 +276,33 @@ final class Chuquipiondo_AI {
 			return new WP_Error( 'no_access', __( 'No puedes acceder a este contenido.', 'chuquipiondo-ai' ), array( 'status' => 403 ) );
 		}
 		return rest_ensure_response( chuquipiondo_ai_analyze_post_images( $post ) );
+	}
+
+	public function rest_site_analysis( $request ) {
+		if ( ! function_exists( 'chuquipiondo_ai_read_site' ) ) {
+			return new WP_Error( 'ai_no_reader', __( 'El lector del sitio no esta disponible.', 'chuquipiondo-ai' ), array( 'status' => 500 ) );
+		}
+		$max = (int) $request->get_param( 'max_posts' );
+		$site = chuquipiondo_ai_read_site( $max > 0 ? $max : 30 );
+		return rest_ensure_response( array(
+			'categories'   => $site['categories'],
+			'top_articles'=> $site['top_articles'],
+			'recent_count' => count( (array) $site['recent_titles'] ),
+			'recent_titles'=> array_slice( (array) $site['recent_titles'], 0, 10 ),
+			'digest'      => $site['digest'],
+		) );
+	}
+
+	public function rest_site_proposals( $request ) {
+		if ( ! function_exists( 'chuquipiondo_ai_propose_from_site' ) ) {
+			return new WP_Error( 'ai_no_reader', __( 'El lector del sitio no esta disponible.', 'chuquipiondo-ai' ), array( 'status' => 500 ) );
+		}
+		$count = (int) $request->get_param( 'count' );
+		$result = chuquipiondo_ai_propose_from_site( $count > 0 ? $count : 5 );
+		if ( is_wp_error( $result ) ) {
+			return $result;
+		}
+		return rest_ensure_response( array( 'proposals' => $result ) );
 	}
 
 	public function rest_queue_batch( $request ) {

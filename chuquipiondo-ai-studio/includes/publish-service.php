@@ -71,6 +71,23 @@ final class Chuquipiondo_AI_Publish_Service {
 
 		$client = Chuquipiondo_AI::instance()->client;
 
+		// Site-informed context: the article must be unique vs. what exists
+		// and aligned with what readers actually read (when data is available).
+		$site_context = '';
+		if ( function_exists( 'chuquipiondo_ai_read_site' ) ) {
+			$site = chuquipiondo_ai_read_site( 20 );
+			if ( ! empty( $site['recent_titles'] ) ) {
+				$site_context = "\n\nCONTEXTO DEL SITIO (no dupliques estos titulos ni trates los mismos angulos):\n- "
+					. implode( "\n- ", array_slice( (array) $site['recent_titles'], 0, 15 ) );
+				$top = (array) $site['top_articles'];
+				if ( ! empty( $top ) ) {
+					$top_titles = wp_list_pluck( $top, 'title' );
+					$site_context .= "\n\nTEMAS QUE MAS SE LEEN (puedes inspirarte, sin repetir): " . implode( '; ', array_slice( $top_titles, 0, 5 ) );
+				}
+				$site_context .= "\n";
+			}
+		}
+
 		// 1) Title (generate if not provided).
 		$title = $title_in;
 		if ( '' === $title ) {
@@ -86,7 +103,7 @@ final class Chuquipiondo_AI_Publish_Service {
 		$article = $client->run_task(
 			'full_article',
 			$topic,
-			$extra,
+			$extra . $site_context,
 			array( 'words' => $words, 'images' => $imgs )
 		);
 		if ( is_wp_error( $article ) ) {

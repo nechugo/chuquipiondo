@@ -276,6 +276,59 @@
 		});
 	}
 
+	
+	/* ===== Site analysis (IA reads the whole site) ===== */
+	function siteAnalysis() {
+		var out = el('cai-site-results');
+		if (!out) { return; }
+		out.innerHTML = '<p>Cargando analisis del sitio...</p>';
+		api('GET', '/site-analysis').then(function (data) {
+			var html = '<h3>Articulos mas leidos</h3><ol>';
+			(data.top_articles || []).forEach(function (a) {
+				html += '<li><a href="' + a.url + '" target="_blank">' + a.title + '</a> — <strong>' + a.views + ' lecturas</strong></li>';
+			});
+			html += '</ol>';
+			if (!data.top_articles || !data.top_articles.length) {
+				html += '<p><em>Aun no hay lecturas registradas: el contador empieza a funcionar desde ahora con cada visita. Mientras tanto, el ranking usa comentarios.</em></p>';
+			}
+			html += '<h3>Categorias (' + (data.categories || []).length + ')</h3><p>' + (data.categories || []).join(' · ') + '</p>';
+			out.innerHTML = html;
+		}).catch(function (e) {
+			out.innerHTML = '<p class="error">Error: ' + (e && e.message ? e.message : 'desconocido') + '</p>';
+		});
+	}
+
+	function siteProposals() {
+		var out = el('cai-site-results');
+		if (!out) { return; }
+		out.innerHTML = '<p>La IA esta revisando tu sitio y preparando propuestas...</p>';
+		api('POST', '/site-proposals', { count: 5 }).then(function (data) {
+			var html = '<h3>Propuestas basadas en tu contenido</h3>';
+			(data.proposals || []).forEach(function (p, i) {
+				html += '<div style="border:1px solid #ddd;border-radius:7px;padding:12px;margin-bottom:10px;">';
+				html += '<strong>' + (i + 1) + '. ' + p.topic + '</strong>';
+				if (p.angle) { html += '<p><em>Angulo:</em> ' + p.angle + '</p>'; }
+				if (p.why) { html += '<p><em>Por que:</em> ' + p.why + '</p>'; }
+				if (p.target_keyword) { html += '<p><em>Palabra clave:</em> ' + p.target_keyword + '</p>'; }
+				html += '<button type="button" class="button button-primary cai-use-topic" data-topic="' + p.topic.replace(/"/g, '&quot;') + '">Redactar este articulo</button>';
+				html += '</div>';
+			});
+			out.innerHTML = html;
+			Array.prototype.forEach.call(out.querySelectorAll('.cai-use-topic'), function (btn) {
+				btn.addEventListener('click', function () {
+					var topicInput = el('cai-gen-topic');
+					if (topicInput) {
+						topicInput.value = btn.getAttribute('data-topic');
+						topicInput.scrollIntoView({ behavior: 'smooth' });
+						topicInput.focus();
+					}
+				});
+			});
+		}).catch(function (e) {
+			out.innerHTML = '<p class="error">Error: ' + (e && e.message ? e.message : 'desconocido') + '</p>';
+		});
+	}
+
 	document.addEventListener('DOMContentLoaded', function () {
 		wireTabs();
 		if (el('cai-refresh')) { el('cai-refresh').addEventListener('click', loadList); }
@@ -293,6 +346,8 @@
 		if (el('cai-save')) { el('cai-save').addEventListener('click', function () { save(false); }); }
 		if (el('cai-save-view')) { el('cai-save-view').addEventListener('click', function () { save(true); }); }
 		if (el('cai-gen-run')) { el('cai-gen-run').addEventListener('click', runGenerate); }
+		if (el('cai-site-analysis')) { el('cai-site-analysis').addEventListener('click', siteAnalysis); }
+		if (el('cai-site-proposals')) { el('cai-site-proposals').addEventListener('click', siteProposals); }
 		if (document.querySelector('.chuquipiondo-ai-editor')) { loadList(); }
 	});
 })();
