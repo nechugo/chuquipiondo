@@ -57,6 +57,10 @@ h1 { font-size: 18px; font-weight: 900; }
 	padding: 0 1.25rem;
 	width: 100%;
 }
+/* Logo y buscador pegados al limite de los 1200px dentro del header */
+.header__inner .header__brand { padding-left: 0; }
+.header__inner .header__tools { padding-right: 0; margin-left: 0; }
+.header__inner--split .header__tools { margin-left: auto; }
 
 /* ============ Header full-width ============ */
 .site-header {
@@ -99,7 +103,7 @@ h1 { font-size: 18px; font-weight: 900; }
 	padding: .5rem .75rem;
 	position: relative;
 	color: var(--nn-header-text);
-	font-weight: 600;
+	font-weight: 400;
 	font-size: 14px;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	text-transform: uppercase;
@@ -125,7 +129,8 @@ h1 { font-size: 18px; font-weight: 900; }
 
 .nechugo-search-toggle { background: none; border: 0; color: inherit; cursor: pointer; padding: .5rem; }
 .header__tools { position: relative; margin-left: auto; }
-.nechugo-search-form { position: absolute; right: 0; top: 100%; background: var(--nn-header-bg); padding: 1rem; box-shadow: var(--nn-shadow); z-index: 98; width: min(420px, 90vw); }
+.nechugo-search-form { display: flex; align-items: center; }
+.nechugo-search-toggle { display: none; }
 
 /* Toggle menu movil */
 .nechugo-menu-toggle {
@@ -669,3 +674,31 @@ input:focus-visible,
 .nechugo-header-html { padding-top: .75rem; padding-bottom: .75rem; }
 .nechugo-footer-html { padding-top: 1rem; padding-bottom: 1rem; }
 .nechugo-header-html:empty, .nechugo-footer-html:empty { display: none; }
+
+/* Iconos sociales SVG (reemplazan a los textos) */
+.nechugo-social { display: flex; align-items: center; gap: 2px; }
+.nechugo-social__link {
+	display: inline-flex; align-items: center; justify-content: center;
+	width: 28px; height: 28px; border-radius: 50%;
+	color: inherit; padding: 0;
+	transition: background .15s ease, color .15s ease, transform .15s ease;
+}
+.nechugo-social__link:hover { transform: translateY(-1px); color: #fff; }
+.nechugo-topbar .nechugo-social__link { color: rgba(255,255,255,.9); }
+.nechugo-topbar .nechugo-social__link:hover { background: rgba(255,255,255,.18); color: #fff; }
+.site-footer .nechugo-social__link { color: var(--nn-footer-text); }
+.site-footer .nechugo-social__link:hover { background: rgba(255,255,255,.12); }
+
+/* Buscador de barra 200px alineado al limite derecho */
+.nechugo-search-form-el { display: flex; gap: 0; }
+.nechugo-search-form-el .nechugo-search-field {
+	width: 200px; min-width: 200px; max-width: 200px;
+	padding: .4rem .7rem; border: 1px solid #ddd;
+	border-radius: 6px 0 0 6px; font-size: 13px; border-right: 0;
+	transition: border-color .15s ease, width .2s ease;
+}
+.nechugo-search-form-el .nechugo-search-field:focus { border-color: var(--nn-primary); outline: none; }
+.nechugo-search-form-el .nechugo-search-submit {
+	border-radius: 0 6px 6px 0; padding: 0 .9rem;
+}
+.header__tools { align-items: center; }

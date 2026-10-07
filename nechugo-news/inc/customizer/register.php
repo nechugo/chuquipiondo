@@ -440,6 +440,45 @@ function nechugo_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
+		'menu_font_weight',
+		array(
+			'default'           => 400,
+			'sanitize_callback' => 'nechugo_sanitize_number',
+		)
+	);
+	$wp_customize->add_control(
+		'menu_font_weight',
+		array(
+			'label'   => __( 'Grosor del texto del menu', 'nechugo-news' ),
+			'section' => 'nechugo_menu',
+			'type'    => 'radio',
+			'choices' => array(
+				'400' => __( 'Normal (400)', 'nechugo-news' ),
+				'300' => __( 'Ligth / fino (300)', 'nechugo-news' ),
+				'500' => __( 'Medio (500)', 'nechugo-news' ),
+			),
+		)
+	);
+
+	$wp_customize->add_setting(
+		'search_bar_width',
+		array(
+			'default'           => 200,
+			'sanitize_callback' => 'nechugo_sanitize_number',
+			'transport'         => 'postMessage',
+		)
+	);
+	$wp_customize->add_control(
+		'search_bar_width',
+		array(
+			'label'       => __( 'Ancho de la barra de busqueda (px)', 'nechugo-news' ),
+			'section'     => 'nechugo_header',
+			'type'        => 'number',
+			'input_attrs' => array( 'min' => 140, 'max' => 400, 'step' => 10 ),
+		)
+	);
+
+	$wp_customize->add_setting(
 		'menu_font_family',
 		array(
 			'default'           => 'roboto-condensed',

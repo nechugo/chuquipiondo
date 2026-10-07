@@ -137,6 +137,12 @@ function nechugo_customizer_css() {
 		$css .= 'body{background:linear-gradient(135deg,' . $from . ',' . $to . ') fixed;}';
 	}
 
+	// ============ Menu: grosor de texto y barra de busqueda ============
+	$menu_weight = (int) nechugo_get_option( 'menu_font_weight' );
+	$css .= '.nechugo-nav a{font-weight:' . $menu_weight . ';}';
+	$search_w = max( 140, (int) nechugo_get_option( 'search_bar_width' ) );
+	$css .= '.nechugo-search-form-el .nechugo-search-field{width:' . $search_w . 'px;min-width:' . $search_w . 'px;max-width:' . $search_w . 'px;}';
+
 	// ============ Colores de enlaces globales (Astra: Global Colors) ============
 	$link_c = nechugo_get_option( 'link_color' );
 	$hover_c = nechugo_get_option( 'link_hover_color' );

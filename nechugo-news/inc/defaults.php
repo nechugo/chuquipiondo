@@ -155,6 +155,8 @@ function nechugo_defaults() {
 		'menu_font_family'       => 'sans-serif',
 		'menu_uppercase'         => true,
 		'menu_letter_spacing'    => 2,
+		'menu_font_weight'       => 400,
+		'search_bar_width'       => 200,
 
 		// Footer (3 diseños, full-width).
 		'footer_layout'          => 'footer-1',

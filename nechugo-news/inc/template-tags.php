@@ -38,10 +38,7 @@ function nechugo_search_toggle() {
 		return;
 	}
 	?>
-	<button class="nechugo-search-toggle" aria-label="<?php esc_attr_e( 'Buscar', 'nechugo-news' ); ?>" aria-expanded="false">
-		<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 2a8 8 0 1 0 4.9 14.32l5.39 5.39 1.42-1.42-5.39-5.39A8 8 0 0 0 10 2Zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12Z"/></svg>
-	</button>
-	<div class="nechugo-search-form" hidden>
+	<div class="nechugo-search-form">
 		<?php get_search_form(); ?>
 	</div>
 	<?php
