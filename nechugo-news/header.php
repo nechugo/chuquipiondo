@@ -25,6 +25,11 @@
 	<?php if ( nechugo_is_enabled( 'header_widgets_enable' ) ) : ?>
 		<?php get_template_part( 'template-parts/header/widgets' ); ?>
 	<?php endif; ?>
+	<?php if ( nechugo_is_enabled( 'header_text_html_enable' ) && '' !== trim( (string) nechugo_get_option( 'header_text_html' ) ) ) : ?>
+		<div class="nechugo-header-html nechugo-container">
+			<?php echo nechugo_get_option( 'header_text_html' ); // phpcs:ignore -- saneado en el personalizador; solo administradores. ?>
+		</div>
+	<?php endif; ?>
 </header><!-- #masthead -->
 
 <?php nechugo_ad_slot( 'ad_header_code' ); ?>

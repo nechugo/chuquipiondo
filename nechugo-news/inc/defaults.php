@@ -76,6 +76,8 @@ function nechugo_defaults() {
 		'header_submenu_color'   => '#1c1c1c',
 		'header_submenu_hover_bg' => '#eef4fd',
 		'header_widgets_enable'  => true,
+		'header_text_html'       => '',
+		'header_text_html_enable' => false,
 		'header_sticky'          => true,
 		'header_search_enable'   => true,
 		'header_social_enable'   => true,
@@ -156,6 +158,9 @@ function nechugo_defaults() {
 
 		// Footer (3 diseños, full-width).
 		'footer_layout'          => 'footer-1',
+		'footer_height'          => 0,
+		'footer_text_html'       => '',
+		'footer_text_html_enable' => false,
 		'footer_widgets_enable'  => true,
 		'footer_columns'          => 3,
 		'footer_copyright_enable' => true,

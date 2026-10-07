@@ -664,3 +664,8 @@ input:focus-visible,
 	border-radius: 6px; font-size: 13px; font-weight: 600; margin: 0 .25rem;
 }
 .posts-navigation a:hover { border-color: var(--nn-primary); color: var(--nn-primary); }
+
+/* Zonas de texto/HTML libre en header y footer */
+.nechugo-header-html { padding-top: .75rem; padding-bottom: .75rem; }
+.nechugo-footer-html { padding-top: 1rem; padding-bottom: 1rem; }
+.nechugo-header-html:empty, .nechugo-footer-html:empty { display: none; }

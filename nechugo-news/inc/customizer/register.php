@@ -796,6 +796,39 @@ function nechugo_customize_register( $wp_customize ) {
 		)
 	);
 
+	$wp_customize->add_setting(
+		'header_text_html_enable',
+		array(
+			'default'           => false,
+			'sanitize_callback' => 'nechugo_sanitize_checkbox',
+		)
+	);
+	$wp_customize->add_control(
+		'header_text_html_enable',
+		array(
+			'label'       => __( 'Mostrar zona de texto/HTML en el encabezado', 'nechugo-news' ),
+			'description' => __( 'Cuadro libre para insertar texto, codigo HTML, anuncios, etc.', 'nechugo-news' ),
+			'section'     => 'nechugo_header',
+			'type'        => 'checkbox',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'header_text_html',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'nechugo_sanitize_ad_code',
+		)
+	);
+	$wp_customize->add_control(
+		'header_text_html',
+		array(
+			'label'   => __( 'Contenido de la zona (texto/HTML)', 'nechugo-news' ),
+			'section' => 'nechugo_header',
+			'type'    => 'textarea',
+		)
+	);
+
 	// ============================== FOOTER (3 diseños) ==============================
 	$wp_customize->add_section(
 		'nechugo_footer',
@@ -892,6 +925,57 @@ function nechugo_customize_register( $wp_customize ) {
 			'description' => __( 'Asigna widgets en Apariencia > Widgets: Pie de pagina 1-4.', 'nechugo-news' ),
 			'section'     => 'nechugo_footer',
 			'type'        => 'checkbox',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'footer_height',
+		array(
+			'default'           => 0,
+			'sanitize_callback' => 'nechugo_sanitize_number',
+			'transport'         => 'postMessage',
+		)
+	);
+	$wp_customize->add_control(
+		'footer_height',
+		array(
+			'label'       => __( 'Altura del pie de pagina (px, 0 = automatica)', 'nechugo-news' ),
+			'section'     => 'nechugo_footer',
+			'type'        => 'number',
+			'input_attrs' => array( 'min' => 0, 'max' => 600, 'step' => 10 ),
+		)
+	);
+
+	$wp_customize->add_setting(
+		'footer_text_html_enable',
+		array(
+			'default'           => false,
+			'sanitize_callback' => 'nechugo_sanitize_checkbox',
+		)
+	);
+	$wp_customize->add_control(
+		'footer_text_html_enable',
+		array(
+			'label'       => __( 'Mostrar zona de texto/HTML en el pie', 'nechugo-news' ),
+			'description' => __( 'Cuadro libre para insertar texto, HTML, widgets cortos, etc.', 'nechugo-news' ),
+			'section'     => 'nechugo_footer',
+			'type'        => 'checkbox',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'footer_text_html',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'nechugo_sanitize_ad_code',
+		)
+	);
+	$wp_customize->add_control(
+		'footer_text_html',
+		array(
+			'label'   => __( 'Contenido de la zona (texto/HTML)', 'nechugo-news' ),
+			'section' => 'nechugo_footer',
+			'type'    => 'textarea',
 		)
 	);
 

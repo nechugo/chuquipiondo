@@ -58,3 +58,17 @@ function nechugo_resource_hints( $urls, $relation_type ) {
 	return $urls;
 }
 add_filter( 'wp_resource_hints', 'nechugo_resource_hints', 10, 2 );
+
+/**
+ * Optimizaciones de velocidad: preconnect a Google Fonts y
+ * eliminacion de emojis ya gestionada por la opcion de rendimiento.
+ */
+function nechugo_speed_resource_hints( $urls, $relation_type ) {
+	if ( 'preconnect' === $relation_type ) {
+		$urls[] = array(
+			'href' => 'https://fonts.googleapis.com',
+		);
+	}
+	return $urls;
+}
+add_filter( 'wp_resource_hints', 'nechugo_speed_resource_hints', 10, 2 );
