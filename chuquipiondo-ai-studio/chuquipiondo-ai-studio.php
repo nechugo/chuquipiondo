@@ -55,3 +55,22 @@ function chuquipiondo_ai() {
 	return Chuquipiondo_AI::instance();
 }
 add_action( 'plugins_loaded', 'chuquipiondo_ai' );
+
+/**
+ * Upgrade routine: runs once per plugin version change (update).
+ * Seeds new defaults without overwriting user values.
+ */
+function chuquipiondo_ai_upgrade_routine() {
+	$stored = get_option( 'chuquipiondo_ai_version' );
+	if ( CHUQUIPIONDO_AI_VERSION === $stored ) {
+		return;
+	}
+	$defaults = chuquipiondo_ai_defaults();
+	foreach ( $defaults as $key => $value ) {
+		if ( false === get_option( $key ) ) {
+			add_option( $key, $value );
+		}
+	}
+	update_option( 'chuquipiondo_ai_version', CHUQUIPIONDO_AI_VERSION, false );
+}
+add_action( 'plugins_loaded', 'chuquipiondo_ai_upgrade_routine', 20 );
