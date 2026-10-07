@@ -87,6 +87,23 @@ function chuquipiondo_ad_format( $slot ) {
  *
  * @param string $slot Slot key (must exist in chuquipiondo_ad_slots()).
  */
+/**
+ * Does an ad slot have code configured?
+ *
+ * Templates use this to skip the container entirely when empty: an ad box
+ * must occupy zero space unless real ad code exists in it.
+ *
+ * @param string $slot Slot key.
+ * @return bool
+ */
+function chuquipiondo_ad_slot_has_code( $slot ) {
+	if ( ! chuquipiondo_ads_active() ) {
+		return false;
+	}
+	$code = chuquipiondo_get_option( $slot );
+	return '' !== trim( (string) $code );
+}
+
 function chuquipiondo_ad_slot( $slot ) {
 	if ( ! chuquipiondo_ads_active() ) {
 		return;

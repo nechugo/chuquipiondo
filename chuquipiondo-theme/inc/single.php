@@ -65,10 +65,12 @@ function chuquipiondo_single() {
 		echo '</div>';
 		echo '</header>';
 
-		// Ad after title (728x90 wide).
-		echo '<div class="article-ad-wide">';
-		chuquipiondo_ad_slot( 'ads_after_title' );
-		echo '</div>';
+		// Ad after title (728x90 wide): only when the slot has code.
+		if ( function_exists( 'chuquipiondo_ad_slot_has_code' ) && chuquipiondo_ad_slot_has_code( 'ads_after_title' ) ) {
+			echo '<div class="article-ad-wide">';
+			chuquipiondo_ad_slot( 'ads_after_title' );
+			echo '</div>';
+		}
 
 		// Featured image with stamp.
 		if ( 'hero-image' !== $layout && has_post_thumbnail() ) {
@@ -83,18 +85,19 @@ function chuquipiondo_single() {
 		chuquipiondo_the_content_with_ads();
 		echo '</div>';
 
-		// Ad box (336x280) + paragraph row.
-		echo '<div class="article-row">';
-		echo '<div class="article-ad-box">';
-		chuquipiondo_ad_slot( 'ads_after_paragraph_3' );
-		echo '</div>';
-		echo '<div class="paragraph-box"><p>' . esc_html__( 'Parrafo', 'chuquipiondo' ) . '</p></div>';
-		echo '</div>';
-
-		// Responsive ad.
-		echo '<div class="article-ad-responsive">';
-		chuquipiondo_ad_slot( 'ads_after_paragraph_6' );
-		echo '</div>';
+		// Ad containers render ONLY when the slot has real ad code.
+		if ( function_exists( 'chuquipiondo_ad_slot_has_code' ) && chuquipiondo_ad_slot_has_code( 'ads_after_paragraph_3' ) ) {
+			echo '<div class="article-row">';
+			echo '<div class="article-ad-box">';
+			chuquipiondo_ad_slot( 'ads_after_paragraph_3' );
+			echo '</div>';
+			echo '</div>';
+		}
+		if ( function_exists( 'chuquipiondo_ad_slot_has_code' ) && chuquipiondo_ad_slot_has_code( 'ads_after_paragraph_6' ) ) {
+			echo '<div class="article-ad-responsive">';
+			chuquipiondo_ad_slot( 'ads_after_paragraph_6' );
+			echo '</div>';
+		}
 
 		// Tags.
 		if ( chuquipiondo_is_enabled( 'single_show_tags' ) && has_tag() ) {

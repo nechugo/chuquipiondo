@@ -164,7 +164,8 @@ function chuquipiondo_blog_grid() {
 
 		// Insertar anuncio wide despues de cada $after_posts entradas
 		// (slider -> 2 entradas -> ad -> 2 entradas -> ad -> ...).
-		if ( $counter > 0 && 0 === ( $counter % $after_posts ) ) {
+		if ( $counter > 0 && 0 === ( $counter % $after_posts )
+			&& function_exists( 'chuquipiondo_ad_slot_has_code' ) && chuquipiondo_ad_slot_has_code( 'ads_blog_after_row' ) ) {
 			echo '<div class="wide-ad">';
 			chuquipiondo_ad_slot( 'ads_blog_after_row' );
 			echo '</div>';
