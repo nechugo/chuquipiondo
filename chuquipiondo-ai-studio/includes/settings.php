@@ -245,3 +245,33 @@ function chuquipiondo_ai_settings_page_render() {
 	</div>
 	<?php
 }
+
+/**
+ * When the provider changes, reset the model to the new provider's default
+ * so calls never go out with a foreign model name (causes confusing API errors).
+ */
+function chuquipiondo_ai_sync_model_on_provider_change( $new_provider, $old_provider = '' ) {
+	if ( $new_provider === $old_provider ) {
+		return $new_provider;
+	}
+	if ( ! function_exists( 'chuquipiondo_ai_providers' ) ) {
+		return $new_provider;
+	}
+	$providers = chuquipiondo_ai_providers();
+	if ( ! isset( $providers[ $new_provider ] ) ) {
+		return $new_provider;
+	}
+	$current_model = (string) get_option( 'ai_model', '' );
+	$valid = false;
+	foreach ( $providers as $pid => $cfg ) {
+		if ( in_array( $current_model, (array) $cfg['models'], true ) ) {
+			$valid = true;
+			break;
+		}
+	}
+	if ( ! $valid && ! empty( $providers[ $new_provider ]['models'] ) ) {
+		update_option( 'ai_model', $providers[ $new_provider ]['models'][0], false );
+	}
+	return $new_provider;
+}
+add_filter( 'pre_update_option_ai_provider', 'chuquipiondo_ai_sync_model_on_provider_change', 10, 2 );

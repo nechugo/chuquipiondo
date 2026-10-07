@@ -20,11 +20,25 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return string Binary key, or '' if sodium is unavailable.
  */
 function chuquipiondo_ai_secret_key() {
-	if ( ! function_exists( 'sodium_crypto_generichash' ) ) {
+	if ( ! function_exists( 'sodium_crypto_generichash' ) || ! defined( 'SODIUM_CRYPTO_GENERICHASH_KEYBYTES' ) ) {
 		return '';
 	}
-	$material = (string) AUTH_KEY . AUTH_SALT . LOGGED_IN_KEY . 'chuquipiondo-ai-v1';
-	return sodium_crypto_generichash( $material, '', SODIUM_CRYPTO_GENERICHASH_KEYBYTES );
+	// Derive from whatever auth constants exist: not every install defines all of them.
+	$material = '';
+	foreach ( array( 'AUTH_KEY', 'AUTH_SALT', 'LOGGED_IN_KEY', 'LOGGED_IN_SALT', 'SECURE_AUTH_KEY' ) as $const ) {
+		if ( defined( $const ) ) {
+			$material .= constant( $const );
+		}
+	}
+	if ( '' === $material ) {
+		return ''; // No auth material: keep plaintext storage (still never shown in DOM).
+	}
+	$material .= 'chuquipiondo-ai-v1';
+	try {
+		return sodium_crypto_generichash( $material, '', SODIUM_CRYPTO_GENERICHASH_KEYBYTES );
+	} catch ( Throwable $e ) {
+		return '';
+	}
 }
 
 /**
@@ -42,11 +56,14 @@ function chuquipiondo_ai_encrypt_secret( $plain ) {
 	if ( 0 === strpos( $plain, 'chuqui1:' ) ) {
 		return $plain; // Already encrypted.
 	}
+	if ( ! defined( 'SODIUM_CRYPTO_SECRETBOX_NONCEBYTES' ) || ! function_exists( 'sodium_crypto_secretbox' ) ) {
+		return $plain; // Sodium incomplete: store as-is (still works).
+	}
 	try {
 		$nonce  = random_bytes( SODIUM_CRYPTO_SECRETBOX_NONCEBYTES );
 		$cipher = sodium_crypto_secretbox( $plain, $nonce, $key );
 		return 'chuqui1:' . base64_encode( $nonce . $cipher );
-	} catch ( Exception $e ) {
+	} catch ( Throwable $e ) {
 		return $plain;
 	}
 }
@@ -67,6 +84,9 @@ function chuquipiondo_ai_decrypt_secret( $stored ) {
 	if ( '' === $key ) {
 		return '';
 	}
+	if ( ! defined( 'SODIUM_CRYPTO_SECRETBOX_NONCEBYTES' ) || ! function_exists( 'sodium_crypto_secretbox_open' ) ) {
+		return '';
+	}
 	$raw = base64_decode( substr( $stored, 8 ), true );
 	if ( false === $raw || strlen( $raw ) < SODIUM_CRYPTO_SECRETBOX_NONCEBYTES ) {
 		return '';
@@ -76,7 +96,7 @@ function chuquipiondo_ai_decrypt_secret( $stored ) {
 	try {
 		$plain = sodium_crypto_secretbox_open( $cipher, $nonce, $key );
 		return false === $plain ? '' : $plain;
-	} catch ( Exception $e ) {
+	} catch ( Throwable $e ) {
 		return '';
 	}
 }

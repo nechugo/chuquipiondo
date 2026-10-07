@@ -49,7 +49,10 @@ function chuquipiondo_core_upgrade_routine() {
 	if ( CHUQUIPIONDO_CORE_VERSION === $stored ) {
 		return;
 	}
-	flush_rewrite_rules();
+	// Rewrite flush is deferred to init (after CPTs are registered): doing it
+	// during plugins_loaded flushes rules WITHOUT the music CPT and breaks
+	// permalinks until the next manual flush.
+	add_action( 'init', 'flush_rewrite_rules', 99 );
 	if ( function_exists( 'chuquipiondo_flush_dynamic_css_cache' ) ) {
 		chuquipiondo_flush_dynamic_css_cache();
 	}
