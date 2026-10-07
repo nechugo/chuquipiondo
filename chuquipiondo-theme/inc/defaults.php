@@ -94,6 +94,7 @@ function chuquipiondo_defaults() {
 		'button_shadow_enable'   => '0',
 		'button_shadow_color'    => 'rgba(0,0,0,0.2)',
 		'spacing_base'           => '8',
+		'media_aspect_ratio'     => '16 / 9',
 
 		/* ===== Header system ===== */
 		/* ===== Pre-header (2 columnas encima del header) ===== */

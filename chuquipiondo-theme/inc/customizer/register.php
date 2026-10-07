@@ -262,6 +262,19 @@ function chuquipiondo_register_global( $wp_customize ) {
 		'sanitize_callback' => 'chuquipiondo_sanitize_range',
 		'priority'          => 41,
 	) );
+	chuquipiondo_add_setting_control( $wp_customize, 'media_aspect_ratio', array(
+		'label'             => __( 'Aspecto de videos y embeds', 'chuquipiondo' ),
+		'section'           => 'chuquipiondo_global',
+		'type'              => 'select',
+		'choices'           => array(
+			'16 / 9' => __( '16:9 (estandar)', 'chuquipiondo' ),
+			'4 / 3'  => __( '4:3 (clasico)', 'chuquipiondo' ),
+			'1 / 1'  => __( '1:1 (cuadrado)', 'chuquipiondo' ),
+			'21 / 9' => __( '21:9 (cine)', 'chuquipiondo' ),
+		),
+		'sanitize_callback' => 'chuquipiondo_sanitize_select',
+		'priority'          => 42,
+	) );
 	chuquipiondo_add_setting_control( $wp_customize, 'sidebar_width', array(
 		'label'             => __( 'Ancho de la barra lateral (px)', 'chuquipiondo' ),
 		'section'           => 'chuquipiondo_global',

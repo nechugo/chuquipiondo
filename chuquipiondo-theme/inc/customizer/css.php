@@ -13,6 +13,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Media aspect ratio for video embeds, as a CSS ratio value.
+ *
+ * @return string
+ */
+function chuquipiondo_media_aspect_css() {
+	$aspect = chuquipiondo_get_option( 'media_aspect_ratio' );
+	$whitelist = array( '16 / 9', '4 / 3', '1 / 1', '21 / 9' );
+	if ( ! in_array( $aspect, $whitelist, true ) ) {
+		return '16 / 9';
+	}
+	return $aspect;
+}
+
+/**
  * Build the dynamic CSS string.
  *
  * @return string
@@ -57,6 +71,7 @@ function chuquipiondo_dynamic_css() {
 		'button-shadow'     => chuquipiondo_get_option( 'button_shadow_color' ),
 		'button-letter-sp'  => chuquipiondo_get_option( 'button_letter_spacing' ) . 'em',
 		'spacing-base'       => chuquipiondo_get_option( 'spacing_base' ) . 'px',
+		'media-aspect'       => chuquipiondo_media_aspect_css(),
 	);
 
 	// Header colors (Astra-style per-row customization).

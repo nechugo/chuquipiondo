@@ -117,7 +117,7 @@
 	overflow: hidden;
 	border: 1px solid rgba(10, 31, 68, 0.1);
 	border-radius: var(--radius-content, 7px);
-	box-shadow: var(--shadow-sm);
+	box-shadow: var(--shadow-soft);
 	transition: transform 0.25s ease, box-shadow 0.25s ease;
 	display: flex;
 	flex-direction: column;
@@ -126,7 +126,7 @@
 
 .post-card:hover {
 	transform: translateY(-4px);
-	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+	box-shadow: var(--shadow-lg);
 }
 
 .post-card__media {

@@ -443,7 +443,7 @@
 	margin-bottom: var(--space-6);
 	background: var(--white);
 	border-radius: var(--radius-content);
-	box-shadow: var(--shadow-sm);
+	box-shadow: var(--shadow-soft);
 }
 
 .author-bio__avatar img {
@@ -490,13 +490,13 @@
 	border: 1px solid rgba(10, 31, 68, 0.08);
 	border-radius: 0;
 	overflow: hidden;
-	box-shadow: 0 1px 3px rgba(10, 31, 68, 0.06);
+	box-shadow: var(--shadow-soft);
 	transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .related-posts .post-card:hover {
 	transform: translateY(-3px);
-	box-shadow: 0 6px 20px rgba(10, 31, 68, 0.12);
+	box-shadow: var(--shadow-lg);
 }
 
 .related-posts .post-card__media {
