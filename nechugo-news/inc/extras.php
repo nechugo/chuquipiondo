@@ -55,13 +55,7 @@ add_action( 'wp_footer', 'nechugo_back_to_top' );
  * @param string $handle Handle.
  * @return string
  */
-function nechugo_defer_scripts( $tag, $handle ) {
-	if ( 'nechugo-news-js' === $handle ) {
-		return str_replace( ' src', ' defer src', $tag );
-	}
-	return $tag;
-}
-add_filter( 'script_loader_tag', 'nechugo_defer_scripts', 10, 2 );
+
 
 /**
  * Entradas por pagina segun columnas: 5 por columna (2 cols = 10, 3 = 15, 4 = 20).
@@ -85,3 +79,53 @@ function nechugo_posts_per_page( $query ) {
 	$query->set( 'posts_per_page', $columns * 5 );
 }
 add_action( 'pre_get_posts', 'nechugo_posts_per_page' );
+
+/**
+ * Rendimiento: desactivar el script de emojis de WordPress si esta activo.
+ */
+function nechugo_perf_disable_emojis() {
+	if ( ! nechugo_is_enabled( 'perf_disable_emojis' ) ) {
+		return;
+	}
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+	remove_action( 'admin_print_styles', 'print_emoji_styles' );
+	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+}
+add_action( 'init', 'nechugo_perf_disable_emojis' );
+
+/**
+ * Rendimiento: defer en JS del tema (respetando la opcion del personalizador).
+ *
+ * @param string $tag    Tag script.
+ * @param string $handle Handle.
+ * @return string
+ */
+function nechugo_perf_defer_theme_js( $tag, $handle ) {
+	if ( ! nechugo_is_enabled( 'perf_defer_js' ) || 'nechugo-news-js' !== $handle ) {
+		return $tag;
+	}
+	return str_replace( ' src', ' defer src', $tag );
+}
+add_filter( 'script_loader_tag', 'nechugo_perf_defer_theme_js', 10, 2 );
+
+/**
+ * Paginacion conforme a la opcion del personalizador:
+ * numerica (1, 2, 3...) o de texto (Anterior / Siguiente).
+ */
+function nechugo_the_pagination() {
+	if ( 'text' === nechugo_get_option( 'pagination_style' ) ) {
+		posts_nav_link( ' ', '&laquo; ' . esc_html__( 'Anterior', 'nechugo-news' ), esc_html__( 'Siguiente', 'nechugo-news' ) . ' &raquo;' );
+		return;
+	}
+	the_posts_pagination(
+		array(
+			'mid_size'  => 2,
+			'prev_text' => '&laquo;',
+			'next_text' => '&raquo;',
+		)
+	);
+}

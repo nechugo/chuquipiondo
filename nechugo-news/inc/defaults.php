@@ -82,6 +82,17 @@ function nechugo_defaults() {
 		'header_topbar_enable'   => false,
 		'header_date_enable'     => true,
 
+		// Colores de enlaces globales (Astra: Global Colors).
+		'link_color'              => '',
+		'link_hover_color'        => '',
+
+		// Paginacion (Astra: numeric/text).
+		'pagination_style'        => 'numeric',
+
+		// Rendimiento (Astra: Performance).
+		'perf_disable_emojis'     => true,
+		'perf_defer_js'           => true,
+
 		// Tipografia por contexto (estilo Astra Pro).
 		'post_title_font_size'    => 18,
 		'post_title_font_weight'  => 900,

@@ -137,6 +137,16 @@ function nechugo_customizer_css() {
 		$css .= 'body{background:linear-gradient(135deg,' . $from . ',' . $to . ') fixed;}';
 	}
 
+	// ============ Colores de enlaces globales (Astra: Global Colors) ============
+	$link_c = nechugo_get_option( 'link_color' );
+	$hover_c = nechugo_get_option( 'link_hover_color' );
+	if ( ! empty( $link_c ) ) {
+		$css .= 'a{color:' . sanitize_hex_color( $link_c ) . ';}';
+	}
+	if ( ! empty( $hover_c ) ) {
+		$css .= 'a:hover{color:' . sanitize_hex_color( $hover_c ) . ';}';
+	}
+
 	// ============ Header: gap, alineaciones y fuente del menu ============
 	$gap = max( 0, (int) nechugo_get_option( 'header_gap' ) );
 	$css .= '.header__inner{gap:' . $gap . 'px;}';

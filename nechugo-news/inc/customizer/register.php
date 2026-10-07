@@ -100,6 +100,44 @@ function nechugo_customize_register( $wp_customize ) {
 		)
 	);
 
+	$wp_customize->add_setting(
+		'link_color',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'transport'         => 'postMessage',
+		)
+	);
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'link_color',
+			array(
+				'label'   => __( 'Color de enlaces (global)', 'nechugo-news' ),
+				'section' => 'nechugo_colors',
+			)
+		)
+	);
+
+	$wp_customize->add_setting(
+		'link_hover_color',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'transport'         => 'postMessage',
+		)
+	);
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'link_hover_color',
+			array(
+				'label'   => __( 'Color de enlaces al pasar el mouse', 'nechugo-news' ),
+			'section' => 'nechugo_colors',
+			)
+		)
+	);
+
 	// ============================== TIPOGRAFIA ==============================
 	$wp_customize->add_section(
 		'nechugo_typography',
@@ -1061,6 +1099,26 @@ function nechugo_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
+		'pagination_style',
+		array(
+			'default'           => 'numeric',
+			'sanitize_callback' => 'sanitize_key',
+		)
+	);
+	$wp_customize->add_control(
+		'pagination_style',
+		array(
+			'label'   => __( 'Estilo de paginacion', 'nechugo-news' ),
+			'section' => 'nechugo_blog',
+			'type'    => 'radio',
+			'choices' => array(
+				'numeric' => __( 'Numerica (1, 2, 3...)', 'nechugo-news' ),
+				'text'    => __( 'Texto (Anterior / Siguiente)', 'nechugo-news' ),
+			),
+		)
+	);
+
+	$wp_customize->add_setting(
 		'sidebar_width',
 		array(
 			'default'           => 300,
@@ -1588,6 +1646,38 @@ function nechugo_customize_register( $wp_customize ) {
 				'section'     => 'nechugo_buttons',
 				'type'        => 'number',
 				'input_attrs' => array( 'min' => $data[1], 'max' => $data[2] ),
+			)
+		);
+	}
+
+	// ============================== RENDIMIENTO ==============================
+	$wp_customize->add_section(
+		'nechugo_performance',
+		array(
+			'title'    => __( 'Rendimiento', 'nechugo-news' ),
+			'panel'    => 'nechugo_options',
+			'priority' => 90,
+		)
+	);
+
+	$perf_toggles = array(
+		'perf_disable_emojis' => __( 'Desactivar script de emojis de WordPress (mas rapido)', 'nechugo-news' ),
+		'perf_defer_js'       => __( 'Cargar JavaScript en diferido (defer)', 'nechugo-news' ),
+	);
+	foreach ( $perf_toggles as $key => $label ) {
+		$wp_customize->add_setting(
+			$key,
+			array(
+				'default'           => nechugo_get_option( $key ),
+				'sanitize_callback' => 'nechugo_sanitize_checkbox',
+			)
+		);
+		$wp_customize->add_control(
+			$key,
+			array(
+				'label'   => $label,
+				'section' => 'nechugo_performance',
+				'type'    => 'checkbox',
 			)
 		);
 	}

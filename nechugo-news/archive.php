@@ -26,7 +26,7 @@ get_header();
 					?>
 				</div>
 				<div class="nechugo-pagination">
-					<?php the_posts_pagination( array( 'mid_size' => 2 ) ); ?>
+					<?php nechugo_the_pagination(); ?>
 				</div>
 			<?php else : ?>
 				<div class="nechugo-no-results">
