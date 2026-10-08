@@ -221,9 +221,10 @@
 }
 
 .post-card__excerpt {
-	color: #727982;
-	font-size: 14px;
-	line-height: 1.55;
+	/* Requirement: 16px excerpt font. */
+	font-size: 16px;
+	line-height: 1.6;
+	color: var(--ink, #1a2233);
 	flex: 1;
 }
 
@@ -445,7 +446,8 @@
 	margin-top: var(--space-3);
 	padding: 10px 24px;
 	/* Minimum width (personalizable via --more-btn-min-width). */
-	min-width: var(--more-btn-min-width, 50px);
+	width: var(--more-btn-width, 40px);
+	min-width: var(--more-btn-width, 40px);
 	border-radius: 30px;
 	background: var(--button-bg, #27b6ff);
 	color: var(--button-text, #0a1f44);

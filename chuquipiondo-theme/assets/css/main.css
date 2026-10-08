@@ -406,7 +406,9 @@ th {
 	width: 100%;
 	max-width: var(--container-width);
 	margin-inline: auto;
-	padding: 0 1.5rem;
+	/* Inner margin from the container edge (1280px) inward: 5px breathing room
+	 * so cards, images and articles never touch the container border. */
+	padding: 0 calc(1.5rem + 5px);
 }
 
 /* Full-width elements break out of the container. */
@@ -439,7 +441,7 @@ th {
 	padding: var(--space-8) 0;
 	max-width: var(--container-width);
 	margin-inline: auto;
-	padding-inline: 1.5rem;
+	padding-inline: calc(1.5rem + 5px);
 	/* Gap entre el header (visible u oculto) y el cuerpo del contenido. */
 	margin-top: var(--header-content-gap, 30px);
 }
@@ -1946,9 +1948,10 @@ body.has-hero .hero--full-viewport,
 }
 
 .post-card__excerpt {
-	color: #727982;
-	font-size: 14px;
-	line-height: 1.55;
+	/* Requirement: 16px excerpt font. */
+	font-size: 16px;
+	line-height: 1.6;
+	color: var(--ink, #1a2233);
 	flex: 1;
 }
 
@@ -2170,7 +2173,8 @@ body.has-hero .hero--full-viewport,
 	margin-top: var(--space-3);
 	padding: 10px 24px;
 	/* Minimum width (personalizable via --more-btn-min-width). */
-	min-width: var(--more-btn-min-width, 50px);
+	width: var(--more-btn-width, 40px);
+	min-width: var(--more-btn-width, 40px);
 	border-radius: 30px;
 	background: var(--button-bg, #27b6ff);
 	color: var(--button-text, #0a1f44);

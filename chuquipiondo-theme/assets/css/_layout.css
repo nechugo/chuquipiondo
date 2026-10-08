@@ -6,7 +6,9 @@
 	width: 100%;
 	max-width: var(--container-width);
 	margin-inline: auto;
-	padding: 0 1.5rem;
+	/* Inner margin from the container edge (1280px) inward: 5px breathing room
+	 * so cards, images and articles never touch the container border. */
+	padding: 0 calc(1.5rem + 5px);
 }
 
 /* Full-width elements break out of the container. */
@@ -39,7 +41,7 @@
 	padding: var(--space-8) 0;
 	max-width: var(--container-width);
 	margin-inline: auto;
-	padding-inline: 1.5rem;
+	padding-inline: calc(1.5rem + 5px);
 	/* Gap entre el header (visible u oculto) y el cuerpo del contenido. */
 	margin-top: var(--header-content-gap, 30px);
 }

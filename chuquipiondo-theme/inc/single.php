@@ -51,7 +51,6 @@ function chuquipiondo_single() {
 			chuquipiondo_primary_category();
 		}
 
-		the_title( '<h1 class="entry-title single-article__title">', '</h1>' );
 
 		echo '<div class="entry-meta single-article__meta">';
 		if ( chuquipiondo_is_enabled( 'single_show_date' ) ) {
@@ -116,6 +115,12 @@ function chuquipiondo_single() {
 		// Carousel of recommended articles.
 		chuquipiondo_single_carousel();
 
+		// Ad before related posts (4th slot: minimum 3 ad spaces per article).
+		if ( function_exists( 'chuquipiondo_ad_slot_has_code' ) && chuquipiondo_ad_slot_has_code( 'ads_before_related' ) ) {
+			echo '<div class="article-ad-responsive">';
+			chuquipiondo_ad_slot( 'ads_before_related' );
+			echo '</div>';
+		}
 		// Related posts.
 		if ( chuquipiondo_is_enabled( 'single_show_related' ) ) {
 			chuquipiondo_related_posts();

@@ -31,7 +31,6 @@ get_header();
 
 				<?php if ( chuquipiondo_is_enabled( 'page_show_title' ) ) : ?>
 				<header class="entry-header single-article__header">
-					<?php the_title( '<h1 class="entry-title single-article__title">', '</h1>' ); ?>
 				</header>
 				<?php endif; ?>
 

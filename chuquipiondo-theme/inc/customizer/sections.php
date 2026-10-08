@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function chuquipiondo_register_preheader( $wp_customize ) {
 	chuquipiondo_add_section( $wp_customize, 'chuquipiondo_preheader', array(
-		'title'    => __( 'CHUQUIPIONDO: Pre-header', 'chuquipiondo' ),
+		'title'    => __( 'Pre-header', 'chuquipiondo' ),
 		'priority' => 28,
 	) );
 
@@ -101,7 +101,7 @@ function chuquipiondo_register_preheader( $wp_customize ) {
 
 function chuquipiondo_register_header( $wp_customize ) {
 	chuquipiondo_add_section( $wp_customize, 'chuquipiondo_header', array(
-		'title'    => __( 'CHUQUIPIONDO: Cabecera', 'chuquipiondo' ),
+		'title'    => __( 'Cabecera', 'chuquipiondo' ),
 		'priority' => 29,
 	) );
 
@@ -404,7 +404,7 @@ function chuquipiondo_register_header( $wp_customize ) {
 
 function chuquipiondo_register_hero( $wp_customize ) {
 	chuquipiondo_add_section( $wp_customize, 'chuquipiondo_hero', array(
-		'title'    => __( 'CHUQUIPIONDO: Hero / Slider', 'chuquipiondo' ),
+		'title'    => __( 'Hero / Slider', 'chuquipiondo' ),
 		'priority' => 30,
 	) );
 
@@ -502,7 +502,7 @@ function chuquipiondo_register_hero( $wp_customize ) {
 
 function chuquipiondo_register_home( $wp_customize ) {
 	chuquipiondo_add_section( $wp_customize, 'chuquipiondo_home', array(
-		'title'    => __( 'CHUQUIPIONDO: Home Builder', 'chuquipiondo' ),
+		'title'    => __( 'Home Builder', 'chuquipiondo' ),
 		'priority' => 31,
 	) );
 
@@ -559,7 +559,7 @@ function chuquipiondo_blog_hero_category_choices() {
 
 function chuquipiondo_register_blog( $wp_customize ) {
 	chuquipiondo_add_section( $wp_customize, 'chuquipiondo_blog', array(
-		'title'    => __( 'CHUQUIPIONDO: Blog', 'chuquipiondo' ),
+		'title'    => __( 'Blog', 'chuquipiondo' ),
 		'priority' => 32,
 	) );
 
@@ -591,7 +591,7 @@ function chuquipiondo_register_blog( $wp_customize ) {
 
 function chuquipiondo_register_single( $wp_customize ) {
 	chuquipiondo_add_section( $wp_customize, 'chuquipiondo_single', array(
-		'title'    => __( 'CHUQUIPIONDO: Articulo', 'chuquipiondo' ),
+		'title'    => __( 'Articulo', 'chuquipiondo' ),
 		'priority' => 33,
 	) );
 
@@ -638,7 +638,7 @@ function chuquipiondo_register_single( $wp_customize ) {
 
 function chuquipiondo_register_ads( $wp_customize ) {
 	chuquipiondo_add_section( $wp_customize, 'chuquipiondo_ads', array(
-		'title'    => __( 'CHUQUIPIONDO: Publicidad', 'chuquipiondo' ),
+		'title'    => __( 'Publicidad', 'chuquipiondo' ),
 		'priority' => 34,
 	) );
 
@@ -681,7 +681,7 @@ function chuquipiondo_register_ads( $wp_customize ) {
 
 function chuquipiondo_register_social( $wp_customize ) {
 	chuquipiondo_add_section( $wp_customize, 'chuquipiondo_social', array(
-		'title'    => __( 'CHUQUIPIONDO: Redes Sociales', 'chuquipiondo' ),
+		'title'    => __( 'Redes Sociales', 'chuquipiondo' ),
 		'priority' => 35,
 	) );
 
@@ -716,7 +716,7 @@ function chuquipiondo_register_social( $wp_customize ) {
 
 function chuquipiondo_register_whatsapp( $wp_customize ) {
 	chuquipiondo_add_section( $wp_customize, 'chuquipiondo_whatsapp', array(
-		'title'    => __( 'CHUQUIPIONDO: WhatsApp', 'chuquipiondo' ),
+		'title'    => __( 'WhatsApp', 'chuquipiondo' ),
 		'priority' => 36,
 	) );
 
@@ -741,7 +741,7 @@ function chuquipiondo_register_whatsapp( $wp_customize ) {
 
 function chuquipiondo_register_page( $wp_customize ) {
 	chuquipiondo_add_section( $wp_customize, 'chuquipiondo_page', array(
-		'title'    => __( 'CHUQUIPIONDO: Pagina', 'chuquipiondo' ),
+		'title'    => __( 'Pagina', 'chuquipiondo' ),
 		'priority' => 33,
 	) );
 
@@ -783,7 +783,7 @@ function chuquipiondo_register_page( $wp_customize ) {
 
 function chuquipiondo_register_footer( $wp_customize ) {
 	chuquipiondo_add_section( $wp_customize, 'chuquipiondo_footer', array(
-		'title'    => __( 'CHUQUIPIONDO: Pie de pagina', 'chuquipiondo' ),
+		'title'    => __( 'Pie de pagina', 'chuquipiondo' ),
 		'priority' => 37,
 	) );
 
@@ -869,7 +869,7 @@ function chuquipiondo_register_footer( $wp_customize ) {
 
 function chuquipiondo_register_music( $wp_customize ) {
 	chuquipiondo_add_section( $wp_customize, 'chuquipiondo_music', array(
-		'title'    => __( 'CHUQUIPIONDO: Musica', 'chuquipiondo' ),
+		'title'    => __( 'Musica', 'chuquipiondo' ),
 		'priority' => 38,
 	) );
 
@@ -885,7 +885,7 @@ function chuquipiondo_register_music( $wp_customize ) {
 
 function chuquipiondo_register_custom_code( $wp_customize ) {
 	chuquipiondo_add_section( $wp_customize, 'chuquipiondo_code', array(
-		'title'    => __( 'CHUQUIPIONDO: Codigo personalizado', 'chuquipiondo' ),
+		'title'    => __( 'Codigo personalizado', 'chuquipiondo' ),
 		'priority' => 39,
 	) );
 
