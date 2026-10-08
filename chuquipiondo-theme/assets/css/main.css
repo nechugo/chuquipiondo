@@ -1955,18 +1955,7 @@ body.has-hero .hero--full-viewport,
 	flex: 1;
 }
 
-.post-card__more {
-	display: inline-block;
-	margin-top: 15px;
-	color: #002d83;
-	font-size: 11px;
-	font-weight: 800;
-	text-transform: uppercase;
-}
 
-.post-card__more:hover {
-	color: var(--sky-text, #0a6fa8);
-}
 
 /* ===== Wide ad between rows ===== */
 /* Caja de anuncio wide entre filas del grid: contenedor limpio,
@@ -2190,6 +2179,32 @@ body.has-hero .hero--full-viewport,
 .post-card .post-card__more:focus {
 	background: var(--button-hover-bg, #0a1f44);
 	color: var(--button-hover, #ffffff);
+}
+
+/* ===== Mobile fine-tuning ===== */
+@media (max-width: 767px) {
+	/* "Leer mas" button: comfortable touch size on small screens. */
+	.post-card .post-card__more {
+		width: auto;
+		min-width: var(--more-btn-width, 40px);
+		padding: 12px 28px;
+	}
+	/* Card images keep a pleasant height on phones. */
+	.post-card__media {
+		aspect-ratio: 16 / 10;
+	}
+	/* Titles one size down inside cards for balance. */
+	.post-card__title {
+		font-size: 1.0625rem;
+	}
+}
+@media (max-width: 480px) {
+	/* Very small screens: full-width tap-friendly button. */
+	.post-card .post-card__more {
+		display: block;
+		width: 100%;
+		text-align: center;
+	}
 }
 
 /* ===== assets/css/_single.css ===== */
