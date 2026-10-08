@@ -19,20 +19,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Render the blog/archive header.
  */
 function chuquipiondo_blog_header() {
-	if ( is_home() && ! is_front_page() ) {
-		echo '<header class="page-header page-header--blog chuqui-container">';
-		echo '<h1 class="page-title">' . esc_html__( 'Articulos', 'chuquipiondo' ) . '</h1>';
-		echo '</header>';
-	} elseif ( is_archive() ) {
-		echo '<header class="page-header chuqui-container">';
-		the_archive_title( '<h1 class="page-title">', '</h1>' );
-		the_archive_description( '<div class="archive-description">', '</div>' );
-		echo '</header>';
-	} elseif ( is_search() ) {
-		echo '<header class="page-header chuqui-container">';
-		printf( '<h1 class="page-title">' . esc_html__( 'Resultados para: %s', 'chuquipiondo' ) . '</h1>', '<span>' . get_search_query() . '</span>' );
-		echo '</header>';
-	}
+	// Requirement: no page title header on blog/archive/search — the content
+	// starts right below the site header with a clean gap (no "Articulos"
+	// band, no archive/search title block).
 }
 
 /**

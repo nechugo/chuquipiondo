@@ -1730,19 +1730,8 @@ body.has-hero .hero--full-viewport,
  * - Franjas decorativas opcionales
  */
 
-/* ===== Page header ===== */
-.page-header {
-	padding: var(--space-8) 0 var(--space-4);
-}
-
-.page-title {
-	margin: 0;
-}
-
-.archive-description {
-	margin-top: var(--space-2);
-	color: var(--muted);
-}
+/* Page-header band removed by requirement: blog/archive/search content
+ * starts directly under the site header with the clean 30px gap. */
 
 .no-posts {
 	padding: var(--space-8) 0;
