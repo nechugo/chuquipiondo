@@ -4,7 +4,7 @@ Tags: companion, header-builder, footer-builder, mega-menu, blog-pro, ads
 Requires at least: 6.2
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.11.0
+Stable tag: 1.12.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

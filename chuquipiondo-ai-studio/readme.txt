@@ -4,7 +4,7 @@ Tags: ai, artificial-intelligence, seo, content, openai, mistral, anthropic, ima
 Requires at least: 6.2
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.11.0
+Stable tag: 1.12.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,13 @@ El servicio puede trabajar con derivadas y normaliza las dimensiones declaradas 
 Es una funcion privilegiada. En la version 1.11.0 requiere que la opcion este habilitada y que el usuario disponga de la capacidad `unfiltered_html`.
 
 == Changelog ==
+
+= 1.12.0 =
+* IA lee el sitio completo: tracker de lecturas, ranking de mas leidos, propuestas basadas en datos
+* Carga idempotente: actualizar sin desactivar ya no provoca errores criticos
+* Guardado de la API key blindado (Throwable + constantes verificadas) — fin del error critico al Guardar
+* Sync automatico de modelo al cambiar de proveedor
+* Cola WP-Cron para lotes; presupuesto mensual; Gemini gratis
 
 = 1.11.0 =
 * Corrige autenticacion REST usando el nonce canonico `wp_rest`.

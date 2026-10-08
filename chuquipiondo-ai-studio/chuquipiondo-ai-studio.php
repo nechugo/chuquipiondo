@@ -3,7 +3,7 @@
  * Plugin Name:       CHUQUIPIONDO AI Studio
  * Plugin URI:        https://www.chuquipiondo.com
  * Description:        Estudio de IA para editar Entradas y Paginas con IA: mejora textos, parrafos, SEO, etiquetas, anade HTML/PHP/JS, gestiona imagenes por defecto a 500px de alto x 900px de ancho y publica nuevos articulos optimizados. Compatible con multiples temas (especialmente Astra) y libre de conflictos.
- * Version:           1.11.0
+ * Version:           1.12.0
  * Requires at least: 6.2
  * Requires PHP:      7.4
  * Author:            Nelson Chuquipiondo
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'CHUQUIPIONDO_AI_VERSION', '1.11.0' );
+define( 'CHUQUIPIONDO_AI_VERSION', '1.12.0' );
 define( 'CHUQUIPIONDO_AI_FILE', __FILE__ );
 define( 'CHUQUIPIONDO_AI_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CHUQUIPIONDO_AI_URL', plugin_dir_url( __FILE__ ) );
