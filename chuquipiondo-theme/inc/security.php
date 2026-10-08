@@ -150,8 +150,11 @@ function chuquipiondo_preload_critical() {
 	if ( is_admin() ) {
 		return;
 	}
-	// Preload the main stylesheet.
-	echo '<link rel="preload" href="' . esc_url( get_stylesheet_uri() ) . '" as="style">' . "\n";
+	// Preload the real front-end stylesheet (main.css); style.css is only
+	// the WP manifest and preloading it wastes a request (CORB/warnings).
+	if ( function_exists( 'chuquipiondo_asset_version' ) ) {
+		echo '<link rel="preload" href="' . esc_url( CHUQUIPIONDO_URI . '/assets/css/main.css' ) . '" as="style">' . "\n";
+	}
 	// Preload Google Fonts if needed.
 	$fonts_url = function_exists( 'chuquipiondo_google_fonts_url' ) ? chuquipiondo_google_fonts_url() : '';
 	if ( $fonts_url ) {
