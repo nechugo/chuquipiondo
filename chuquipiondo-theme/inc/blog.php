@@ -85,7 +85,6 @@ function chuquipiondo_blog_hero_slider() {
 	while ( $hero_q->have_posts() ) {
 		$hero_q->the_post();
 		$active = ( 0 === $i ) ? ' blog-hero__slide--active' : '';
-		$excerpt = wp_trim_words( get_the_excerpt(), 18, '...' );
 		?>
 		<article class="blog-hero__slide<?php echo esc_attr( $active ); ?>">
 			<a href="<?php the_permalink(); ?>">
@@ -95,7 +94,6 @@ function chuquipiondo_blog_hero_slider() {
 					<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'%3E%3Crect fill='%23ddd' width='1280' height='720'/%3E%3C/svg%3E" alt="<?php the_title_attribute(); ?>">
 				<?php endif; ?>
 			</a>
-			<div class="blog-hero__copy"><?php echo esc_html( $excerpt ); ?></div>
 			<div class="blog-hero__title"><?php the_title(); ?></div>
 		</article>
 		<?php

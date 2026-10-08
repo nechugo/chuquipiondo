@@ -3,7 +3,7 @@
  * Plugin Name:       CHUQUIPIONDO Companion
  * Plugin URI:        https://www.chuquipiondo.com
  * Description:       Plugin companion del tema CHUQUIPIONDO (estilo Astra Pro). Anade Header Builder, Footer Builder, Mega Menu, modulos de blog/revista pro, sistema de ads avanzado y starter sites importables one-click. Requiere el tema CHUQUIPIONDO.
- * Version:           1.12.0
+ * Version:           1.13.0
  * Requires at least: 6.2
  * Requires PHP:      7.4
  * Author:            Nelson Chuquipiondo
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'CHUQUIPIONDO_COMPANION_VERSION', '1.12.0' );
+define( 'CHUQUIPIONDO_COMPANION_VERSION', '1.13.0' );
 define( 'CHUQUIPIONDO_COMPANION_FILE', __FILE__ );
 define( 'CHUQUIPIONDO_COMPANION_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CHUQUIPIONDO_COMPANION_URL', plugin_dir_url( __FILE__ ) );

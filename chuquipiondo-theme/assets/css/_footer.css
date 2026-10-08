@@ -147,3 +147,69 @@
 	font-size: 10px;
 	opacity: 0.75;
 }
+
+/* ===== Footer 1-2-3: horizontal, edge-to-edge, differentiated colors =====
+ * Each footer row (brand / widgets / menu+copyright) spans the full width
+ * with its own background tone so the three sections read as distinct bands.
+ * Widgets inside sit side by side (horizontal) across the content width. */
+.site-footer {
+	display: flex;
+	flex-direction: column;
+}
+
+/* Band 1 - Brand: navy-dark base tone. */
+.footer-brand {
+	background: var(--footer-brand-bg, #06133a);
+	width: 100%;
+}
+
+/* Band 2 - Widgets: horizontal row, edge to edge. */
+.footer-widgets {
+	background: var(--footer-widgets-bg, #0a1f44);
+	width: 100%;
+}
+.footer-widgets .chuqui-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: var(--space-6);
+	align-items: flex-start;
+	justify-content: space-between;
+}
+.footer-widgets .chuqui-container .widget {
+	flex: 1 1 220px;
+	min-width: 200px;
+	margin: 0;
+}
+.footer-widgets .chuqui-container .widget:last-child {
+	flex: 0 1 auto;
+}
+
+/* Band 3 - Menu + copyright: lightest tone of the three. */
+.footer-menu-section,
+.footer-copyright-section {
+	background: var(--footer-menu-bg, #10294f);
+	width: 100%;
+}
+
+/* Distinct visual accents per band (differentiators). */
+.footer-brand .footer-about {
+	border-left: 3px solid var(--sky);
+	padding-left: var(--space-4);
+}
+.footer-widgets .footer-widget-title {
+	color: var(--sky-soft);
+}
+.footer-menu-section .footer-menu a {
+	color: var(--sky-soft);
+}
+
+/* Mobile: bands stack, widgets stay horizontal-wrapped. */
+@media (max-width: 767px) {
+	.footer-widgets .chuqui-container {
+		gap: var(--space-4);
+	}
+	.footer-widgets .chuqui-container .widget {
+		flex: 1 1 100%;
+	}
+}

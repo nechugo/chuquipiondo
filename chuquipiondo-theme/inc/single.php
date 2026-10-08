@@ -172,17 +172,25 @@ function chuquipiondo_single_author_bar() {
 	</div>
 	<script>
 	function chuquiCopyLink() {
+		var btn = document.querySelector('.author-bar__tool');
 		if (navigator.clipboard) {
 			navigator.clipboard.writeText(window.location.href).then(function() {
-				alert('<?php esc_html_e( 'Enlace copiado', 'chuquipiondo' ); ?>');
+				var note = document.createElement('span');
+				note.className = 'chuqui-copy-note';
+				note.textContent = '<?php esc_html_e( 'Enlace copiado', 'chuquipiondo' ); ?>';
+				(btn && btn.parentNode || document.body).appendChild(note);
+				setTimeout(function() { note.remove(); }, 1800);
 			});
 		}
 	}
 	function chuquiFontSize(dir) {
 		var content = document.querySelector('.entry-content.single-article__content');
 		if (!content) return;
-		var current = parseFloat(content.style.fontSize || '14');
-		var newSize = dir === 0 ? 14 : Math.max(11, Math.min(22, current + dir));
+		var base = <?php echo (int) chuquipiondo_get_option( 'single_content_size', 17 ); ?>;
+		var css = parseFloat(getComputedStyle(content).fontSize);
+		var current = parseFloat(content.dataset.fontsize || css || base);
+		var newSize = dir === 0 ? base : Math.max(base - 6, Math.min(base + 6, current + dir));
+		content.dataset.fontsize = newSize;
 		content.style.fontSize = newSize + 'px';
 	}
 	</script>

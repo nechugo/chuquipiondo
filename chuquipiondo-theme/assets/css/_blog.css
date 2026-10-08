@@ -110,11 +110,12 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	padding: 18px;
-	text-align: center;
+	padding: 18px 24px;
 	color: white;
-	font-size: 24px;
-	background: rgba(6, 19, 58, 0.72);
+	font-size: clamp(1.125rem, 1rem + 0.8vw, 1.5rem);
+	text-shadow: 0 1px 3px rgba(6, 19, 58, 0.5);
+	/* Requirement: 60% transparent title band. */
+	background: rgba(6, 19, 58, 0.6);
 }
 
 .blog-hero__arrow {
@@ -447,4 +448,25 @@
 	.post-card__media img {
 		min-height: 210px;
 	}
+}
+
+/* Card "Leer mas" button: 30px pill radius, 16px font, brand styling. */
+.post-card .post-card__more {
+	display: inline-block;
+	margin-top: var(--space-3);
+	padding: 10px 24px;
+	border-radius: 30px;
+	background: var(--button-bg, #27b6ff);
+	color: var(--button-text, #0a1f44);
+	font-family: var(--font-heading);
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.2;
+	text-decoration: none;
+	transition: background var(--transition-fast), color var(--transition-fast);
+}
+.post-card .post-card__more:hover,
+.post-card .post-card__more:focus {
+	background: var(--button-hover-bg, #0a1f44);
+	color: var(--button-hover, #ffffff);
 }

@@ -185,3 +185,12 @@
 .chuqui-ad:empty {
 	display: none;
 }
+
+/* Requirement: ad containers/images have NO border radius. */
+.chuqui-ad,
+.chuqui-ad img,
+.chuqui-ad iframe,
+.chuqui-ad ins,
+.chuqui-ad > * {
+	border-radius: 0 !important;
+}

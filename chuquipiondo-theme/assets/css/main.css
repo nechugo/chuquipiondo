@@ -562,8 +562,8 @@ th {
 	border-radius: var(--sidebar-card-radius, var(--radius-content, 7px));
 	padding: var(--sidebar-card-padding, 16px);
 	margin-bottom: var(--sidebar-card-gap, 12px);
-	border: 1px solid rgba(10, 31, 68, 0.06);
-	box-shadow: var(--shadow-soft);
+	/* No shadow: a clean 1px hairline border keeps the sidebar light and airy. */
+	border: 1px solid rgba(10, 31, 68, 0.12);
 	box-sizing: border-box;
 }
 
@@ -1831,11 +1831,12 @@ body.has-hero .hero--full-viewport,
 	left: 0;
 	right: 0;
 	bottom: 0;
-	padding: 18px;
-	text-align: center;
+	padding: 18px 24px;
 	color: white;
-	font-size: 24px;
-	background: rgba(6, 19, 58, 0.72);
+	font-size: clamp(1.125rem, 1rem + 0.8vw, 1.5rem);
+	text-shadow: 0 1px 3px rgba(6, 19, 58, 0.5);
+	/* Requirement: 60% transparent title band. */
+	background: rgba(6, 19, 58, 0.6);
 }
 
 .blog-hero__arrow {
@@ -2168,6 +2169,27 @@ body.has-hero .hero--full-viewport,
 	.post-card__media img {
 		min-height: 210px;
 	}
+}
+
+/* Card "Leer mas" button: 30px pill radius, 16px font, brand styling. */
+.post-card .post-card__more {
+	display: inline-block;
+	margin-top: var(--space-3);
+	padding: 10px 24px;
+	border-radius: 30px;
+	background: var(--button-bg, #27b6ff);
+	color: var(--button-text, #0a1f44);
+	font-family: var(--font-heading);
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.2;
+	text-decoration: none;
+	transition: background var(--transition-fast), color var(--transition-fast);
+}
+.post-card .post-card__more:hover,
+.post-card .post-card__more:focus {
+	background: var(--button-hover-bg, #0a1f44);
+	color: var(--button-hover, #ffffff);
 }
 
 /* ===== assets/css/_single.css ===== */
@@ -2871,6 +2893,19 @@ body.has-hero .hero--full-viewport,
 	}
 }
 
+/* Copy-link feedback toast (replaces alert()). */
+.chuqui-copy-note {
+	margin-left: 8px;
+	color: var(--sky-text, #0a6fa8);
+	font-size: 12px;
+	font-weight: 600;
+	animation: chuquiFadeNote 0.25s ease;
+}
+@keyframes chuquiFadeNote {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
 /* ===== assets/css/_ads.css ===== */
 /**
  * Advertising slots.
@@ -3058,6 +3093,15 @@ body.has-hero .hero--full-viewport,
  * client-side), it collapses to zero height and no gap remains. */
 .chuqui-ad:empty {
 	display: none;
+}
+
+/* Requirement: ad containers/images have NO border radius. */
+.chuqui-ad,
+.chuqui-ad img,
+.chuqui-ad iframe,
+.chuqui-ad ins,
+.chuqui-ad > * {
+	border-radius: 0 !important;
 }
 
 /* ===== assets/css/_social.css ===== */
@@ -3805,6 +3849,72 @@ body.has-hero .hero--full-viewport,
 	margin: 0;
 	font-size: 10px;
 	opacity: 0.75;
+}
+
+/* ===== Footer 1-2-3: horizontal, edge-to-edge, differentiated colors =====
+ * Each footer row (brand / widgets / menu+copyright) spans the full width
+ * with its own background tone so the three sections read as distinct bands.
+ * Widgets inside sit side by side (horizontal) across the content width. */
+.site-footer {
+	display: flex;
+	flex-direction: column;
+}
+
+/* Band 1 - Brand: navy-dark base tone. */
+.footer-brand {
+	background: var(--footer-brand-bg, #06133a);
+	width: 100%;
+}
+
+/* Band 2 - Widgets: horizontal row, edge to edge. */
+.footer-widgets {
+	background: var(--footer-widgets-bg, #0a1f44);
+	width: 100%;
+}
+.footer-widgets .chuqui-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: var(--space-6);
+	align-items: flex-start;
+	justify-content: space-between;
+}
+.footer-widgets .chuqui-container .widget {
+	flex: 1 1 220px;
+	min-width: 200px;
+	margin: 0;
+}
+.footer-widgets .chuqui-container .widget:last-child {
+	flex: 0 1 auto;
+}
+
+/* Band 3 - Menu + copyright: lightest tone of the three. */
+.footer-menu-section,
+.footer-copyright-section {
+	background: var(--footer-menu-bg, #10294f);
+	width: 100%;
+}
+
+/* Distinct visual accents per band (differentiators). */
+.footer-brand .footer-about {
+	border-left: 3px solid var(--sky);
+	padding-left: var(--space-4);
+}
+.footer-widgets .footer-widget-title {
+	color: var(--sky-soft);
+}
+.footer-menu-section .footer-menu a {
+	color: var(--sky-soft);
+}
+
+/* Mobile: bands stack, widgets stay horizontal-wrapped. */
+@media (max-width: 767px) {
+	.footer-widgets .chuqui-container {
+		gap: var(--space-4);
+	}
+	.footer-widgets .chuqui-container .widget {
+		flex: 1 1 100%;
+	}
 }
 
 /* ===== assets/css/_responsive.css ===== */

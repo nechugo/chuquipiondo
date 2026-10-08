@@ -36,6 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php if ( chuquipiondo_is_enabled( 'blog_show_excerpt' ) ) : ?>
 				<div class="post-card__excerpt"><?php the_excerpt(); ?></div>
 			<?php endif; ?>
-		</div>
+		<a class="post-card__more btn btn--pill" href="<?php the_permalink(); ?>"><?php esc_html_e( 'Leer mas', 'chuquipiondo' ); ?></a>
+	</div>
 	<?php endif; ?>
 </article>

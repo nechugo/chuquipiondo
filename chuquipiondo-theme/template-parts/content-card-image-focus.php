@@ -26,5 +26,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php if ( chuquipiondo_is_enabled( 'blog_show_date' ) ) { chuquipiondo_the_date(); } ?>
 			</div>
 		</header>
+		<a class="post-card__more btn btn--pill" href="<?php the_permalink(); ?>"><?php esc_html_e( 'Leer mas', 'chuquipiondo' ); ?></a>
 	</div>
 </article>
