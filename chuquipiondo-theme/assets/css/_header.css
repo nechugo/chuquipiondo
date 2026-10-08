@@ -19,7 +19,9 @@
 
 /* Mode: only the main header row is sticky. */
 .site-header.sticky-mode--main.is-sticky-header .header-main {
-	position: fixed;
+	/* position:sticky keeps the header IN the flow: content is pushed down,
+	 * never covered — any header reaction displaces the content naturally. */
+	position: sticky;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -30,7 +32,9 @@
 
 /* Mode: the full header (top bar + main + multiuse) is sticky. */
 .site-header.sticky-mode--full.is-sticky-header {
-	position: fixed;
+	/* Sticky, not fixed: the whole header stays in the document flow so the
+	 * content below is never overlapped or hidden. */
+	position: sticky;
 	top: 0;
 	left: 0;
 	right: 0;

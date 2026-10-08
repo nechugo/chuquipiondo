@@ -444,6 +444,8 @@
 	display: inline-block;
 	margin-top: var(--space-3);
 	padding: 10px 24px;
+	/* Minimum width (personalizable via --more-btn-min-width). */
+	min-width: var(--more-btn-min-width, 50px);
 	border-radius: 30px;
 	background: var(--button-bg, #27b6ff);
 	color: var(--button-text, #0a1f44);
@@ -451,6 +453,7 @@
 	font-size: 16px;
 	font-weight: 600;
 	line-height: 1.2;
+	text-align: center;
 	text-decoration: none;
 	transition: background var(--transition-fast), color var(--transition-fast);
 }
