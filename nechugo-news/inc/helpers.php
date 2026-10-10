@@ -53,8 +53,8 @@ function nechugo_body_classes( $classes ) {
 	if ( nechugo_is_elementor_page() ) {
 		$classes[] = 'nechugo-elementor-page';
 	}
-	$classes[] = 'nechugo-header-' . nechugo_get_option( 'header_layout' );
-	$classes[] = 'nechugo-footer-' . nechugo_get_option( 'footer_layout' );
+	$classes[] = 'nechugo-header-' . sanitize_html_class( nechugo_get_option( 'header_layout' ) );
+	$classes[] = 'nechugo-footer-' . sanitize_html_class( nechugo_get_option( 'footer_layout' ) );
 
 	return $classes;
 }
@@ -66,10 +66,10 @@ add_filter( 'body_class', 'nechugo_body_classes' );
  * @return bool
  */
 function nechugo_is_elementor_page() {
-	if ( ! class_exists( '\Elementor\Plugin' ) || ! is_singular() ) {
+	if ( ! class_exists( '\\Elementor\\Plugin' ) || ! is_singular() ) {
 		return false;
 	}
-	$plugin = \Elementor\Plugin::instance();
+	$plugin = \\Elementor\\Plugin::instance();
 	if ( ! isset( $plugin->documents ) || ! $plugin->documents ) {
 		return false;
 	}

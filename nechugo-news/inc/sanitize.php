@@ -52,7 +52,12 @@ function nechugo_sanitize_number( $value, $setting ) {
 }
 
 /**
- * Sanitiza codigo de anuncio conservando scripts de confianza (AdSense).
+ * Sanitiza codigo de anuncio conservando solo scripts de confianza (AdSense).
+ *
+ * 1. Elimina por completo los scripts inline (sin atributo src).
+ * 2. Elimina los scripts externos cuyo host no este en la lista de confianza.
+ * 3. Elimina atributos de evento (onclick, onerror, etc.) y URLs javascript:
+ *    de cualquier etiqueta restante.
  *
  * @param string $value Codigo HTML.
  * @return string
@@ -60,7 +65,7 @@ function nechugo_sanitize_number( $value, $setting ) {
 function nechugo_sanitize_ad_code( $value ) {
 	$value = (string) $value;
 
-	// Lista de dominios de confianza para scripts de anuncios.
+	// Dominios de confianza para scripts de anuncios.
 	$trusted = array(
 		'pagead2.googlesyndication.com',
 		'adservice.google.com',
@@ -68,15 +73,23 @@ function nechugo_sanitize_ad_code( $value ) {
 		'cdn.ampproject.org',
 	);
 
-	// Extrae scripts y conserva solo los confiables.
-	if ( preg_match_all( '/<script[^>]*src=["\']([^"\']+)["\'][^>]*><\/script>/i', $value, $matches ) ) {
-		foreach ( $matches[1] as $i => $src ) {
-			$host = wp_parse_url( $src, PHP_URL_HOST );
+	// 1. Scripts inline: se eliminan por completo, con su contenido.
+	$value = preg_replace( '/<script\b(?![^>]*\bsrc\s*=)[^>]*>.*?<\/script>/is', '', $value );
+	$value = preg_replace( '/<script\b(?![^>]*\bsrc\s*=)[^>]*>$/i', '', $value );
+
+	// 2. Scripts externos: conserva solo los de dominios confiables.
+	if ( preg_match_all( '/<script[^>]*\bsrc\s*=\s*["\']([^"\']+)["\'][^>]*>\s*<\/script>/i', $value, $matches, PREG_SET_ORDER ) ) {
+		foreach ( $matches as $match ) {
+			$host = wp_parse_url( $match[1], PHP_URL_HOST );
 			if ( ! $host || ! in_array( $host, $trusted, true ) ) {
-				return ''; // Script no confiable: se descarta todo el bloque.
+				$value = str_replace( $match[0], '', $value );
 			}
 		}
 	}
 
-	return $value; // Se guarda tal cual; solo administradores con unfiltered_html pueden editarlo.
+	// 3. Atributos de evento y URLs javascript: en cualquier etiqueta.
+	$value = preg_replace( '/\son\w+\s*=\s*(?:"[^"]*"|\'[^\']*\')/i', '', $value );
+	$value = preg_replace( '/(href|src)\s*=\s*(["\'])\s*javascript:[^"\']*\2/i', '$1=$2$2', $value );
+
+	return trim( $value );
 }
